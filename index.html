@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="5.2" data-ad="Karanlık Oda" data-tarih="10.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="5.3" data-ad="Karanlık Oda" data-tarih="10.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -337,7 +337,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 5.2 · 10.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 5.3 · 10.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6754,6 +6754,14 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .act.kh-act strong{font-family:"Playfair Display",serif;letter-spacing:.04em}
 .act.kh-act span{color:#e9d6c8}
 @media (prefers-reduced-motion:reduce){.kh{animation:none}}
+.kh-ara{font:700 12.5px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-top:6px}
+.kh-bs{border-left:0;padding-left:30px;position:relative}.kh-bs::before{content:"";position:absolute;left:8px;top:50%;width:16px;height:16px;margin-top:-8px;border-radius:4px;background:linear-gradient(90deg,var(--b1) 0 34%,var(--b2) 34% 67%,var(--b3) 67%);box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.kh-shl{display:grid;gap:8px}
+.kh-sh{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:8px;background:var(--surface-2);min-width:0}
+.kh-sh>b{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);font-size:13px}
+.kh-sh.on>span{flex:1;font-weight:600;font-size:14px;align-self:center;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.kh-sh.on small{color:var(--muted);align-self:center}
+.kh-shi{flex:1;min-width:0;display:grid;gap:6px}.kh-shi select{width:auto!important;flex:1 1 120px;padding:6px 8px!important}
+.kh-mini{min-height:34px;padding:5px 9px;font-size:13px}
 </style>
 <script>
 /* ===================== KABATAŞ HABER — gazete köşesi (Karanlık Oda 5.2 · 10.10.2026) =====================
@@ -6911,7 +6919,8 @@ function kagit(x, W, H, renk){ x.fillStyle = renk || '#f3eee2'; x.fillRect(0, 0,
   x.globalAlpha = .05; for (let i = 0; i < W*H/900; i++){ x.fillStyle = r() < .5 ? '#000' : '#7a5c2e'; x.fillRect(r()*W, r()*H, 1.6, 1.6); } x.globalAlpha = 1; }
 function logo(x, X, Y, s, ac, koyu){ /* KH damgası + gazete adı */ x.save(); x.fillStyle = ac; rr(x, X, Y, s, s, s*.18); x.fill(); x.fillStyle = '#fff'; x.font = `700 ${s*.5}px Oswald`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('KH', X + s/2, Y + s*.53);
   x.textAlign = 'left'; x.fillStyle = koyu ? '#111' : '#fff'; x.font = `700 ${s*.42}px Oswald`; x.fillText(TR(M.ad), X + s*1.22, Y + s*.36); x.globalAlpha = .85; x.font = `italic 400 ${s*.26}px "Playfair Display"`; x.fillText(M.slogan, X + s*1.22, Y + s*.78); x.restore(); x.textBaseline = 'alphabetic'; }
-function guvenli(W, H){ const dik = H/W > 1.6; return {u:dik ? H*.11 : H*.035, a:dik ? H*.17 : H*.035, m:W*.06}; }
+function guvenliTaban(W, H){ return H/W > 1.6 ? H*.17 : H*.035; }
+function guvenli(W, H){ const dik = H/W > 1.6; return {u:dik ? H*.11 : H*.035, a:guvenliTaban(W, H) + (D.altBant ? W*.072 + W*.014 : 0), m:W*.06}; }
 /* altyazı (video) */
 function altyazi(x, W, H, t, yb){ if (!D.altyazi || !SES || t === Infinity) return; const sg = SES.segs.find(s => t >= s.a && t < s.b + .15); if (!sg) return;
   const fs = W*.042; x.font = `700 ${fs}px Montserrat`; const L = satirla(x, sg.t, W*.84).slice(0, 3), h = L.length*fs*1.25 + fs*.7, y = yb - h;
@@ -6923,7 +6932,7 @@ const CIZ = {
     foto(x, 0, 0, W, H, kb); const gr = x.createLinearGradient(0, H*.32, 0, H); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(.55, 'rgba(0,0,0,.7)'); gr.addColorStop(1, 'rgba(0,0,0,.92)'); x.fillStyle = gr; x.fillRect(0, 0, W, H);
     const tp = x.createLinearGradient(0, 0, 0, H*.2); tp.addColorStop(0, 'rgba(0,0,0,.55)'); tp.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = tp; x.fillRect(0, 0, W, H*.2);
     logo(x, g.m, g.u, W*.085, ac); x.fillStyle = '#fff'; x.font = `500 ${W*.026}px Oswald`; x.textAlign = 'right'; x.fillText(tarihYaz(D.tarih, true) + (D.yer ? ' · ' + TR(D.yer) : ''), W - g.m, g.u + W*.05);
-    const tH = W*.075, ty = H - g.a - tH, aY = ty - W*.03;
+    const tH = D.altBant ? 0 : W*.075, ty = H - g.a - tH, aY = ty - W*.03;
     const sp = D.spot ? (() => { x.font = `300 ${W*.036}px Montserrat`; return satirla(x, D.spot, W - 2*g.m).slice(0, 3); })() : [], spH = sp.length*W*.036*1.32;
     const mH = Math.min(H*.3, H*.6 - spH), mf = s => `700 ${s}px Oswald`; const m = sigdir(x, TR(D.manset || 'MANŞET BURAYA'), mf, W - 2*g.m, mH, 1.08, W*.13, W*.06, 4);
     const myBas = aY - spH - (sp.length ? W*.03 : 0) - m.L.length*m.s*1.08; const eh = W*.062;
@@ -6934,9 +6943,9 @@ const CIZ = {
     /* manşet: satır satır */ x.fillStyle = '#fff'; x.font = mf(m.s); x.shadowColor = 'rgba(0,0,0,.45)'; x.shadowBlur = W*.012;
     m.L.forEach((l, i) => { const p = pr(t, .25 + i*.16, .7 + i*.16); x.globalAlpha = p; x.textAlign = 'left'; x.fillText(l, g.m + (1 - p)*W*.06, myBas + (i + .82)*m.s*1.08); }); x.globalAlpha = 1; x.shadowBlur = 0;
     if (sp.length){ x.font = `300 ${W*.036}px Montserrat`; x.fillStyle = 'rgba(255,255,255,.92)'; x.globalAlpha = pr(t, .8, 1.3); yaz(x, sp, g.m, aY - spH + W*.036, W*.036, 1.32, 'left'); x.globalAlpha = 1; }
-    /* alt kayan bant */ x.fillStyle = '#fff'; x.fillRect(0, ty, W, tH); x.fillStyle = ac; x.fillRect(0, ty, W*.27, tH); x.fillStyle = ink; x.font = `700 ${tH*.42}px Oswald`; x.textAlign = 'center'; x.fillText(TR(ad.split(' ')[0]), W*.135, ty + tH*.64);
+    /* alt kayan bant */ if (tH){ x.fillStyle = '#fff'; x.fillRect(0, ty, W, tH); x.fillStyle = ac; x.fillRect(0, ty, W*.27, tH); x.fillStyle = ink; x.font = `700 ${tH*.42}px Oswald`; x.textAlign = 'center'; x.fillText(TR(ad.split(' ')[0]), W*.135, ty + tH*.64);
     const tk = '   •   ' + (D.metin || D.spot || D.manset || M.slogan).replace(/\s+/g, ' ') + '   •   ' + M.slogan; x.save(); x.beginPath(); x.rect(W*.27, ty, W*.73, tH); x.clip();
-    x.fillStyle = '#111'; x.font = `500 ${tH*.42}px Oswald`; x.textAlign = 'left'; const tw = x.measureText(tk).width, off = t === Infinity ? 0 : (t*W*.14) % tw; x.fillText(tk, W*.29 - off, ty + tH*.64); x.fillText(tk, W*.29 - off + tw, ty + tH*.64); x.restore();
+    x.fillStyle = '#111'; x.font = `500 ${tH*.42}px Oswald`; x.textAlign = 'left'; const tw = x.measureText(tk).width, off = t === Infinity ? 0 : (t*W*.14) % tw; x.fillText(tk, W*.29 - off, ty + tH*.64); x.fillText(tk, W*.29 - off + tw, ty + tH*.64); x.restore(); }
     altyazi(x, W, H, t, myBas - eh*1.6); },
 
   gazete(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac] = etk(D.etiket), m0 = g.m; kagit(x, W, H);
@@ -7000,8 +7009,8 @@ const CIZ = {
     if (D.spot){ x.font = `500 ${W*.032}px Montserrat`; x.fillStyle = '#fff'; x.shadowColor = 'rgba(0,0,0,.6)'; x.shadowBlur = W*.01; const L = satirla(x, D.spot, W - 2*g.m).slice(0, 3); x.globalAlpha = pr(t, .9, 1.4); yaz(x, L, g.m, by + bh + W*.12, W*.032, 1.3, 'left'); x.globalAlpha = 1; x.shadowBlur = 0; }
     x.font = `500 ${W*.022}px Oswald`; x.fillStyle = '#fff'; x.textAlign = 'right'; x.fillText(TR(M.slogan) + ' · ' + TR(M.hesap), W - g.m, H - g.a); altyazi(x, W, H, t, H - g.a - W*.05); }
 };
-function kartCiz(c, t, dur){ const [W, H] = ORAN[D.oran] || ORAN['4:5']; if (c.width !== W || c.height !== H){ c.width = W; c.height = H; } const x = c.getContext('2d'); x.save(); x.clearRect(0, 0, W, H);
-  try { (CIZ[D.sablon] || CIZ.sondakika)(x, W, H, t == null ? Infinity : t, dur || 8); } catch(e){ console.warn('Kabataş Haber çizim', e); } x.restore(); }
+function kartCiz(c, t, dur, tG){ const [W, H] = ORAN[D.oran] || ORAN['4:5']; if (c.width !== W || c.height !== H){ c.width = W; c.height = H; } const x = c.getContext('2d'); x.save(); x.clearRect(0, 0, W, H);
+  try { (CIZ[D.sablon] || CIZ.sondakika)(x, W, H, t == null ? Infinity : t, dur || 8); if (D.altBant) tvBant(x, W, H, tG != null ? tG : (t == null ? Infinity : t), D.etiket); } catch(e){ console.warn('Kabataş Haber çizim', e); } x.restore(); }
 
 /* ---------- ses üretimi ---------- */
 const cumleler = t => String(t || '').replace(/\s+/g, ' ').match(/[^.!?…]+[.!?…]*["”’)]?/g)?.map(s => s.trim()).filter(s => /[\p{L}\p{N}]/u.test(s)) || [];
@@ -7025,36 +7034,34 @@ function wavBlob(f, sr){ const n = f.length, v = new DataView(new ArrayBuffer(44
 
 /* ---------- önizleme oynatma ---------- */
 function durdur(){ if (calis){ calis.dur = true; try { calis.a && calis.a.pause(); } catch(e){} cancelAnimationFrame(calis.raf); calis = null; } const b = $h('#khOyna'); if (b) b.textContent = '▶ Sesli önizle'; ciz(); }
-async function oynat(){ if (calis){ durdur(); return; } const b = $h('#khOyna'), not = $h('#khSesNot'); b.textContent = '■ Durdur';
-  let ses = null; try { ses = await sesHazirla(m => not.textContent = m); not.textContent = ''; } catch(e){ not.textContent = 'Sessiz önizleme: ' + (e.message || e); }
-  const dur = ses ? ses.sure : 7, c = $h('#khCv'), C = calis = {dur:false, raf:0};
-  if (ses){ C.a = new Audio(URL.createObjectURL(wavBlob(ses.pcm, ses.sr))); try { await C.a.play(); } catch(e){ C.a = null; } }
-  const t0 = performance.now(); const ad = () => { if (C.dur) return; const t = C.a ? C.a.currentTime : (performance.now() - t0)/1000; kartCiz(c, t, dur); if (t >= dur || (C.a && C.a.ended)){ durdur(); return; } C.raf = requestAnimationFrame(ad); }; ad(); }
+async function oynat(){ if (calis){ durdur(); return; } const b = $h('#khOyna'), not = $h('#khSesNot'); b.textContent = '■ Durdur'; const C = calis = {dur:false, raf:0};
+  let P = null, ab = null; try { P = await planKur(m => not.textContent = m); if (C.dur) return; ab = await karisim(P, m => not.textContent = m); not.textContent = ''; } catch(e){ not.textContent = 'Önizleme: ' + (e.message || e); }
+  if (C.dur) return; if (!P){ durdur(); return; } const c = $h('#khCv');
+  if (ab){ C.a = new Audio(URL.createObjectURL(stereoWav(ab))); try { await C.a.play(); } catch(e){ C.a = null; } }
+  const t0 = performance.now(); const ad = () => { if (C.dur) return; const t = C.a ? C.a.currentTime : (performance.now() - t0)/1000; zamanCiz(c, P, Math.min(t, P.top - .01)); if (t >= P.top || (C.a && C.a.ended)){ durdur(); return; } C.raf = requestAnimationFrame(ad); }; ad(); }
 
 /* ---------- video (MP4: H.264 + AAC) ---------- */
-async function kodek(W, H){ if (!('VideoEncoder' in window)) return null; const br = Math.round(W*H*30*.12);
+async function kodek(W, H){ if (!('VideoEncoder' in window)) return null; const br = Math.round(W*H*30*.085);
   for (const codec of ['avc1.640028', 'avc1.4d0028', 'avc1.42e028', 'avc1.640032']){ const cfg = {codec, width:W, height:H, bitrate:br, framerate:30, avc:{format:'avc'}, bitrateMode:'variable'};
     try { if ((await VideoEncoder.isConfigSupported(cfg)).supported) return {cfg, mux:'avc'}; } catch(e){} }
   for (const codec of ['vp09.00.41.08', 'vp09.00.40.08']){ const cfg = {codec, width:W, height:H, bitrate:br, framerate:30, bitrateMode:'variable'}; try { if ((await VideoEncoder.isConfigSupported(cfg)).supported) return {cfg, mux:'vp9', not:'H.264 yok; VP9 ile kodlandı (Instagram kabul etmeyebilir)'}; } catch(e){} } return null; }
 async function videoYap(){ const not = $h('#khVidNot'), btn = $h('#khVid'); if (btn.disabled) return; durdur();
   const [W, H] = ORAN[D.oran]; const vk = await kodek(W, H); if (!vk || typeof Mp4Muxer === 'undefined'){ not.textContent = 'Bu tarayıcı video oluşturamıyor. Telefonda güncel Chrome ile dene; görseli kaydedebilirsin.'; return; }
   btn.disabled = true; let wl = null; try { wl = await navigator.wakeLock.request('screen'); } catch(e){}
-  try { let ses = null; try { ses = await sesHazirla(m => not.textContent = m); } catch(e){ not.textContent = 'Sesiz video: ' + (e.message || e); }
-    const dur = Math.max(6, ses ? ses.sure + .6 : 7), fps = 30, nF = Math.round(dur*fps);
-    let ak = null; if (ses){ for (const [codec, mux] of [['mp4a.40.2', 'aac'], ['opus', 'opus']]){ const c = {codec, sampleRate:48000, numberOfChannels:2, bitrate:192000}; try { if ((await AudioEncoder.isConfigSupported(c)).supported){ ak = {cfg:c, mux}; break; } } catch(e){} } }
+  try { const P = await planKur(m => not.textContent = m), ab = await karisim(P, m => not.textContent = m), dur = P.top, fps = 30, nF = Math.ceil(dur*fps);
+    let ak = null; for (const [codec, mux] of [['mp4a.40.2', 'aac'], ['opus', 'opus']]){ const c = {codec, sampleRate:48000, numberOfChannels:2, bitrate:192000}; try { if ((await AudioEncoder.isConfigSupported(c)).supported){ ak = {cfg:c, mux}; break; } } catch(e){} }
     const muxer = new Mp4Muxer.Muxer({target:new Mp4Muxer.ArrayBufferTarget(), video:{codec:vk.mux, width:W, height:H, frameRate:fps}, audio:ak ? {codec:ak.mux, numberOfChannels:2, sampleRate:48000} : undefined, fastStart:'in-memory', firstTimestampBehavior:'offset'});
     let hata = null;
-    if (ak){ not.textContent = 'Ses kodlanıyor…'; const n48 = Math.ceil(dur*48000), oc = new OfflineAudioContext(2, n48, 48000), b = oc.createBuffer(1, ses.pcm.length, ses.sr); b.copyToChannel(ses.pcm, 0);
-      const s = oc.createBufferSource(); s.buffer = b; s.connect(oc.destination); s.start(0); const mix = await oc.startRendering();
-      const ae = new AudioEncoder({output:(c, m) => muxer.addAudioChunk(c, m), error:e => hata = e}); ae.configure(ak.cfg); const L = mix.getChannelData(0), R = mix.getChannelData(1), CH = 9600;
+    if (ak){ not.textContent = 'Ses kodlanıyor…'; const ae = new AudioEncoder({output:(c, m) => muxer.addAudioChunk(c, m), error:e => hata = e}); ae.configure(ak.cfg); const L = ab.getChannelData(0), R = ab.getChannelData(1), CH = 9600;
       for (let o = 0; o < L.length; o += CH){ const n = Math.min(CH, L.length - o), d = new Float32Array(n*2); d.set(L.subarray(o, o + n), 0); d.set(R.subarray(o, o + n), n);
-        const a = new AudioData({format:'f32-planar', sampleRate:48000, numberOfFrames:n, numberOfChannels:2, timestamp:Math.round(o*1e6/48000), data:d}); ae.encode(a); a.close(); }
+        const a = new AudioData({format:'f32-planar', sampleRate:48000, numberOfFrames:n, numberOfChannels:2, timestamp:Math.round(o*1e6/48000), data:d}); ae.encode(a); a.close(); if (ae.encodeQueueSize > 20) await new Promise(r => setTimeout(r, 2)); }
       await ae.flush(); ae.close(); if (hata) throw hata; }
-    const ve = new VideoEncoder({output:(c, m) => muxer.addVideoChunk(c, m), error:e => hata = e}); ve.configure(vk.cfg); const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
-    for (let f = 0; f < nF; f++){ if (hata) throw hata; kartCiz(cv, f/fps, dur); const vf = new VideoFrame(cv, {timestamp:Math.round(f*1e6/fps), duration:Math.round(1e6/fps)}); ve.encode(vf, {keyFrame:f % (fps*2) === 0}); vf.close();
-      while (ve.encodeQueueSize > 4) await new Promise(r => setTimeout(r, 4)); if (f % 10 === 0){ not.textContent = `Video hazırlanıyor %${Math.round(f/nF*100)}`; await new Promise(r => setTimeout(r, 0)); } }
+    const ve = new VideoEncoder({output:(c, m) => muxer.addVideoChunk(c, m), error:e => hata = e}); ve.configure(vk.cfg); const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const bas = performance.now();
+    for (let f = 0; f < nF; f++){ if (hata) throw hata; zamanCiz(cv, P, Math.min(f/fps, dur - .01)); const vf = new VideoFrame(cv, {timestamp:Math.round(f*1e6/fps), duration:Math.round(1e6/fps)}); ve.encode(vf, {keyFrame:f % (fps*2) === 0}); vf.close();
+      { let bk = 0; while (ve.encodeQueueSize > 4){ if (hata) throw hata; if (ve.state === 'closed') throw new Error('kodlayıcı kapandı (uygulama arka plana alınmış olabilir)'); await new Promise(r => setTimeout(r, 4)); if (++bk > 7500) throw new Error('kodlayıcı yanıt vermiyor; ekranı açık tutup yeniden dene'); } }
+      if (f % 15 === 0){ const gc = (performance.now() - bas)/1000, kal = f ? gc/f*(nF - f) : 0; not.textContent = `Video hazırlanıyor %${Math.round(f/nF*100)}` + (f > 30 ? ` · kalan ≈ ${Math.ceil(kal)} sn` : '') + ' · ekranı açık tut'; await new Promise(r => setTimeout(r, 0)); } }
     await ve.flush(); ve.close(); muxer.finalize(); const blob = new Blob([muxer.target.buffer], {type:'video/mp4'}); cv.width = 0;
-    const ad = dosyaAdi('mp4'); VIDEO = new File([blob], ad, {type:'video/mp4'}); not.textContent = `Video hazır: ${dur.toFixed(1)} sn · ${(blob.size/1048576).toFixed(1)} MB` + (vk.not ? ' · ' + vk.not : '');
+    VIDEO = new File([blob], dosyaAdi('mp4'), {type:'video/mp4'}); not.textContent = `Video hazır: ${Math.floor(dur/60) ? Math.floor(dur/60) + ' dk ' : ''}${Math.round(dur % 60)} sn · ${(blob.size/1048576).toFixed(1)} MB` + (vk.not ? ' · ' + vk.not : '') + (ak ? '' : ' · ses kodlanamadı');
     $h('#khVidSonuc').hidden = false; const v = $h('#khVidOn'); v.src = URL.createObjectURL(blob); M.sayi = Math.max(M.sayi, (D.sayi || 1) + 1); LSs('kh.marka', M);
   } catch(e){ console.warn(e); not.textContent = 'Video oluşturulamadı: ' + (e.message || e); }
   finally { btn.disabled = false; try { wl && wl.release(); } catch(e){} } }
@@ -7119,7 +7126,7 @@ async function taslakSakla(){ const L = LSg('kh.taslak', []); const c = document
   const kayit = {id:D.id, ad:D.manset || 'Başlıksız', z:Date.now(), k:k.toDataURL('image/jpeg', .7), d:Object.assign({}, D)};
   const i = L.findIndex(x => x.id === D.id); if (i >= 0) L.splice(i, 1); L.unshift(kayit); while (L.length > 24){ const x = L.pop(); IDB.del('t_' + x.id); } LSs('kh.taslak', L);
   if (FOTO){ const b = await new Promise(r => FOTO.toBlob(r, 'image/jpeg', .88)); IDB.set('t_' + D.id, b); } else IDB.del('t_' + D.id); tst('Taslak saklandı'); }
-async function taslakAc(id){ const x = LSg('kh.taslak', []).find(q => q.id === id); if (!x) return; D = Object.assign(yeniD(), x.d); const b = await IDB.get('t_' + id); FOTO = null; if (b) await fotoYukle(b); else ciz(); formDoldur(); kaydet(); }
+async function taslakAc(id){ const x = LSg('kh.taslak', []).find(q => q.id === id); if (!x) return; D = Object.assign(yeniD(), x.d); ekDoldur(); const b = await IDB.get('t_' + id); FOTO = null; if (b) await fotoYukle(b); else ciz(); formDoldur(); kaydet(); }
 function taslakListe(){ const L = LSg('kh.taslak', []), k = $h('#khTaslak'); k.hidden = !k.hidden; if (k.hidden) return;
   k.innerHTML = L.length ? L.map(x => `<button class="kh-ts" data-ts="${x.id}"><img src="${x.k}" alt=""><span>${esc(x.ad)}<small>${new Date(x.z).toLocaleDateString('tr-TR')}</small></span><i data-tsil="${x.id}" title="Sil">✕</i></button>`).join('') : '<p class="kh-n">Henüz taslak yok. "Taslak sakla" ile kartlarını burada biriktirirsin.</p>'; }
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;'}[c]));
@@ -7131,7 +7138,9 @@ function formDoldur(){ if (!kok) return; ['manset', 'spot', 'metin', 'yer', 'kis
   kok.querySelectorAll('[data-oran]').forEach(b => b.setAttribute('aria-pressed', b.dataset.oran === D.oran)); kok.querySelectorAll('[data-sb]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sb === D.sablon));
   kok.querySelectorAll('[data-et]').forEach(b => b.setAttribute('aria-pressed', b.dataset.et === D.etiket));
   const a = $h('#khAlt'); a.innerHTML = (D.alt || []).map((m, i) => `<button class="kh-c" data-alt="${i}">${esc(m)}</button>`).join(''); a.hidden = !(D.alt || []).length;
-  $h('#kh_alty').checked = !!D.altyazi; $h('#kh_jen').checked = !!D.jenerik; $h('#khZoom').value = D.fz || 1;
+  $h('#kh_alty').checked = !!D.altyazi; $h('#khZoom').value = D.fz || 1;
+  ['altBant', 'sfx', 'acilis', 'kapanis', 'spiker'].forEach(k => { const e = $h('#kh_' + k); if (e) e.checked = !!D[k]; }); ['bantMetin', 'acilisMetin', 'kapanisMetin', 'bultenNot'].forEach(k => { const e = $h('#kh_' + k); if (e && e !== document.activeElement) e.value = D[k] || ''; });
+  $h('#kh_muzikSes').value = D.muzikSes ?? 35; $h('#khMzO').textContent = '%' + (D.muzikSes ?? 35); kok.querySelectorAll('[data-bs]').forEach(b => b.setAttribute('aria-pressed', b.dataset.bs === D.bantStil)); kok.querySelectorAll('[data-mz]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mz === D.muzik)); sahneCiz();
   $h('#khM_ad').value = M.ad; $h('#khM_sl').value = M.slogan; $h('#khM_hs').value = M.hesap; $h('#khSayi').textContent = 'Sayı ' + (D.sayi || M.sayi);
   const sel = $h('#khSes'); if (sel && HSes){ sel.innerHTML = HSes.SESLER.map(([v, ad]) => `<option value="${v}"${HKS.ses === v ? ' selected' : ''}>${ad}</option>`).join(''); } $h('#khHiz').value = HKS.hiz; $h('#khHizO').textContent = '×' + (+HKS.hiz).toFixed(2);
   $h('#khClaude').textContent = smp ? '✨ Claude bağlı: not ve fotoğraftan manşet, spot, seslendirme ve paylaşım metni yazar.' : 'Bu sürümde Claude bağlı değil: nottan kurallarla hazırlar. Daha iyi metin için "Claude için kopyala".'; }
@@ -7139,7 +7148,7 @@ function ac(){ if (ACIK) return; ACIK = true; if (!kok) kur(); kok.hidden = fals
   (async () => { if (!FOTO){ const b = await IDB.get('foto'); if (b) await fotoYukle(b); } ciz(); })(); try { history.pushState({kh:1}, ''); } catch(e){} }
 function kapat(){ if (!ACIK) return; ACIK = false; durdur(); kok.hidden = true; document.documentElement.classList.remove('kh-acik'); kaydet(); }
 addEventListener('popstate', () => { if (ACIK) kapat(); });
-function kur(){ kok = document.createElement('section'); kok.id = 'khaber'; kok.className = 'kh'; kok.hidden = true;
+function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k, v]) => [k, [v.ad, v.l, v.b, v.s]])); kok = document.createElement('section'); kok.id = 'khaber'; kok.className = 'kh'; kok.hidden = true;
   kok.innerHTML = `<header class="kh-ust"><button class="kh-ik" id="khKapat" aria-label="Kapat">✕</button><div class="kh-bas"><b id="khBaslik">${esc(M.ad)}</b><small>${esc(M.slogan)}</small></div><button class="kh-b" id="khTsBtn">Taslaklar</button></header>
   <div class="kh-ic"><div class="kh-onz"><canvas id="khCv" aria-label="Haber kartı önizlemesi"></canvas><div class="kh-onz-alt"><button class="kh-b p" id="khOyna">▶ Sesli önizle</button><span class="kh-n" id="khSesNot"></span></div><div class="kh-n kh-ipucu">Fotoğrafı önizlemede sürükleyerek kaydır; iki parmakla büyüt.</div></div>
   <div class="kh-pan"><div id="khTaslak" class="kh-tsl" hidden></div>
@@ -7156,8 +7165,18 @@ function kur(){ kok = document.createElement('section'); kok.id = 'khaber'; kok.
     <label class="kh-l">Maddeler (madde madde şablonu, her satır bir madde)<textarea id="kh_maddeler" rows="3"></textarea></label></section>
    <section class="kh-s"><h3>4 · Seslendirme</h3><label class="kh-l">Okunacak metin (boşsa manşet + spot okunur)<textarea id="kh_metin" rows="4"></textarea></label>
     <div class="kh-iki"><label class="kh-l">Ses<select id="khSes"></select></label><label class="kh-l">Hız <output id="khHizO"></output><input type="range" id="khHiz" min="0.8" max="1.35" step="0.05"></label></div>
-    <label class="kh-ch"><input type="checkbox" id="kh_jen"> Haber jeneriği (kısa açılış sesi)</label><label class="kh-ch"><input type="checkbox" id="kh_alty"> Videoda altyazı (söylenen cümle ekranda)</label></section>
-   <section class="kh-s"><h3>5 · Paylaş</h3><div class="kh-r"><button class="kh-b p" id="khPay">📤 Görseli paylaş</button><button class="kh-b" id="khKay">🖼 Görseli kaydet</button><button class="kh-b p" id="khVid">🎬 Sesli video yap</button></div>
+    <label class="kh-ch"><input type="checkbox" id="kh_alty"> Videoda altyazı (söylenen cümle ekranda)</label></section>
+   <section class="kh-s"><h3>5 · Bülten · TV görünümü</h3><p class="kh-n">1–3 dakikalık video: açılış jeneriği, her haber ayrı sahne, TV geçişleri, alt kayan bant, haber müziği, geçiş sesleri ve spiker sesi. Tek kart için sahne eklemen gerekmez.</p>
+    <label class="kh-ch"><input type="checkbox" id="kh_altBant"> Alt kayan TV bandı (saatli)</label><div class="kh-r">${Object.entries(BANT_UI).map(([k, v]) => `<button class="kh-c kh-bs" data-bs="${k}" style="--b1:${v[1]};--b2:${v[2]};--b3:${v[3]}">${v[0]}</button>`).join('')}</div>
+    <label class="kh-l">Bant yazısı (boşsa manşetlerden kendiliğinden)<input id="kh_bantMetin"></label>
+    <div class="kh-r">${[['gergin','Son dakika · gergin'],['kurumsal','Bülten · kurumsal'],['sakin','Yerel · sakin'],['yok','Müzik yok']].map(([k, v]) => `<button class="kh-c" data-mz="${k}">♪ ${v}</button>`).join('')}</div>
+    <label class="kh-l">Müzik seviyesi <output id="khMzO"></output><input type="range" id="kh_muzikSes" min="0" max="100" step="5"></label>
+    <label class="kh-ch"><input type="checkbox" id="kh_sfx"> Geçiş sesleri (vınlama, vuruş, son dakika bip)</label><label class="kh-ch"><input type="checkbox" id="kh_acilis"> Açılış jeneriği</label><label class="kh-ch"><input type="checkbox" id="kh_kapanis"> Kapanış · takip et</label><label class="kh-ch"><input type="checkbox" id="kh_spiker"> Spiker açılış ve kapanış cümleleri</label>
+    <label class="kh-l">Açılış cümlesi<input id="kh_acilisMetin"></label><label class="kh-l">Kapanış cümlesi<input id="kh_kapanisMetin"></label>
+    <div class="kh-ara">Haber sahneleri</div><textarea id="kh_bultenNot" rows="4" placeholder="Bülten notları: her haber ayrı paragraf (aralarına boş satır). Ör.\n\nKabataş'ta fındık hasadı bitti, rekolte geçen yıldan yüksek.\n\nYeni Mahalle yolu cuma günü trafiğe açıldı."></textarea>
+    <div class="kh-r"><button class="kh-b p" id="khBYaz">✨ Bülteni yaz</button><button class="kh-b" id="khBKop">Claude için kopyala</button><button class="kh-b" id="khBYap">Yanıtı yapıştır</button></div><p class="kh-n" id="khBNot" aria-live="polite"></p>
+    <div id="khSahneler" class="kh-shl"></div><div class="kh-r"><label class="kh-b">＋ Fotoğraflarla sahne ekle<input type="file" accept="image/*,.heic,.heif" multiple id="khSahneIn" hidden></label><button class="kh-b" id="khSahneBos">＋ Fotoğrafsız sahne</button></div><p class="kh-n" id="khSure"></p></section>
+   <section class="kh-s"><h3>6 · Paylaş</h3><div class="kh-r"><button class="kh-b p" id="khPay">📤 Görseli paylaş</button><button class="kh-b" id="khKay">🖼 Görseli kaydet</button><button class="kh-b p" id="khVid">🎬 Sesli video yap</button></div>
     <p class="kh-n" id="khVidNot" aria-live="polite"></p><div id="khVidSonuc" hidden><video id="khVidOn" controls playsinline></video><div class="kh-r"><button class="kh-b p" id="khVidPay">📤 Videoyu paylaş</button><button class="kh-b" id="khVidKay">Videoyu kaydet</button></div></div>
     <label class="kh-l">Paylaşım metni<textarea id="kh_aciklama" rows="3"></textarea></label><label class="kh-l">Hashtag<input id="kh_hashtag"></label>
     <div class="kh-r"><button class="kh-b" id="khMetKop">📋 Paylaşım metnini kopyala</button><button class="kh-b" id="khTsKay">Taslak sakla</button><button class="kh-b" id="khYeni">Yeni kart</button></div></section>
@@ -7170,6 +7189,8 @@ function kur(){ kok = document.createElement('section'); kok.id = 'khaber'; kok.
     if (b.dataset.oran){ D.oran = b.dataset.oran; kaydet(); formDoldur(); ciz(); }
     else if (b.dataset.sb){ D.sablon = b.dataset.sb; kaydet(); formDoldur(); ciz(); }
     else if (b.dataset.et){ D.etiket = b.dataset.et; kaydet(); formDoldur(); ciz(); }
+    else if (b.dataset.bs){ D.bantStil = b.dataset.bs; D.altBant = true; kaydet(); formDoldur(); ciz(); }
+    else if (b.dataset.mz){ D.muzik = b.dataset.mz; kaydet(); formDoldur(); }
     else if (b.dataset.alt != null){ const m = D.alt[+b.dataset.alt]; if (m){ D.alt[+b.dataset.alt] = D.manset; D.manset = m; kaydet(); formDoldur(); ciz(); } }
     else if (b.dataset.foto === 'duzen') fotoYukle('duzen'); else if (b.dataset.foto === 'yok') fotoYukle(null); else if (b.dataset.foto === 'kamera') $h('#khKamIn').click();
     else if (e.target.dataset.tsil){ e.stopPropagation(); const id = e.target.dataset.tsil; LSs('kh.taslak', LSg('kh.taslak', []).filter(x => x.id !== id)); IDB.del('t_' + id); $h('#khTaslak').hidden = true; taslakListe(); }
@@ -7177,7 +7198,14 @@ function kur(){ kok = document.createElement('section'); kok.id = 'khaber'; kok.
   on('#khFotoIn', e => { const f = e.target.files[0]; if (f) fotoYukle(f); e.target.value = ''; }, 'change'); on('#khKamIn', e => { const f = e.target.files[0]; if (f) fotoYukle(f); e.target.value = ''; }, 'change');
   on('#khZoom', e => { D.fz = +e.target.value; kaydet(); ciz(); }, 'input'); on('#khYuz', () => yuzeOdakla(false));
   ['manset', 'spot', 'metin', 'yer', 'kisi', 'maddeler', 'not', 'aciklama', 'hashtag'].forEach(k => on('#kh_' + k, e => { D[k] = e.target.value; kaydet(); ciz(); }, 'input'));
-  on('#kh_alty', e => { D.altyazi = e.target.checked; kaydet(); }, 'change'); on('#kh_jen', e => { D.jenerik = e.target.checked; kaydet(); }, 'change');
+  on('#kh_alty', e => { D.altyazi = e.target.checked; kaydet(); }, 'change');
+  ['altBant', 'sfx', 'acilis', 'kapanis', 'spiker'].forEach(k => on('#kh_' + k, e => { D[k] = e.target.checked; kaydet(); ciz(); sahneCiz(); }, 'change'));
+  ['bantMetin', 'acilisMetin', 'kapanisMetin', 'bultenNot'].forEach(k => on('#kh_' + k, e => { D[k] = e.target.value; kaydet(); ciz(); }, 'input'));
+  on('#kh_muzikSes', e => { D.muzikSes = +e.target.value; $h('#khMzO').textContent = '%' + D.muzikSes; kaydet(); }, 'input');
+  on('#khBYaz', bultenYaz); on('#khBKop', async () => { try { await navigator.clipboard.writeText(BISTEM(($h('#kh_bultenNot').value || '').trim())); tst('Kopyalandı → Claude\'a yapıştır, yanıtı kopyala, "Yanıtı yapıştır"'); } catch(e){ tst('Kopyalanamadı'); } });
+  on('#khBYap', async () => { let t = ''; try { t = await navigator.clipboard.readText(); } catch(e){} if (!t){ tst('Pano okunamadı'); return; } try { bultenUygula(JSON.parse(t.slice(t.indexOf('{'), t.lastIndexOf('}') + 1))); kaydet(); formDoldur(); sahneCiz(); ciz(); $h('#khBNot').textContent = 'Yanıt uygulandı'; } catch(e){ $h('#khBNot').textContent = 'Yanıtta bülten JSON\'u bulunamadı'; } });
+  on('#khSahneIn', e => { const f = [...e.target.files]; if (f.length) sahneEkleFoto(f); e.target.value = ''; }, 'change'); on('#khSahneBos', () => { D.sahneler.push(yeniSahne()); kaydet(); sahneCiz(); });
+  sahneBagla();
   on('#khSes', e => { HKS.ses = e.target.value; LSs('kh.ses', HKS); try { HSes.kapat(); } catch(x){} }, 'change'); on('#khHiz', e => { HKS.hiz = +e.target.value; LSs('kh.ses', HKS); $h('#khHizO').textContent = '×' + HKS.hiz.toFixed(2); }, 'input');
   on('#khYaz', yazdir); on('#khOyna', oynat); on('#khVid', videoYap);
   on('#khKopya', async () => { const t = ISTEM(($h('#kh_not').value || '').trim() || D.manset); try { await navigator.clipboard.writeText(t); tst('Kopyalandı → Claude\'a yapıştır, yanıtı kopyala, "Yanıtı yapıştır"'); } catch(e){ tst('Kopyalanamadı'); } });
@@ -7185,7 +7213,7 @@ function kur(){ kok = document.createElement('section'); kok.id = 'khaber'; kok.
   on('#khPay', async () => paylas(await gorselDosya(), paylasimMetni())); on('#khKay', async () => { const f = await gorselDosya(); if (typeof saveFile === 'function') saveFile(f.name, f); else paylas(f); });
   on('#khVidPay', () => VIDEO && paylas(VIDEO, paylasimMetni())); on('#khVidKay', () => { if (VIDEO){ if (typeof saveFile === 'function') saveFile(VIDEO.name, VIDEO); else paylas(VIDEO); } });
   on('#khMetKop', async () => { try { await navigator.clipboard.writeText(paylasimMetni()); tst('Paylaşım metni kopyalandı'); } catch(e){ tst('Kopyalanamadı'); } });
-  on('#khTsKay', taslakSakla); on('#khYeni', () => { if (!confirm('Yeni kart açılsın mı? (Bu kart taslak olarak saklanır)')) return; taslakSakla(); const o = D.oran, s = D.sablon; D = yeniD(); D.oran = o; D.sablon = s; D.sayi = M.sayi; FOTO = null; IDB.del('foto'); kaydet(); formDoldur(); ciz(); });
+  on('#khTsKay', taslakSakla); on('#khYeni', () => { if (!confirm('Yeni kart açılsın mı? (Bu kart taslak olarak saklanır)')) return; taslakSakla(); const o = D.oran, s = D.sablon; D = yeniD(); ekDoldur(); D.oran = o; D.sablon = s; D.sayi = M.sayi; FOTO = null; IDB.del('foto'); kaydet(); formDoldur(); ciz(); });
   const mk = () => { M.ad = $h('#khM_ad').value.trim() || 'KABATAŞ HABER'; M.slogan = $h('#khM_sl').value.trim(); M.hesap = $h('#khM_hs').value.trim(); LSs('kh.marka', M); $h('#khBaslik').textContent = M.ad; ciz(); };
   ['#khM_ad', '#khM_sl', '#khM_hs'].forEach(id => on(id, mk, 'input'));
   /* önizlemede sürükle / iki parmakla büyüt */
@@ -7198,7 +7226,193 @@ function kur(){ kok = document.createElement('section'); kok.id = 'khaber'; kok.
   cv.addEventListener('pointerup', bit); cv.addEventListener('pointercancel', bit);
   try { document.fonts.ready.then(ciz); ['Oswald', 'Playfair Display', 'Montserrat', 'Lora', 'Bebas Neue'].forEach(f => document.fonts.load(`700 40px "${f}"`).then(ciz).catch(() => {})); } catch(e){}
 }
-window.KabatasHaber = {ac, kapat, ciz:kartCiz, D:() => D};
+/* ===================== 5.3: TV bandı · haber müziği · geçiş sesleri · çok sahneli bülten (1–3 dk) ===================== */
+const BANT = {kirmizi:{ad:'Kırmızı', l:'#d7191f', li:'#fff', b:'#ffffff', bi:'#111', s:'#111', si:'#fff'},
+  turuncu:{ad:'Turuncu', l:'#ff6a00', li:'#fff', b:'#141414', bi:'#fff', s:'#ff6a00', si:'#111'},
+  sari:{ad:'Koyu sarı', l:'#e3a400', li:'#111', b:'#111111', bi:'#fff', s:'#e3a400', si:'#111'},
+  beyaz:{ad:'Beyaz', l:'#ffffff', li:'#d7191f', b:'#d7191f', bi:'#fff', s:'#ffffff', si:'#d7191f'},
+  lacivert:{ad:'Lacivert', l:'#0b2a5b', li:'#fff', b:'#f2b705', bi:'#111', s:'#0b2a5b', si:'#fff'}};
+const MUZIK = [['gergin','Son dakika · gergin'],['kurumsal','Bülten · kurumsal'],['sakin','Yerel · sakin'],['yok','Müzik yok']];
+const EK = {altBant:true, bantStil:'kirmizi', bantMetin:'', muzik:'gergin', muzikSes:35, sfx:true, acilis:true, kapanis:true, spiker:true,
+  acilisMetin:'Kabataş Haber\'e hoş geldiniz. İşte öne çıkan gelişmeler.', kapanisMetin:'Kabataş Haber. Sıradan değil, sıladan haberler. Bizi takip etmeyi unutmayın.', sahneler:[], bultenNot:''};
+Object.keys(EK).forEach(k => { if (D[k] === undefined) D[k] = Array.isArray(EK[k]) ? [] : EK[k]; });
+const BH = () => (ORAN[D.oran] || ORAN['4:5'])[0]*.072;
+const saatYaz = ts => new Date(ts || Date.now()).toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
+const bantYazisi = () => (D.bantMetin || [D.manset].concat((D.sahneler || []).map(s => s.manset)).filter(Boolean).join('   •   ') || M.slogan) + '   •   ' + M.ad + ' — ' + M.slogan;
+/* TV alt bandı: solda etiket, ortada kayan yazı, sağda saat */
+function tvBant(x, W, H, t, lab){ const st = BANT[D.bantStil] || BANT.kirmizi, h = BH(), y = H - guvenliTaban(W, H) - h, lw = W*.25, rw = W*.15;
+  x.save(); x.textBaseline = 'middle';
+  x.fillStyle = st.b; x.fillRect(0, y, W, h); x.fillStyle = st.s; x.fillRect(0, y - h*.09, W, h*.09);
+  const tk = '   ' + bantYazisi() + '   '; x.save(); x.beginPath(); x.rect(lw, y, W - lw - rw, h); x.clip(); x.fillStyle = st.bi; x.font = `500 ${h*.44}px Oswald`; x.textAlign = 'left';
+  const tw = Math.max(1, x.measureText(tk).width), off = t === Infinity ? 0 : (t*W*.16) % tw; x.fillText(tk, lw + W*.015 - off, y + h*.52); x.fillText(tk, lw + W*.015 - off + tw, y + h*.52); x.restore();
+  x.fillStyle = st.l; x.beginPath(); x.moveTo(0, y); x.lineTo(lw, y); x.lineTo(lw - h*.35, y + h); x.lineTo(0, y + h); x.closePath(); x.fill();
+  x.fillStyle = st.li; x.font = `700 ${h*.4}px Oswald`; x.textAlign = 'center'; const L = TR(lab || 'GÜNDEM'); x.fillText(L.length > 14 ? L.split(' ')[0] : L, lw*.46, y + h*.53);
+  x.fillStyle = st.s; x.beginPath(); x.moveTo(W - rw + h*.3, y); x.lineTo(W, y); x.lineTo(W, y + h); x.lineTo(W - rw, y + h); x.closePath(); x.fill();
+  x.fillStyle = st.si; x.font = `700 ${h*.42}px Oswald`; x.fillText(saatYaz(D.tarih), W - rw*.45, y + h*.53); x.restore(); x.textBaseline = 'alphabetic'; }
+/* TV şablonu: iki katlı alt yazı (etiket + manşet), spot şeridi */
+CIZ.tv = function(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac, ink] = etk(D.etiket), st = BANT[D.bantStil] || BANT.kirmizi;
+  foto(x, 0, 0, W, H, t === Infinity ? 1.02 : 1 + .07*kis(t/dur, 0, 1)); const gr = x.createLinearGradient(0, H*.45, 0, H); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(0,0,0,.65)'); x.fillStyle = gr; x.fillRect(0, 0, W, H);
+  logo(x, g.m, g.u, W*.075, st.l === '#ffffff' ? '#d7191f' : st.l);
+  x.font = `700 ${W*.03}px Oswald`; const sw = x.measureText('KABATAŞ').width + W*.05; x.fillStyle = 'rgba(0,0,0,.55)'; x.fillRect(W - g.m - sw, g.u, sw, W*.06); x.fillStyle = '#fff'; x.textAlign = 'center'; x.fillText('KABATAŞ', W - g.m - sw/2, g.u + W*.042);
+  const mf = s => `700 ${s}px Oswald`, m = sigdir(x, TR(D.manset || 'MANŞET'), mf, W - 2*g.m - W*.06, H*.17, 1.06, W*.085, W*.045, 2), mh = m.L.length*m.s*1.06 + W*.05;
+  const sp = D.spot ? (() => { x.font = `500 ${W*.032}px Montserrat`; return satirla(x, D.spot, W - 2*g.m - W*.06).slice(0, 2); })() : [], sh = sp.length ? sp.length*W*.032*1.3 + W*.035 : 0;
+  const yb = H - g.a - W*.02, y2 = yb - sh, y1 = y2 - mh, eh = W*.06, p1 = pr(t, .05, .45), p2 = pr(t, .25, .7), p3 = pr(t, .6, 1.05);
+  x.save(); x.beginPath(); x.rect(g.m, y1 - eh, (W - 2*g.m)*p1, eh); x.clip(); x.font = `700 ${eh*.55}px Oswald`; const ew = x.measureText(TR(ad)).width + eh;
+  x.fillStyle = ac; x.fillRect(g.m, y1 - eh, ew, eh); x.fillStyle = ink; x.textAlign = 'left'; x.fillText(TR(ad), g.m + eh*.5, y1 - eh*.3);
+  x.fillStyle = 'rgba(0,0,0,.7)'; x.font = `500 ${eh*.45}px Oswald`; const yt = TR((D.yer || 'Kabataş') + ' · ' + tarihYaz(D.tarih, true)), yw = x.measureText(yt).width + eh*.8; x.fillRect(g.m + ew, y1 - eh, yw, eh); x.fillStyle = '#fff'; x.fillText(yt, g.m + ew + eh*.4, y1 - eh*.32); x.restore();
+  x.save(); x.beginPath(); x.rect(g.m, y1, (W - 2*g.m)*p2, mh); x.clip(); x.fillStyle = '#fff'; x.fillRect(g.m, y1, W - 2*g.m, mh); x.fillStyle = st.l === '#ffffff' ? '#d7191f' : st.l; x.fillRect(g.m, y1, W*.012, mh);
+  x.fillStyle = '#111'; x.font = mf(m.s); yaz(x, m.L, g.m + W*.035, y1 + W*.025 + m.s*.86, m.s, 1.06, 'left'); x.restore();
+  if (sp.length){ x.globalAlpha = p3; x.fillStyle = 'rgba(10,12,14,.82)'; x.fillRect(g.m, y2, W - 2*g.m, sh); x.fillStyle = '#fff'; x.font = `500 ${W*.032}px Montserrat`; yaz(x, sp, g.m + W*.035, y2 + W*.018 + W*.032, W*.032, 1.3, 'left'); x.globalAlpha = 1; }
+  altyazi(x, W, H, t, y1 - eh - W*.02); };
+SABLON.splice(1, 0, ['tv', 'TV bülten bandı']);
+
+/* ---------- açılış ve kapanış (jenerik) ---------- */
+const ACILIS_SN = 3.2, KAPANIS_SN = 4;
+function acilisCiz(x, W, H, t){ const st = BANT[D.bantStil] || BANT.kirmizi, ac = st.l === '#ffffff' ? '#d7191f' : st.l;
+  x.fillStyle = '#0c0d10'; x.fillRect(0, 0, W, H); if (FOTO){ x.globalAlpha = .28; foto(x, 0, 0, W, H, 1.15 - .1*kis(t/ACILIS_SN, 0, 1)); x.globalAlpha = 1; }
+  [[ac, 0], [st.b === '#ffffff' ? '#ffffff' : st.b, .12], [st.s, .24]].forEach(([c, d], i) => { const p = pr(t, d, d + .55); x.save(); x.translate(W/2, H/2); x.rotate(-.18); x.fillStyle = c; x.globalAlpha = .92;
+    x.fillRect(-W*1.2 + p*W*1.2*(i % 2 ? 1 : 1), -H*.06 + (i - 1)*H*.075, W*2.4*p, H*.06); x.restore(); });
+  const lp = pr(t, .6, 1.2), s = W*.2*(.6 + .4*lp); x.save(); x.globalAlpha = lp; x.translate(W/2, H*.42); x.scale(.8 + .2*lp, .8 + .2*lp); x.fillStyle = ac; rr(x, -s/2, -s/2, s, s, s*.18); x.fill();
+  x.fillStyle = '#fff'; x.font = `700 ${s*.5}px Oswald`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('KH', 0, s*.04); x.restore(); x.textBaseline = 'alphabetic';
+  const mp = pr(t, 1.0, 1.7), mf = s => `700 ${s}px "Playfair Display"`, m = sigdir(x, TR(M.ad), mf, W*.86, W*.13, 1, W*.12, W*.05, 1); x.fillStyle = '#fff'; x.textAlign = 'center'; x.globalAlpha = mp; x.fillText(m.L[0], W/2, H*.42 + W*.2 + (1 - mp)*W*.04);
+  x.globalAlpha = pr(t, 1.5, 2.2); x.font = `italic 400 ${W*.038}px "Playfair Display"`; x.fillStyle = '#e8e2d6'; x.fillText(M.slogan, W/2, H*.42 + W*.28);
+  x.font = `500 ${W*.03}px Oswald`; x.fillStyle = ac; x.fillText(TR(tarihYaz(D.tarih)), W/2, H*.42 + W*.36); x.globalAlpha = 1; }
+function kapanisCiz(x, W, H, t){ const st = BANT[D.bantStil] || BANT.kirmizi, ac = st.l === '#ffffff' ? '#d7191f' : st.l;
+  x.fillStyle = '#0c0d10'; x.fillRect(0, 0, W, H); const p = pr(t, 0, .6); x.fillStyle = ac; x.fillRect(0, H*.5 - H*.004, W*p, H*.008);
+  const s = W*.16; x.globalAlpha = pr(t, .2, .8); x.fillStyle = ac; rr(x, W/2 - s/2, H*.26, s, s, s*.18); x.fill(); x.fillStyle = '#fff'; x.font = `700 ${s*.5}px Oswald`; x.textAlign = 'center'; x.fillText('KH', W/2, H*.26 + s*.68);
+  x.globalAlpha = pr(t, .5, 1.1); x.font = `700 ${W*.075}px "Playfair Display"`; x.fillText(TR(M.ad), W/2, H*.46); x.font = `italic 400 ${W*.04}px "Playfair Display"`; x.fillStyle = '#e8e2d6'; x.fillText(M.slogan, W/2, H*.58);
+  x.globalAlpha = pr(t, 1.1, 1.7); const bh = W*.11, tx = 'TAKİP ET  ' + (M.hesap || ''); let fs = bh*.42; x.font = `700 ${fs}px Montserrat`; let tw = x.measureText(tx).width; if (tw > W*.78){ fs *= W*.78/tw; x.font = `700 ${fs}px Montserrat`; tw = x.measureText(tx).width; }
+  const bw = tw + bh*.9; x.fillStyle = '#fff'; rr(x, W/2 - bw/2, H*.66, bw, bh, bh/2); x.fill(); x.fillStyle = '#111'; x.fillText(tx, W/2, H*.66 + bh*.5 + fs*.36); x.globalAlpha = pr(t, 1.6, 2.2); x.fillStyle = '#bfc3c8'; x.font = `500 ${W*.03}px Montserrat`; x.fillText('Haberiniz mi var? Mesaj atın.', W/2, H*.66 + bh + W*.07); x.globalAlpha = 1; }
+
+/* ---------- sahneler (bülten) ---------- */
+const SF = new Map();   /* sahne fotoğrafları: id → canvas */
+async function sahneFotoAl(sc){ if (!sc.fid) return null; if (SF.has(sc.fid)) return SF.get(sc.fid); const b = await IDB.get('sf_' + sc.fid); if (!b) return null;
+  try { const bm = await createImageBitmap(b); const c = document.createElement('canvas'); c.width = bm.width; c.height = bm.height; c.getContext('2d').drawImage(bm, 0, 0); SF.set(sc.fid, c); return c; } catch(e){ return null; } }
+async function sahneFotoKoy(sc, file){ let bm; try { bm = await createImageBitmap(file, {imageOrientation:'from-image'}); } catch(e){ tst('Fotoğraf açılamadı'); return; }
+  const s = Math.min(1, 2000/Math.max(bm.width, bm.height)), c = document.createElement('canvas'); c.width = Math.round(bm.width*s); c.height = Math.round(bm.height*s); c.getContext('2d').drawImage(bm, 0, 0, c.width, c.height);
+  sc.fid = sc.fid || (Date.now().toString(36) + Math.random().toString(36).slice(2, 5)); SF.set(sc.fid, c); IDB.set('sf_' + sc.fid, await new Promise(r => c.toBlob(r, 'image/jpeg', .88)));
+  let y = []; try { y = yuzBul(c); } catch(e){} if (y.length){ sc.fx = y.reduce((a, f) => a + f.x, 0)/y.length; sc.fy = Math.max(0, y.reduce((a, f) => a + f.y, 0)/y.length - .05); } else { sc.fx = .5; sc.fy = .42; } }
+const yeniSahne = () => ({id:Date.now().toString(36) + Math.random().toString(36).slice(2, 4), etiket:'GÜNDEM', manset:'', spot:'', metin:'', fid:null, fx:.5, fy:.42, fz:1});
+
+/* ---------- ses: metin → konuşma (önbellekli) ---------- */
+const SES_ON = new Map();
+async function sesUret(metin, bildir){ metin = String(metin || '').trim(); if (!metin || !HSes) return null; const key = [HKS.ses, HKS.hiz, HKS.ton, metin].join('|'); if (SES_ON.has(key)) return SES_ON.get(key);
+  await HSes.hazir((n, tt) => bildir && bildir('Ses indiriliyor… %' + (tt ? Math.round(n/tt*100) : 0) + ' (yalnız ilk sefer)'));
+  const sr = (HSes.cfg && HSes.cfg.audio && HSes.cfg.audio.sample_rate) || 22050, cs = cumleler(metin), parca = [], segs = []; let t = 0;
+  for (let i = 0; i < cs.length; i++){ if (i + 1 < cs.length) HSes.hazirla(cs[i + 1]); const r = await HSes.sentez(cs[i]); if (!r) continue;
+    const ab = await fetch(r.url).then(q => q.arrayBuffer()), i16 = new Int16Array(ab, 44), f = new Float32Array(i16.length); for (let k = 0; k < f.length; k++) f[k] = i16[k]/32768;
+    if (parca.length){ const ara = new Float32Array(Math.round(sr*.3)); parca.push(ara); t += ara.length/sr; } parca.push(f); segs.push({a:t, b:t + f.length/sr, t:cs[i]}); t += f.length/sr; }
+  if (!parca.length) return null; const top = parca.reduce((s, p) => s + p.length, 0), pcm = new Float32Array(top); let o = 0; parca.forEach(p => { pcm.set(p, o); o += p.length; });
+  const r = {pcm, sr, segs, sure:top/sr}; SES_ON.set(key, r); while (SES_ON.size > 30) SES_ON.delete(SES_ON.keys().next().value); return r; }
+
+/* ---------- plan: açılış + sahneler + kapanış, geçişlerle ---------- */
+const GECIS = .5, SES_GEC = .45;
+async function planKur(bildir){ const sc0 = {d:{}, foto:FOTO, fx:D.fx, fy:D.fy, fz:D.fz, metin:okunacak()};
+  const ekler = []; for (const s of (D.sahneler || [])){ if (!s.manset && !s.fid && !s.metin) continue; ekler.push({d:{manset:s.manset, spot:s.spot, metin:s.metin, etiket:s.etiket || D.etiket, fx:s.fx, fy:s.fy, fz:s.fz || 1}, foto:await sahneFotoAl(s), metin:(s.metin || [s.manset, s.spot].filter(Boolean).join('. ')).trim()}); }
+  const sahneler = [sc0, ...ekler], P = {parca:[], top:0}; let t = 0, n = 0;
+  const sesli = async (m, i) => { if (!m) return null; bildir && bildir(`Seslendiriliyor ${i}/${sahneler.length + (D.spiker ? 2 : 0)}`); try { return await sesUret(m, bildir); } catch(e){ bildir && bildir('Ses yok: ' + (e.message || e)); return null; } };
+  if (D.acilis){ const ses = D.spiker ? await sesli(D.acilisMetin, ++n) : null; const sure = Math.max(ACILIS_SN, ses ? ses.sure + 1.3 : 0); P.parca.push({tip:'acilis', a:t, b:t + sure, ses, sesA:t + 1.0}); t += sure; }
+  for (const s of sahneler){ const ses = await sesli(s.metin, ++n); const sure = Math.max(5, ses ? ses.sure + SES_GEC + .7 : 6); P.parca.push({tip:'sahne', s, a:t, b:t + sure, ses, sesA:t + SES_GEC}); t += sure; }
+  if (D.kapanis){ const ses = D.spiker ? await sesli(D.kapanisMetin, ++n) : null; const sure = Math.max(KAPANIS_SN, ses ? ses.sure + 1.0 : 0); P.parca.push({tip:'kapanis', a:t, b:t + sure, ses, sesA:t + .6}); t += sure; }
+  P.top = t; return P; }
+function parcaCiz(c, p, tl){ const [W, H] = ORAN[D.oran] || ORAN['4:5']; if (c.width !== W || c.height !== H){ c.width = W; c.height = H; } const x = c.getContext('2d');
+  if (p.tip === 'acilis'){ acilisCiz(x, W, H, tl); return; } if (p.tip === 'kapanis'){ kapanisCiz(x, W, H, tl); if (D.altBant) tvBant(x, W, H, p.a + tl, M.ad); return; }
+  const eD = D, eF = FOTO, eS = SES; D = Object.assign({}, eD, p.s.d); FOTO = p.s.foto; SES = p.ses ? {segs:p.ses.segs.map(q => ({a:q.a + SES_GEC, b:q.b + SES_GEC, t:q.t}))} : null;
+  try { kartCiz(c, tl, p.b - p.a, p.a + tl); } finally { D = eD; FOTO = eF; SES = eS; } }
+function zamanCiz(c, P, t){ let i = P.parca.findIndex(p => t < p.b); if (i < 0) i = P.parca.length - 1; const p = P.parca[i], nx = P.parca[i + 1];
+  if (nx && t > p.b - GECIS){ const q = (t - (p.b - GECIS))/GECIS; if (q < .5) parcaCiz(c, p, t - p.a); else parcaCiz(c, nx, 0); gecisCiz(c.getContext('2d'), c.width, c.height, q); }
+  else parcaCiz(c, p, t - p.a); }
+function gecisCiz(x, W, H, q){ const st = BANT[D.bantStil] || BANT.kirmizi, cs = [st.l === '#ffffff' ? '#d7191f' : st.l, st.b, st.s]; x.save(); x.translate(W/2, H/2); x.rotate(-.22);
+  cs.forEach((c, i) => { const k = q*2.6 - .8 - i*.1; x.fillStyle = c; x.fillRect(-W*1.4 + k*W*1.6, -H, W*.42, H*2); }); x.restore(); }
+
+/* ---------- haber müziği (cihazda üretilir, telifsiz) ---------- */
+function muzikUret(stil, sure, sr){ if (!stil || stil === 'yok') return null; const P = {gergin:{bpm:124}, kurumsal:{bpm:108}, sakin:{bpm:84}}[stil] || {bpm:108};
+  const n = Math.ceil(sure*sr), o = new Float32Array(n), beat = 60/P.bpm, bar = beat*4, prog = [[50,53,57],[46,50,53],[53,57,60],[48,52,55]], hz = m => 440*Math.pow(2, (m - 69)/12);
+  let ts = 98765; const rnd = () => (ts = (ts*16807) % 2147483647)/2147483647;
+  const add = (t0, dur, fn) => { const s0 = Math.floor(t0*sr), e = Math.min(n, s0 + Math.floor(dur*sr)); for (let i = Math.max(0, s0); i < e; i++) o[i] += fn((i - s0)/sr); };
+  for (let k = 0, bt = 0; bt < sure; k++, bt = k*beat){ const ch = prog[Math.floor(k/4) % 4], pos = k % 4;
+    if (stil !== 'sakin'){ if (pos === 0 || pos === 2 || stil === 'gergin') add(bt, .32, tt => Math.sin(2*Math.PI*(48 + 95*Math.exp(-tt*30))*tt)*Math.exp(-tt*10)*.5);
+      if (pos === 1 || pos === 3) add(bt, .16, tt => (rnd()*2 - 1)*Math.exp(-tt*30)*.14);
+      add(bt, .04, tt => (rnd()*2 - 1)*Math.exp(-tt*110)*.06); add(bt + beat/2, .04, tt => (rnd()*2 - 1)*Math.exp(-tt*110)*.05);
+      for (let q = 0; q < 4; q++){ const f = hz(ch[(k*4 + q) % 3] + (stil === 'gergin' ? 24 : 12)); add(bt + q*beat/4, beat/4*.85, tt => (Math.sin(2*Math.PI*f*tt) > 0 ? 1 : -1)*.028*Math.exp(-tt*16)); } }
+    else { const f = hz(ch[pos % 3] + 12); add(bt, beat*1.6, tt => (Math.sin(2*Math.PI*f*tt) + .3*Math.sin(4*Math.PI*f*tt))*Math.min(1, tt*200)*Math.exp(-tt*3)*.07); }
+    const fb = hz(ch[0] - 12); add(bt, beat*.92, tt => (Math.sin(2*Math.PI*fb*tt) + .3*Math.sin(4*Math.PI*fb*tt))*Math.min(1, tt*80)*Math.exp(-tt*(stil === 'sakin' ? 1.2 : 2.4))*.2);
+    if (pos === 0){ add(bt, bar + .05, tt => { let s = 0; for (const m of ch){ const f = hz(m); s += Math.sin(2*Math.PI*f*tt) + .6*Math.sin(2*Math.PI*f*1.004*tt); } return s*(stil === 'sakin' ? .05 : .03)*Math.min(1, tt/.35)*Math.min(1, (bar + .05 - tt)/.3); }); } }
+  let pk = 0; for (let i = 0; i < n; i++){ const a = Math.abs(o[i]); if (a > pk) pk = a; } if (pk > 0){ const k = .9/pk; for (let i = 0; i < n; i++) o[i] *= k; } return o; }
+
+/* ---------- karışım: konuşma + müzik (konuşmada kısılır) + geçiş sesleri ---------- */
+async function karisim(P, bildir){ const SR = 48000, N = Math.ceil((P.top + .3)*SR), oc = new OfflineAudioContext(2, N, SR), ana = oc.createDynamicsCompressor(); ana.threshold.value = -10; ana.ratio.value = 4; ana.connect(oc.destination);
+  const konus = []; P.parca.forEach(p => { if (!p.ses) return; const b = oc.createBuffer(1, p.ses.pcm.length, p.ses.sr); b.copyToChannel(p.ses.pcm, 0); const s = oc.createBufferSource(); s.buffer = b;
+    const g = oc.createGain(); g.gain.value = 1; s.connect(g); g.connect(ana); s.start(p.sesA); p.ses.segs.forEach(q => konus.push([p.sesA + q.a, p.sesA + q.b])); });
+  if (D.muzik && D.muzik !== 'yok'){ bildir && bildir('Haber müziği hazırlanıyor…'); await new Promise(r => setTimeout(r, 0)); const MS = 24000, m = muzikUret(D.muzik, P.top + .3, MS);
+    if (m){ const b = oc.createBuffer(1, m.length, MS); b.copyToChannel(m, 0); const s = oc.createBufferSource(); s.buffer = b; const g = oc.createGain(), L = (D.muzikSes ?? 35)/100*.55, dk = L*.3;
+      g.gain.setValueAtTime(0, 0); g.gain.linearRampToValueAtTime(L, 1); konus.sort((a, b) => a[0] - b[0]); const bir = []; konus.forEach(k => { const s0 = bir[bir.length - 1]; if (s0 && k[0] - s0[1] < .8) s0[1] = Math.max(s0[1], k[1]); else bir.push([k[0], k[1]]); });
+      bir.forEach(([a, b2]) => { g.gain.setTargetAtTime(dk, Math.max(1, a - .25), .08); g.gain.setTargetAtTime(L, b2 + .15, .25); });
+      g.gain.setTargetAtTime(0, Math.max(0, P.top - 1.4), .45); s.connect(g); g.connect(ana); s.start(0); } }
+  if (D.sfx){ const gur = oc.createBuffer(1, SR, SR), gd = gur.getChannelData(0); let ts = 12345; for (let i = 0; i < gd.length; i++){ ts = (ts*16807) % 2147483647; gd[i] = ts/2147483647*2 - 1; }
+    const fis = t => { if (t < 0) return; const s = oc.createBufferSource(); s.buffer = gur; const f = oc.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 1.3; f.frequency.setValueAtTime(350, t); f.frequency.exponentialRampToValueAtTime(3800, t + .32); f.frequency.exponentialRampToValueAtTime(700, t + .62);
+      const g = oc.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.55, t + .3); g.gain.linearRampToValueAtTime(0, t + .65); const pn = oc.createStereoPanner(); pn.pan.setValueAtTime(-.8, t); pn.pan.linearRampToValueAtTime(.8, t + .6);
+      s.connect(f); f.connect(g); g.connect(pn); pn.connect(ana); s.start(t, rndOff(), .7); };
+    const vurus = t => { if (t < 0) return; const o = oc.createOscillator(); o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(40, t + .4); const g = oc.createGain(); g.gain.setValueAtTime(.85, t); g.gain.exponentialRampToValueAtTime(.001, t + .55); o.connect(g); g.connect(ana); o.start(t); o.stop(t + .6);
+      const s = oc.createBufferSource(); s.buffer = gur; const f = oc.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 1100; const g2 = oc.createGain(); g2.gain.setValueAtTime(.35, t); g2.gain.exponentialRampToValueAtTime(.001, t + .18); s.connect(f); f.connect(g2); g2.connect(ana); s.start(t, rndOff(), .2); };
+    const bip = t => { [0, .16].forEach(d => { const o = oc.createOscillator(); o.type = 'sine'; o.frequency.value = 1180; const g = oc.createGain(); g.gain.setValueAtTime(0, t + d); g.gain.linearRampToValueAtTime(.22, t + d + .01); g.gain.setValueAtTime(.22, t + d + .08); g.gain.linearRampToValueAtTime(0, t + d + .1); o.connect(g); g.connect(ana); o.start(t + d); o.stop(t + d + .12); }); };
+    let r0 = 7; function rndOff(){ r0 = (r0*16807) % 2147483647; return r0/2147483647*.25; }
+    P.parca.forEach((p, i) => { if (p.tip === 'acilis'){ fis(p.a + .05); vurus(p.a + .62); }
+      else if (p.tip === 'sahne'){ if (i > 0) fis(p.a - GECIS*.6); vurus(p.a + .08); const et = (p.s.d.etiket || D.etiket); if (/SON DAKİKA|FLAŞ|SICAK/.test(et)) bip(p.a + .3); }
+      else if (p.tip === 'kapanis'){ fis(p.a - GECIS*.6); vurus(p.a + .25); } });
+    if (D.muzik === 'yok'){ const j = jenerik(SR); const b = oc.createBuffer(1, j.length, SR); b.copyToChannel(j, 0); const s = oc.createBufferSource(); s.buffer = b; s.connect(ana); s.start(D.acilis ? .9 : 0); } }
+  bildir && bildir('Ses karıştırılıyor…'); return await oc.startRendering(); }
+function stereoWav(ab){ const L = ab.getChannelData(0), R = ab.getChannelData(1), n = L.length, v = new DataView(new ArrayBuffer(44 + n*4)), w = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+  w(0, 'RIFF'); v.setUint32(4, 36 + n*4, true); w(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 2, true); v.setUint32(24, ab.sampleRate, true); v.setUint32(28, ab.sampleRate*4, true); v.setUint16(32, 4, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n*4, true);
+  for (let i = 0, o = 44; i < n; i++, o += 4){ const a = Math.max(-1, Math.min(1, L[i])), b = Math.max(-1, Math.min(1, R[i])); v.setInt16(o, a < 0 ? a*32768 : a*32767, true); v.setInt16(o + 2, b < 0 ? b*32768 : b*32767, true); } return new Blob([v.buffer], {type:'audio/wav'}); }
+
+/* ---------- bülteni Claude ile yaz (her paragraf bir haber) ---------- */
+const BISTEM = not => `Sen Kabataş (Ordu) merkezli yerel haber sayfası "${M.ad}"in editörüsün. Slogan: "${M.slogan}".
+Aşağıdaki notlardan 1-3 dakikalık sesli video bülteni hazırla. Her paragraf ayrı bir haber.
+Kurallar: Yalnız verilen bilgiye dayan; isim, sayı, tarih, yer, alıntı UYDURMA. Dikkat çekici ama yanıltıcı olmayan haber dili; Türkçe yazım kurallarına uy.
+- etiket şu listeden: ${ETIKET.map(e => e[0]).join(', ')}. "SON DAKİKA" yalnız gerçekten yeni ve acil gelişmede.
+- manset en fazla 9 kelime; spot 1-2 cümle (en fazla 28 kelime); metin seslendirme için 2-5 kısa cümle (haber spikeri üslubu, sayıları okunacağı gibi).
+- acilis: spikerin açılış cümlesi (1-2 kısa cümle, ${M.ad} adı geçsin). kapanis: kapanış cümlesi (slogan geçsin, takip çağrısı).
+- bant: alt kayan bant için tüm haberlerin çok kısa özetleri, " • " ile ayrılmış.
+Yalnız şu JSON'u döndür: {"acilis":"","kapanis":"","bant":"","haberler":[{"etiket":"","manset":"","spot":"","metin":""}],"aciklama":"","hashtagler":[""]}
+
+NOTLAR:
+${not}`;
+function bultenUygula(r){ if (!r || !Array.isArray(r.haberler) || !r.haberler.length) throw new Error('yanıt anlaşılamadı'); const s = v => typeof v === 'string' ? v.trim() : '';
+  const H0 = r.haberler[0]; uygula({etiket:H0.etiket, manset:H0.manset, spot:H0.spot, metin:H0.metin, aciklama:r.aciklama, hashtagler:r.hashtagler});
+  const eski = D.sahneler || []; D.sahneler = r.haberler.slice(1, 12).map((h, i) => { const e = ETIKET.find(x => x[0] === TR(s(h.etiket))); return Object.assign(eski[i] || yeniSahne(), {etiket:e ? e[0] : 'GÜNDEM', manset:s(h.manset), spot:s(h.spot), metin:s(h.metin)}); });
+  if (s(r.acilis)) D.acilisMetin = s(r.acilis); if (s(r.kapanis)) D.kapanisMetin = s(r.kapanis); if (s(r.bant)) D.bantMetin = s(r.bant); }
+function bultenKural(not){ const ps = String(not).split(/\n\s*\n|\n(?=\s*[-•*\d]+[.)]?\s)/).map(p => p.replace(/^\s*[-•*\d]+[.)]?\s*/, '').trim()).filter(Boolean); if (!ps.length) throw new Error('Not boş');
+  const hs = ps.map(p => { const cs = cumleler(p), ilk = (cs[0] || p).replace(/[.!?…]+$/, ''), k = ilk.split(/\s+/); return {etiket:'GÜNDEM', manset:k.length > 10 ? k.slice(0, 9).join(' ') + '…' : ilk, spot:cs.slice(1, 3).join(' '), metin:cs.join(' ')}; });
+  hs[0].etiket = D.etiket; bultenUygula({haberler:hs, bant:hs.map(h => h.manset).join(' • ')}); }
+async function bultenYaz(){ const not = ($h('#kh_bultenNot').value || '').trim(), n = $h('#khBNot'); D.bultenNot = not; if (!not){ n.textContent = 'Her haberi ayrı paragrafa yaz (aralarına boş satır).'; return; } const b = $h('#khBYaz'); b.disabled = true;
+  try { if (smp){ n.textContent = 'Claude bülteni yazıyor…'; bultenUygula(await smp.json(BISTEM(not), {modelTier:'default'})); n.textContent = `Bülten hazır: ${1 + D.sahneler.length} haber. Sahnelere fotoğraf ekle, sonra "Sesli video yap".`; }
+    else { bultenKural(not); n.textContent = `${1 + D.sahneler.length} haber sahnesi oluştu (kurallarla). Daha iyi metin için "Claude için kopyala".`; } }
+  catch(e){ try { bultenKural(not); n.textContent = 'Claude\'a ulaşılamadı; notlardan hazırlandı.'; } catch(x){ n.textContent = 'Olmadı: ' + (e.message || e); } }
+  finally { b.disabled = false; kaydet(); formDoldur(); sahneCiz(); ciz(); } }
+
+/* ---------- sahne listesi arayüzü ---------- */
+function sahneCiz(){ const k = $h('#khSahneler'); if (!k) return; const L = D.sahneler || [];
+  k.innerHTML = `<div class="kh-sh on"><b>1</b><span>${esc(D.manset || 'Ana haber (yukarıdaki kart)')}</span><small>ana kart</small></div>` + L.map((s, i) => `<div class="kh-sh" data-si="${i}">
+    <b>${i + 2}</b><div class="kh-shi"><div class="kh-r" style="gap:6px"><select data-sk="etiket">${ETIKET.map(e => `<option${e[0] === s.etiket ? ' selected' : ''}>${e[0]}</option>`).join('')}</select>
+    <label class="kh-b kh-mini">${s.fid ? '🖼 Değiştir' : '📷 Fotoğraf'}<input type="file" accept="image/*,.heic,.heif" data-sfoto hidden></label><button class="kh-b kh-mini" data-sm="-1" aria-label="Yukarı">↑</button><button class="kh-b kh-mini" data-sm="1" aria-label="Aşağı">↓</button><button class="kh-b kh-mini" data-ssil aria-label="Sil">✕</button></div>
+    <input data-sk="manset" placeholder="Manşet" value="${esc(s.manset || '')}"><input data-sk="spot" placeholder="Spot (isteğe bağlı)" value="${esc(s.spot || '')}"><textarea data-sk="metin" rows="2" placeholder="Seslendirme (boşsa manşet + spot okunur)">${esc(s.metin || '')}</textarea></div></div>`).join('');
+  const ts = $h('#khSure'); if (ts){ const tah = (D.acilis ? 4 : 0) + (D.kapanis ? 4.5 : 0) + [okunacak()].concat(L.map(s => s.metin || s.manset + ' ' + s.spot)).reduce((a, m) => a + Math.max(5, String(m || '').split(/\s+/).length/2.3 + 1.2), 0);
+    ts.textContent = `${1 + L.length} haber · tahmini ${Math.floor(tah/60)} dk ${Math.round(tah % 60)} sn`; } }
+function sahneBagla(){ const k = $h('#khSahneler'); if (!k || k._bagli) return; k._bagli = 1;
+  k.addEventListener('input', e => { const r = e.target.closest('[data-si]'); if (!r || !e.target.dataset.sk) return; D.sahneler[+r.dataset.si][e.target.dataset.sk] = e.target.value; kaydet(); });
+  k.addEventListener('change', async e => { const r = e.target.closest('[data-si]'); if (!r) return; const sc = D.sahneler[+r.dataset.si];
+    if (e.target.dataset.sk === 'etiket'){ sc.etiket = e.target.value; kaydet(); } if (e.target.dataset.sfoto !== undefined && e.target.files[0]){ await sahneFotoKoy(sc, e.target.files[0]); kaydet(); sahneCiz(); } });
+  k.addEventListener('click', e => { const r = e.target.closest('[data-si]'); if (!r) return; const i = +r.dataset.si, b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.ssil !== undefined){ const sc = D.sahneler[i]; if (sc.fid) IDB.del('sf_' + sc.fid); D.sahneler.splice(i, 1); }
+    else if (b.dataset.sm){ const j = i + +b.dataset.sm; if (j < 0 || j >= D.sahneler.length) return; [D.sahneler[i], D.sahneler[j]] = [D.sahneler[j], D.sahneler[i]]; }
+    kaydet(); sahneCiz(); }); }
+async function sahneEkleFoto(files){ let dol = 0, yeni = 0; for (const f of files){ let sc = D.sahneler.find(x => !x.fid); if (sc) dol++; else { sc = yeniSahne(); D.sahneler.push(sc); yeni++; } await sahneFotoKoy(sc, f); }
+  kaydet(); sahneCiz(); tst((dol ? dol + ' sahneye fotoğraf kondu' : '') + (dol && yeni ? ' · ' : '') + (yeni ? yeni + ' yeni sahne eklendi' : '')); }
+
+function ekDoldur(){ Object.keys(EK).forEach(k => { if (D[k] === undefined) D[k] = Array.isArray(EK[k]) ? [] : EK[k]; }); }
+
+window.KabatasHaber = {ac, kapat, ciz:kartCiz, D:() => D, plan:planKur, zaman:zamanCiz, karisim};
 
 /* ---------- uygulamaya bağla: ana ekran kartı + düzenleyicide "Haber" sekmesi ---------- */
 try { const a = document.querySelector('#home .actions'); if (a && !document.getElementById('khAcBtn')){ const b = document.createElement('button'); b.type = 'button'; b.className = 'act kh-act'; b.id = 'khAcBtn';
