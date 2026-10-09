@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="5.1" data-ad="Karanlık Oda" data-tarih="05.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="5.2" data-ad="Karanlık Oda" data-tarih="10.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -337,7 +337,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 5.1 · 05.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 5.2 · 10.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -3988,7 +3988,17 @@ const YZ_SABLON=[
  ["Tarih damgası",{t:new Date().toLocaleDateString("tr-TR"),f:"Oswald",w:500,sz:.04,c:"#ffb347",ls:6,x:.94,y:.94,al:"right",sh:30}],
  ["Nesnenin arkasında",{t:"ORDU",f:"Bebas Neue",w:400,sz:.34,c:"#ffffff",op:94,behind:1,y:.4,ls:4}],
  ["Şişe etiketi (mockup)",{t:"Fındık",f:"Great Vibes",w:400,sz:.07,c:"#2b1d12",mk:{mode:"silindir",curve:55,px:0,py:0,skew:0,uyum:55}}],
- ["Duvar yazısı (mockup)",{t:"KABATAŞ",f:"Bebas Neue",w:400,sz:.12,c:"#f2eee8",ls:6,mk:{mode:"persp",curve:0,px:-35,py:0,skew:0,uyum:70}}]
+ ["Duvar yazısı (mockup)",{t:"KABATAŞ",f:"Bebas Neue",w:400,sz:.12,c:"#f2eee8",ls:6,mk:{mode:"persp",curve:0,px:-35,py:0,skew:0,uyum:70}}],
+ ["Eski duvar boyası",{t:"KABATAŞ\nBAKKALİYESİ",f:"Bebas Neue",w:400,sz:.1,c:"#efe6d2",ls:4,sh:0,mk:{mode:"persp",curve:0,px:-20,py:0,skew:0,uyum:85,isik:85,kabart:70,emil:60,gren:60,asin:45}}],
+ ["Ahşap tabela (oyma)",{t:"Fındık Bahçesi",f:"Lora",w:600,sz:.08,c:"#3b2414",sh:0,mk:{mode:"persp",curve:0,px:10,py:0,skew:0,uyum:90,isik:80,kabart:90,emil:70,gren:50,asin:10}}],
+ ["Taş kazıma",{t:"ORDU\n1920",f:"Playfair Display",w:700,sz:.09,c:"#3a3530",ls:6,sh:0,mk:{mode:"duz",curve:0,px:0,py:0,skew:0,uyum:95,isik:95,kabart:100,emil:75,gren:70,asin:30}}],
+ ["Kuma yazı",{t:"yaz bitti",f:"Caveat",w:500,sz:.1,c:"#7a6446",sh:0,mk:{mode:"persp",curve:0,px:0,py:-35,skew:0,uyum:95,isik:90,kabart:95,emil:80,gren:80,asin:15}}],
+ ["Tişört baskısı",{t:"KARADENİZ",f:"Oswald",w:700,sz:.07,c:"#ffffff",ls:3,sh:0,mk:{mode:"dalga",curve:22,px:0,py:0,skew:0,uyum:80,isik:85,kabart:65,emil:30,gren:55,asin:12}}],
+ ["Bez çanta",{t:"Kabataş\nPazarı",f:"Amatic SC",w:700,sz:.09,c:"#2b2b2b",sh:0,mk:{mode:"dalga",curve:30,px:0,py:0,skew:0,uyum:85,isik:80,kabart:75,emil:70,gren:60,asin:20}}],
+ ["Kahve fincanı",{t:"günaydın",f:"Pacifico",w:400,sz:.06,c:"#5a3a22",sh:0,mk:{mode:"silindir",curve:70,px:0,py:0,skew:0,uyum:60,isik:70,kabart:20,emil:35,gren:25}}],
+ ["Cam / vitrin",{t:"AÇIĞIZ",f:"Montserrat",w:700,sz:.07,c:"#ffffff",ls:8,op:85,sh:0,mk:{mode:"persp",curve:0,px:25,py:0,skew:0,uyum:45,isik:40,kabart:5,emil:0,gren:20}}],
+ ["Araç kapısı",{t:"KABATAŞ NAKLİYAT",f:"Oswald",w:700,sz:.055,c:"#c62828",sh:0,mk:{mode:"persp",curve:0,px:-45,py:0,skew:0,uyum:65,isik:75,kabart:20,emil:25,gren:30}}],
+ ["Ağaç kabuğu",{t:"A + A",f:"Kaushan Script",w:400,sz:.08,c:"#2a1c10",sh:0,mk:{mode:"silindir",curve:35,px:0,py:0,skew:0,uyum:95,isik:90,kabart:100,emil:80,gren:70,asin:35}}]
 ];
 const yzVars=()=>({id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),t:"Yazı",f:"Montserrat",w:700,it:0,sz:.08,c:"#ffffff",op:100,al:"center",x:.5,y:.5,rot:0,ls:0,up:0,sh:20,st:0,stc:"#000000",glow:"",bg:"",behind:0,mk:{mode:"duz",curve:0,px:0,py:0,skew:0,uyum:0}});
 const _fontHazir=new Set();
@@ -4173,8 +4183,37 @@ function yazilariCiz(ctx,W,H,texts,maskeO,mw,mh){ if(!texts||!texts.length) retu
   let mc=null; if(maskeO&&texts.some(t=>t.behind)){ mc=document.createElement("canvas"); mc.width=mw; mc.height=mh; const x=mc.getContext("2d"), im=x.createImageData(mw,mh); for(let i=0;i<mw*mh;i++){ im.data[i*4+3]=Math.round(maskeO[i]*255); } x.putImageData(im,0,0); }
   for(const T of texts){ if(!T.t||T.gizli) continue; const L=document.createElement("canvas"); L.width=W; L.height=H; const x=L.getContext("2d"); yaziYerlestir(x,T,W,H);
     if(T.behind&&mc){ x.globalCompositeOperation="destination-out"; x.imageSmoothingQuality="high"; x.drawImage(mc,0,0,W,H); x.globalCompositeOperation="source-over"; }
-    const u=((T.mk&&T.mk.uyum)||0)/100; if(u){ ctx.save(); ctx.globalAlpha=1-u*.45; ctx.drawImage(L,0,0); ctx.globalCompositeOperation="soft-light"; ctx.globalAlpha=u; ctx.drawImage(L,0,0); ctx.globalCompositeOperation="multiply"; ctx.globalAlpha=u*.25; ctx.drawImage(L,0,0); ctx.restore(); }
+    const u=((T.mk&&T.mk.uyum)||0)/100; if(u){ let ok=false; try{ ok=yuzeyKaynastir(ctx,L,W,H,T.mk); }catch(e){ console.warn("yüzeye kaynaştırma",e); }
+      if(!ok){ ctx.save(); ctx.globalAlpha=1-u*.45; ctx.drawImage(L,0,0); ctx.globalCompositeOperation="soft-light"; ctx.globalAlpha=u; ctx.drawImage(L,0,0); ctx.globalCompositeOperation="multiply"; ctx.globalAlpha=u*.25; ctx.drawImage(L,0,0); ctx.restore(); } }
     else ctx.drawImage(L,0,0); L.width=0; } }
+/* 5.2: yazıyı yüzeye gerçekten oturt — alttaki fotoğrafın ışığı, gölgesi, dokusu ve greni yazıya geçer; boya emilir; isteğe bağlı aşınma */
+function mkUyumDeger(mk){ const u=(mk.uyum||0)/100; return {u, isik:(mk.isik??Math.round(u*100))/100, kab:(mk.kabart??Math.round(u*55))/100, asin:(mk.asin??0)/100, gren:(mk.gren??Math.round(u*60))/100, emil:(mk.emil??Math.round(u*45))/100}; }
+function yuzeyKaynastir(ctx,L,W,H,mk){ const V=mkUyumDeger(mk); if(!V.u) return false;
+  const lx=L.getContext("2d",{willReadFrequently:true}); let x0=W,y0=H,x1=-1,y1=-1; const st=Math.max(1,Math.round(Math.max(W,H)/700));
+  const kaba=lx.getImageData(0,0,W,H).data; for(let y=0;y<H;y+=st) for(let x=0;x<W;x+=st){ if(kaba[(y*W+x)*4+3]>2){ if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; } }
+  if(x1<0) return true; const pad=Math.ceil(Math.max(W,H)*.02)+st; x0=Math.max(0,x0-pad); y0=Math.max(0,y0-pad); x1=Math.min(W-1,x1+pad); y1=Math.min(H-1,y1+pad);
+  const w=x1-x0+1, h=y1-y0+1, n=w*h; const F=ctx.getImageData(x0,y0,w,h), f=F.data, T=lx.getImageData(x0,y0,w,h).data;
+  /* fotoğraf parlaklığı, yumuşatılmışı (genel ışık) ve yerel doku */
+  const Y=new Float32Array(n); for(let i=0;i<n;i++) Y[i]=.2126*f[i*4]+.7152*f[i*4+1]+.0722*f[i*4+2];
+  const kutu=(a,r)=>{ const o=new Float32Array(n), t=new Float32Array(n); for(let y=0;y<h;y++){ let s=0; const b=y*w; for(let x=-r;x<=r;x++) s+=a[b+Math.min(w-1,Math.max(0,x))]; for(let x=0;x<w;x++){ t[b+x]=s/(2*r+1); s+=a[b+Math.min(w-1,x+r+1)]-a[b+Math.max(0,x-r)]; } }
+    for(let x=0;x<w;x++){ let s=0; for(let y=-r;y<=r;y++) s+=t[Math.min(h-1,Math.max(0,y))*w+x]; for(let y=0;y<h;y++){ o[y*w+x]=s/(2*r+1); s+=t[Math.min(h-1,y+r+1)*w+x]-t[Math.max(0,y-r)*w+x]; } } return o; };
+  const rG=Math.max(4,Math.round(Math.min(w,h)*.08)), rD=Math.max(1,Math.round(Math.min(W,H)/450)); const YG=kutu(Y,rG), YD=kutu(Y,rD);
+  let sY=0,sA=0,sv=0; for(let i=0;i<n;i++){ const a=T[i*4+3]/255; sY+=YG[i]*a; sA+=a; const d=Y[i]-YD[i]; sv+=d*d*a; } const Ym=sA?sY/sA:128, sig=sA?Math.sqrt(sv/sA):4;
+  let tohum=1234567; const rnd=()=>(tohum=(tohum*1103515245+12345)&0x7fffffff)/0x7fffffff;
+  const ns=V.asin?kutu(Float32Array.from({length:n},()=>rnd()),Math.max(1,Math.round(Math.min(W,H)/320))):null;
+  const kd=V.kab*Math.min(W,H)/650;  /* kabartma kayması (px) */
+  for(let y=0;y<h;y++) for(let x=0;x<w;x++){ const i=y*w+x;
+    let sx=x, sy=y; if(kd){ const gx=(YD[y*w+Math.min(w-1,x+1)]-YD[y*w+Math.max(0,x-1)])/255, gy=(YD[Math.min(h-1,y+1)*w+x]-YD[Math.max(0,y-1)*w+x])/255; sx=Math.round(x-gx*kd*6); sy=Math.round(y-gy*kd*6); if(sx<0||sy<0||sx>=w||sy>=h){ sx=x; sy=y; } }
+    const j=(sy*w+sx)*4; let a=T[j+3]/255; if(a<=0.002) continue;
+    if(ns){ const e=ns[i]*.55+(.5-(Y[i]-YD[i])/(4*sig+1))*.45; a*=Math.min(1,Math.max(0,(e-(V.asin*.62))/.08)); if(a<=0.002) continue; }
+    const gnl=Math.pow(Math.max(.05,YG[i]/Math.max(8,Ym)),.85), yrl=Math.max(.2,(YD[i]+6)/(YG[i]+6)), isik=1+V.isik*(gnl-1)+V.kab*1.4*(yrl-1);
+    const gr=V.gren?(Y[i]-YD[i])*V.gren*.9+(rnd()-.5)*sig*V.gren*.6:0;
+    for(let c=0;c<3;c++){ const tc=T[j+c]/Math.max(a,.004), fc=f[i*4+c]; let v=tc*isik+gr; v=v*(1-V.emil*.45)+(tc*fc/255)*V.emil*.45; v=Math.max(0,Math.min(255,v)); const A=a*(1-V.emil*.12); f[i*4+c]=fc*(1-A)+v*A; } }
+  ctx.putImageData(F,x0,y0); return true; }
+/* 5.2: otomatik uyum — fotoğraftaki yüzeyin dokusuna ve ışığına bakar */
+function mkOtomatik(T){ try{ const c=ED.prevCanvas||ED.baseCanvas; if(!c) return null; const k=yaziKutu(T,c.width,c.height), W=c.width,H=c.height, x0=Math.max(0,Math.round((k.cx-k.w/2)*W)), y0=Math.max(0,Math.round((k.cy-k.h/2)*H)), w=Math.max(4,Math.min(W-x0,Math.round(k.w*W))), h=Math.max(4,Math.min(H-y0,Math.round(k.h*H)));
+  const d=c.getContext("2d",{willReadFrequently:true}).getImageData(x0,y0,w,h).data; let s=0,s2=0,g=0,n=0; for(let i=0;i<d.length;i+=4){ const v=.2126*d[i]+.7152*d[i+1]+.0722*d[i+2]; s+=v; s2+=v*v; n++; if(i+4<d.length){ const v2=.2126*d[i+4]+.7152*d[i+5]+.0722*d[i+6]; g+=Math.abs(v2-v); } }
+  const m=s/n, sd=Math.sqrt(Math.max(0,s2/n-m*m)), doku=g/n; return {uyum:75, isik:Math.round(Math.min(100,40+sd*1.2)), kabart:Math.round(Math.min(100,doku*9)), gren:Math.round(Math.min(90,doku*7)), emil:m>150?55:30}; }catch(e){ return null; } }
 /* yazının ekrandaki kutusu (seçme/taşıma için, normalize) */
 function yaziKutu(T,W,H){ const fs=Math.max(4,T.sz*Math.min(W,H)); if(T.imza){ const d=imzaBoy(T,fs), P=imzaXY(T,W,H,fs); return {cx:P[0],cy:P[1],w:d[0]/W,h:d[1]/H}; }
   if(T.kombin){ const {c}=kombinTuval(T,fs), bw=c.width-fs*.4, bh=c.height-fs*.4; c.width=0; return {cx:T.x,cy:T.y,w:bw/W,h:bh/H}; } const m=document.createElement("canvas").getContext("2d"); m.font=`${T.it?"italic ":""}${T.w||400} ${fs}px "${T.f}"`; if("letterSpacing" in m) m.letterSpacing=((T.ls||0)/100*fs)+"px";
@@ -4452,7 +4491,6 @@ function yaziPanel(add){ const s=ED.state; s.texts=s.texts||[]; const T=s.texts.
   add(chips([["duz","Düz"],["serbest","Serbest — köşe ve kenarlardan"],["persp","Duvar / tabela / kutu"],["silindir","Şişe / bardak"],["kemer","Yuvarlak / oval"],["dalga","Kumaş"]],mk.mode||"duz",v=>{ mk.mode=v; if(v==="serbest"){ mkQE(mk); if(!mk.uyum) mk.uyum=40; } if(v==="silindir"&&!mk.curve) mk.curve=50; if(v==="kemer"&&!mk.curve) mk.curve=30; if(v==="dalga"&&!mk.curve) mk.curve=40; if(v==="persp"&&!mk.px&&!mk.py) mk.px=-30; if(!mk.uyum&&v!=="duz") mk.uyum=50; commit("Mockup: "+v); renderPanel(); requestRender(); }));
   if(mk.mode==="serbest"){
     add(el("p",{class:"note",style:"margin:0"},"Fotoğraftaki yazının çevresinde 4 köşe (kare) ve 4 kenar (yuvarlak) tutamaç var. Köşeleri yüzeyin köşelerine sürükle — yazı perspektifle oturur. Kenar ortasını sürükleyince o kenar bükülür (şişe, yastık, kumaş)."));
-    add(slider({id:"mkuy2",label:"Yüzeye uyum",min:0,max:100,get:()=>mk.uyum||0,set:v=>{ mk.uyum=v; requestRender(); },def:40,fmt:v=>v+"%"}));
     add(el("div",{class:"btn-row"},
       el("button",{class:"btn",onclick:()=>{ mk.e=[[0,0],[0,0],[0,0],[0,0]]; commit("Kenarlar düzlendi"); requestRender(); ekCiz(); }},"Kenarları düzle"),
       el("button",{class:"btn ghost",onclick:()=>{ mk.q=[[0,0],[0,0],[0,0],[0,0]]; mk.e=[[0,0],[0,0],[0,0],[0,0]]; commit("Mockup sıfırlandı"); requestRender(); ekCiz(); }},ico("i-reset"),"Sıfırla"))); }
@@ -4461,7 +4499,18 @@ function yaziPanel(add){ const s=ED.state; s.texts=s.texts||[]; const T=s.texts.
     add(slider({id:"mkpy",label:"Perspektif (dikey)",min:-100,max:100,get:()=>mk.py||0,set:v=>{ mk.py=v; requestRender(); },def:0,fmt:v=>v}));
     if(mk.mode!=="persp") add(slider({id:"mkc",label:mk.mode==="dalga"?"Dalga":"Eğrilik",min:-100,max:100,get:()=>mk.curve||0,set:v=>{ mk.curve=v; requestRender(); },def:0,fmt:v=>v}));
     add(slider({id:"mksk",label:"Eğim",min:-100,max:100,get:()=>mk.skew||0,set:v=>{ mk.skew=v; requestRender(); },def:0,fmt:v=>v}));
-    add(slider({id:"mkuy",label:"Yüzeye uyum",min:0,max:100,get:()=>mk.uyum||0,set:v=>{ mk.uyum=v; requestRender(); },def:0,fmt:v=>v+"%"})); }
+  }
+  add(el("div",{class:"subhead"},"Yüzeye kaynaştır — ışık, gölge, doku"));
+  add(el("div",{class:"btn-row"},el("button",{class:"btn pri",onclick:()=>{ const o=mkOtomatik(T); if(!o){ toast("Yüzey okunamadı"); return; } Object.assign(mk,o); commit("Otomatik yüzey uyumu"); renderPanel(); requestRender(); toast("Yazı yüzeyin ışığına ve dokusuna göre ayarlandı"); }},"✨ Otomatik uyum"),
+    mk.uyum?el("button",{class:"btn ghost",onclick:()=>{ mk.uyum=0; ["isik","kabart","asin","gren","emil"].forEach(k=>delete mk[k]); commit("Yüzey uyumu kapatıldı"); renderPanel(); requestRender(); }},"Kapat"):null));
+  add(slider({id:"mkuy",label:"Yüzeye uyum",min:0,max:100,get:()=>mk.uyum||0,set:v=>{ mk.uyum=v; requestRender(); },def:0,fmt:v=>v+"%"}));
+  if(mk.uyum){ const V=mkUyumDeger(mk);
+    add(slider({id:"mkis",label:"Işık ve gölge geçişi",min:0,max:100,get:()=>Math.round(V.isik*100),set:v=>{ mk.isik=v; requestRender(); },def:Math.round(V.u*100),fmt:v=>v+"%"}));
+    add(slider({id:"mkkb",label:"Doku kabartması",min:0,max:100,get:()=>Math.round(V.kab*100),set:v=>{ mk.kabart=v; requestRender(); },def:Math.round(V.u*55),fmt:v=>v+"%"}));
+    add(slider({id:"mkem",label:"Boyanın emilmesi",min:0,max:100,get:()=>Math.round(V.emil*100),set:v=>{ mk.emil=v; requestRender(); },def:Math.round(V.u*45),fmt:v=>v+"%"}));
+    add(slider({id:"mkgr",label:"Gren / pürüz",min:0,max:100,get:()=>Math.round(V.gren*100),set:v=>{ mk.gren=v; requestRender(); },def:Math.round(V.u*60),fmt:v=>v+"%"}));
+    add(slider({id:"mkas",label:"Aşınma / eskime",min:0,max:100,get:()=>Math.round(V.asin*100),set:v=>{ mk.asin=v; requestRender(); },def:0,fmt:v=>v+"%"}));
+    add(el("p",{class:"note",style:"margin:0"},"Yazı, alttaki yüzeyin ışığını, gölgesini, dokusunu ve grenini alır; duvar, ahşap, taş, kumaş gibi yüzeylerde boya gibi durur. Aşınma eski tabela ve duvar yazısı görünümü verir.")); }
   add(el("div",{class:"btn-row"},
     el("button",{class:"btn",onclick:()=>{ const c=deep(T); c.id=yzVars().id; c.x=clamp(c.x+.04,0,1); c.y=clamp(c.y+.04,0,1); s.texts.push(c); ED.yzSel=c.id; commit("Yazı çoğaltıldı"); renderPanel(); requestRender(); }},ico("i-copy"),"Çoğalt"),
     el("button",{class:"btn ghost danger",onclick:()=>{ s.texts=s.texts.filter(t=>t.id!==T.id); ED.yzSel=null; commit("Yazı silindi"); renderPanel(); requestRender(); ekCiz(); }},ico("i-trash"),"Sil")));
@@ -4751,6 +4800,2414 @@ init();
     istendi = true; disari = false; iste();
   }, true);
 })();
+</script>
+<script>/* mp4-muxer 5.2.2 (MIT, Vanilagy) */
+"use strict";
+var Mp4Muxer = (() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+  var __accessCheck = (obj, member, msg) => {
+    if (!member.has(obj))
+      throw TypeError("Cannot " + msg);
+  };
+  var __privateGet = (obj, member, getter) => {
+    __accessCheck(obj, member, "read from private field");
+    return getter ? getter.call(obj) : member.get(obj);
+  };
+  var __privateAdd = (obj, member, value) => {
+    if (member.has(obj))
+      throw TypeError("Cannot add the same private member more than once");
+    member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+  };
+  var __privateSet = (obj, member, value, setter) => {
+    __accessCheck(obj, member, "write to private field");
+    setter ? setter.call(obj, value) : member.set(obj, value);
+    return value;
+  };
+  var __privateWrapper = (obj, member, setter, getter) => ({
+    set _(value) {
+      __privateSet(obj, member, value, setter);
+    },
+    get _() {
+      return __privateGet(obj, member, getter);
+    }
+  });
+  var __privateMethod = (obj, member, method) => {
+    __accessCheck(obj, member, "access private method");
+    return method;
+  };
+
+  // src/index.ts
+  var src_exports = {};
+  __export(src_exports, {
+    ArrayBufferTarget: () => ArrayBufferTarget,
+    FileSystemWritableFileStreamTarget: () => FileSystemWritableFileStreamTarget,
+    Muxer: () => Muxer,
+    StreamTarget: () => StreamTarget
+  });
+
+  // src/misc.ts
+  var bytes = new Uint8Array(8);
+  var view = new DataView(bytes.buffer);
+  var u8 = (value) => {
+    return [(value % 256 + 256) % 256];
+  };
+  var u16 = (value) => {
+    view.setUint16(0, value, false);
+    return [bytes[0], bytes[1]];
+  };
+  var i16 = (value) => {
+    view.setInt16(0, value, false);
+    return [bytes[0], bytes[1]];
+  };
+  var u24 = (value) => {
+    view.setUint32(0, value, false);
+    return [bytes[1], bytes[2], bytes[3]];
+  };
+  var u32 = (value) => {
+    view.setUint32(0, value, false);
+    return [bytes[0], bytes[1], bytes[2], bytes[3]];
+  };
+  var i32 = (value) => {
+    view.setInt32(0, value, false);
+    return [bytes[0], bytes[1], bytes[2], bytes[3]];
+  };
+  var u64 = (value) => {
+    view.setUint32(0, Math.floor(value / 2 ** 32), false);
+    view.setUint32(4, value, false);
+    return [bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], bytes[5], bytes[6], bytes[7]];
+  };
+  var fixed_8_8 = (value) => {
+    view.setInt16(0, 2 ** 8 * value, false);
+    return [bytes[0], bytes[1]];
+  };
+  var fixed_16_16 = (value) => {
+    view.setInt32(0, 2 ** 16 * value, false);
+    return [bytes[0], bytes[1], bytes[2], bytes[3]];
+  };
+  var fixed_2_30 = (value) => {
+    view.setInt32(0, 2 ** 30 * value, false);
+    return [bytes[0], bytes[1], bytes[2], bytes[3]];
+  };
+  var ascii = (text, nullTerminated = false) => {
+    let bytes2 = Array(text.length).fill(null).map((_, i) => text.charCodeAt(i));
+    if (nullTerminated)
+      bytes2.push(0);
+    return bytes2;
+  };
+  var last = (arr) => {
+    return arr && arr[arr.length - 1];
+  };
+  var lastPresentedSample = (samples) => {
+    let result = void 0;
+    for (let sample of samples) {
+      if (!result || sample.presentationTimestamp > result.presentationTimestamp) {
+        result = sample;
+      }
+    }
+    return result;
+  };
+  var intoTimescale = (timeInSeconds, timescale, round = true) => {
+    let value = timeInSeconds * timescale;
+    return round ? Math.round(value) : value;
+  };
+  var rotationMatrix = (rotationInDegrees) => {
+    let theta = rotationInDegrees * (Math.PI / 180);
+    let cosTheta = Math.cos(theta);
+    let sinTheta = Math.sin(theta);
+    return [
+      cosTheta,
+      sinTheta,
+      0,
+      -sinTheta,
+      cosTheta,
+      0,
+      0,
+      0,
+      1
+    ];
+  };
+  var IDENTITY_MATRIX = rotationMatrix(0);
+  var matrixToBytes = (matrix) => {
+    return [
+      fixed_16_16(matrix[0]),
+      fixed_16_16(matrix[1]),
+      fixed_2_30(matrix[2]),
+      fixed_16_16(matrix[3]),
+      fixed_16_16(matrix[4]),
+      fixed_2_30(matrix[5]),
+      fixed_16_16(matrix[6]),
+      fixed_16_16(matrix[7]),
+      fixed_2_30(matrix[8])
+    ];
+  };
+  var deepClone = (x) => {
+    if (!x)
+      return x;
+    if (typeof x !== "object")
+      return x;
+    if (Array.isArray(x))
+      return x.map(deepClone);
+    return Object.fromEntries(Object.entries(x).map(([key, value]) => [key, deepClone(value)]));
+  };
+  var isU32 = (value) => {
+    return value >= 0 && value < 2 ** 32;
+  };
+
+  // src/box.ts
+  var box = (type, contents, children) => ({
+    type,
+    contents: contents && new Uint8Array(contents.flat(10)),
+    children
+  });
+  var fullBox = (type, version, flags, contents, children) => box(
+    type,
+    [u8(version), u24(flags), contents ?? []],
+    children
+  );
+  var ftyp = (details) => {
+    let minorVersion = 512;
+    if (details.fragmented)
+      return box("ftyp", [
+        ascii("iso5"),
+        // Major brand
+        u32(minorVersion),
+        // Minor version
+        // Compatible brands
+        ascii("iso5"),
+        ascii("iso6"),
+        ascii("mp41")
+      ]);
+    return box("ftyp", [
+      ascii("isom"),
+      // Major brand
+      u32(minorVersion),
+      // Minor version
+      // Compatible brands
+      ascii("isom"),
+      details.holdsAvc ? ascii("avc1") : [],
+      ascii("mp41")
+    ]);
+  };
+  var mdat = (reserveLargeSize) => ({ type: "mdat", largeSize: reserveLargeSize });
+  var free = (size) => ({ type: "free", size });
+  var moov = (tracks, creationTime, fragmented = false) => box("moov", null, [
+    mvhd(creationTime, tracks),
+    ...tracks.map((x) => trak(x, creationTime)),
+    fragmented ? mvex(tracks) : null
+  ]);
+  var mvhd = (creationTime, tracks) => {
+    let duration = intoTimescale(Math.max(
+      0,
+      ...tracks.filter((x) => x.samples.length > 0).map((x) => {
+        const lastSample = lastPresentedSample(x.samples);
+        return lastSample.presentationTimestamp + lastSample.duration;
+      })
+    ), GLOBAL_TIMESCALE);
+    let nextTrackId = Math.max(...tracks.map((x) => x.id)) + 1;
+    let needsU64 = !isU32(creationTime) || !isU32(duration);
+    let u32OrU64 = needsU64 ? u64 : u32;
+    return fullBox("mvhd", +needsU64, 0, [
+      u32OrU64(creationTime),
+      // Creation time
+      u32OrU64(creationTime),
+      // Modification time
+      u32(GLOBAL_TIMESCALE),
+      // Timescale
+      u32OrU64(duration),
+      // Duration
+      fixed_16_16(1),
+      // Preferred rate
+      fixed_8_8(1),
+      // Preferred volume
+      Array(10).fill(0),
+      // Reserved
+      matrixToBytes(IDENTITY_MATRIX),
+      // Matrix
+      Array(24).fill(0),
+      // Pre-defined
+      u32(nextTrackId)
+      // Next track ID
+    ]);
+  };
+  var trak = (track, creationTime) => box("trak", null, [
+    tkhd(track, creationTime),
+    mdia(track, creationTime)
+  ]);
+  var tkhd = (track, creationTime) => {
+    let lastSample = lastPresentedSample(track.samples);
+    let durationInGlobalTimescale = intoTimescale(
+      lastSample ? lastSample.presentationTimestamp + lastSample.duration : 0,
+      GLOBAL_TIMESCALE
+    );
+    let needsU64 = !isU32(creationTime) || !isU32(durationInGlobalTimescale);
+    let u32OrU64 = needsU64 ? u64 : u32;
+    let matrix;
+    if (track.info.type === "video") {
+      matrix = typeof track.info.rotation === "number" ? rotationMatrix(track.info.rotation) : track.info.rotation;
+    } else {
+      matrix = IDENTITY_MATRIX;
+    }
+    return fullBox("tkhd", +needsU64, 3, [
+      u32OrU64(creationTime),
+      // Creation time
+      u32OrU64(creationTime),
+      // Modification time
+      u32(track.id),
+      // Track ID
+      u32(0),
+      // Reserved
+      u32OrU64(durationInGlobalTimescale),
+      // Duration
+      Array(8).fill(0),
+      // Reserved
+      u16(0),
+      // Layer
+      u16(0),
+      // Alternate group
+      fixed_8_8(track.info.type === "audio" ? 1 : 0),
+      // Volume
+      u16(0),
+      // Reserved
+      matrixToBytes(matrix),
+      // Matrix
+      fixed_16_16(track.info.type === "video" ? track.info.width : 0),
+      // Track width
+      fixed_16_16(track.info.type === "video" ? track.info.height : 0)
+      // Track height
+    ]);
+  };
+  var mdia = (track, creationTime) => box("mdia", null, [
+    mdhd(track, creationTime),
+    hdlr(track.info.type === "video" ? "vide" : "soun"),
+    minf(track)
+  ]);
+  var mdhd = (track, creationTime) => {
+    let lastSample = lastPresentedSample(track.samples);
+    let localDuration = intoTimescale(
+      lastSample ? lastSample.presentationTimestamp + lastSample.duration : 0,
+      track.timescale
+    );
+    let needsU64 = !isU32(creationTime) || !isU32(localDuration);
+    let u32OrU64 = needsU64 ? u64 : u32;
+    return fullBox("mdhd", +needsU64, 0, [
+      u32OrU64(creationTime),
+      // Creation time
+      u32OrU64(creationTime),
+      // Modification time
+      u32(track.timescale),
+      // Timescale
+      u32OrU64(localDuration),
+      // Duration
+      u16(21956),
+      // Language ("und", undetermined)
+      u16(0)
+      // Quality
+    ]);
+  };
+  var hdlr = (componentSubtype) => fullBox("hdlr", 0, 0, [
+    ascii("mhlr"),
+    // Component type
+    ascii(componentSubtype),
+    // Component subtype
+    u32(0),
+    // Component manufacturer
+    u32(0),
+    // Component flags
+    u32(0),
+    // Component flags mask
+    ascii("mp4-muxer-hdlr", true)
+    // Component name
+  ]);
+  var minf = (track) => box("minf", null, [
+    track.info.type === "video" ? vmhd() : smhd(),
+    dinf(),
+    stbl(track)
+  ]);
+  var vmhd = () => fullBox("vmhd", 0, 1, [
+    u16(0),
+    // Graphics mode
+    u16(0),
+    // Opcolor R
+    u16(0),
+    // Opcolor G
+    u16(0)
+    // Opcolor B
+  ]);
+  var smhd = () => fullBox("smhd", 0, 0, [
+    u16(0),
+    // Balance
+    u16(0)
+    // Reserved
+  ]);
+  var dinf = () => box("dinf", null, [
+    dref()
+  ]);
+  var dref = () => fullBox("dref", 0, 0, [
+    u32(1)
+    // Entry count
+  ], [
+    url()
+  ]);
+  var url = () => fullBox("url ", 0, 1);
+  var stbl = (track) => {
+    const needsCtts = track.compositionTimeOffsetTable.length > 1 || track.compositionTimeOffsetTable.some((x) => x.sampleCompositionTimeOffset !== 0);
+    return box("stbl", null, [
+      stsd(track),
+      stts(track),
+      stss(track),
+      stsc(track),
+      stsz(track),
+      stco(track),
+      needsCtts ? ctts(track) : null
+    ]);
+  };
+  var stsd = (track) => fullBox("stsd", 0, 0, [
+    u32(1)
+    // Entry count
+  ], [
+    track.info.type === "video" ? videoSampleDescription(
+      VIDEO_CODEC_TO_BOX_NAME[track.info.codec],
+      track
+    ) : soundSampleDescription(
+      AUDIO_CODEC_TO_BOX_NAME[track.info.codec],
+      track
+    )
+  ]);
+  var videoSampleDescription = (compressionType, track) => box(compressionType, [
+    Array(6).fill(0),
+    // Reserved
+    u16(1),
+    // Data reference index
+    u16(0),
+    // Pre-defined
+    u16(0),
+    // Reserved
+    Array(12).fill(0),
+    // Pre-defined
+    u16(track.info.width),
+    // Width
+    u16(track.info.height),
+    // Height
+    u32(4718592),
+    // Horizontal resolution
+    u32(4718592),
+    // Vertical resolution
+    u32(0),
+    // Reserved
+    u16(1),
+    // Frame count
+    Array(32).fill(0),
+    // Compressor name
+    u16(24),
+    // Depth
+    i16(65535)
+    // Pre-defined
+  ], [
+    VIDEO_CODEC_TO_CONFIGURATION_BOX[track.info.codec](track),
+    track.info.decoderConfig.colorSpace ? colr(track) : null
+  ]);
+  var COLOR_PRIMARIES_MAP = {
+    "bt709": 1,
+    // ITU-R BT.709
+    "bt470bg": 5,
+    // ITU-R BT.470BG
+    "smpte170m": 6
+    // ITU-R BT.601 525 - SMPTE 170M
+  };
+  var TRANSFER_CHARACTERISTICS_MAP = {
+    "bt709": 1,
+    // ITU-R BT.709
+    "smpte170m": 6,
+    // SMPTE 170M
+    "iec61966-2-1": 13
+    // IEC 61966-2-1
+  };
+  var MATRIX_COEFFICIENTS_MAP = {
+    "rgb": 0,
+    // Identity
+    "bt709": 1,
+    // ITU-R BT.709
+    "bt470bg": 5,
+    // ITU-R BT.470BG
+    "smpte170m": 6
+    // SMPTE 170M
+  };
+  var colr = (track) => box("colr", [
+    ascii("nclx"),
+    // Colour type
+    u16(COLOR_PRIMARIES_MAP[track.info.decoderConfig.colorSpace.primaries]),
+    // Colour primaries
+    u16(TRANSFER_CHARACTERISTICS_MAP[track.info.decoderConfig.colorSpace.transfer]),
+    // Transfer characteristics
+    u16(MATRIX_COEFFICIENTS_MAP[track.info.decoderConfig.colorSpace.matrix]),
+    // Matrix coefficients
+    u8((track.info.decoderConfig.colorSpace.fullRange ? 1 : 0) << 7)
+    // Full range flag
+  ]);
+  var avcC = (track) => track.info.decoderConfig && box("avcC", [
+    // For AVC, description is an AVCDecoderConfigurationRecord, so nothing else to do here
+    ...new Uint8Array(track.info.decoderConfig.description)
+  ]);
+  var hvcC = (track) => track.info.decoderConfig && box("hvcC", [
+    // For HEVC, description is a HEVCDecoderConfigurationRecord, so nothing else to do here
+    ...new Uint8Array(track.info.decoderConfig.description)
+  ]);
+  var vpcC = (track) => {
+    if (!track.info.decoderConfig) {
+      return null;
+    }
+    let decoderConfig = track.info.decoderConfig;
+    if (!decoderConfig.colorSpace) {
+      throw new Error(`'colorSpace' is required in the decoder config for VP9.`);
+    }
+    let parts = decoderConfig.codec.split(".");
+    let profile = Number(parts[1]);
+    let level = Number(parts[2]);
+    let bitDepth = Number(parts[3]);
+    let chromaSubsampling = 0;
+    let thirdByte = (bitDepth << 4) + (chromaSubsampling << 1) + Number(decoderConfig.colorSpace.fullRange);
+    let colourPrimaries = 2;
+    let transferCharacteristics = 2;
+    let matrixCoefficients = 2;
+    return fullBox("vpcC", 1, 0, [
+      u8(profile),
+      // Profile
+      u8(level),
+      // Level
+      u8(thirdByte),
+      // Bit depth, chroma subsampling, full range
+      u8(colourPrimaries),
+      // Colour primaries
+      u8(transferCharacteristics),
+      // Transfer characteristics
+      u8(matrixCoefficients),
+      // Matrix coefficients
+      u16(0)
+      // Codec initialization data size
+    ]);
+  };
+  var av1C = () => {
+    let marker = 1;
+    let version = 1;
+    let firstByte = (marker << 7) + version;
+    return box("av1C", [
+      firstByte,
+      0,
+      0,
+      0
+    ]);
+  };
+  var soundSampleDescription = (compressionType, track) => box(compressionType, [
+    Array(6).fill(0),
+    // Reserved
+    u16(1),
+    // Data reference index
+    u16(0),
+    // Version
+    u16(0),
+    // Revision level
+    u32(0),
+    // Vendor
+    u16(track.info.numberOfChannels),
+    // Number of channels
+    u16(16),
+    // Sample size (bits)
+    u16(0),
+    // Compression ID
+    u16(0),
+    // Packet size
+    fixed_16_16(track.info.sampleRate)
+    // Sample rate
+  ], [
+    AUDIO_CODEC_TO_CONFIGURATION_BOX[track.info.codec](track)
+  ]);
+  var esds = (track) => {
+    let description = new Uint8Array(track.info.decoderConfig.description);
+    return fullBox("esds", 0, 0, [
+      // https://stackoverflow.com/a/54803118
+      u32(58753152),
+      // TAG(3) = Object Descriptor ([2])
+      u8(32 + description.byteLength),
+      // length of this OD (which includes the next 2 tags)
+      u16(1),
+      // ES_ID = 1
+      u8(0),
+      // flags etc = 0
+      u32(75530368),
+      // TAG(4) = ES Descriptor ([2]) embedded in above OD
+      u8(18 + description.byteLength),
+      // length of this ESD
+      u8(64),
+      // MPEG-4 Audio
+      u8(21),
+      // stream type(6bits)=5 audio, flags(2bits)=1
+      u24(0),
+      // 24bit buffer size
+      u32(130071),
+      // max bitrate
+      u32(130071),
+      // avg bitrate
+      u32(92307584),
+      // TAG(5) = ASC ([2],[3]) embedded in above OD
+      u8(description.byteLength),
+      // length
+      ...description,
+      u32(109084800),
+      // TAG(6)
+      u8(1),
+      // length
+      u8(2)
+      // data
+    ]);
+  };
+  var dOps = (track) => {
+    let preskip = 3840;
+    let gain = 0;
+    const description = track.info.decoderConfig?.description;
+    if (description) {
+      if (description.byteLength < 18) {
+        throw new TypeError("Invalid decoder description provided for Opus; must be at least 18 bytes long.");
+      }
+      const view2 = ArrayBuffer.isView(description) ? new DataView(description.buffer, description.byteOffset, description.byteLength) : new DataView(description);
+      preskip = view2.getUint16(10, true);
+      gain = view2.getInt16(14, true);
+    }
+    return box("dOps", [
+      u8(0),
+      // Version
+      u8(track.info.numberOfChannels),
+      // OutputChannelCount
+      u16(preskip),
+      u32(track.info.sampleRate),
+      // InputSampleRate
+      fixed_8_8(gain),
+      // OutputGain
+      u8(0)
+      // ChannelMappingFamily
+    ]);
+  };
+  var stts = (track) => {
+    return fullBox("stts", 0, 0, [
+      u32(track.timeToSampleTable.length),
+      // Number of entries
+      track.timeToSampleTable.map((x) => [
+        // Time-to-sample table
+        u32(x.sampleCount),
+        // Sample count
+        u32(x.sampleDelta)
+        // Sample duration
+      ])
+    ]);
+  };
+  var stss = (track) => {
+    if (track.samples.every((x) => x.type === "key"))
+      return null;
+    let keySamples = [...track.samples.entries()].filter(([, sample]) => sample.type === "key");
+    return fullBox("stss", 0, 0, [
+      u32(keySamples.length),
+      // Number of entries
+      keySamples.map(([index]) => u32(index + 1))
+      // Sync sample table
+    ]);
+  };
+  var stsc = (track) => {
+    return fullBox("stsc", 0, 0, [
+      u32(track.compactlyCodedChunkTable.length),
+      // Number of entries
+      track.compactlyCodedChunkTable.map((x) => [
+        // Sample-to-chunk table
+        u32(x.firstChunk),
+        // First chunk
+        u32(x.samplesPerChunk),
+        // Samples per chunk
+        u32(1)
+        // Sample description index
+      ])
+    ]);
+  };
+  var stsz = (track) => fullBox("stsz", 0, 0, [
+    u32(0),
+    // Sample size (0 means non-constant size)
+    u32(track.samples.length),
+    // Number of entries
+    track.samples.map((x) => u32(x.size))
+    // Sample size table
+  ]);
+  var stco = (track) => {
+    if (track.finalizedChunks.length > 0 && last(track.finalizedChunks).offset >= 2 ** 32) {
+      return fullBox("co64", 0, 0, [
+        u32(track.finalizedChunks.length),
+        // Number of entries
+        track.finalizedChunks.map((x) => u64(x.offset))
+        // Chunk offset table
+      ]);
+    }
+    return fullBox("stco", 0, 0, [
+      u32(track.finalizedChunks.length),
+      // Number of entries
+      track.finalizedChunks.map((x) => u32(x.offset))
+      // Chunk offset table
+    ]);
+  };
+  var ctts = (track) => {
+    return fullBox("ctts", 0, 0, [
+      u32(track.compositionTimeOffsetTable.length),
+      // Number of entries
+      track.compositionTimeOffsetTable.map((x) => [
+        // Time-to-sample table
+        u32(x.sampleCount),
+        // Sample count
+        u32(x.sampleCompositionTimeOffset)
+        // Sample offset
+      ])
+    ]);
+  };
+  var mvex = (tracks) => {
+    return box("mvex", null, tracks.map(trex));
+  };
+  var trex = (track) => {
+    return fullBox("trex", 0, 0, [
+      u32(track.id),
+      // Track ID
+      u32(1),
+      // Default sample description index
+      u32(0),
+      // Default sample duration
+      u32(0),
+      // Default sample size
+      u32(0)
+      // Default sample flags
+    ]);
+  };
+  var moof = (sequenceNumber, tracks) => {
+    return box("moof", null, [
+      mfhd(sequenceNumber),
+      ...tracks.map(traf)
+    ]);
+  };
+  var mfhd = (sequenceNumber) => {
+    return fullBox("mfhd", 0, 0, [
+      u32(sequenceNumber)
+      // Sequence number
+    ]);
+  };
+  var fragmentSampleFlags = (sample) => {
+    let byte1 = 0;
+    let byte2 = 0;
+    let byte3 = 0;
+    let byte4 = 0;
+    let sampleIsDifferenceSample = sample.type === "delta";
+    byte2 |= +sampleIsDifferenceSample;
+    if (sampleIsDifferenceSample) {
+      byte1 |= 1;
+    } else {
+      byte1 |= 2;
+    }
+    return byte1 << 24 | byte2 << 16 | byte3 << 8 | byte4;
+  };
+  var traf = (track) => {
+    return box("traf", null, [
+      tfhd(track),
+      tfdt(track),
+      trun(track)
+    ]);
+  };
+  var tfhd = (track) => {
+    let tfFlags = 0;
+    tfFlags |= 8;
+    tfFlags |= 16;
+    tfFlags |= 32;
+    tfFlags |= 131072;
+    let referenceSample = track.currentChunk.samples[1] ?? track.currentChunk.samples[0];
+    let referenceSampleInfo = {
+      duration: referenceSample.timescaleUnitsToNextSample,
+      size: referenceSample.size,
+      flags: fragmentSampleFlags(referenceSample)
+    };
+    return fullBox("tfhd", 0, tfFlags, [
+      u32(track.id),
+      // Track ID
+      u32(referenceSampleInfo.duration),
+      // Default sample duration
+      u32(referenceSampleInfo.size),
+      // Default sample size
+      u32(referenceSampleInfo.flags)
+      // Default sample flags
+    ]);
+  };
+  var tfdt = (track) => {
+    return fullBox("tfdt", 1, 0, [
+      u64(intoTimescale(track.currentChunk.startTimestamp, track.timescale))
+      // Base Media Decode Time
+    ]);
+  };
+  var trun = (track) => {
+    let allSampleDurations = track.currentChunk.samples.map((x) => x.timescaleUnitsToNextSample);
+    let allSampleSizes = track.currentChunk.samples.map((x) => x.size);
+    let allSampleFlags = track.currentChunk.samples.map(fragmentSampleFlags);
+    let allSampleCompositionTimeOffsets = track.currentChunk.samples.map((x) => intoTimescale(x.presentationTimestamp - x.decodeTimestamp, track.timescale));
+    let uniqueSampleDurations = new Set(allSampleDurations);
+    let uniqueSampleSizes = new Set(allSampleSizes);
+    let uniqueSampleFlags = new Set(allSampleFlags);
+    let uniqueSampleCompositionTimeOffsets = new Set(allSampleCompositionTimeOffsets);
+    let firstSampleFlagsPresent = uniqueSampleFlags.size === 2 && allSampleFlags[0] !== allSampleFlags[1];
+    let sampleDurationPresent = uniqueSampleDurations.size > 1;
+    let sampleSizePresent = uniqueSampleSizes.size > 1;
+    let sampleFlagsPresent = !firstSampleFlagsPresent && uniqueSampleFlags.size > 1;
+    let sampleCompositionTimeOffsetsPresent = uniqueSampleCompositionTimeOffsets.size > 1 || [...uniqueSampleCompositionTimeOffsets].some((x) => x !== 0);
+    let flags = 0;
+    flags |= 1;
+    flags |= 4 * +firstSampleFlagsPresent;
+    flags |= 256 * +sampleDurationPresent;
+    flags |= 512 * +sampleSizePresent;
+    flags |= 1024 * +sampleFlagsPresent;
+    flags |= 2048 * +sampleCompositionTimeOffsetsPresent;
+    return fullBox("trun", 1, flags, [
+      u32(track.currentChunk.samples.length),
+      // Sample count
+      u32(track.currentChunk.offset - track.currentChunk.moofOffset || 0),
+      // Data offset
+      firstSampleFlagsPresent ? u32(allSampleFlags[0]) : [],
+      track.currentChunk.samples.map((_, i) => [
+        sampleDurationPresent ? u32(allSampleDurations[i]) : [],
+        // Sample duration
+        sampleSizePresent ? u32(allSampleSizes[i]) : [],
+        // Sample size
+        sampleFlagsPresent ? u32(allSampleFlags[i]) : [],
+        // Sample flags
+        // Sample composition time offsets
+        sampleCompositionTimeOffsetsPresent ? i32(allSampleCompositionTimeOffsets[i]) : []
+      ])
+    ]);
+  };
+  var mfra = (tracks) => {
+    return box("mfra", null, [
+      ...tracks.map(tfra),
+      mfro()
+    ]);
+  };
+  var tfra = (track, trackIndex) => {
+    let version = 1;
+    return fullBox("tfra", version, 0, [
+      u32(track.id),
+      // Track ID
+      u32(63),
+      // This specifies that traf number, trun number and sample number are 32-bit ints
+      u32(track.finalizedChunks.length),
+      // Number of entries
+      track.finalizedChunks.map((chunk) => [
+        u64(intoTimescale(chunk.startTimestamp, track.timescale)),
+        // Time
+        u64(chunk.moofOffset),
+        // moof offset
+        u32(trackIndex + 1),
+        // traf number
+        u32(1),
+        // trun number
+        u32(1)
+        // Sample number
+      ])
+    ]);
+  };
+  var mfro = () => {
+    return fullBox("mfro", 0, 0, [
+      // This value needs to be overwritten manually from the outside, where the actual size of the enclosing mfra box
+      // is known
+      u32(0)
+      // Size
+    ]);
+  };
+  var VIDEO_CODEC_TO_BOX_NAME = {
+    "avc": "avc1",
+    "hevc": "hvc1",
+    "vp9": "vp09",
+    "av1": "av01"
+  };
+  var VIDEO_CODEC_TO_CONFIGURATION_BOX = {
+    "avc": avcC,
+    "hevc": hvcC,
+    "vp9": vpcC,
+    "av1": av1C
+  };
+  var AUDIO_CODEC_TO_BOX_NAME = {
+    "aac": "mp4a",
+    "opus": "Opus"
+  };
+  var AUDIO_CODEC_TO_CONFIGURATION_BOX = {
+    "aac": esds,
+    "opus": dOps
+  };
+
+  // src/target.ts
+  var isTarget = Symbol("isTarget");
+  var Target = class {
+  };
+  isTarget;
+  var ArrayBufferTarget = class extends Target {
+    constructor() {
+      super(...arguments);
+      this.buffer = null;
+    }
+  };
+  var StreamTarget = class extends Target {
+    constructor(options) {
+      super();
+      this.options = options;
+      if (typeof options !== "object") {
+        throw new TypeError("StreamTarget requires an options object to be passed to its constructor.");
+      }
+      if (options.onData) {
+        if (typeof options.onData !== "function") {
+          throw new TypeError("options.onData, when provided, must be a function.");
+        }
+        if (options.onData.length < 2) {
+          throw new TypeError(
+            "options.onData, when provided, must be a function that takes in at least two arguments (data and position). Ignoring the position argument, which specifies the byte offset at which the data is to be written, can lead to broken outputs."
+          );
+        }
+      }
+      if (options.chunked !== void 0 && typeof options.chunked !== "boolean") {
+        throw new TypeError("options.chunked, when provided, must be a boolean.");
+      }
+      if (options.chunkSize !== void 0 && (!Number.isInteger(options.chunkSize) || options.chunkSize < 1024)) {
+        throw new TypeError("options.chunkSize, when provided, must be an integer and not smaller than 1024.");
+      }
+    }
+  };
+  var FileSystemWritableFileStreamTarget = class extends Target {
+    constructor(stream, options) {
+      super();
+      this.stream = stream;
+      this.options = options;
+      if (!(stream instanceof FileSystemWritableFileStream)) {
+        throw new TypeError("FileSystemWritableFileStreamTarget requires a FileSystemWritableFileStream instance.");
+      }
+      if (options !== void 0 && typeof options !== "object") {
+        throw new TypeError("FileSystemWritableFileStreamTarget's options, when provided, must be an object.");
+      }
+      if (options) {
+        if (options.chunkSize !== void 0 && (!Number.isInteger(options.chunkSize) || options.chunkSize <= 0)) {
+          throw new TypeError("options.chunkSize, when provided, must be a positive integer");
+        }
+      }
+    }
+  };
+
+  // src/writer.ts
+  var _helper, _helperView;
+  var Writer = class {
+    constructor() {
+      this.pos = 0;
+      __privateAdd(this, _helper, new Uint8Array(8));
+      __privateAdd(this, _helperView, new DataView(__privateGet(this, _helper).buffer));
+      /**
+       * Stores the position from the start of the file to where boxes elements have been written. This is used to
+       * rewrite/edit elements that were already added before, and to measure sizes of things.
+       */
+      this.offsets = /* @__PURE__ */ new WeakMap();
+    }
+    /** Sets the current position for future writes to a new one. */
+    seek(newPos) {
+      this.pos = newPos;
+    }
+    writeU32(value) {
+      __privateGet(this, _helperView).setUint32(0, value, false);
+      this.write(__privateGet(this, _helper).subarray(0, 4));
+    }
+    writeU64(value) {
+      __privateGet(this, _helperView).setUint32(0, Math.floor(value / 2 ** 32), false);
+      __privateGet(this, _helperView).setUint32(4, value, false);
+      this.write(__privateGet(this, _helper).subarray(0, 8));
+    }
+    writeAscii(text) {
+      for (let i = 0; i < text.length; i++) {
+        __privateGet(this, _helperView).setUint8(i % 8, text.charCodeAt(i));
+        if (i % 8 === 7)
+          this.write(__privateGet(this, _helper));
+      }
+      if (text.length % 8 !== 0) {
+        this.write(__privateGet(this, _helper).subarray(0, text.length % 8));
+      }
+    }
+    writeBox(box2) {
+      this.offsets.set(box2, this.pos);
+      if (box2.contents && !box2.children) {
+        this.writeBoxHeader(box2, box2.size ?? box2.contents.byteLength + 8);
+        this.write(box2.contents);
+      } else {
+        let startPos = this.pos;
+        this.writeBoxHeader(box2, 0);
+        if (box2.contents)
+          this.write(box2.contents);
+        if (box2.children) {
+          for (let child of box2.children)
+            if (child)
+              this.writeBox(child);
+        }
+        let endPos = this.pos;
+        let size = box2.size ?? endPos - startPos;
+        this.seek(startPos);
+        this.writeBoxHeader(box2, size);
+        this.seek(endPos);
+      }
+    }
+    writeBoxHeader(box2, size) {
+      this.writeU32(box2.largeSize ? 1 : size);
+      this.writeAscii(box2.type);
+      if (box2.largeSize)
+        this.writeU64(size);
+    }
+    measureBoxHeader(box2) {
+      return 8 + (box2.largeSize ? 8 : 0);
+    }
+    patchBox(box2) {
+      let endPos = this.pos;
+      this.seek(this.offsets.get(box2));
+      this.writeBox(box2);
+      this.seek(endPos);
+    }
+    measureBox(box2) {
+      if (box2.contents && !box2.children) {
+        let headerSize = this.measureBoxHeader(box2);
+        return headerSize + box2.contents.byteLength;
+      } else {
+        let result = this.measureBoxHeader(box2);
+        if (box2.contents)
+          result += box2.contents.byteLength;
+        if (box2.children) {
+          for (let child of box2.children)
+            if (child)
+              result += this.measureBox(child);
+        }
+        return result;
+      }
+    }
+  };
+  _helper = new WeakMap();
+  _helperView = new WeakMap();
+  var _target, _buffer, _bytes, _maxPos, _ensureSize, ensureSize_fn;
+  var ArrayBufferTargetWriter = class extends Writer {
+    constructor(target) {
+      super();
+      __privateAdd(this, _ensureSize);
+      __privateAdd(this, _target, void 0);
+      __privateAdd(this, _buffer, new ArrayBuffer(2 ** 16));
+      __privateAdd(this, _bytes, new Uint8Array(__privateGet(this, _buffer)));
+      __privateAdd(this, _maxPos, 0);
+      __privateSet(this, _target, target);
+    }
+    write(data) {
+      __privateMethod(this, _ensureSize, ensureSize_fn).call(this, this.pos + data.byteLength);
+      __privateGet(this, _bytes).set(data, this.pos);
+      this.pos += data.byteLength;
+      __privateSet(this, _maxPos, Math.max(__privateGet(this, _maxPos), this.pos));
+    }
+    finalize() {
+      __privateMethod(this, _ensureSize, ensureSize_fn).call(this, this.pos);
+      __privateGet(this, _target).buffer = __privateGet(this, _buffer).slice(0, Math.max(__privateGet(this, _maxPos), this.pos));
+    }
+  };
+  _target = new WeakMap();
+  _buffer = new WeakMap();
+  _bytes = new WeakMap();
+  _maxPos = new WeakMap();
+  _ensureSize = new WeakSet();
+  ensureSize_fn = function(size) {
+    let newLength = __privateGet(this, _buffer).byteLength;
+    while (newLength < size)
+      newLength *= 2;
+    if (newLength === __privateGet(this, _buffer).byteLength)
+      return;
+    let newBuffer = new ArrayBuffer(newLength);
+    let newBytes = new Uint8Array(newBuffer);
+    newBytes.set(__privateGet(this, _bytes), 0);
+    __privateSet(this, _buffer, newBuffer);
+    __privateSet(this, _bytes, newBytes);
+  };
+  var DEFAULT_CHUNK_SIZE = 2 ** 24;
+  var MAX_CHUNKS_AT_ONCE = 2;
+  var _target2, _sections, _chunked, _chunkSize, _chunks, _writeDataIntoChunks, writeDataIntoChunks_fn, _insertSectionIntoChunk, insertSectionIntoChunk_fn, _createChunk, createChunk_fn, _flushChunks, flushChunks_fn;
+  var StreamTargetWriter = class extends Writer {
+    constructor(target) {
+      super();
+      __privateAdd(this, _writeDataIntoChunks);
+      __privateAdd(this, _insertSectionIntoChunk);
+      __privateAdd(this, _createChunk);
+      __privateAdd(this, _flushChunks);
+      __privateAdd(this, _target2, void 0);
+      __privateAdd(this, _sections, []);
+      __privateAdd(this, _chunked, void 0);
+      __privateAdd(this, _chunkSize, void 0);
+      /**
+       * The data is divided up into fixed-size chunks, whose contents are first filled in RAM and then flushed out.
+       * A chunk is flushed if all of its contents have been written.
+       */
+      __privateAdd(this, _chunks, []);
+      __privateSet(this, _target2, target);
+      __privateSet(this, _chunked, target.options?.chunked ?? false);
+      __privateSet(this, _chunkSize, target.options?.chunkSize ?? DEFAULT_CHUNK_SIZE);
+    }
+    write(data) {
+      __privateGet(this, _sections).push({
+        data: data.slice(),
+        start: this.pos
+      });
+      this.pos += data.byteLength;
+    }
+    flush() {
+      if (__privateGet(this, _sections).length === 0)
+        return;
+      let chunks = [];
+      let sorted = [...__privateGet(this, _sections)].sort((a, b) => a.start - b.start);
+      chunks.push({
+        start: sorted[0].start,
+        size: sorted[0].data.byteLength
+      });
+      for (let i = 1; i < sorted.length; i++) {
+        let lastChunk = chunks[chunks.length - 1];
+        let section = sorted[i];
+        if (section.start <= lastChunk.start + lastChunk.size) {
+          lastChunk.size = Math.max(lastChunk.size, section.start + section.data.byteLength - lastChunk.start);
+        } else {
+          chunks.push({
+            start: section.start,
+            size: section.data.byteLength
+          });
+        }
+      }
+      for (let chunk of chunks) {
+        chunk.data = new Uint8Array(chunk.size);
+        for (let section of __privateGet(this, _sections)) {
+          if (chunk.start <= section.start && section.start < chunk.start + chunk.size) {
+            chunk.data.set(section.data, section.start - chunk.start);
+          }
+        }
+        if (__privateGet(this, _chunked)) {
+          __privateMethod(this, _writeDataIntoChunks, writeDataIntoChunks_fn).call(this, chunk.data, chunk.start);
+          __privateMethod(this, _flushChunks, flushChunks_fn).call(this);
+        } else {
+          __privateGet(this, _target2).options.onData?.(chunk.data, chunk.start);
+        }
+      }
+      __privateGet(this, _sections).length = 0;
+    }
+    finalize() {
+      if (__privateGet(this, _chunked)) {
+        __privateMethod(this, _flushChunks, flushChunks_fn).call(this, true);
+      }
+    }
+  };
+  _target2 = new WeakMap();
+  _sections = new WeakMap();
+  _chunked = new WeakMap();
+  _chunkSize = new WeakMap();
+  _chunks = new WeakMap();
+  _writeDataIntoChunks = new WeakSet();
+  writeDataIntoChunks_fn = function(data, position) {
+    let chunkIndex = __privateGet(this, _chunks).findIndex((x) => x.start <= position && position < x.start + __privateGet(this, _chunkSize));
+    if (chunkIndex === -1)
+      chunkIndex = __privateMethod(this, _createChunk, createChunk_fn).call(this, position);
+    let chunk = __privateGet(this, _chunks)[chunkIndex];
+    let relativePosition = position - chunk.start;
+    let toWrite = data.subarray(0, Math.min(__privateGet(this, _chunkSize) - relativePosition, data.byteLength));
+    chunk.data.set(toWrite, relativePosition);
+    let section = {
+      start: relativePosition,
+      end: relativePosition + toWrite.byteLength
+    };
+    __privateMethod(this, _insertSectionIntoChunk, insertSectionIntoChunk_fn).call(this, chunk, section);
+    if (chunk.written[0].start === 0 && chunk.written[0].end === __privateGet(this, _chunkSize)) {
+      chunk.shouldFlush = true;
+    }
+    if (__privateGet(this, _chunks).length > MAX_CHUNKS_AT_ONCE) {
+      for (let i = 0; i < __privateGet(this, _chunks).length - 1; i++) {
+        __privateGet(this, _chunks)[i].shouldFlush = true;
+      }
+      __privateMethod(this, _flushChunks, flushChunks_fn).call(this);
+    }
+    if (toWrite.byteLength < data.byteLength) {
+      __privateMethod(this, _writeDataIntoChunks, writeDataIntoChunks_fn).call(this, data.subarray(toWrite.byteLength), position + toWrite.byteLength);
+    }
+  };
+  _insertSectionIntoChunk = new WeakSet();
+  insertSectionIntoChunk_fn = function(chunk, section) {
+    let low = 0;
+    let high = chunk.written.length - 1;
+    let index = -1;
+    while (low <= high) {
+      let mid = Math.floor(low + (high - low + 1) / 2);
+      if (chunk.written[mid].start <= section.start) {
+        low = mid + 1;
+        index = mid;
+      } else {
+        high = mid - 1;
+      }
+    }
+    chunk.written.splice(index + 1, 0, section);
+    if (index === -1 || chunk.written[index].end < section.start)
+      index++;
+    while (index < chunk.written.length - 1 && chunk.written[index].end >= chunk.written[index + 1].start) {
+      chunk.written[index].end = Math.max(chunk.written[index].end, chunk.written[index + 1].end);
+      chunk.written.splice(index + 1, 1);
+    }
+  };
+  _createChunk = new WeakSet();
+  createChunk_fn = function(includesPosition) {
+    let start = Math.floor(includesPosition / __privateGet(this, _chunkSize)) * __privateGet(this, _chunkSize);
+    let chunk = {
+      start,
+      data: new Uint8Array(__privateGet(this, _chunkSize)),
+      written: [],
+      shouldFlush: false
+    };
+    __privateGet(this, _chunks).push(chunk);
+    __privateGet(this, _chunks).sort((a, b) => a.start - b.start);
+    return __privateGet(this, _chunks).indexOf(chunk);
+  };
+  _flushChunks = new WeakSet();
+  flushChunks_fn = function(force = false) {
+    for (let i = 0; i < __privateGet(this, _chunks).length; i++) {
+      let chunk = __privateGet(this, _chunks)[i];
+      if (!chunk.shouldFlush && !force)
+        continue;
+      for (let section of chunk.written) {
+        __privateGet(this, _target2).options.onData?.(
+          chunk.data.subarray(section.start, section.end),
+          chunk.start + section.start
+        );
+      }
+      __privateGet(this, _chunks).splice(i--, 1);
+    }
+  };
+  var FileSystemWritableFileStreamTargetWriter = class extends StreamTargetWriter {
+    constructor(target) {
+      super(new StreamTarget({
+        onData: (data, position) => target.stream.write({
+          type: "write",
+          data,
+          position
+        }),
+        chunked: true,
+        chunkSize: target.options?.chunkSize
+      }));
+    }
+  };
+
+  // src/muxer.ts
+  var GLOBAL_TIMESCALE = 1e3;
+  var SUPPORTED_VIDEO_CODECS = ["avc", "hevc", "vp9", "av1"];
+  var SUPPORTED_AUDIO_CODECS = ["aac", "opus"];
+  var TIMESTAMP_OFFSET = 2082844800;
+  var FIRST_TIMESTAMP_BEHAVIORS = ["strict", "offset", "cross-track-offset"];
+  var _options, _writer, _ftypSize, _mdat, _videoTrack, _audioTrack, _creationTime, _finalizedChunks, _nextFragmentNumber, _videoSampleQueue, _audioSampleQueue, _finalized, _validateOptions, validateOptions_fn, _writeHeader, writeHeader_fn, _computeMoovSizeUpperBound, computeMoovSizeUpperBound_fn, _prepareTracks, prepareTracks_fn, _generateMpeg4AudioSpecificConfig, generateMpeg4AudioSpecificConfig_fn, _createSampleForTrack, createSampleForTrack_fn, _addSampleToTrack, addSampleToTrack_fn, _validateTimestamp, validateTimestamp_fn, _finalizeCurrentChunk, finalizeCurrentChunk_fn, _finalizeFragment, finalizeFragment_fn, _maybeFlushStreamingTargetWriter, maybeFlushStreamingTargetWriter_fn, _ensureNotFinalized, ensureNotFinalized_fn;
+  var Muxer = class {
+    constructor(options) {
+      __privateAdd(this, _validateOptions);
+      __privateAdd(this, _writeHeader);
+      __privateAdd(this, _computeMoovSizeUpperBound);
+      __privateAdd(this, _prepareTracks);
+      // https://wiki.multimedia.cx/index.php/MPEG-4_Audio
+      __privateAdd(this, _generateMpeg4AudioSpecificConfig);
+      __privateAdd(this, _createSampleForTrack);
+      __privateAdd(this, _addSampleToTrack);
+      __privateAdd(this, _validateTimestamp);
+      __privateAdd(this, _finalizeCurrentChunk);
+      __privateAdd(this, _finalizeFragment);
+      __privateAdd(this, _maybeFlushStreamingTargetWriter);
+      __privateAdd(this, _ensureNotFinalized);
+      __privateAdd(this, _options, void 0);
+      __privateAdd(this, _writer, void 0);
+      __privateAdd(this, _ftypSize, void 0);
+      __privateAdd(this, _mdat, void 0);
+      __privateAdd(this, _videoTrack, null);
+      __privateAdd(this, _audioTrack, null);
+      __privateAdd(this, _creationTime, Math.floor(Date.now() / 1e3) + TIMESTAMP_OFFSET);
+      __privateAdd(this, _finalizedChunks, []);
+      // Fields for fragmented MP4:
+      __privateAdd(this, _nextFragmentNumber, 1);
+      __privateAdd(this, _videoSampleQueue, []);
+      __privateAdd(this, _audioSampleQueue, []);
+      __privateAdd(this, _finalized, false);
+      __privateMethod(this, _validateOptions, validateOptions_fn).call(this, options);
+      options.video = deepClone(options.video);
+      options.audio = deepClone(options.audio);
+      options.fastStart = deepClone(options.fastStart);
+      this.target = options.target;
+      __privateSet(this, _options, {
+        firstTimestampBehavior: "strict",
+        ...options
+      });
+      if (options.target instanceof ArrayBufferTarget) {
+        __privateSet(this, _writer, new ArrayBufferTargetWriter(options.target));
+      } else if (options.target instanceof StreamTarget) {
+        __privateSet(this, _writer, new StreamTargetWriter(options.target));
+      } else if (options.target instanceof FileSystemWritableFileStreamTarget) {
+        __privateSet(this, _writer, new FileSystemWritableFileStreamTargetWriter(options.target));
+      } else {
+        throw new Error(`Invalid target: ${options.target}`);
+      }
+      __privateMethod(this, _prepareTracks, prepareTracks_fn).call(this);
+      __privateMethod(this, _writeHeader, writeHeader_fn).call(this);
+    }
+    addVideoChunk(sample, meta, timestamp, compositionTimeOffset) {
+      if (!(sample instanceof EncodedVideoChunk)) {
+        throw new TypeError("addVideoChunk's first argument (sample) must be of type EncodedVideoChunk.");
+      }
+      if (meta && typeof meta !== "object") {
+        throw new TypeError("addVideoChunk's second argument (meta), when provided, must be an object.");
+      }
+      if (timestamp !== void 0 && (!Number.isFinite(timestamp) || timestamp < 0)) {
+        throw new TypeError(
+          "addVideoChunk's third argument (timestamp), when provided, must be a non-negative real number."
+        );
+      }
+      if (compositionTimeOffset !== void 0 && !Number.isFinite(compositionTimeOffset)) {
+        throw new TypeError(
+          "addVideoChunk's fourth argument (compositionTimeOffset), when provided, must be a real number."
+        );
+      }
+      let data = new Uint8Array(sample.byteLength);
+      sample.copyTo(data);
+      this.addVideoChunkRaw(
+        data,
+        sample.type,
+        timestamp ?? sample.timestamp,
+        sample.duration,
+        meta,
+        compositionTimeOffset
+      );
+    }
+    addVideoChunkRaw(data, type, timestamp, duration, meta, compositionTimeOffset) {
+      if (!(data instanceof Uint8Array)) {
+        throw new TypeError("addVideoChunkRaw's first argument (data) must be an instance of Uint8Array.");
+      }
+      if (type !== "key" && type !== "delta") {
+        throw new TypeError("addVideoChunkRaw's second argument (type) must be either 'key' or 'delta'.");
+      }
+      if (!Number.isFinite(timestamp) || timestamp < 0) {
+        throw new TypeError("addVideoChunkRaw's third argument (timestamp) must be a non-negative real number.");
+      }
+      if (!Number.isFinite(duration) || duration < 0) {
+        throw new TypeError("addVideoChunkRaw's fourth argument (duration) must be a non-negative real number.");
+      }
+      if (meta && typeof meta !== "object") {
+        throw new TypeError("addVideoChunkRaw's fifth argument (meta), when provided, must be an object.");
+      }
+      if (compositionTimeOffset !== void 0 && !Number.isFinite(compositionTimeOffset)) {
+        throw new TypeError(
+          "addVideoChunkRaw's sixth argument (compositionTimeOffset), when provided, must be a real number."
+        );
+      }
+      __privateMethod(this, _ensureNotFinalized, ensureNotFinalized_fn).call(this);
+      if (!__privateGet(this, _options).video)
+        throw new Error("No video track declared.");
+      if (typeof __privateGet(this, _options).fastStart === "object" && __privateGet(this, _videoTrack).samples.length === __privateGet(this, _options).fastStart.expectedVideoChunks) {
+        throw new Error(`Cannot add more video chunks than specified in 'fastStart' (${__privateGet(this, _options).fastStart.expectedVideoChunks}).`);
+      }
+      let videoSample = __privateMethod(this, _createSampleForTrack, createSampleForTrack_fn).call(this, __privateGet(this, _videoTrack), data, type, timestamp, duration, meta, compositionTimeOffset);
+      if (__privateGet(this, _options).fastStart === "fragmented" && __privateGet(this, _audioTrack)) {
+        while (__privateGet(this, _audioSampleQueue).length > 0 && __privateGet(this, _audioSampleQueue)[0].decodeTimestamp <= videoSample.decodeTimestamp) {
+          let audioSample = __privateGet(this, _audioSampleQueue).shift();
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _audioTrack), audioSample);
+        }
+        if (videoSample.decodeTimestamp <= __privateGet(this, _audioTrack).lastDecodeTimestamp) {
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _videoTrack), videoSample);
+        } else {
+          __privateGet(this, _videoSampleQueue).push(videoSample);
+        }
+      } else {
+        __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _videoTrack), videoSample);
+      }
+    }
+    addAudioChunk(sample, meta, timestamp) {
+      if (!(sample instanceof EncodedAudioChunk)) {
+        throw new TypeError("addAudioChunk's first argument (sample) must be of type EncodedAudioChunk.");
+      }
+      if (meta && typeof meta !== "object") {
+        throw new TypeError("addAudioChunk's second argument (meta), when provided, must be an object.");
+      }
+      if (timestamp !== void 0 && (!Number.isFinite(timestamp) || timestamp < 0)) {
+        throw new TypeError(
+          "addAudioChunk's third argument (timestamp), when provided, must be a non-negative real number."
+        );
+      }
+      let data = new Uint8Array(sample.byteLength);
+      sample.copyTo(data);
+      this.addAudioChunkRaw(data, sample.type, timestamp ?? sample.timestamp, sample.duration, meta);
+    }
+    addAudioChunkRaw(data, type, timestamp, duration, meta) {
+      if (!(data instanceof Uint8Array)) {
+        throw new TypeError("addAudioChunkRaw's first argument (data) must be an instance of Uint8Array.");
+      }
+      if (type !== "key" && type !== "delta") {
+        throw new TypeError("addAudioChunkRaw's second argument (type) must be either 'key' or 'delta'.");
+      }
+      if (!Number.isFinite(timestamp) || timestamp < 0) {
+        throw new TypeError("addAudioChunkRaw's third argument (timestamp) must be a non-negative real number.");
+      }
+      if (!Number.isFinite(duration) || duration < 0) {
+        throw new TypeError("addAudioChunkRaw's fourth argument (duration) must be a non-negative real number.");
+      }
+      if (meta && typeof meta !== "object") {
+        throw new TypeError("addAudioChunkRaw's fifth argument (meta), when provided, must be an object.");
+      }
+      __privateMethod(this, _ensureNotFinalized, ensureNotFinalized_fn).call(this);
+      if (!__privateGet(this, _options).audio)
+        throw new Error("No audio track declared.");
+      if (typeof __privateGet(this, _options).fastStart === "object" && __privateGet(this, _audioTrack).samples.length === __privateGet(this, _options).fastStart.expectedAudioChunks) {
+        throw new Error(`Cannot add more audio chunks than specified in 'fastStart' (${__privateGet(this, _options).fastStart.expectedAudioChunks}).`);
+      }
+      let audioSample = __privateMethod(this, _createSampleForTrack, createSampleForTrack_fn).call(this, __privateGet(this, _audioTrack), data, type, timestamp, duration, meta);
+      if (__privateGet(this, _options).fastStart === "fragmented" && __privateGet(this, _videoTrack)) {
+        while (__privateGet(this, _videoSampleQueue).length > 0 && __privateGet(this, _videoSampleQueue)[0].decodeTimestamp <= audioSample.decodeTimestamp) {
+          let videoSample = __privateGet(this, _videoSampleQueue).shift();
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _videoTrack), videoSample);
+        }
+        if (audioSample.decodeTimestamp <= __privateGet(this, _videoTrack).lastDecodeTimestamp) {
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _audioTrack), audioSample);
+        } else {
+          __privateGet(this, _audioSampleQueue).push(audioSample);
+        }
+      } else {
+        __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _audioTrack), audioSample);
+      }
+    }
+    /** Finalizes the file, making it ready for use. Must be called after all video and audio chunks have been added. */
+    finalize() {
+      if (__privateGet(this, _finalized)) {
+        throw new Error("Cannot finalize a muxer more than once.");
+      }
+      if (__privateGet(this, _options).fastStart === "fragmented") {
+        for (let videoSample of __privateGet(this, _videoSampleQueue))
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _videoTrack), videoSample);
+        for (let audioSample of __privateGet(this, _audioSampleQueue))
+          __privateMethod(this, _addSampleToTrack, addSampleToTrack_fn).call(this, __privateGet(this, _audioTrack), audioSample);
+        __privateMethod(this, _finalizeFragment, finalizeFragment_fn).call(this, false);
+      } else {
+        if (__privateGet(this, _videoTrack))
+          __privateMethod(this, _finalizeCurrentChunk, finalizeCurrentChunk_fn).call(this, __privateGet(this, _videoTrack));
+        if (__privateGet(this, _audioTrack))
+          __privateMethod(this, _finalizeCurrentChunk, finalizeCurrentChunk_fn).call(this, __privateGet(this, _audioTrack));
+      }
+      let tracks = [__privateGet(this, _videoTrack), __privateGet(this, _audioTrack)].filter(Boolean);
+      if (__privateGet(this, _options).fastStart === "in-memory") {
+        let mdatSize;
+        for (let i = 0; i < 2; i++) {
+          let movieBox2 = moov(tracks, __privateGet(this, _creationTime));
+          let movieBoxSize = __privateGet(this, _writer).measureBox(movieBox2);
+          mdatSize = __privateGet(this, _writer).measureBox(__privateGet(this, _mdat));
+          let currentChunkPos = __privateGet(this, _writer).pos + movieBoxSize + mdatSize;
+          for (let chunk of __privateGet(this, _finalizedChunks)) {
+            chunk.offset = currentChunkPos;
+            for (let { data } of chunk.samples) {
+              currentChunkPos += data.byteLength;
+              mdatSize += data.byteLength;
+            }
+          }
+          if (currentChunkPos < 2 ** 32)
+            break;
+          if (mdatSize >= 2 ** 32)
+            __privateGet(this, _mdat).largeSize = true;
+        }
+        let movieBox = moov(tracks, __privateGet(this, _creationTime));
+        __privateGet(this, _writer).writeBox(movieBox);
+        __privateGet(this, _mdat).size = mdatSize;
+        __privateGet(this, _writer).writeBox(__privateGet(this, _mdat));
+        for (let chunk of __privateGet(this, _finalizedChunks)) {
+          for (let sample of chunk.samples) {
+            __privateGet(this, _writer).write(sample.data);
+            sample.data = null;
+          }
+        }
+      } else if (__privateGet(this, _options).fastStart === "fragmented") {
+        let startPos = __privateGet(this, _writer).pos;
+        let mfraBox = mfra(tracks);
+        __privateGet(this, _writer).writeBox(mfraBox);
+        let mfraBoxSize = __privateGet(this, _writer).pos - startPos;
+        __privateGet(this, _writer).seek(__privateGet(this, _writer).pos - 4);
+        __privateGet(this, _writer).writeU32(mfraBoxSize);
+      } else {
+        let mdatPos = __privateGet(this, _writer).offsets.get(__privateGet(this, _mdat));
+        let mdatSize = __privateGet(this, _writer).pos - mdatPos;
+        __privateGet(this, _mdat).size = mdatSize;
+        __privateGet(this, _mdat).largeSize = mdatSize >= 2 ** 32;
+        __privateGet(this, _writer).patchBox(__privateGet(this, _mdat));
+        let movieBox = moov(tracks, __privateGet(this, _creationTime));
+        if (typeof __privateGet(this, _options).fastStart === "object") {
+          __privateGet(this, _writer).seek(__privateGet(this, _ftypSize));
+          __privateGet(this, _writer).writeBox(movieBox);
+          let remainingBytes = mdatPos - __privateGet(this, _writer).pos;
+          __privateGet(this, _writer).writeBox(free(remainingBytes));
+        } else {
+          __privateGet(this, _writer).writeBox(movieBox);
+        }
+      }
+      __privateMethod(this, _maybeFlushStreamingTargetWriter, maybeFlushStreamingTargetWriter_fn).call(this);
+      __privateGet(this, _writer).finalize();
+      __privateSet(this, _finalized, true);
+    }
+  };
+  _options = new WeakMap();
+  _writer = new WeakMap();
+  _ftypSize = new WeakMap();
+  _mdat = new WeakMap();
+  _videoTrack = new WeakMap();
+  _audioTrack = new WeakMap();
+  _creationTime = new WeakMap();
+  _finalizedChunks = new WeakMap();
+  _nextFragmentNumber = new WeakMap();
+  _videoSampleQueue = new WeakMap();
+  _audioSampleQueue = new WeakMap();
+  _finalized = new WeakMap();
+  _validateOptions = new WeakSet();
+  validateOptions_fn = function(options) {
+    if (typeof options !== "object") {
+      throw new TypeError("The muxer requires an options object to be passed to its constructor.");
+    }
+    if (!(options.target instanceof Target)) {
+      throw new TypeError("The target must be provided and an instance of Target.");
+    }
+    if (options.video) {
+      if (!SUPPORTED_VIDEO_CODECS.includes(options.video.codec)) {
+        throw new TypeError(`Unsupported video codec: ${options.video.codec}`);
+      }
+      if (!Number.isInteger(options.video.width) || options.video.width <= 0) {
+        throw new TypeError(`Invalid video width: ${options.video.width}. Must be a positive integer.`);
+      }
+      if (!Number.isInteger(options.video.height) || options.video.height <= 0) {
+        throw new TypeError(`Invalid video height: ${options.video.height}. Must be a positive integer.`);
+      }
+      const videoRotation = options.video.rotation;
+      if (typeof videoRotation === "number" && ![0, 90, 180, 270].includes(videoRotation)) {
+        throw new TypeError(`Invalid video rotation: ${videoRotation}. Has to be 0, 90, 180 or 270.`);
+      } else if (Array.isArray(videoRotation) && (videoRotation.length !== 9 || videoRotation.some((value) => typeof value !== "number"))) {
+        throw new TypeError(`Invalid video transformation matrix: ${videoRotation.join()}`);
+      }
+      if (options.video.frameRate !== void 0 && (!Number.isInteger(options.video.frameRate) || options.video.frameRate <= 0)) {
+        throw new TypeError(
+          `Invalid video frame rate: ${options.video.frameRate}. Must be a positive integer.`
+        );
+      }
+    }
+    if (options.audio) {
+      if (!SUPPORTED_AUDIO_CODECS.includes(options.audio.codec)) {
+        throw new TypeError(`Unsupported audio codec: ${options.audio.codec}`);
+      }
+      if (!Number.isInteger(options.audio.numberOfChannels) || options.audio.numberOfChannels <= 0) {
+        throw new TypeError(
+          `Invalid number of audio channels: ${options.audio.numberOfChannels}. Must be a positive integer.`
+        );
+      }
+      if (!Number.isInteger(options.audio.sampleRate) || options.audio.sampleRate <= 0) {
+        throw new TypeError(
+          `Invalid audio sample rate: ${options.audio.sampleRate}. Must be a positive integer.`
+        );
+      }
+    }
+    if (options.firstTimestampBehavior && !FIRST_TIMESTAMP_BEHAVIORS.includes(options.firstTimestampBehavior)) {
+      throw new TypeError(`Invalid first timestamp behavior: ${options.firstTimestampBehavior}`);
+    }
+    if (typeof options.fastStart === "object") {
+      if (options.video) {
+        if (options.fastStart.expectedVideoChunks === void 0) {
+          throw new TypeError(`'fastStart' is an object but is missing property 'expectedVideoChunks'.`);
+        } else if (!Number.isInteger(options.fastStart.expectedVideoChunks) || options.fastStart.expectedVideoChunks < 0) {
+          throw new TypeError(`'expectedVideoChunks' must be a non-negative integer.`);
+        }
+      }
+      if (options.audio) {
+        if (options.fastStart.expectedAudioChunks === void 0) {
+          throw new TypeError(`'fastStart' is an object but is missing property 'expectedAudioChunks'.`);
+        } else if (!Number.isInteger(options.fastStart.expectedAudioChunks) || options.fastStart.expectedAudioChunks < 0) {
+          throw new TypeError(`'expectedAudioChunks' must be a non-negative integer.`);
+        }
+      }
+    } else if (![false, "in-memory", "fragmented"].includes(options.fastStart)) {
+      throw new TypeError(`'fastStart' option must be false, 'in-memory', 'fragmented' or an object.`);
+    }
+    if (options.minFragmentDuration !== void 0 && (!Number.isFinite(options.minFragmentDuration) || options.minFragmentDuration < 0)) {
+      throw new TypeError(`'minFragmentDuration' must be a non-negative number.`);
+    }
+  };
+  _writeHeader = new WeakSet();
+  writeHeader_fn = function() {
+    __privateGet(this, _writer).writeBox(ftyp({
+      holdsAvc: __privateGet(this, _options).video?.codec === "avc",
+      fragmented: __privateGet(this, _options).fastStart === "fragmented"
+    }));
+    __privateSet(this, _ftypSize, __privateGet(this, _writer).pos);
+    if (__privateGet(this, _options).fastStart === "in-memory") {
+      __privateSet(this, _mdat, mdat(false));
+    } else if (__privateGet(this, _options).fastStart === "fragmented") {
+    } else {
+      if (typeof __privateGet(this, _options).fastStart === "object") {
+        let moovSizeUpperBound = __privateMethod(this, _computeMoovSizeUpperBound, computeMoovSizeUpperBound_fn).call(this);
+        __privateGet(this, _writer).seek(__privateGet(this, _writer).pos + moovSizeUpperBound);
+      }
+      __privateSet(this, _mdat, mdat(true));
+      __privateGet(this, _writer).writeBox(__privateGet(this, _mdat));
+    }
+    __privateMethod(this, _maybeFlushStreamingTargetWriter, maybeFlushStreamingTargetWriter_fn).call(this);
+  };
+  _computeMoovSizeUpperBound = new WeakSet();
+  computeMoovSizeUpperBound_fn = function() {
+    if (typeof __privateGet(this, _options).fastStart !== "object")
+      return;
+    let upperBound = 0;
+    let sampleCounts = [
+      __privateGet(this, _options).fastStart.expectedVideoChunks,
+      __privateGet(this, _options).fastStart.expectedAudioChunks
+    ];
+    for (let n of sampleCounts) {
+      if (!n)
+        continue;
+      upperBound += (4 + 4) * Math.ceil(2 / 3 * n);
+      upperBound += 4 * n;
+      upperBound += (4 + 4 + 4) * Math.ceil(2 / 3 * n);
+      upperBound += 4 * n;
+      upperBound += 8 * n;
+    }
+    upperBound += 4096;
+    return upperBound;
+  };
+  _prepareTracks = new WeakSet();
+  prepareTracks_fn = function() {
+    if (__privateGet(this, _options).video) {
+      __privateSet(this, _videoTrack, {
+        id: 1,
+        info: {
+          type: "video",
+          codec: __privateGet(this, _options).video.codec,
+          width: __privateGet(this, _options).video.width,
+          height: __privateGet(this, _options).video.height,
+          rotation: __privateGet(this, _options).video.rotation ?? 0,
+          decoderConfig: null
+        },
+        // The fallback contains many common frame rates as factors
+        timescale: __privateGet(this, _options).video.frameRate ?? 57600,
+        samples: [],
+        finalizedChunks: [],
+        currentChunk: null,
+        firstDecodeTimestamp: void 0,
+        lastDecodeTimestamp: -1,
+        timeToSampleTable: [],
+        compositionTimeOffsetTable: [],
+        lastTimescaleUnits: null,
+        lastSample: null,
+        compactlyCodedChunkTable: []
+      });
+    }
+    if (__privateGet(this, _options).audio) {
+      __privateSet(this, _audioTrack, {
+        id: __privateGet(this, _options).video ? 2 : 1,
+        info: {
+          type: "audio",
+          codec: __privateGet(this, _options).audio.codec,
+          numberOfChannels: __privateGet(this, _options).audio.numberOfChannels,
+          sampleRate: __privateGet(this, _options).audio.sampleRate,
+          decoderConfig: null
+        },
+        timescale: __privateGet(this, _options).audio.sampleRate,
+        samples: [],
+        finalizedChunks: [],
+        currentChunk: null,
+        firstDecodeTimestamp: void 0,
+        lastDecodeTimestamp: -1,
+        timeToSampleTable: [],
+        compositionTimeOffsetTable: [],
+        lastTimescaleUnits: null,
+        lastSample: null,
+        compactlyCodedChunkTable: []
+      });
+      if (__privateGet(this, _options).audio.codec === "aac") {
+        let guessedCodecPrivate = __privateMethod(this, _generateMpeg4AudioSpecificConfig, generateMpeg4AudioSpecificConfig_fn).call(
+          this,
+          2,
+          // Object type for AAC-LC, since it's the most common
+          __privateGet(this, _options).audio.sampleRate,
+          __privateGet(this, _options).audio.numberOfChannels
+        );
+        __privateGet(this, _audioTrack).info.decoderConfig = {
+          codec: __privateGet(this, _options).audio.codec,
+          description: guessedCodecPrivate,
+          numberOfChannels: __privateGet(this, _options).audio.numberOfChannels,
+          sampleRate: __privateGet(this, _options).audio.sampleRate
+        };
+      }
+    }
+  };
+  _generateMpeg4AudioSpecificConfig = new WeakSet();
+  generateMpeg4AudioSpecificConfig_fn = function(objectType, sampleRate, numberOfChannels) {
+    let frequencyIndices = [96e3, 88200, 64e3, 48e3, 44100, 32e3, 24e3, 22050, 16e3, 12e3, 11025, 8e3, 7350];
+    let frequencyIndex = frequencyIndices.indexOf(sampleRate);
+    let channelConfig = numberOfChannels;
+    let configBits = "";
+    configBits += objectType.toString(2).padStart(5, "0");
+    configBits += frequencyIndex.toString(2).padStart(4, "0");
+    if (frequencyIndex === 15)
+      configBits += sampleRate.toString(2).padStart(24, "0");
+    configBits += channelConfig.toString(2).padStart(4, "0");
+    let paddingLength = Math.ceil(configBits.length / 8) * 8;
+    configBits = configBits.padEnd(paddingLength, "0");
+    let configBytes = new Uint8Array(configBits.length / 8);
+    for (let i = 0; i < configBits.length; i += 8) {
+      configBytes[i / 8] = parseInt(configBits.slice(i, i + 8), 2);
+    }
+    return configBytes;
+  };
+  _createSampleForTrack = new WeakSet();
+  createSampleForTrack_fn = function(track, data, type, timestamp, duration, meta, compositionTimeOffset) {
+    let presentationTimestampInSeconds = timestamp / 1e6;
+    let decodeTimestampInSeconds = (timestamp - (compositionTimeOffset ?? 0)) / 1e6;
+    let durationInSeconds = duration / 1e6;
+    let adjusted = __privateMethod(this, _validateTimestamp, validateTimestamp_fn).call(this, presentationTimestampInSeconds, decodeTimestampInSeconds, track);
+    presentationTimestampInSeconds = adjusted.presentationTimestamp;
+    decodeTimestampInSeconds = adjusted.decodeTimestamp;
+    if (meta?.decoderConfig) {
+      if (track.info.decoderConfig === null) {
+        track.info.decoderConfig = meta.decoderConfig;
+      } else {
+        Object.assign(track.info.decoderConfig, meta.decoderConfig);
+      }
+    }
+    let sample = {
+      presentationTimestamp: presentationTimestampInSeconds,
+      decodeTimestamp: decodeTimestampInSeconds,
+      duration: durationInSeconds,
+      data,
+      size: data.byteLength,
+      type,
+      // Will be refined once the next sample comes in
+      timescaleUnitsToNextSample: intoTimescale(durationInSeconds, track.timescale)
+    };
+    return sample;
+  };
+  _addSampleToTrack = new WeakSet();
+  addSampleToTrack_fn = function(track, sample) {
+    if (__privateGet(this, _options).fastStart !== "fragmented") {
+      track.samples.push(sample);
+    }
+    const sampleCompositionTimeOffset = intoTimescale(sample.presentationTimestamp - sample.decodeTimestamp, track.timescale);
+    if (track.lastTimescaleUnits !== null) {
+      let timescaleUnits = intoTimescale(sample.decodeTimestamp, track.timescale, false);
+      let delta = Math.round(timescaleUnits - track.lastTimescaleUnits);
+      track.lastTimescaleUnits += delta;
+      track.lastSample.timescaleUnitsToNextSample = delta;
+      if (__privateGet(this, _options).fastStart !== "fragmented") {
+        let lastTableEntry = last(track.timeToSampleTable);
+        if (lastTableEntry.sampleCount === 1) {
+          lastTableEntry.sampleDelta = delta;
+          lastTableEntry.sampleCount++;
+        } else if (lastTableEntry.sampleDelta === delta) {
+          lastTableEntry.sampleCount++;
+        } else {
+          lastTableEntry.sampleCount--;
+          track.timeToSampleTable.push({
+            sampleCount: 2,
+            sampleDelta: delta
+          });
+        }
+        const lastCompositionTimeOffsetTableEntry = last(track.compositionTimeOffsetTable);
+        if (lastCompositionTimeOffsetTableEntry.sampleCompositionTimeOffset === sampleCompositionTimeOffset) {
+          lastCompositionTimeOffsetTableEntry.sampleCount++;
+        } else {
+          track.compositionTimeOffsetTable.push({
+            sampleCount: 1,
+            sampleCompositionTimeOffset
+          });
+        }
+      }
+    } else {
+      track.lastTimescaleUnits = 0;
+      if (__privateGet(this, _options).fastStart !== "fragmented") {
+        track.timeToSampleTable.push({
+          sampleCount: 1,
+          sampleDelta: intoTimescale(sample.duration, track.timescale)
+        });
+        track.compositionTimeOffsetTable.push({
+          sampleCount: 1,
+          sampleCompositionTimeOffset
+        });
+      }
+    }
+    track.lastSample = sample;
+    let beginNewChunk = false;
+    if (!track.currentChunk) {
+      beginNewChunk = true;
+    } else {
+      let currentChunkDuration = sample.presentationTimestamp - track.currentChunk.startTimestamp;
+      if (__privateGet(this, _options).fastStart === "fragmented") {
+        let mostImportantTrack = __privateGet(this, _videoTrack) ?? __privateGet(this, _audioTrack);
+        const chunkDuration = __privateGet(this, _options).minFragmentDuration ?? 1;
+        if (track === mostImportantTrack && sample.type === "key" && currentChunkDuration >= chunkDuration) {
+          beginNewChunk = true;
+          __privateMethod(this, _finalizeFragment, finalizeFragment_fn).call(this);
+        }
+      } else {
+        beginNewChunk = currentChunkDuration >= 0.5;
+      }
+    }
+    if (beginNewChunk) {
+      if (track.currentChunk) {
+        __privateMethod(this, _finalizeCurrentChunk, finalizeCurrentChunk_fn).call(this, track);
+      }
+      track.currentChunk = {
+        startTimestamp: sample.presentationTimestamp,
+        samples: []
+      };
+    }
+    track.currentChunk.samples.push(sample);
+  };
+  _validateTimestamp = new WeakSet();
+  validateTimestamp_fn = function(presentationTimestamp, decodeTimestamp, track) {
+    const strictTimestampBehavior = __privateGet(this, _options).firstTimestampBehavior === "strict";
+    const noLastDecodeTimestamp = track.lastDecodeTimestamp === -1;
+    const timestampNonZero = decodeTimestamp !== 0;
+    if (strictTimestampBehavior && noLastDecodeTimestamp && timestampNonZero) {
+      throw new Error(
+        `The first chunk for your media track must have a timestamp of 0 (received DTS=${decodeTimestamp}).Non-zero first timestamps are often caused by directly piping frames or audio data from a MediaStreamTrack into the encoder. Their timestamps are typically relative to the age of thedocument, which is probably what you want.
+
+If you want to offset all timestamps of a track such that the first one is zero, set firstTimestampBehavior: 'offset' in the options.
+`
+      );
+    } else if (__privateGet(this, _options).firstTimestampBehavior === "offset" || __privateGet(this, _options).firstTimestampBehavior === "cross-track-offset") {
+      if (track.firstDecodeTimestamp === void 0) {
+        track.firstDecodeTimestamp = decodeTimestamp;
+      }
+      let baseDecodeTimestamp;
+      if (__privateGet(this, _options).firstTimestampBehavior === "offset") {
+        baseDecodeTimestamp = track.firstDecodeTimestamp;
+      } else {
+        baseDecodeTimestamp = Math.min(
+          __privateGet(this, _videoTrack)?.firstDecodeTimestamp ?? Infinity,
+          __privateGet(this, _audioTrack)?.firstDecodeTimestamp ?? Infinity
+        );
+      }
+      decodeTimestamp -= baseDecodeTimestamp;
+      presentationTimestamp -= baseDecodeTimestamp;
+    }
+    if (decodeTimestamp < track.lastDecodeTimestamp) {
+      throw new Error(
+        `Timestamps must be monotonically increasing (DTS went from ${track.lastDecodeTimestamp * 1e6} to ${decodeTimestamp * 1e6}).`
+      );
+    }
+    track.lastDecodeTimestamp = decodeTimestamp;
+    return { presentationTimestamp, decodeTimestamp };
+  };
+  _finalizeCurrentChunk = new WeakSet();
+  finalizeCurrentChunk_fn = function(track) {
+    if (__privateGet(this, _options).fastStart === "fragmented") {
+      throw new Error("Can't finalize individual chunks if 'fastStart' is set to 'fragmented'.");
+    }
+    if (!track.currentChunk)
+      return;
+    track.finalizedChunks.push(track.currentChunk);
+    __privateGet(this, _finalizedChunks).push(track.currentChunk);
+    if (track.compactlyCodedChunkTable.length === 0 || last(track.compactlyCodedChunkTable).samplesPerChunk !== track.currentChunk.samples.length) {
+      track.compactlyCodedChunkTable.push({
+        firstChunk: track.finalizedChunks.length,
+        // 1-indexed
+        samplesPerChunk: track.currentChunk.samples.length
+      });
+    }
+    if (__privateGet(this, _options).fastStart === "in-memory") {
+      track.currentChunk.offset = 0;
+      return;
+    }
+    track.currentChunk.offset = __privateGet(this, _writer).pos;
+    for (let sample of track.currentChunk.samples) {
+      __privateGet(this, _writer).write(sample.data);
+      sample.data = null;
+    }
+    __privateMethod(this, _maybeFlushStreamingTargetWriter, maybeFlushStreamingTargetWriter_fn).call(this);
+  };
+  _finalizeFragment = new WeakSet();
+  finalizeFragment_fn = function(flushStreamingWriter = true) {
+    if (__privateGet(this, _options).fastStart !== "fragmented") {
+      throw new Error("Can't finalize a fragment unless 'fastStart' is set to 'fragmented'.");
+    }
+    let tracks = [__privateGet(this, _videoTrack), __privateGet(this, _audioTrack)].filter((track) => track && track.currentChunk);
+    if (tracks.length === 0)
+      return;
+    let fragmentNumber = __privateWrapper(this, _nextFragmentNumber)._++;
+    if (fragmentNumber === 1) {
+      let movieBox = moov(tracks, __privateGet(this, _creationTime), true);
+      __privateGet(this, _writer).writeBox(movieBox);
+    }
+    let moofOffset = __privateGet(this, _writer).pos;
+    let moofBox = moof(fragmentNumber, tracks);
+    __privateGet(this, _writer).writeBox(moofBox);
+    {
+      let mdatBox = mdat(false);
+      let totalTrackSampleSize = 0;
+      for (let track of tracks) {
+        for (let sample of track.currentChunk.samples) {
+          totalTrackSampleSize += sample.size;
+        }
+      }
+      let mdatSize = __privateGet(this, _writer).measureBox(mdatBox) + totalTrackSampleSize;
+      if (mdatSize >= 2 ** 32) {
+        mdatBox.largeSize = true;
+        mdatSize = __privateGet(this, _writer).measureBox(mdatBox) + totalTrackSampleSize;
+      }
+      mdatBox.size = mdatSize;
+      __privateGet(this, _writer).writeBox(mdatBox);
+    }
+    for (let track of tracks) {
+      track.currentChunk.offset = __privateGet(this, _writer).pos;
+      track.currentChunk.moofOffset = moofOffset;
+      for (let sample of track.currentChunk.samples) {
+        __privateGet(this, _writer).write(sample.data);
+        sample.data = null;
+      }
+    }
+    let endPos = __privateGet(this, _writer).pos;
+    __privateGet(this, _writer).seek(__privateGet(this, _writer).offsets.get(moofBox));
+    let newMoofBox = moof(fragmentNumber, tracks);
+    __privateGet(this, _writer).writeBox(newMoofBox);
+    __privateGet(this, _writer).seek(endPos);
+    for (let track of tracks) {
+      track.finalizedChunks.push(track.currentChunk);
+      __privateGet(this, _finalizedChunks).push(track.currentChunk);
+      track.currentChunk = null;
+    }
+    if (flushStreamingWriter) {
+      __privateMethod(this, _maybeFlushStreamingTargetWriter, maybeFlushStreamingTargetWriter_fn).call(this);
+    }
+  };
+  _maybeFlushStreamingTargetWriter = new WeakSet();
+  maybeFlushStreamingTargetWriter_fn = function() {
+    if (__privateGet(this, _writer) instanceof StreamTargetWriter) {
+      __privateGet(this, _writer).flush();
+    }
+  };
+  _ensureNotFinalized = new WeakSet();
+  ensureNotFinalized_fn = function() {
+    if (__privateGet(this, _finalized)) {
+      throw new Error("Cannot add new video or audio chunks after the file has been finalized.");
+    }
+  };
+  return __toCommonJS(src_exports);
+})();
+if (typeof module === "object" && typeof module.exports === "object") Object.assign(module.exports, Mp4Muxer)
+
+</script>
+<style id="kh-css">/* ===== Kabataş Haber (5.2) ===== */
+html.kh-acik,html.kh-acik body{overflow:hidden}
+.kh{position:fixed;inset:0;z-index:60;background:var(--bg);color:var(--text);display:flex;flex-direction:column;font-family:var(--f-ui);animation:khGir .26s cubic-bezier(.22,.8,.24,1)}
+@keyframes khGir{from{opacity:0;transform:translateY(14px)}}
+.kh-ust{display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px 8px;border-bottom:1px solid var(--line);background:var(--surface)}
+.kh-ust .kh-bas{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.15}
+.kh-ust .kh-bas b{font:700 17px "Playfair Display",var(--f-disp);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kh-ust .kh-bas small{font:italic 12.5px "Playfair Display",serif;color:var(--muted)}
+.kh-ik{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface-2);color:var(--text);font-size:17px;flex:none}
+.kh-ic{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column}
+.kh-onz{position:sticky;top:0;z-index:2;background:var(--bg);padding:10px 12px 8px;border-bottom:1px solid var(--line)}
+.kh-onz canvas{display:block;margin:0 auto;max-width:100%;max-height:46vh;width:auto;height:auto;border-radius:10px;box-shadow:var(--shadow);touch-action:none;background:#111}
+.kh-onz-alt{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.kh-ipucu{text-align:center;margin-top:4px}
+.kh-pan{padding:10px 12px calc(28px + env(safe-area-inset-bottom,0px));display:grid;gap:12px;max-width:760px;width:100%;margin:0 auto;box-sizing:border-box}
+.kh-s{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:10px;min-width:0}
+.kh-s h3{margin:0;font:700 12.5px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.kh-r{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+.kh-b{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:10px;padding:9px 13px;font:500 14px var(--f-ui);min-height:40px;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.kh-b.p{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.kh-b:disabled{opacity:.45}
+.kh-c{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:999px;padding:7px 12px;font:500 13px var(--f-ui);min-height:36px}
+.kh-c small{color:var(--muted);font-size:11px;margin-left:2px}
+.kh-c[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.kh-c[aria-pressed="true"] small{color:inherit;opacity:.7}
+.kh-et .kh-c{border-left:6px solid var(--ec)}
+.kh-et .kh-c[aria-pressed="true"]{background:var(--ec);color:var(--ei);border-color:var(--ec)}
+#khAlt .kh-c{text-align:left;border-radius:10px;font-weight:600}
+.kh-l{display:grid;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+.kh-l output{color:var(--accent);font:600 12px var(--f-mono)}
+.kh textarea,.kh input:not([type=range]):not([type=checkbox]),.kh select{width:100%;box-sizing:border-box;background:var(--surface-2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 10px;font:15px/1.4 var(--f-ui);resize:vertical}
+.kh input[type=range]{width:100%;accent-color:var(--accent);touch-action:none}
+.kh-iki{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:420px){.kh-iki{grid-template-columns:1fr}}
+.kh-ch{display:flex;align-items:center;gap:10px;font-size:14px}.kh-ch input{width:20px;height:20px;accent-color:var(--accent)}
+.kh-n{margin:0;font-size:12.5px;color:var(--muted)}
+#khVidSonuc video{width:100%;max-height:48vh;border-radius:10px;background:#000;margin-bottom:8px}
+.kh-tsl{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px}
+.kh-ts{position:relative;display:flex;gap:8px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:6px;color:var(--text);font:500 12.5px var(--f-ui)}
+.kh-ts img{width:44px;height:55px;object-fit:cover;border-radius:6px;flex:none}
+.kh-ts span{display:flex;flex-direction:column;min-width:0;overflow:hidden}.kh-ts small{color:var(--muted)}
+.kh-ts i{position:absolute;right:4px;top:2px;font-style:normal;color:var(--danger);padding:2px 5px}
+.act.kh-act{background:linear-gradient(135deg,#1b1b1b,#3a1010);color:#fff;border-color:#5a1a1a}
+.act.kh-act strong{font-family:"Playfair Display",serif;letter-spacing:.04em}
+.act.kh-act span{color:#e9d6c8}
+@media (prefers-reduced-motion:reduce){.kh{animation:none}}
+</style>
+<script>
+/* ===================== KABATAŞ HABER — gazete köşesi (Karanlık Oda 5.2 · 10.10.2026) =====================
+   Haber/manşet kartı (Instagram, Facebook, hikâye), Okur sesiyle seslendirme, sesli video (MP4), Claude ile yazım.
+   Her şey cihazda: fotoğraf ve ses dışarı gitmez (Claude ile yaz seçilirse yalnız not ve küçük fotoğraf Claude'a gider). */
+(function(){
+'use strict';
+const LSg = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch(e){ return d; } };
+const LSs = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} };
+const kis = (v, a, b) => Math.max(a, Math.min(b, v));
+const tst = m => { try { toast(m); } catch(e){ console.log(m); } };
+const TR = s => String(s || '').toLocaleUpperCase('tr');
+const ease = x => x <= 0 ? 0 : x >= 1 ? 1 : 1 - Math.pow(1 - x, 3);
+const pr = (t, a, b) => t === Infinity ? 1 : ease((t - a)/(b - a));
+
+/* ---------- sabitler ---------- */
+const ORAN = {'4:5':[1080,1350,'Instagram gönderi'], '1:1':[1080,1080,'Kare'], '9:16':[1080,1920,'Hikâye · Reels'], '16:9':[1920,1080,'Facebook · YouTube']};
+const ETIKET = [['SON DAKİKA','#d7191f','#fff'],['SICAK GELİŞME','#ff5a00','#fff'],['FLAŞ','#ffd400','#111'],['ÖZEL HABER','#0b4f8a','#fff'],['GÜNDEM','#24303a','#fff'],
+  ['MÜJDE','#1f8a4c','#fff'],['DUYURU','#5b3fa0','#fff'],['UYARI','#e3a000','#111'],['YEREL','#7a4e2d','#fff'],['HASAT','#8a6a1c','#fff'],['HAVA DURUMU','#1b74c9','#fff'],
+  ['SPOR','#00897b','#fff'],['TEBRİK','#c2185b','#fff'],['ANMA','#2b2b2b','#fff'],['RÖPORTAJ','#37474f','#fff']];
+const SABLON = [['sondakika','Son dakika · TV'],['gazete','Klasik gazete'],['tabloid','Büyük manşet'],['modern','Modern kart'],['alinti','Söz · alıntı'],['ozet','Madde madde'],['flas','Flaş bant']];
+const etk = ad => ETIKET.find(x => x[0] === ad) || [ad || 'HABER', '#d7191f', '#fff'];
+const M = Object.assign({ad:'KABATAŞ HABER', slogan:'Sıradan değil, sıladan haberler', hesap:'@kabatashaber', sayi:1}, LSg('kh.marka', {}));
+const yeniD = () => ({id:Date.now().toString(36), oran:'4:5', sablon:'sondakika', etiket:'SON DAKİKA', manset:'', spot:'', yer:'Kabataş', metin:'', kisi:'', maddeler:'',
+  not:'', aciklama:'', hashtag:'#kabataş #ordu #kabataşhaber', alt:[], fx:.5, fy:.42, fz:1, altyazi:true, jenerik:true, tarih:Date.now(), sayi:M.sayi});
+let D = Object.assign(yeniD(), LSg('kh.son', {}));
+let FOTO = null, FOTO_YUZ = null, ACIK = false, kok = null, smp = null, smpImg = false, SES = null, SES_KEY = '', calis = null;
+(async () => { try { smp = window.claude && window.claude.use ? await window.claude.use('sample') : null; if (smp){ try { const l = await smp.limits(); smpImg = !!(l && l.images); } catch(e){} } } catch(e){ smp = null; } })();
+
+/* ---------- küçük IndexedDB (fotoğraflar) ---------- */
+const IDB = (() => { let dbp = null; const db = () => dbp || (dbp = new Promise((ok, no) => { const r = indexedDB.open('kabatas-haber', 1); r.onupgradeneeded = () => r.result.createObjectStore('f'); r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error); }));
+  const tx = async (m, f) => { const d = await db(); return new Promise((ok, no) => { const t = d.transaction('f', m), s = t.objectStore('f'), r = f(s); t.oncomplete = () => ok(r && r.result); t.onerror = () => no(t.error); }); };
+  return {get:k => tx('readonly', s => s.get(k)).catch(() => null), set:(k, v) => tx('readwrite', s => s.put(v, k)).catch(() => null), del:k => tx('readwrite', s => s.delete(k)).catch(() => null)}; })();
+
+/* ---------- ses: Okur sesi (Piper) — Okur ve Kareden Videoya ile aynı motor ve aynı indirilmiş ses ---------- */
+const HKS = Object.assign({ses:'tr_TR-fahrettin-medium', hiz:1.05, ton:0}, LSg('kh.ses', {}));
+const HSes=(function(){
+  const B=window.OKUR_SES_URL||{};
+  const HF=B.hf||'https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/tr/tr_TR/';
+  const ORT=B.ort||'https://cdnjs.cloudflare.com/ajax/libs/onnxruntime-web/1.18.0/';
+  const PW=B.pw||'https://cdn.jsdelivr.net/npm/@diffusionstudio/piper-wasm@1.0.0/build/piper_phonemize';
+  const GLUE=B.glue||'https://cdn.jsdelivr.net/npm/@diffusionstudio/vits-web@1.0.3/dist/piper-DeOu3H9E.js';
+  const CN='okur-ses-1';
+  const SESLER=[['tr_TR-fahrettin-medium','Fahrettin'],['tr_TR-fettah-medium','Fettah'],['tr_TR-dfki-medium','DFKI']];
+  const modelUrl=v=>{const p=v.split('-');return HF+p[1]+'/'+p[2]+'/'+v+'.onnx'};
+  const ORTF=['ort-wasm-simd.wasm','ort-wasm.wasm'];
+  const bu=(b,t)=>URL.createObjectURL(new Blob([b],{type:t}));
+  function wav(f,sr){const n=f.length,v=new DataView(new ArrayBuffer(44+n*2)),w=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};
+    w(0,'RIFF');v.setUint32(4,36+n*2,true);w(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,n*2,true);
+    let pk=0;for(let i=0;i<n;i++){const a=Math.abs(f[i]);if(a>pk)pk=a}const k=pk>0.98?0.98/pk:1;
+    for(let i=0;i<n;i++){const s=Math.max(-1,Math.min(1,f[i]*k));v.setInt16(44+i*2,s<0?s*32768:s*32767,true)}return v.buffer}
+  /* çıkarım ayrı iş parçacığında (Worker): okuma sırasında sayfa takılmaz */
+  const WSRC=`let ses=null;
+onmessage=async e=>{const d=e.data;try{
+ if(d.t==='init'){importScripts(d.ort);ort.env.wasm.wasmPaths=d.wasm;ort.env.wasm.numThreads=d.thr||1;
+   ses=await ort.InferenceSession.create(d.model,{executionProviders:['wasm']});postMessage({t:'hazir'});return}
+ if(d.t==='run'){const n=d.ids.length,f={input:new ort.Tensor('int64',BigInt64Array.from(d.ids,x=>BigInt(x)),[1,n]),input_lengths:new ort.Tensor('int64',BigInt64Array.from([BigInt(n)]),[1]),scales:new ort.Tensor('float32',Float32Array.from(d.scales),[3])};
+   if(d.sid!=null)f.sid=new ort.Tensor('int64',BigInt64Array.from([BigInt(d.sid)]),[1]);
+   const r=await ses.run(f);const o=r.output.data;const pcm=new Float32Array(o.length);pcm.set(o);postMessage({t:'ses',id:d.id,pcm},[pcm.buffer])}
+}catch(x){postMessage({t:'hata',id:d.id,m:String(x&&x.message||x)})}};`;
+  const P={SESLER,_bek:new Map(),_onb:new Map(),_id:0,_gen:0,au:null,cfg:null,
+    acik(){return true},
+    secili(){return SESLER.some(x=>x[0]===HKS.ses)?HKS.ses:SESLER[0][0]},
+    ad(v){const x=SESLER.find(z=>z[0]===(v||this.secili()));return x?x[1]:v},
+    async cache(){try{return await caches.open(CN)}catch(e){return null}},
+    async getir(url,tip,ilerle){
+      const c=await this.cache();if(c){try{const r=await c.match(url);if(r){const b=await r.arrayBuffer();ilerle&&ilerle(b.byteLength,b.byteLength);return b}}catch(e){}}
+      let res;try{res=await fetch(url)}catch(e){throw new Error('İnternet bağlantısı gerekli (ilk indirme)')}
+      if(!res.ok)throw new Error('İndirilemedi ('+res.status+'): '+url.split('/').pop());
+      const top=+res.headers.get('Content-Length')||0;let buf;
+      if(res.body&&ilerle){const rd=res.body.getReader(),parts=[];let n=0;for(;;){const {done,value}=await rd.read();if(done)break;parts.push(value);n+=value.length;ilerle(n,top||n)}buf=await new Blob(parts).arrayBuffer()}
+      else buf=await res.arrayBuffer();
+      if(c){try{await c.put(url,new Response(buf.slice(0),{headers:{'Content-Type':tip||'application/octet-stream'}}))}catch(e){console.warn('Okur sesi önbelleği',e)}}
+      return buf},
+    async indirildi(v){const c=await this.cache();if(!c)return false;try{return !!(await c.match(modelUrl(v||this.secili())))&&!!(await c.match(PW+'.data'))}catch(e){return false}},
+    async sil(v){const c=await this.cache();if(!c)return;await c.delete(modelUrl(v));await c.delete(modelUrl(v)+'.json');if(this._v===v)this.kapat()},
+    kapat(){this.dur();try{this._w&&this._w.terminate()}catch(e){}this._w=null;this._haz=null;this._v=null;this._ph=null;
+      this._bek.forEach(b=>b.no(new Error('kapandı')));this._bek.clear();this._onb.clear()},
+    /* her şeyi hazırla (gerekirse indir): ses modeli, dil verisi, çıkarım motoru */
+    hazir(ilerle){const v=this.secili();if(this._haz&&this._v===v)return this._haz;this.kapat();this._v=v;
+      this._haz=(async()=>{
+        const tot={},ilet=(k,n,t)=>{tot[k]=[n,t];if(ilerle){let a=0,b=0;Object.values(tot).forEach(([x,y])=>{a+=x;b+=y||x});ilerle(a,b)}};
+        const [cfgB,model,glue,data,pwasm,ortjs,...ow]=await Promise.all([
+          this.getir(modelUrl(v)+'.json','application/json'),
+          this.getir(modelUrl(v),0,(n,t)=>ilet('m',n,t)),
+          this.getir(GLUE,'text/javascript'),
+          this.getir(PW+'.data',0,(n,t)=>ilet('d',n,t)),
+          this.getir(PW+'.wasm','application/wasm'),
+          this.getir(ORT+'ort.wasm.min.js','text/javascript'),
+          ...ORTF.map(f=>this.getir(ORT+f,'application/wasm'))]);
+        if(this._v!==v)throw new Error('ses değişti');
+        this.cfg=JSON.parse(new TextDecoder().decode(cfgB));
+        const mod=await import(bu(glue,'text/javascript'));
+        const dataU=bu(data,'application/octet-stream'),wasmU=bu(pwasm,'application/wasm'),out=[];
+        const inst=await mod.createPiperPhonemize({print:l=>{try{out.push(JSON.parse(l).phoneme_ids)}catch(e){}},printErr:()=>{},
+          locateFile:f=>f.endsWith('.wasm')?wasmU:f.endsWith('.data')?dataU:f});
+        this._ph={inst,out};
+        const w=new Worker(bu(WSRC,'text/javascript')),wasm={};ORTF.forEach((f,i)=>wasm[f]=bu(ow[i],'application/wasm'));
+        await new Promise((ok,no)=>{w.onmessage=e=>{if(e.data.t==='hazir')ok();else if(e.data.t==='hata')no(new Error(e.data.m))};w.onerror=e=>no(new Error(e.message||'çıkarım motoru açılamadı'));
+          w.postMessage({t:'init',ort:bu(ortjs,'text/javascript'),wasm,model,thr:(self.crossOriginIsolated?Math.min(4,navigator.hardwareConcurrency||2):1)},[model])});
+        w.onmessage=e=>{const d=e.data,b=this._bek.get(d.id);if(!b)return;this._bek.delete(d.id);d.t==='ses'?b.ok(d.pcm):b.no(new Error(d.m))};
+        w.onerror=e=>{this._bek.forEach(b=>b.no(new Error('çıkarım motoru durdu')));this._bek.clear()};
+        this._w=w;return true})();
+      this._haz.catch(()=>{if(this._v===v){this._haz=null}});return this._haz},
+    fonem(metin){const {inst,out}=this._ph;out.length=0;
+      inst.callMain(['-l',(this.cfg.espeak&&this.cfg.espeak.voice)||'tr','--input',JSON.stringify([{text:metin}]),'--espeak_data','/espeak-ng-data']);
+      const ids=[];out.forEach(a=>ids.push(...a));return ids},
+    temiz(t){return String(t||'').replace(/[­​-‏]/g,'').replace(/[“”«»]/g,'"').replace(/[‘’]/g,"'").replace(/\s+/g,' ').trim()},
+    sentez(metin){const t=this.temiz(metin);if(!t||!/[\p{L}\p{N}]/u.test(t))return Promise.resolve(null);
+      const hiz=Math.max(.5,Math.min(2.5,+HKS.hiz||1)),ton=Math.pow(2,(+HKS.ton||0)/12),key=this.secili()+'|'+hiz+'|'+ton+'|'+t;let e=this._onb.get(key);if(e)return e;
+      e=(async()=>{await this.hazir();const ids=this.fonem(t);if(!ids.length)return null;const inf=this.cfg.inference||{},id=++this._id;
+        const pcm=await new Promise((ok,no)=>{this._bek.set(id,{ok,no});
+          this._w.postMessage({t:'run',id,ids,scales:[inf.noise_scale??.667,(inf.length_scale??1)*ton/hiz,inf.noise_w??.8],sid:Object.keys(this.cfg.speaker_id_map||{}).length?0:null})});
+        const sr=(this.cfg.audio&&this.cfg.audio.sample_rate)||22050;return {url:bu(wav(pcm,sr),'audio/wav'),sure:pcm.length/sr}})();
+      this._onb.set(key,e);e.catch(()=>this._onb.delete(key));
+      while(this._onb.size>10){const k0=this._onb.keys().next().value,o=this._onb.get(k0);this._onb.delete(k0);o.then(x=>{x&&setTimeout(()=>URL.revokeObjectURL(x.url),60000)}).catch(()=>{})}
+      return e},
+    hazirla(metin){if(metin&&this.acik()&&this._haz)this.sentez(metin).catch(()=>{})},
+    /* bir metni seslendir; ilerle(0..1) okunan oranı bildirir. Sonuç: 'bitti' | 'dur' | 'hata' */
+    cal(metin,ilerle){const my=++this._gen;
+      return (async()=>{let r;try{r=await this.sentez(metin)}catch(e){if(my===this._gen)toast('Okur sesi: '+(e.message||e),4500);return 'hata'}
+        if(my!==this._gen)return 'dur';if(!r)return 'bitti';
+        const a=this.au||(this.au=new Audio()),ton=Math.pow(2,(+HKS.ton||0)/12),kor=ton===1;try{a.preservesPitch=kor;a.webkitPreservesPitch=kor;a.mozPreservesPitch=kor}catch(e){}a.src=r.url;a.defaultPlaybackRate=ton;a.playbackRate=ton;
+        return await new Promise(res=>{let tm=0;const son=v=>{clearInterval(tm);a.onended=a.onerror=null;if(this._kes===kes)this._kes=null;res(v)};
+          const kes=()=>{try{a.pause()}catch(e){}son('dur')};this._kes=kes;
+          a.onended=()=>{try{ilerle&&ilerle(1)}catch(e){}son('bitti')};a.onerror=()=>son('hata');
+          const p=a.play();(p&&p.then?p:Promise.resolve()).then(()=>{if(ilerle){try{ilerle(0)}catch(e){}tm=setInterval(()=>{if(a.duration&&isFinite(a.duration))try{ilerle(Math.min(1,a.currentTime/a.duration))}catch(e){}},45)}})
+            .catch(e=>{if(my===this._gen)toast('Ses çalınamadı: '+(e.message||e),3500);son('hata')})})})()},
+    dur(){this._gen++;if(this._kes)this._kes()},
+    /* kelime ağırlıkları (hece + noktalama durakları) → orandan kelimeye */
+    kelimeler(t){const W=[];const re=/\S+/g;let m,G=0;while((m=re.exec(t))){const w=m[0];let g=(typeof AK!=='undefined'&&AK.birim)?AK.birim(w,false):Math.max(1,w.length/3);W.push({a:m.index,b:m.index+w.length,g0:G});G+=g}
+      W.forEach(x=>x.G=G);return W},
+    kelimeAt(W,f){if(!W.length)return -1;const h=f*W[0].G;let j=0;for(let i=0;i<W.length;i++){if(W[i].g0<=h)j=i;else break}return j}
+  };
+  return P})();
+HSes.acik = () => true;
+
+/* ---------- çizim yardımcıları ---------- */
+function rr(x, X, Y, w, h, r){ r = Math.min(r, w/2, h/2); x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + h, r); x.arcTo(X + w, Y + h, X, Y + h, r); x.arcTo(X, Y + h, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath(); }
+function satirla(x, metin, maxW){ const out = []; String(metin || '').split('\n').forEach(par => { const ks = par.split(/\s+/).filter(Boolean); let s = '';
+  ks.forEach(k => { const d = s ? s + ' ' + k : k; if (x.measureText(d).width <= maxW || !s){ if (!s && x.measureText(k).width > maxW){ let p = ''; for (const ch of k){ if (x.measureText(p + ch).width > maxW && p){ out.push(p); p = ch; } else p += ch; } s = p; } else s = d; } else { out.push(s); s = k; } });
+  if (s) out.push(s); }); return out; }
+/* yazıyı kutuya sığdır: en büyük punto */
+function sigdir(x, metin, font, maxW, maxH, lh, enB, enK, enCok){ let lo = enK, hi = enB, iyi = null;
+  for (let i = 0; i < 14; i++){ const m = (lo + hi)/2; x.font = font(m); const L = satirla(x, metin, maxW); const ok = L.length*m*lh <= maxH && (!enCok || L.length <= enCok);
+    if (ok){ iyi = {s:m, L}; lo = m; } else hi = m; }
+  if (!iyi){ x.font = font(enK); iyi = {s:enK, L:satirla(x, metin, maxW)}; if (enCok && iyi.L.length > enCok){ iyi.L = iyi.L.slice(0, enCok); iyi.L[enCok - 1] += '…'; } } x.font = font(iyi.s); return iyi; }
+function yaz(x, L, X, Y, s, lh, hiza, gor){ L.forEach((l, i) => { const yy = Y + i*s*lh; if (gor && gor(i, l, yy) === false) return; x.textAlign = hiza || 'left'; x.fillText(l, X, yy); }); }
+function foto(x, X, Y, w, h, kb){ if (!FOTO){ const g = x.createLinearGradient(X, Y, X + w, Y + h); g.addColorStop(0, '#2b3a44'); g.addColorStop(1, '#101418'); x.fillStyle = g; x.fillRect(X, Y, w, h); return; }
+  const iw = FOTO.width, ih = FOTO.height, sc = Math.max(w/iw, h/ih)*(D.fz || 1)*(kb || 1), dw = iw*sc, dh = ih*sc;
+  let dx = X + w/2 - dw*(D.fx ?? .5), dy = Y + h/2 - dh*(D.fy ?? .5); dx = kis(dx, X + w - dw, X); dy = kis(dy, Y + h - dh, Y);
+  x.save(); x.beginPath(); x.rect(X, Y, w, h); x.clip(); x.imageSmoothingQuality = 'high'; x.drawImage(FOTO, dx, dy, dw, dh); x.restore(); }
+const tarihYaz = (ts, kisa) => new Date(ts || Date.now()).toLocaleDateString('tr-TR', kisa ? {day:'numeric', month:'long', year:'numeric'} : {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+function kagit(x, W, H, renk){ x.fillStyle = renk || '#f3eee2'; x.fillRect(0, 0, W, H); let s = 7; const r = () => (s = (s*16807) % 2147483647)/2147483647;
+  x.globalAlpha = .05; for (let i = 0; i < W*H/900; i++){ x.fillStyle = r() < .5 ? '#000' : '#7a5c2e'; x.fillRect(r()*W, r()*H, 1.6, 1.6); } x.globalAlpha = 1; }
+function logo(x, X, Y, s, ac, koyu){ /* KH damgası + gazete adı */ x.save(); x.fillStyle = ac; rr(x, X, Y, s, s, s*.18); x.fill(); x.fillStyle = '#fff'; x.font = `700 ${s*.5}px Oswald`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('KH', X + s/2, Y + s*.53);
+  x.textAlign = 'left'; x.fillStyle = koyu ? '#111' : '#fff'; x.font = `700 ${s*.42}px Oswald`; x.fillText(TR(M.ad), X + s*1.22, Y + s*.36); x.globalAlpha = .85; x.font = `italic 400 ${s*.26}px "Playfair Display"`; x.fillText(M.slogan, X + s*1.22, Y + s*.78); x.restore(); x.textBaseline = 'alphabetic'; }
+function guvenli(W, H){ const dik = H/W > 1.6; return {u:dik ? H*.11 : H*.035, a:dik ? H*.17 : H*.035, m:W*.06}; }
+/* altyazı (video) */
+function altyazi(x, W, H, t, yb){ if (!D.altyazi || !SES || t === Infinity) return; const sg = SES.segs.find(s => t >= s.a && t < s.b + .15); if (!sg) return;
+  const fs = W*.042; x.font = `700 ${fs}px Montserrat`; const L = satirla(x, sg.t, W*.84).slice(0, 3), h = L.length*fs*1.25 + fs*.7, y = yb - h;
+  x.fillStyle = 'rgba(0,0,0,.72)'; rr(x, W*.06, y, W*.88, h, fs*.35); x.fill(); x.fillStyle = '#fff'; x.textBaseline = 'top'; yaz(x, L, W/2, y + fs*.4, fs, 1.25, 'center'); x.textBaseline = 'alphabetic'; }
+
+/* ---------- şablonlar ---------- */
+const CIZ = {
+  sondakika(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac, ink] = etk(D.etiket), kb = t === Infinity ? 1.02 : 1 + .07*kis(t/dur, 0, 1);
+    foto(x, 0, 0, W, H, kb); const gr = x.createLinearGradient(0, H*.32, 0, H); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(.55, 'rgba(0,0,0,.7)'); gr.addColorStop(1, 'rgba(0,0,0,.92)'); x.fillStyle = gr; x.fillRect(0, 0, W, H);
+    const tp = x.createLinearGradient(0, 0, 0, H*.2); tp.addColorStop(0, 'rgba(0,0,0,.55)'); tp.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = tp; x.fillRect(0, 0, W, H*.2);
+    logo(x, g.m, g.u, W*.085, ac); x.fillStyle = '#fff'; x.font = `500 ${W*.026}px Oswald`; x.textAlign = 'right'; x.fillText(tarihYaz(D.tarih, true) + (D.yer ? ' · ' + TR(D.yer) : ''), W - g.m, g.u + W*.05);
+    const tH = W*.075, ty = H - g.a - tH, aY = ty - W*.03;
+    const sp = D.spot ? (() => { x.font = `300 ${W*.036}px Montserrat`; return satirla(x, D.spot, W - 2*g.m).slice(0, 3); })() : [], spH = sp.length*W*.036*1.32;
+    const mH = Math.min(H*.3, H*.6 - spH), mf = s => `700 ${s}px Oswald`; const m = sigdir(x, TR(D.manset || 'MANŞET BURAYA'), mf, W - 2*g.m, mH, 1.08, W*.13, W*.06, 4);
+    const myBas = aY - spH - (sp.length ? W*.03 : 0) - m.L.length*m.s*1.08; const eh = W*.062;
+    /* etiket */ const ep = pr(t, .05, .55); x.textAlign = 'left'; x.font = `700 ${eh*.6}px Oswald`; const ew = x.measureText(TR(ad)).width + eh*.9 + eh*.6;
+    x.save(); x.translate(-(1 - ep)*(ew + g.m), 0); x.fillStyle = ac; x.fillRect(g.m, myBas - eh*1.35, ew, eh);
+    const nb = t === Infinity ? 1 : .55 + .45*Math.abs(Math.sin(t*3.2)); x.fillStyle = ink; x.globalAlpha = nb; x.beginPath(); x.arc(g.m + eh*.45, myBas - eh*.85, eh*.17, 0, 7); x.fill(); x.globalAlpha = 1;
+    x.fillText(TR(ad), g.m + eh*.75, myBas - eh*1.35 + eh*.74); x.restore();
+    /* manşet: satır satır */ x.fillStyle = '#fff'; x.font = mf(m.s); x.shadowColor = 'rgba(0,0,0,.45)'; x.shadowBlur = W*.012;
+    m.L.forEach((l, i) => { const p = pr(t, .25 + i*.16, .7 + i*.16); x.globalAlpha = p; x.textAlign = 'left'; x.fillText(l, g.m + (1 - p)*W*.06, myBas + (i + .82)*m.s*1.08); }); x.globalAlpha = 1; x.shadowBlur = 0;
+    if (sp.length){ x.font = `300 ${W*.036}px Montserrat`; x.fillStyle = 'rgba(255,255,255,.92)'; x.globalAlpha = pr(t, .8, 1.3); yaz(x, sp, g.m, aY - spH + W*.036, W*.036, 1.32, 'left'); x.globalAlpha = 1; }
+    /* alt kayan bant */ x.fillStyle = '#fff'; x.fillRect(0, ty, W, tH); x.fillStyle = ac; x.fillRect(0, ty, W*.27, tH); x.fillStyle = ink; x.font = `700 ${tH*.42}px Oswald`; x.textAlign = 'center'; x.fillText(TR(ad.split(' ')[0]), W*.135, ty + tH*.64);
+    const tk = '   •   ' + (D.metin || D.spot || D.manset || M.slogan).replace(/\s+/g, ' ') + '   •   ' + M.slogan; x.save(); x.beginPath(); x.rect(W*.27, ty, W*.73, tH); x.clip();
+    x.fillStyle = '#111'; x.font = `500 ${tH*.42}px Oswald`; x.textAlign = 'left'; const tw = x.measureText(tk).width, off = t === Infinity ? 0 : (t*W*.14) % tw; x.fillText(tk, W*.29 - off, ty + tH*.64); x.fillText(tk, W*.29 - off + tw, ty + tH*.64); x.restore();
+    altyazi(x, W, H, t, myBas - eh*1.6); },
+
+  gazete(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac] = etk(D.etiket), m0 = g.m; kagit(x, W, H);
+    let y = g.u; x.fillStyle = '#141414'; x.fillRect(m0, y, W - 2*m0, W*.006); y += W*.012; x.fillRect(m0, y, W - 2*m0, W*.0025);
+    const mf = s => `700 ${s}px "Playfair Display"`; const ms = sigdir(x, TR(M.ad), mf, W - 2*m0, W*.14, 1, W*.13, W*.05, 1); x.fillStyle = '#111'; x.textAlign = 'center'; x.fillText(ms.L[0], W/2, y + ms.s*.98); y += ms.s*1.12;
+    x.font = `italic 400 ${W*.03}px "Playfair Display"`; x.fillText(M.slogan, W/2, y + W*.02); y += W*.045;
+    x.fillRect(m0, y, W - 2*m0, W*.0025); x.font = `500 ${W*.022}px Oswald`; x.textAlign = 'left'; x.fillText(TR(tarihYaz(D.tarih)), m0, y + W*.035); x.textAlign = 'right'; x.fillText('SAYI ' + (D.sayi || 1) + ' · ' + TR(D.yer || 'Kabataş') + ' / ORDU', W - m0, y + W*.035);
+    y += W*.05; x.fillRect(m0, y, W - 2*m0, W*.006); y += W*.035;
+    x.font = `700 ${W*.03}px Oswald`; const ew = x.measureText(TR(ad)).width + W*.04; x.fillStyle = ac; x.globalAlpha = pr(t, 0, .4); x.fillRect(m0, y, ew, W*.05); x.fillStyle = '#fff'; x.textAlign = 'left'; x.fillText(TR(ad), m0 + W*.02, y + W*.037); x.globalAlpha = 1; y += W*.07;
+    const kalan = H - g.a - y, fh = kalan*.5; const hm = sigdir(x, D.manset || 'Manşet buraya', mf, W - 2*m0, kalan*.3, 1.1, W*.11, W*.05, 3);
+    x.fillStyle = '#111'; hm.L.forEach((l, i) => { x.globalAlpha = pr(t, .2 + i*.15, .7 + i*.15); x.textAlign = 'left'; x.fillText(l, m0, y + (i + .85)*hm.s*1.1); }); x.globalAlpha = 1; y += hm.L.length*hm.s*1.1 + W*.025;
+    const fy = y; x.globalAlpha = pr(t, .4, 1); foto(x, m0, fy, W - 2*m0, fh, t === Infinity ? 1 : 1 + .05*kis(t/dur, 0, 1)); x.globalAlpha = 1; x.strokeStyle = '#111'; x.lineWidth = W*.002; x.strokeRect(m0, fy, W - 2*m0, fh);
+    y = fy + fh + W*.04; x.fillStyle = '#222'; const sf = W*.032; x.font = `500 ${sf}px Lora`; const sp = satirla(x, D.spot || '', W - 2*m0); const sm = Math.max(1, Math.floor((H - g.a - y - W*.04)/(sf*1.38)));
+    x.globalAlpha = pr(t, .9, 1.4); yaz(x, sp.slice(0, sm), m0, y + sf, sf, 1.38, 'left'); x.globalAlpha = 1;
+    x.fillStyle = '#111'; x.fillRect(m0, H - g.a - W*.03, W - 2*m0, W*.0025); x.font = `500 ${W*.02}px Oswald`; x.textAlign = 'left'; x.fillText(TR(M.hesap), m0, H - g.a); x.textAlign = 'right'; x.fillText(TR(M.slogan), W - m0, H - g.a);
+    altyazi(x, W, H, t, fy + fh - W*.03); },
+
+  tabloid(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac, ink] = etk(D.etiket); foto(x, 0, 0, W, H, t === Infinity ? 1.03 : 1 + .08*kis(t/dur, 0, 1));
+    const gr = x.createLinearGradient(0, H*.25, 0, H); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(0,0,0,.88)'); x.fillStyle = gr; x.fillRect(0, 0, W, H);
+    logo(x, g.m, g.u, W*.075, ac); const mf = s => `400 ${s}px "Bebas Neue"`; const alt = H - g.a - W*.07, mx = H*.42;
+    const m = sigdir(x, TR(D.manset || 'BÜYÜK MANŞET'), mf, W - 2*g.m, mx, .95, W*.24, W*.09, 4), yb = alt - m.L.length*m.s*.95;
+    /* damga */ x.save(); x.translate(W - g.m - W*.16, yb - W*.11); x.rotate(-.12); const sp0 = pr(t, .05, .4); x.scale(.6 + .4*sp0, .6 + .4*sp0); x.globalAlpha = sp0;
+    x.font = `700 ${W*.042}px Oswald`; const dw = x.measureText(TR(ad)).width + W*.05; x.fillStyle = ac; rr(x, -dw/2, -W*.04, dw, W*.08, W*.012); x.fill(); x.fillStyle = ink; x.textAlign = 'center'; x.fillText(TR(ad), 0, W*.016); x.restore();
+    m.L.forEach((l, i) => { const p = pr(t, .2 + i*.18, .55 + i*.18); x.save(); x.globalAlpha = p; x.font = mf(m.s); x.textAlign = 'left'; x.lineJoin = 'round'; x.lineWidth = m.s*.08; x.strokeStyle = 'rgba(0,0,0,.85)';
+      const yy = yb + (i + .82)*m.s*.95, sc = 1.15 - .15*p; x.translate(g.m, yy); x.scale(sc, sc); x.strokeText(l, 0, 0); x.fillStyle = i % 2 ? '#fff' : (ac === '#ffd400' ? '#fff' : '#ffd400'); x.fillText(l, 0, 0); x.restore(); });
+    x.fillStyle = ac; x.fillRect(0, H - g.a - W*.045, W, W*.045); x.fillStyle = ink; x.font = `500 ${W*.027}px Oswald`; x.textAlign = 'center'; x.fillText(TR(M.slogan) + '  ·  ' + TR(M.hesap), W/2, H - g.a - W*.013);
+    altyazi(x, W, H, t, yb - W*.13); },
+
+  modern(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac, ink] = etk(D.etiket); x.fillStyle = '#f4f4f2'; x.fillRect(0, 0, W, H); const fh = H*.58;
+    foto(x, 0, 0, W, fh, t === Infinity ? 1 : 1 + .05*kis(t/dur, 0, 1)); logo(x, g.m, g.u, W*.07, ac);
+    const py = fh - W*.06, ph = H - py; x.fillStyle = '#fff'; x.shadowColor = 'rgba(0,0,0,.18)'; x.shadowBlur = W*.03; rr(x, W*.04, py, W*.92, ph + W*.1, W*.05); x.fill(); x.shadowBlur = 0;
+    let y = py + W*.06; x.font = `700 ${W*.028}px Montserrat`; const ew = x.measureText(TR(ad)).width + W*.05; x.fillStyle = ac; rr(x, W*.09, y, ew, W*.055, W*.028); x.fill(); x.fillStyle = ink; x.textAlign = 'left'; x.fillText(TR(ad), W*.115, y + W*.038);
+    x.fillStyle = '#7a7f86'; x.font = `500 ${W*.024}px Montserrat`; x.textAlign = 'right'; x.fillText(tarihYaz(D.tarih, true), W*.91, y + W*.038); y += W*.1;
+    const kalan = H - g.a - y - W*.08, mf = s => `700 ${s}px Montserrat`; const m = sigdir(x, D.manset || 'Manşet buraya', mf, W*.82, kalan*.78, 1.12, W*.12, W*.05, 4);
+    x.fillStyle = '#15191c'; m.L.forEach((l, i) => { x.globalAlpha = pr(t, .2 + i*.14, .6 + i*.14); x.textAlign = 'left'; x.fillText(l, W*.09, y + (i + .85)*m.s*1.12); }); x.globalAlpha = 1; y += m.L.length*m.s*1.12 + W*.02;
+    const sf = W*.032; x.font = `300 ${sf}px Montserrat`; x.fillStyle = '#4a5157'; const sp = satirla(x, D.spot || '', W*.82); x.globalAlpha = pr(t, .8, 1.3); yaz(x, sp.slice(0, Math.max(1, Math.floor((H - g.a - y - W*.08)/(sf*1.35)))), W*.09, y + sf, sf, 1.35, 'left'); x.globalAlpha = 1;
+    x.fillStyle = '#9aa0a6'; x.font = `500 ${W*.022}px Montserrat`; x.textAlign = 'left'; x.fillText(TR(M.ad) + ' · ' + M.slogan, W*.09, H - g.a - W*.02);
+    altyazi(x, W, H, t, fh - W*.1); },
+
+  alinti(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac] = etk(D.etiket); foto(x, 0, 0, W, H, t === Infinity ? 1.02 : 1 + .05*kis(t/dur, 0, 1)); x.fillStyle = 'rgba(12,14,16,.72)'; x.fillRect(0, 0, W, H); logo(x, g.m, g.u, W*.07, ac);
+    x.fillStyle = ac; x.font = `700 ${W*.32}px "Playfair Display"`; x.textAlign = 'left'; x.globalAlpha = pr(t, 0, .4)*.9; x.fillText('“', g.m - W*.01, H*.36); x.globalAlpha = 1;
+    const sz = D.spot && D.kisi ? D.spot : (D.manset || 'Söz buraya'); const qf = s => `italic 400 ${s}px "Playfair Display"`; const q = sigdir(x, sz, qf, W - 2*g.m, H*.38, 1.25, W*.075, W*.04, 7);
+    x.fillStyle = '#fff'; q.L.forEach((l, i) => { x.globalAlpha = pr(t, .2 + i*.12, .6 + i*.12); x.textAlign = 'left'; x.fillText(l, g.m, H*.4 + (i + .8)*q.s*1.25); }); x.globalAlpha = 1;
+    const ky = H*.4 + q.L.length*q.s*1.25 + W*.08; x.fillStyle = ac; x.fillRect(g.m, ky - W*.035, W*.12, W*.008); x.fillStyle = '#fff'; x.font = `700 ${W*.04}px Oswald`; x.globalAlpha = pr(t, .8, 1.2); x.fillText(TR(D.kisi || D.yer || M.ad), g.m, ky + W*.03);
+    if (D.kisi && D.manset){ x.font = `300 ${W*.028}px Montserrat`; x.fillStyle = 'rgba(255,255,255,.8)'; x.fillText(D.manset.slice(0, 70), g.m, ky + W*.08); } x.globalAlpha = 1;
+    x.font = `500 ${W*.022}px Oswald`; x.fillStyle = 'rgba(255,255,255,.75)'; x.textAlign = 'right'; x.fillText(TR(M.slogan), W - g.m, H - g.a); altyazi(x, W, H, t, H - g.a - W*.06); },
+
+  ozet(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac, ink] = etk(D.etiket); kagit(x, W, H, '#f6f3ec'); const fh = H*.3; foto(x, 0, 0, W, fh, 1); x.fillStyle = 'rgba(0,0,0,.35)'; x.fillRect(0, 0, W, fh); logo(x, g.m, g.u, W*.07, ac);
+    let y = fh + W*.05; x.font = `700 ${W*.028}px Oswald`; const ew = x.measureText(TR(ad)).width + W*.04; x.fillStyle = ac; x.fillRect(g.m, y, ew, W*.05); x.fillStyle = ink; x.textAlign = 'left'; x.fillText(TR(ad), g.m + W*.02, y + W*.036); y += W*.08;
+    const mf = s => `700 ${s}px "Playfair Display"`; const m = sigdir(x, D.manset || 'Başlık', mf, W - 2*g.m, H*.16, 1.1, W*.075, W*.045, 3); x.fillStyle = '#111'; yaz(x, m.L, g.m, y + m.s*.85, m.s, 1.1, 'left'); y += m.L.length*m.s*1.1 + W*.03;
+    const md = String(D.maddeler || D.spot || '').split(/\n|•|;/).map(s => s.trim()).filter(Boolean).slice(0, 5); const sf = W*.034;
+    md.forEach((s, i) => { const p = pr(t, .5 + i*.35, 1 + i*.35); x.globalAlpha = p; x.fillStyle = ac; x.beginPath(); x.arc(g.m + sf*.6, y + sf*.62, sf*.6, 0, 7); x.fill(); x.fillStyle = ink; x.font = `700 ${sf*.75}px Oswald`; x.textAlign = 'center'; x.fillText(String(i + 1), g.m + sf*.6, y + sf*.9);
+      x.fillStyle = '#222'; x.font = `500 ${sf}px Lora`; const L = satirla(x, s, W - 2*g.m - sf*1.8).slice(0, 3); yaz(x, L, g.m + sf*1.8, y + sf, sf, 1.3, 'left'); y += L.length*sf*1.3 + sf*.8; }); x.globalAlpha = 1;
+    x.fillStyle = '#111'; x.font = `500 ${W*.022}px Oswald`; x.textAlign = 'left'; x.fillText(TR(M.ad) + ' · ' + TR(M.slogan), g.m, H - g.a); altyazi(x, W, H, t, H - g.a - W*.06); },
+
+  flas(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac, ink] = etk(D.etiket === 'SON DAKİKA' ? 'FLAŞ' : D.etiket); foto(x, 0, 0, W, H, t === Infinity ? 1.02 : 1 + .06*kis(t/dur, 0, 1));
+    x.fillStyle = 'rgba(0,0,0,.25)'; x.fillRect(0, 0, W, H); logo(x, g.m, g.u, W*.07, '#d7191f');
+    const bh = H*.32, by = H*.5 - bh/2 + H*.08; x.save(); x.translate(W/2, by + bh/2); x.rotate(-.06); const p = pr(t, 0, .45); x.translate(-(1 - p)*W*1.2, 0);
+    x.fillStyle = ac; x.fillRect(-W*.7, -bh/2, W*1.4, bh); x.fillStyle = ink; x.font = `400 ${bh*.2}px "Bebas Neue"`; x.textAlign = 'left'; x.fillText(TR(ad) + ' ▸', -W*.42, -bh*.24);
+    const m = sigdir(x, TR(D.manset || 'FLAŞ HABER'), s => `400 ${s}px "Bebas Neue"`, W*.84, bh*.62, .95, bh*.4, bh*.16, 3); x.fillStyle = ink; m.L.forEach((l, i) => { x.globalAlpha = pr(t, .35 + i*.15, .75 + i*.15); x.fillText(l, -W*.42, -bh*.02 + (i + .78)*m.s*.95); }); x.restore(); x.globalAlpha = 1;
+    if (D.spot){ x.font = `500 ${W*.032}px Montserrat`; x.fillStyle = '#fff'; x.shadowColor = 'rgba(0,0,0,.6)'; x.shadowBlur = W*.01; const L = satirla(x, D.spot, W - 2*g.m).slice(0, 3); x.globalAlpha = pr(t, .9, 1.4); yaz(x, L, g.m, by + bh + W*.12, W*.032, 1.3, 'left'); x.globalAlpha = 1; x.shadowBlur = 0; }
+    x.font = `500 ${W*.022}px Oswald`; x.fillStyle = '#fff'; x.textAlign = 'right'; x.fillText(TR(M.slogan) + ' · ' + TR(M.hesap), W - g.m, H - g.a); altyazi(x, W, H, t, H - g.a - W*.05); }
+};
+function kartCiz(c, t, dur){ const [W, H] = ORAN[D.oran] || ORAN['4:5']; if (c.width !== W || c.height !== H){ c.width = W; c.height = H; } const x = c.getContext('2d'); x.save(); x.clearRect(0, 0, W, H);
+  try { (CIZ[D.sablon] || CIZ.sondakika)(x, W, H, t == null ? Infinity : t, dur || 8); } catch(e){ console.warn('Kabataş Haber çizim', e); } x.restore(); }
+
+/* ---------- ses üretimi ---------- */
+const cumleler = t => String(t || '').replace(/\s+/g, ' ').match(/[^.!?…]+[.!?…]*["”’)]?/g)?.map(s => s.trim()).filter(s => /[\p{L}\p{N}]/u.test(s)) || [];
+const okunacak = () => (D.metin || [D.manset, D.spot].filter(Boolean).join('. ')).trim();
+function jenerik(sr){ const n = Math.round(sr*1.1), o = new Float32Array(n), N = [[0, 880], [.16, 1174.7], [.32, 1568]];
+  N.forEach(([b, f]) => { const s0 = Math.round(b*sr); for (let i = 0; i < sr*.75 && s0 + i < n; i++){ const tt = i/sr, e = Math.min(1, tt*80)*Math.exp(-tt*5.5); o[s0 + i] += .22*e*(Math.sin(2*Math.PI*f*tt) + .35*Math.sin(2*Math.PI*f*2*tt)); } }); return o; }
+async function sesHazirla(bildir){ if (!HSes) throw new Error('Ses motoru yok');
+  const metin = okunacak(); if (!metin) throw new Error('Önce manşet ya da seslendirme metni yaz');
+  const key = [HKS.ses, HKS.hiz, HKS.ton, D.jenerik ? 1 : 0, metin].join('|'); if (SES && SES_KEY === key) return SES;
+  await HSes.hazir((n, tt) => bildir && bildir('Ses indiriliyor… %' + (tt ? Math.round(n/tt*100) : 0) + ' (yalnız ilk sefer)'));
+  const sr = (HSes.cfg && HSes.cfg.audio && HSes.cfg.audio.sample_rate) || 22050, cs = cumleler(metin), parca = [], segs = []; let t = 0;
+  if (D.jenerik){ const j = jenerik(sr); parca.push(j); t += j.length/sr; }
+  for (let i = 0; i < cs.length; i++){ bildir && bildir(`Seslendiriliyor ${i + 1}/${cs.length}`); if (i + 1 < cs.length) HSes.hazirla(cs[i + 1]);
+    const r = await HSes.sentez(cs[i]); if (!r) continue; const ab = await fetch(r.url).then(q => q.arrayBuffer()), i16 = new Int16Array(ab, 44), f = new Float32Array(i16.length); for (let k = 0; k < f.length; k++) f[k] = i16[k]/32768;
+    if (i){ const ara = new Float32Array(Math.round(sr*.32)); parca.push(ara); t += ara.length/sr; } parca.push(f); segs.push({a:t, b:t + f.length/sr, t:cs[i]}); t += f.length/sr; }
+  const kuyruk = new Float32Array(Math.round(sr*.5)); parca.push(kuyruk); const top = parca.reduce((s, p) => s + p.length, 0), pcm = new Float32Array(top); let o = 0; parca.forEach(p => { pcm.set(p, o); o += p.length; });
+  SES = {pcm, sr, segs, sure:top/sr}; SES_KEY = key; return SES; }
+function wavBlob(f, sr){ const n = f.length, v = new DataView(new ArrayBuffer(44 + n*2)), w = (o, s) => { for (let i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); };
+  w(0, 'RIFF'); v.setUint32(4, 36 + n*2, true); w(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, sr, true); v.setUint32(28, sr*2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, n*2, true);
+  for (let i = 0; i < n; i++){ const s = Math.max(-1, Math.min(1, f[i])); v.setInt16(44 + i*2, s < 0 ? s*32768 : s*32767, true); } return new Blob([v.buffer], {type:'audio/wav'}); }
+
+/* ---------- önizleme oynatma ---------- */
+function durdur(){ if (calis){ calis.dur = true; try { calis.a && calis.a.pause(); } catch(e){} cancelAnimationFrame(calis.raf); calis = null; } const b = $h('#khOyna'); if (b) b.textContent = '▶ Sesli önizle'; ciz(); }
+async function oynat(){ if (calis){ durdur(); return; } const b = $h('#khOyna'), not = $h('#khSesNot'); b.textContent = '■ Durdur';
+  let ses = null; try { ses = await sesHazirla(m => not.textContent = m); not.textContent = ''; } catch(e){ not.textContent = 'Sessiz önizleme: ' + (e.message || e); }
+  const dur = ses ? ses.sure : 7, c = $h('#khCv'), C = calis = {dur:false, raf:0};
+  if (ses){ C.a = new Audio(URL.createObjectURL(wavBlob(ses.pcm, ses.sr))); try { await C.a.play(); } catch(e){ C.a = null; } }
+  const t0 = performance.now(); const ad = () => { if (C.dur) return; const t = C.a ? C.a.currentTime : (performance.now() - t0)/1000; kartCiz(c, t, dur); if (t >= dur || (C.a && C.a.ended)){ durdur(); return; } C.raf = requestAnimationFrame(ad); }; ad(); }
+
+/* ---------- video (MP4: H.264 + AAC) ---------- */
+async function kodek(W, H){ if (!('VideoEncoder' in window)) return null; const br = Math.round(W*H*30*.12);
+  for (const codec of ['avc1.640028', 'avc1.4d0028', 'avc1.42e028', 'avc1.640032']){ const cfg = {codec, width:W, height:H, bitrate:br, framerate:30, avc:{format:'avc'}, bitrateMode:'variable'};
+    try { if ((await VideoEncoder.isConfigSupported(cfg)).supported) return {cfg, mux:'avc'}; } catch(e){} }
+  for (const codec of ['vp09.00.41.08', 'vp09.00.40.08']){ const cfg = {codec, width:W, height:H, bitrate:br, framerate:30, bitrateMode:'variable'}; try { if ((await VideoEncoder.isConfigSupported(cfg)).supported) return {cfg, mux:'vp9', not:'H.264 yok; VP9 ile kodlandı (Instagram kabul etmeyebilir)'}; } catch(e){} } return null; }
+async function videoYap(){ const not = $h('#khVidNot'), btn = $h('#khVid'); if (btn.disabled) return; durdur();
+  const [W, H] = ORAN[D.oran]; const vk = await kodek(W, H); if (!vk || typeof Mp4Muxer === 'undefined'){ not.textContent = 'Bu tarayıcı video oluşturamıyor. Telefonda güncel Chrome ile dene; görseli kaydedebilirsin.'; return; }
+  btn.disabled = true; let wl = null; try { wl = await navigator.wakeLock.request('screen'); } catch(e){}
+  try { let ses = null; try { ses = await sesHazirla(m => not.textContent = m); } catch(e){ not.textContent = 'Sesiz video: ' + (e.message || e); }
+    const dur = Math.max(6, ses ? ses.sure + .6 : 7), fps = 30, nF = Math.round(dur*fps);
+    let ak = null; if (ses){ for (const [codec, mux] of [['mp4a.40.2', 'aac'], ['opus', 'opus']]){ const c = {codec, sampleRate:48000, numberOfChannels:2, bitrate:192000}; try { if ((await AudioEncoder.isConfigSupported(c)).supported){ ak = {cfg:c, mux}; break; } } catch(e){} } }
+    const muxer = new Mp4Muxer.Muxer({target:new Mp4Muxer.ArrayBufferTarget(), video:{codec:vk.mux, width:W, height:H, frameRate:fps}, audio:ak ? {codec:ak.mux, numberOfChannels:2, sampleRate:48000} : undefined, fastStart:'in-memory', firstTimestampBehavior:'offset'});
+    let hata = null;
+    if (ak){ not.textContent = 'Ses kodlanıyor…'; const n48 = Math.ceil(dur*48000), oc = new OfflineAudioContext(2, n48, 48000), b = oc.createBuffer(1, ses.pcm.length, ses.sr); b.copyToChannel(ses.pcm, 0);
+      const s = oc.createBufferSource(); s.buffer = b; s.connect(oc.destination); s.start(0); const mix = await oc.startRendering();
+      const ae = new AudioEncoder({output:(c, m) => muxer.addAudioChunk(c, m), error:e => hata = e}); ae.configure(ak.cfg); const L = mix.getChannelData(0), R = mix.getChannelData(1), CH = 9600;
+      for (let o = 0; o < L.length; o += CH){ const n = Math.min(CH, L.length - o), d = new Float32Array(n*2); d.set(L.subarray(o, o + n), 0); d.set(R.subarray(o, o + n), n);
+        const a = new AudioData({format:'f32-planar', sampleRate:48000, numberOfFrames:n, numberOfChannels:2, timestamp:Math.round(o*1e6/48000), data:d}); ae.encode(a); a.close(); }
+      await ae.flush(); ae.close(); if (hata) throw hata; }
+    const ve = new VideoEncoder({output:(c, m) => muxer.addVideoChunk(c, m), error:e => hata = e}); ve.configure(vk.cfg); const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    for (let f = 0; f < nF; f++){ if (hata) throw hata; kartCiz(cv, f/fps, dur); const vf = new VideoFrame(cv, {timestamp:Math.round(f*1e6/fps), duration:Math.round(1e6/fps)}); ve.encode(vf, {keyFrame:f % (fps*2) === 0}); vf.close();
+      while (ve.encodeQueueSize > 4) await new Promise(r => setTimeout(r, 4)); if (f % 10 === 0){ not.textContent = `Video hazırlanıyor %${Math.round(f/nF*100)}`; await new Promise(r => setTimeout(r, 0)); } }
+    await ve.flush(); ve.close(); muxer.finalize(); const blob = new Blob([muxer.target.buffer], {type:'video/mp4'}); cv.width = 0;
+    const ad = dosyaAdi('mp4'); VIDEO = new File([blob], ad, {type:'video/mp4'}); not.textContent = `Video hazır: ${dur.toFixed(1)} sn · ${(blob.size/1048576).toFixed(1)} MB` + (vk.not ? ' · ' + vk.not : '');
+    $h('#khVidSonuc').hidden = false; const v = $h('#khVidOn'); v.src = URL.createObjectURL(blob); M.sayi = Math.max(M.sayi, (D.sayi || 1) + 1); LSs('kh.marka', M);
+  } catch(e){ console.warn(e); not.textContent = 'Video oluşturulamadı: ' + (e.message || e); }
+  finally { btn.disabled = false; try { wl && wl.release(); } catch(e){} } }
+let VIDEO = null;
+const dosyaAdi = ext => 'kabatas-haber-' + (D.manset || 'kart').toLocaleLowerCase('tr').replace(/[^a-zçğıöşü0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) + '.' + ext;
+async function paylas(file, metin){ try { if (navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], text:metin || undefined}); return true; } } catch(e){ if (e && e.name === 'AbortError') return true; }
+  try { if (typeof saveFile === 'function') return await saveFile(file.name, file); } catch(e){} const a = document.createElement('a'); a.href = URL.createObjectURL(file); a.download = file.name; document.body.append(a); a.click(); a.remove(); return true; }
+async function gorselDosya(){ const c = document.createElement('canvas'); kartCiz(c, Infinity, 8); const b = await new Promise(r => c.toBlob(r, 'image/jpeg', .93)); c.width = 0; return new File([b], dosyaAdi('jpg'), {type:'image/jpeg'}); }
+const paylasimMetni = () => [D.manset, D.aciklama || D.spot, '', D.hashtag, '', M.ad + ' · ' + M.slogan].filter((v, i) => v || i === 2 || i === 4).join('\n').replace(/\n{3,}/g, '\n\n').trim();
+
+/* ---------- Claude ile yaz / kurallarla hazırla ---------- */
+const ISTEM = not => `Sen Kabataş (Ordu) merkezli yerel sosyal medya haber sayfası "${M.ad}"in editörüsün. Slogan: "${M.slogan}".
+Aşağıdaki not${FOTO && smpImg ? ' ve ekteki fotoğraf' : ''} için Instagram/Facebook haber kartı metinlerini hazırla.
+Kurallar:
+- Yalnız verilen bilgiye dayan. İsim, sayı, tarih, yer, alıntı UYDURMA; bilinmeyeni yazma.
+- Dikkat çekici ama yanıltıcı olmayan, tık tuzağı olmayan, saygılı haber dili. Türkçe yazım ve noktalama kurallarına uy.
+- etiket şu listeden biri: ${ETIKET.map(e => e[0]).join(', ')}. "SON DAKİKA" yalnız gerçekten yeni ve acil gelişmede.
+- manset: en fazla 9 kelime, güçlü ve somut. spot: 1-2 cümle, en fazla 28 kelime.
+- metin: seslendirme için 3-6 kısa cümle (20-35 saniye), haber spikeri üslubu; sayıları ve kısaltmaları okunacağı gibi yaz (ör. "yüzde kırk", "doktor").
+- maddeler: 3-4 kısa madde. alternatifler: 3 farklı manşet (biri sade, biri merak uyandıran, biri soru biçiminde).
+- aciklama: paylaşım metni 2-4 cümle. hashtagler: 5-8 adet; #kabataş #ordu #kabataşhaber mutlaka olsun.
+Yalnız şu JSON'u döndür: {"etiket":"","manset":"","spot":"","metin":"","maddeler":[""],"alternatifler":[""],"aciklama":"","hashtagler":[""]}
+
+NOT:
+${not}`;
+function uygula(r){ if (!r || typeof r !== 'object') throw new Error('yanıt anlaşılamadı'); const s = v => typeof v === 'string' ? v.trim() : '';
+  if (s(r.etiket)){ const e = ETIKET.find(x => x[0] === TR(r.etiket)); D.etiket = e ? e[0] : TR(r.etiket).slice(0, 18); }
+  if (s(r.manset)) D.manset = s(r.manset); if (s(r.spot)) D.spot = s(r.spot); if (s(r.metin)) D.metin = s(r.metin);
+  if (Array.isArray(r.maddeler)) D.maddeler = r.maddeler.map(s).filter(Boolean).join('\n'); D.alt = Array.isArray(r.alternatifler) ? r.alternatifler.map(s).filter(Boolean).slice(0, 4) : [];
+  if (s(r.aciklama)) D.aciklama = s(r.aciklama); if (Array.isArray(r.hashtagler)){ const h = r.hashtagler.map(s).filter(Boolean).map(x => x.startsWith('#') ? x.replace(/\s+/g, '') : '#' + x.replace(/\s+/g, ''));
+    ['#kabataş', '#ordu', '#kabataşhaber'].forEach(z => { if (!h.some(q => q.toLocaleLowerCase('tr') === z)) h.push(z); }); D.hashtag = h.slice(0, 10).join(' '); } }
+function kuralla(not){ const cs = cumleler(not); if (!cs.length) throw new Error('Not boş'); const ilk = cs[0].replace(/[.!?…]+$/, ''); const k = ilk.split(/\s+/);
+  D.manset = k.length > 10 ? k.slice(0, 9).join(' ') + '…' : ilk; D.spot = cs.slice(1, 3).join(' ') || ''; D.metin = cs.join(' '); D.maddeler = cs.slice(0, 4).map(c => c.replace(/[.!?…]+$/, '')).join('\n');
+  D.aciklama = cs.slice(0, 3).join(' '); D.alt = []; }
+async function yazdir(){ const not = ($h('#kh_not').value || '').trim(), n = $h('#khYzNot'); D.not = not; if (!not && !FOTO){ n.textContent = 'Önce kısa bir not yaz (ne oldu, nerede, kim, ne zaman).'; return; }
+  const b = $h('#khYaz'); b.disabled = true;
+  try { if (smp){ n.textContent = 'Claude yazıyor…'; const o = {modelTier:'default'};
+      if (FOTO && smpImg){ const c = document.createElement('canvas'), s = Math.min(1, 768/Math.max(FOTO.width, FOTO.height)); c.width = Math.round(FOTO.width*s); c.height = Math.round(FOTO.height*s); c.getContext('2d').drawImage(FOTO, 0, 0, c.width, c.height); o.images = [await new Promise(r => c.toBlob(r, 'image/jpeg', .85))]; c.width = 0; }
+      uygula(await smp.json(ISTEM(not || '(not yok; fotoğrafa göre)'), o)); n.textContent = 'Claude hazırladı. Alternatif manşetlere dokunarak değiştirebilirsin.'; }
+    else { kuralla(not); n.textContent = 'Nottan hazırlandı. Daha iyi metin için "Claude için kopyala" → yanıtı "Yanıtı yapıştır".'; }
+    kaydet(); formDoldur(); ciz(); }
+  catch(e){ try { kuralla(not); formDoldur(); ciz(); n.textContent = 'Claude\'a ulaşılamadı; nottan hazırlandı.'; } catch(x){ n.textContent = 'Olmadı: ' + (e.message || e); } }
+  finally { b.disabled = false; } }
+
+/* ---------- fotoğraf ---------- */
+async function fotoYukle(kaynak){ let bmp = null;
+  if (kaynak === 'duzen'){ if (typeof ED === 'undefined' || !ED.rec || !ED.state){ tst('Önce düzenleyicide bir fotoğraf aç'); return; } const b = busy('Düzenlenen fotoğraf hazırlanıyor…');
+    let pipe; try { pipe = new Pipeline(document.createElement('canvas')); const out = await renderFull(ED.rec.blob, ED.state, null, pipe, (w, h) => { const k = Math.min(1, 2000/Math.max(w, h)); return [Math.round(w*k), Math.round(h*k)]; }); bmp = await createImageBitmap(out); out.width = 0; }
+    catch(e){ try { const c = ED.prevCanvas; if (c) bmp = await createImageBitmap(c); } catch(_){} } finally { try { pipe && pipe.destroy(); } catch(e){} b.close(); } }
+  else if (kaynak instanceof Blob){ try { bmp = await createImageBitmap(kaynak, {imageOrientation:'from-image'}); } catch(e){ try { const u = URL.createObjectURL(kaynak), im = new Image(); im.src = u; await im.decode(); bmp = await createImageBitmap(im); URL.revokeObjectURL(u); } catch(_){ tst('Fotoğraf açılamadı'); return; } } }
+  else if (kaynak === null){ FOTO = null; IDB.del('foto'); ciz(); return; }
+  if (!bmp) return; const s = Math.min(1, 2200/Math.max(bmp.width, bmp.height)), c = document.createElement('canvas'); c.width = Math.round(bmp.width*s); c.height = Math.round(bmp.height*s); c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+  FOTO = c; D.fz = 1; yuzeOdakla(true); const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', .9)); IDB.set('foto', blob); kaydet(); ciz(); }
+function yuzeOdakla(sessiz){ if (!FOTO) return; let y = []; try { y = typeof yuzBul === 'function' ? yuzBul(FOTO) : []; } catch(e){}
+  if (y.length){ const ox = y.reduce((s, f) => s + f.x, 0)/y.length, oy = y.reduce((s, f) => s + f.y, 0)/y.length; D.fx = kis(ox, 0, 1); D.fy = kis(oy - .05, 0, 1); if (!sessiz) tst(y.length + ' yüz bulundu · kadraj yüze göre ayarlandı'); }
+  else { D.fx = .5; D.fy = .42; if (!sessiz) tst('Yüz bulunamadı · ortalandı'); } ciz(); }
+
+/* ---------- kayıt / taslaklar ---------- */
+let kayT = 0; function kaydet(){ clearTimeout(kayT); kayT = setTimeout(() => { LSs('kh.son', D); }, 250); }
+async function taslakSakla(){ const L = LSg('kh.taslak', []); const c = document.createElement('canvas'); const [W, H] = ORAN[D.oran]; kartCiz(c, Infinity, 8);
+  const k = document.createElement('canvas'), s = 180/Math.max(W, H); k.width = Math.round(W*s); k.height = Math.round(H*s); k.getContext('2d').drawImage(c, 0, 0, k.width, k.height); c.width = 0;
+  const kayit = {id:D.id, ad:D.manset || 'Başlıksız', z:Date.now(), k:k.toDataURL('image/jpeg', .7), d:Object.assign({}, D)};
+  const i = L.findIndex(x => x.id === D.id); if (i >= 0) L.splice(i, 1); L.unshift(kayit); while (L.length > 24){ const x = L.pop(); IDB.del('t_' + x.id); } LSs('kh.taslak', L);
+  if (FOTO){ const b = await new Promise(r => FOTO.toBlob(r, 'image/jpeg', .88)); IDB.set('t_' + D.id, b); } else IDB.del('t_' + D.id); tst('Taslak saklandı'); }
+async function taslakAc(id){ const x = LSg('kh.taslak', []).find(q => q.id === id); if (!x) return; D = Object.assign(yeniD(), x.d); const b = await IDB.get('t_' + id); FOTO = null; if (b) await fotoYukle(b); else ciz(); formDoldur(); kaydet(); }
+function taslakListe(){ const L = LSg('kh.taslak', []), k = $h('#khTaslak'); k.hidden = !k.hidden; if (k.hidden) return;
+  k.innerHTML = L.length ? L.map(x => `<button class="kh-ts" data-ts="${x.id}"><img src="${x.k}" alt=""><span>${esc(x.ad)}<small>${new Date(x.z).toLocaleDateString('tr-TR')}</small></span><i data-tsil="${x.id}" title="Sil">✕</i></button>`).join('') : '<p class="kh-n">Henüz taslak yok. "Taslak sakla" ile kartlarını burada biriktirirsin.</p>'; }
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;'}[c]));
+
+/* ---------- arayüz ---------- */
+const $h = s => kok && kok.querySelector(s);
+function ciz(){ const c = $h('#khCv'); if (c && !calis) kartCiz(c, Infinity, 8); }
+function formDoldur(){ if (!kok) return; ['manset', 'spot', 'metin', 'yer', 'kisi', 'maddeler', 'not', 'aciklama', 'hashtag'].forEach(k => { const e = $h('#kh_' + k); if (e && e !== document.activeElement) e.value = D[k] || ''; });
+  kok.querySelectorAll('[data-oran]').forEach(b => b.setAttribute('aria-pressed', b.dataset.oran === D.oran)); kok.querySelectorAll('[data-sb]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sb === D.sablon));
+  kok.querySelectorAll('[data-et]').forEach(b => b.setAttribute('aria-pressed', b.dataset.et === D.etiket));
+  const a = $h('#khAlt'); a.innerHTML = (D.alt || []).map((m, i) => `<button class="kh-c" data-alt="${i}">${esc(m)}</button>`).join(''); a.hidden = !(D.alt || []).length;
+  $h('#kh_alty').checked = !!D.altyazi; $h('#kh_jen').checked = !!D.jenerik; $h('#khZoom').value = D.fz || 1;
+  $h('#khM_ad').value = M.ad; $h('#khM_sl').value = M.slogan; $h('#khM_hs').value = M.hesap; $h('#khSayi').textContent = 'Sayı ' + (D.sayi || M.sayi);
+  const sel = $h('#khSes'); if (sel && HSes){ sel.innerHTML = HSes.SESLER.map(([v, ad]) => `<option value="${v}"${HKS.ses === v ? ' selected' : ''}>${ad}</option>`).join(''); } $h('#khHiz').value = HKS.hiz; $h('#khHizO').textContent = '×' + (+HKS.hiz).toFixed(2);
+  $h('#khClaude').textContent = smp ? '✨ Claude bağlı: not ve fotoğraftan manşet, spot, seslendirme ve paylaşım metni yazar.' : 'Bu sürümde Claude bağlı değil: nottan kurallarla hazırlar. Daha iyi metin için "Claude için kopyala".'; }
+function ac(){ if (ACIK) return; ACIK = true; if (!kok) kur(); kok.hidden = false; document.documentElement.classList.add('kh-acik'); formDoldur();
+  (async () => { if (!FOTO){ const b = await IDB.get('foto'); if (b) await fotoYukle(b); } ciz(); })(); try { history.pushState({kh:1}, ''); } catch(e){} }
+function kapat(){ if (!ACIK) return; ACIK = false; durdur(); kok.hidden = true; document.documentElement.classList.remove('kh-acik'); kaydet(); }
+addEventListener('popstate', () => { if (ACIK) kapat(); });
+function kur(){ kok = document.createElement('section'); kok.id = 'khaber'; kok.className = 'kh'; kok.hidden = true;
+  kok.innerHTML = `<header class="kh-ust"><button class="kh-ik" id="khKapat" aria-label="Kapat">✕</button><div class="kh-bas"><b id="khBaslik">${esc(M.ad)}</b><small>${esc(M.slogan)}</small></div><button class="kh-b" id="khTsBtn">Taslaklar</button></header>
+  <div class="kh-ic"><div class="kh-onz"><canvas id="khCv" aria-label="Haber kartı önizlemesi"></canvas><div class="kh-onz-alt"><button class="kh-b p" id="khOyna">▶ Sesli önizle</button><span class="kh-n" id="khSesNot"></span></div><div class="kh-n kh-ipucu">Fotoğrafı önizlemede sürükleyerek kaydır; iki parmakla büyüt.</div></div>
+  <div class="kh-pan"><div id="khTaslak" class="kh-tsl" hidden></div>
+   <section class="kh-s"><h3>1 · Fotoğraf</h3><div class="kh-r"><button class="kh-b" data-foto="duzen">Düzenlenen fotoğraf</button><label class="kh-b">Galeriden<input type="file" accept="image/*,.heic,.heif" id="khFotoIn" hidden></label><button class="kh-b" data-foto="kamera">Kamera</button><button class="kh-b" data-foto="yok">Fotoğrafsız</button></div>
+    <input type="file" accept="image/*" capture="environment" id="khKamIn" hidden><label class="kh-l">Yakınlaştır <input type="range" id="khZoom" min="1" max="3" step="0.01"></label><div class="kh-r"><button class="kh-b" id="khYuz">Yüze odakla</button></div></section>
+   <section class="kh-s"><h3>2 · Biçim</h3><div class="kh-r">${Object.entries(ORAN).map(([k, v]) => `<button class="kh-c" data-oran="${k}">${k} <small>${v[2]}</small></button>`).join('')}</div>
+    <div class="kh-r">${SABLON.map(([k, v]) => `<button class="kh-c" data-sb="${k}">${v}</button>`).join('')}</div>
+    <div class="kh-r kh-et">${ETIKET.map(([a, c, i]) => `<button class="kh-c" data-et="${a}" style="--ec:${c};--ei:${i}">${a}</button>`).join('')}</div></section>
+   <section class="kh-s"><h3>3 · Haber</h3><p class="kh-n" id="khClaude"></p><textarea id="kh_not" rows="3" placeholder="Kısa not: ne oldu, nerede, kim, ne zaman? Ör. Kabataş Belediyesi, Yeni Mahalle'de parke yol çalışmasını cuma günü bitirdi."></textarea>
+    <div class="kh-r"><button class="kh-b p" id="khYaz">✨ Manşeti yaz</button><button class="kh-b" id="khKopya">Claude için kopyala</button><button class="kh-b" id="khYap">Yanıtı yapıştır</button></div><p class="kh-n" id="khYzNot" aria-live="polite"></p>
+    <div class="kh-r" id="khAlt" hidden></div>
+    <label class="kh-l">Manşet<textarea id="kh_manset" rows="2"></textarea></label><label class="kh-l">Spot / alt başlık<textarea id="kh_spot" rows="2"></textarea></label>
+    <div class="kh-iki"><label class="kh-l">Yer<input id="kh_yer"></label><label class="kh-l">Söz sahibi (alıntı)<input id="kh_kisi"></label></div>
+    <label class="kh-l">Maddeler (madde madde şablonu, her satır bir madde)<textarea id="kh_maddeler" rows="3"></textarea></label></section>
+   <section class="kh-s"><h3>4 · Seslendirme</h3><label class="kh-l">Okunacak metin (boşsa manşet + spot okunur)<textarea id="kh_metin" rows="4"></textarea></label>
+    <div class="kh-iki"><label class="kh-l">Ses<select id="khSes"></select></label><label class="kh-l">Hız <output id="khHizO"></output><input type="range" id="khHiz" min="0.8" max="1.35" step="0.05"></label></div>
+    <label class="kh-ch"><input type="checkbox" id="kh_jen"> Haber jeneriği (kısa açılış sesi)</label><label class="kh-ch"><input type="checkbox" id="kh_alty"> Videoda altyazı (söylenen cümle ekranda)</label></section>
+   <section class="kh-s"><h3>5 · Paylaş</h3><div class="kh-r"><button class="kh-b p" id="khPay">📤 Görseli paylaş</button><button class="kh-b" id="khKay">🖼 Görseli kaydet</button><button class="kh-b p" id="khVid">🎬 Sesli video yap</button></div>
+    <p class="kh-n" id="khVidNot" aria-live="polite"></p><div id="khVidSonuc" hidden><video id="khVidOn" controls playsinline></video><div class="kh-r"><button class="kh-b p" id="khVidPay">📤 Videoyu paylaş</button><button class="kh-b" id="khVidKay">Videoyu kaydet</button></div></div>
+    <label class="kh-l">Paylaşım metni<textarea id="kh_aciklama" rows="3"></textarea></label><label class="kh-l">Hashtag<input id="kh_hashtag"></label>
+    <div class="kh-r"><button class="kh-b" id="khMetKop">📋 Paylaşım metnini kopyala</button><button class="kh-b" id="khTsKay">Taslak sakla</button><button class="kh-b" id="khYeni">Yeni kart</button></div></section>
+   <section class="kh-s"><h3>Gazete künyesi</h3><div class="kh-iki"><label class="kh-l">Gazete adı<input id="khM_ad"></label><label class="kh-l">Hesap<input id="khM_hs"></label></div><label class="kh-l">Slogan<input id="khM_sl"></label><p class="kh-n"><span id="khSayi"></span> · her videoyla bir artar.</p></section>
+  </div></div>`;
+  document.body.appendChild(kok);
+  const on = (id, f, ev) => { const e = $h(id); if (e) e.addEventListener(ev || 'click', f); };
+  on('#khKapat', () => { try { history.back(); } catch(e){ kapat(); } }); on('#khTsBtn', taslakListe);
+  kok.addEventListener('click', e => { const b = e.target.closest('button'); if (!b || !kok.contains(b)) return;
+    if (b.dataset.oran){ D.oran = b.dataset.oran; kaydet(); formDoldur(); ciz(); }
+    else if (b.dataset.sb){ D.sablon = b.dataset.sb; kaydet(); formDoldur(); ciz(); }
+    else if (b.dataset.et){ D.etiket = b.dataset.et; kaydet(); formDoldur(); ciz(); }
+    else if (b.dataset.alt != null){ const m = D.alt[+b.dataset.alt]; if (m){ D.alt[+b.dataset.alt] = D.manset; D.manset = m; kaydet(); formDoldur(); ciz(); } }
+    else if (b.dataset.foto === 'duzen') fotoYukle('duzen'); else if (b.dataset.foto === 'yok') fotoYukle(null); else if (b.dataset.foto === 'kamera') $h('#khKamIn').click();
+    else if (e.target.dataset.tsil){ e.stopPropagation(); const id = e.target.dataset.tsil; LSs('kh.taslak', LSg('kh.taslak', []).filter(x => x.id !== id)); IDB.del('t_' + id); $h('#khTaslak').hidden = true; taslakListe(); }
+    else if (b.dataset.ts){ taslakAc(b.dataset.ts); $h('#khTaslak').hidden = true; } });
+  on('#khFotoIn', e => { const f = e.target.files[0]; if (f) fotoYukle(f); e.target.value = ''; }, 'change'); on('#khKamIn', e => { const f = e.target.files[0]; if (f) fotoYukle(f); e.target.value = ''; }, 'change');
+  on('#khZoom', e => { D.fz = +e.target.value; kaydet(); ciz(); }, 'input'); on('#khYuz', () => yuzeOdakla(false));
+  ['manset', 'spot', 'metin', 'yer', 'kisi', 'maddeler', 'not', 'aciklama', 'hashtag'].forEach(k => on('#kh_' + k, e => { D[k] = e.target.value; kaydet(); ciz(); }, 'input'));
+  on('#kh_alty', e => { D.altyazi = e.target.checked; kaydet(); }, 'change'); on('#kh_jen', e => { D.jenerik = e.target.checked; kaydet(); }, 'change');
+  on('#khSes', e => { HKS.ses = e.target.value; LSs('kh.ses', HKS); try { HSes.kapat(); } catch(x){} }, 'change'); on('#khHiz', e => { HKS.hiz = +e.target.value; LSs('kh.ses', HKS); $h('#khHizO').textContent = '×' + HKS.hiz.toFixed(2); }, 'input');
+  on('#khYaz', yazdir); on('#khOyna', oynat); on('#khVid', videoYap);
+  on('#khKopya', async () => { const t = ISTEM(($h('#kh_not').value || '').trim() || D.manset); try { await navigator.clipboard.writeText(t); tst('Kopyalandı → Claude\'a yapıştır, yanıtı kopyala, "Yanıtı yapıştır"'); } catch(e){ tst('Kopyalanamadı'); } });
+  on('#khYap', async () => { let t = ''; try { t = await navigator.clipboard.readText(); } catch(e){} if (!t){ tst('Pano okunamadı'); return; } try { const j = JSON.parse(t.slice(t.indexOf('{'), t.lastIndexOf('}') + 1)); uygula(j); kaydet(); formDoldur(); ciz(); $h('#khYzNot').textContent = 'Yanıt uygulandı'; } catch(e){ $h('#khYzNot').textContent = 'Yanıtta JSON bulunamadı'; } });
+  on('#khPay', async () => paylas(await gorselDosya(), paylasimMetni())); on('#khKay', async () => { const f = await gorselDosya(); if (typeof saveFile === 'function') saveFile(f.name, f); else paylas(f); });
+  on('#khVidPay', () => VIDEO && paylas(VIDEO, paylasimMetni())); on('#khVidKay', () => { if (VIDEO){ if (typeof saveFile === 'function') saveFile(VIDEO.name, VIDEO); else paylas(VIDEO); } });
+  on('#khMetKop', async () => { try { await navigator.clipboard.writeText(paylasimMetni()); tst('Paylaşım metni kopyalandı'); } catch(e){ tst('Kopyalanamadı'); } });
+  on('#khTsKay', taslakSakla); on('#khYeni', () => { if (!confirm('Yeni kart açılsın mı? (Bu kart taslak olarak saklanır)')) return; taslakSakla(); const o = D.oran, s = D.sablon; D = yeniD(); D.oran = o; D.sablon = s; D.sayi = M.sayi; FOTO = null; IDB.del('foto'); kaydet(); formDoldur(); ciz(); });
+  const mk = () => { M.ad = $h('#khM_ad').value.trim() || 'KABATAŞ HABER'; M.slogan = $h('#khM_sl').value.trim(); M.hesap = $h('#khM_hs').value.trim(); LSs('kh.marka', M); $h('#khBaslik').textContent = M.ad; ciz(); };
+  ['#khM_ad', '#khM_sl', '#khM_hs'].forEach(id => on(id, mk, 'input'));
+  /* önizlemede sürükle / iki parmakla büyüt */
+  const cv = $h('#khCv'), P = new Map(); let bas = null;
+  cv.addEventListener('pointerdown', e => { if (!FOTO) return; cv.setPointerCapture(e.pointerId); P.set(e.pointerId, [e.clientX, e.clientY]); bas = {fx:D.fx, fy:D.fy, fz:D.fz, P:new Map(P)}; });
+  cv.addEventListener('pointermove', e => { if (!P.has(e.pointerId) || !bas) return; P.set(e.pointerId, [e.clientX, e.clientY]); const r = cv.getBoundingClientRect(), ps = [...P.values()], ps0 = [...bas.P.values()];
+    if (ps.length >= 2 && ps0.length >= 2){ const d = Math.hypot(ps[0][0] - ps[1][0], ps[0][1] - ps[1][1]), d0 = Math.hypot(ps0[0][0] - ps0[1][0], ps0[0][1] - ps0[1][1]); D.fz = kis(bas.fz*d/(d0 || 1), 1, 3); }
+    else { const p = ps[0], p0 = ps0[0] || p, sc = 1/(D.fz || 1); D.fx = kis(bas.fx - (p[0] - p0[0])/r.width*sc, 0, 1); D.fy = kis(bas.fy - (p[1] - p0[1])/r.height*sc, 0, 1); } ciz(); });
+  const bit = e => { P.delete(e.pointerId); if (P.size === 0){ bas = null; $h('#khZoom').value = D.fz; kaydet(); } else bas = {fx:D.fx, fy:D.fy, fz:D.fz, P:new Map(P)}; };
+  cv.addEventListener('pointerup', bit); cv.addEventListener('pointercancel', bit);
+  try { document.fonts.ready.then(ciz); ['Oswald', 'Playfair Display', 'Montserrat', 'Lora', 'Bebas Neue'].forEach(f => document.fonts.load(`700 40px "${f}"`).then(ciz).catch(() => {})); } catch(e){}
+}
+window.KabatasHaber = {ac, kapat, ciz:kartCiz, D:() => D};
+
+/* ---------- uygulamaya bağla: ana ekran kartı + düzenleyicide "Haber" sekmesi ---------- */
+try { const a = document.querySelector('#home .actions'); if (a && !document.getElementById('khAcBtn')){ const b = document.createElement('button'); b.type = 'button'; b.className = 'act kh-act'; b.id = 'khAcBtn';
+    b.innerHTML = `<div><strong>📰 ${esc(M.ad)}</strong><br><span>Gazete köşesi: manşet kartı, sesli haber videosu, Instagram · Facebook</span></div>`; b.addEventListener('click', ac); a.appendChild(b); } } catch(e){}
+try { if (typeof TABS !== 'undefined' && !TABS.some(t => t[0] === 'haber')){ TABS.push(['haber', 'Haber', 'i-text']);
+    const st = setTab; setTab = function(id){ if (id === 'haber'){ ac(); setTimeout(() => fotoYukleSessiz(), 50); return; } return st.apply(this, arguments); }; } } catch(e){ console.warn('Haber sekmesi', e); }
+async function fotoYukleSessiz(){ if (typeof ED !== 'undefined' && ED.rec && ED.state) await fotoYukle('duzen'); }
+})();
+
 </script>
 <script>
 /* Kurulu uygulama (PWA): çevrimdışı önbellek, uygulama bildirimi, yeni sürüm uyarısı */
