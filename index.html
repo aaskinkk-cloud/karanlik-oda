@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="6.2" data-ad="Karanlık Oda" data-tarih="10.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="6.3" data-ad="Karanlık Oda" data-tarih="10.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -337,7 +337,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.2 · 10.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.3 · 10.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6885,15 +6885,21 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 /* 6.2 · STÜDYO DÜZENİ: önizleme üstte, araç çubuğu altta, her araç kendi panelinde */
 .kh-panb,.kh-nav{display:none}
 .kh.kh-studyo{bottom:auto;height:100%}
-.kh-studyo .kh-ust{padding-top:calc(env(safe-area-inset-top,0px) + 6px);padding-bottom:6px;gap:8px}
-.kh-studyo .kh-ust .kh-bas b{font-size:15.5px}
+.kh-studyo .kh-ust{padding:calc(env(safe-area-inset-top,0px) + 4px) 8px 4px;gap:6px;min-height:0}
+.kh-studyo .kh-ust .kh-ik{width:34px;height:34px;min-width:34px;min-height:34px;font-size:16px;padding:0}
+.kh-studyo .kh-ust .kh-bas{flex-direction:row;align-items:baseline;gap:8px;overflow:hidden}
+.kh-studyo .kh-ust .kh-bas small{flex:1 1 auto;min-width:0}
+@media (max-width:480px){.kh-studyo .kh-ust .kh-bas small{display:none}}
+.kh-studyo .kh-ust .kh-bas b{font-size:15px;letter-spacing:.03em}
 .kh-studyo .kh-ust .kh-bas small{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kh-studyo .kh-ust .kh-b{padding:7px 12px;min-height:38px}
+.kh-studyo .kh-ust .kh-b{padding:5px 11px;min-height:34px;font-size:13.5px;white-space:nowrap}
 .kh-studyo .kh-ic{flex-direction:column;overflow:hidden}
 .kh-studyo .kh-onz{position:relative;top:auto;flex:0 0 auto;max-height:none!important;overflow:hidden;padding:8px 10px 6px;transition:height .2s ease}
 .kh-studyo[data-arac=""] .kh-onz{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;border-bottom:0}
 .kh.kh-studyo .kh-onz canvas{max-height:var(--cvH,34vh)!important;max-width:100%}
-.kh-studyo .kh-onz-alt{flex-wrap:nowrap;gap:6px;margin-top:6px;overflow-x:auto;scrollbar-width:none;justify-content:center}
+.kh-studyo .kh-onz-alt{flex-wrap:wrap;gap:6px;margin-top:6px;justify-content:center}
+.kh.kh-studyo #khTlAc{display:none!important}
+.kh-studyo .kh-kat>.kh-kb>h3{display:none}
 .kh-studyo .kh-onz-alt::-webkit-scrollbar{display:none}
 .kh-studyo .kh-onz-alt .kh-b{padding:6px 11px;min-height:36px;font-size:13.5px;white-space:nowrap;flex:0 0 auto}
 .kh-studyo .kh-boy{flex:0 0 auto}.kh-studyo .kh-boy .kh-c{padding:6px 9px;min-height:36px;font-size:12.5px}
@@ -7997,6 +8003,70 @@ async function fotoYukleSessiz(){ if (typeof ED !== 'undefined' && ED.rec && ED.
     document.body.appendChild(b);
   }
   try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}
+})();
+</script>
+<style id="ko63">
+/* 6.3 · DÜZENLEYİCİ STÜDYO: panel tutamağı (sürükle: boyut, dokun: aç/kapat), aynı sekmeye dokununca panel kapanır,
+   klavye açılınca önizleme küçülür, yatay telefonda önizleme solda · panel sağda */
+.ed-tut{display:none}
+@media (max-width:899px){
+ #editor .panel{max-height:none;height:var(--panH,40vh);transition:height .18s ease}
+ #editor.ed-surukle .panel{transition:none}
+ .ed-tut{display:flex;align-items:center;justify-content:center;gap:8px;position:sticky;top:0;z-index:7;height:22px;margin-bottom:-6px;background:var(--surface);touch-action:none;cursor:ns-resize;-webkit-tap-highlight-color:transparent}
+ .ed-tut i{width:44px;height:5px;border-radius:3px;background:var(--line);transition:background .15s,width .15s}
+ .ed-tut:active i,#editor.ed-surukle .ed-tut i{background:var(--accent);width:60px}
+ .ed-tut small{position:absolute;right:12px;font-size:11px;color:var(--muted)}
+ body.ed-kapali #editor .panel{height:22px!important;overflow:hidden}
+ body.ed-kapali #editor .panel .panel-in{display:none}
+ body.ed-kapali #editor .tab.on{background:transparent;box-shadow:inset 0 -2px 0 var(--accent)}
+ body.ed-klv #editor{height:var(--edH,100%)}
+ body.ed-klv #editor .panel{height:auto!important}
+ body.ed-klv #editor{grid-template-rows:auto var(--stMini,120px) minmax(0,1fr) 0!important}
+ body.ed-klv #editor .tabs,body.ed-klv #editor .zoomtools,body.ed-klv .ed-tut{display:none!important}
+}
+@media (orientation:landscape) and (max-height:560px){
+ #editor{grid-template-columns:minmax(0,1fr) min(46vw,380px)!important;grid-template-rows:auto minmax(0,1fr) auto!important;grid-template-areas:"top top" "stage panel" "stage tabs"!important}
+ #editor .panel{height:auto!important;max-height:none!important;border-top:0;border-left:1px solid var(--line)}
+ #editor .tabs{border-left:1px solid var(--line);flex-wrap:nowrap!important;overflow-x:auto}
+ #editor .tab{flex:none!important;min-width:58px}
+ .ed-tut{display:none!important}
+}
+</style>
+<script>
+(() => {
+  const ed = document.getElementById('editor'), pan = document.getElementById('panel'), tabs = document.getElementById('tabs');
+  if (!ed || !pan || !tabs) return;
+  const LSg = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch(e){ return d; } }, LSs = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} };
+  const B = document.body, tel = () => matchMedia('(max-width:899px)').matches && !matchMedia('(orientation:landscape) and (max-height:560px)').matches;
+  const yenile = () => { try { layoutView(); requestRender(); } catch(e){} try { window.dispatchEvent(new Event('resize')); } catch(e){} };
+  let oran = Math.min(.72, Math.max(.2, +LSg('ko.panOran', .4) || .4)); let kapali = false; const enH = {};
+  const uygula = () => { ed.style.setProperty('--panH', Math.round(oran*100) + 'vh'); B.classList.toggle('ed-kapali', kapali && tel()); };
+  const tut = document.createElement('div'); tut.className = 'ed-tut'; tut.setAttribute('role', 'separator'); tut.setAttribute('aria-label', 'Panel boyutu: sürükle; dokun: aç / kapat'); tut.title = 'Sürükle: paneli büyüt / küçült · Dokun: aç / kapat'; tut.innerHTML = '<i></i><small></small>';
+  pan.prepend(tut);
+  const ipucu = () => { tut.querySelector('small').textContent = kapali ? '▴ aç' : ''; };
+  let dr = null;
+  tut.addEventListener('pointerdown', e => { if (!tel()) return; dr = {y0:e.clientY, o0:kapali ? 0 : oran, H:innerHeight, oynadi:false}; tut.setPointerCapture(e.pointerId); e.preventDefault(); });
+  tut.addEventListener('pointermove', e => { if (!dr) return; const dy = e.clientY - dr.y0; if (Math.abs(dy) > 6) dr.oynadi = true; if (!dr.oynadi) return;
+    ed.classList.add('ed-surukle'); const yeni = dr.o0 - dy/dr.H; if (yeni < .1){ kapali = true; } else { kapali = false; oran = Math.min(.72, Math.max(.18, yeni)); } uygula(); ipucu(); yenile(); });
+  const bit = () => { if (!dr) return; const d = dr; dr = null; ed.classList.remove('ed-surukle');
+    if (!d.oynadi){ kapali = !kapali; } else if (!kapali) LSs('ko.panOran', oran); uygula(); ipucu(); setTimeout(yenile, 200); };
+  tut.addEventListener('pointerup', bit); tut.addEventListener('pointercancel', bit);
+  tut.addEventListener('dblclick', () => { oran = .4; kapali = false; LSs('ko.panOran', oran); uygula(); ipucu(); setTimeout(yenile, 200); });
+  /* aynı sekmeye tekrar dokununca panel kapanır / açılır; başka sekme paneli açar */
+  tabs.addEventListener('click', e => { if (!tel()) return; const b = e.target.closest('.tab'); if (!b) return;
+    if (b.classList.contains('on') && b.dataset.t !== 'haber'){ e.stopImmediatePropagation(); e.preventDefault(); kapali = !kapali; uygula(); ipucu(); setTimeout(yenile, 200); return; }
+    if (kapali){ kapali = false; uygula(); ipucu(); setTimeout(yenile, 200); } }, true);
+  /* klavye: yazı alanına dokununca önizleme küçülür, sekmeler gizlenir, yazılan alan görünür kalır */
+  const yazi = el => !!(el && pan.contains(el) && (el.isContentEditable || el.matches('input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=file]):not([type=color]):not([type=button]),textarea')));
+  const klavye = () => { const vv = window.visualViewport, H = Math.round(vv ? vv.height : innerHeight), yon = innerWidth > innerHeight ? 'y' : 'd'; enH[yon] = Math.max(enH[yon] || 0, innerHeight, H);
+    const on = tel() && !ed.hidden && yazi(document.activeElement) && H < enH[yon]*.82, onceki = B.classList.contains('ed-klv');
+    B.classList.toggle('ed-klv', on); if (on){ ed.style.setProperty('--edH', H + 'px'); ed.style.setProperty('--stMini', Math.round(Math.max(90, Math.min(170, H*.26))) + 'px'); }
+    if (on !== onceki) setTimeout(yenile, 60);
+    if (on){ const a = document.activeElement; setTimeout(() => { const pr = pan.getBoundingClientRect(), rr = a.getBoundingClientRect(); if (rr.top < pr.top + 6 || rr.bottom > pr.bottom - 6) pan.scrollBy({top: rr.top - pr.top - 20, behavior:'smooth'}); }, 120); } };
+  pan.addEventListener('focusin', () => setTimeout(klavye, 250)); pan.addEventListener('focusout', () => setTimeout(klavye, 250));
+  if (window.visualViewport) visualViewport.addEventListener('resize', klavye);
+  addEventListener('resize', () => { uygula(); setTimeout(klavye, 80); });
+  uygula(); ipucu();
 })();
 </script>
 </body>
