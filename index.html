@@ -6859,6 +6859,7 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh.tl-kapali .kh-onz .kh-tl{display:none}
 @media (max-width:700px){.tl-l,.tl-s{height:24px}.tl-b{top:2px;height:20px;line-height:18px}.tl-cet,.tl-cb{height:18px}}
 /* 5.9: önizleme boyu (Büyük · Küçük · Gizle) ve küçük video — ayarlar hep görünür */
+.kh-yeniB{margin-right:6px;white-space:nowrap}
 .kh-boy{display:inline-flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden}
 .kh-boy .kh-c{border:0;border-radius:0;padding:6px 11px;min-height:32px;font-size:13px}
 .kh-boy .kh-c+.kh-c{border-left:1px solid var(--line)}
@@ -7236,6 +7237,16 @@ function yuzeOdakla(sessiz){ if (!FOTO) return; let y = []; try { y = typeof yuz
 
 /* ---------- kayıt / taslaklar ---------- */
 let kayT = 0; function kaydet(){ clearTimeout(kayT); kayT = setTimeout(() => { LSs('kh.son', D); }, 250); try { tlYenileSoon(); } catch(e){} }
+/* 5.9: yeni haber — şu anki iş taslağa kaydedilir (örnek bülten ve boş kart kaydedilmez); biçim, bant, müzik tercihleri korunur; fotoğraf, sahneler, yazılar sıfırlanır */
+async function yeniHaber(){ const dolu = !D.ornek && !!(String(D.manset || '').trim() || FOTO || (D.sahneler || []).length);
+  if (!confirm(dolu ? 'Yeni haber başlatılsın mı?\nŞu anki çalışma "Taslaklar"a kaydedilir.' : 'Yeni haber başlatılsın mı?')) return;
+  durdur(); if (dolu){ try { await taslakSakla(); } catch(e){} }
+  const KORU = ['oran', 'sablon', 'altBant', 'bantStil', 'muzik', 'muzikSes', 'sfx', 'acilis', 'kapanis', 'spiker', 'acilisMetin', 'kapanisMetin', 'gecis', 'altyazi', 'jenerik'];
+  const eski = {}; KORU.forEach(k => { if (D[k] !== undefined) eski[k] = D[k]; }); if (eski.muzik === 'dosya') eski.muzik = 'gergin';
+  D = Object.assign(yeniD(), eski); ekDoldur(); ek2Doldur(); D.sahneler = []; D.ekFoto = []; D.yazilar = []; D.ornek = false; D.sayi = M.sayi;
+  FOTO = null; FOTO_YUZ = null; try { IDB.del('foto'); } catch(e){} { const v = $h('#khVidSonuc'); if (v){ v.hidden = true; const o = $h('#khVidOn'); try { o.pause(); o.removeAttribute('src'); o.load(); } catch(e){} } }
+  { const n = $h('#khVidNot'); if (n) n.textContent = ''; } TL.sel = null; kaydet(); formDoldur(); try { sahneCiz(); } catch(e){} ciz(); try { await tlYenile(); TL.t = 0; } catch(e){} ciz();
+  const ic = kok.querySelector('.kh-ic'); if (ic) ic.scrollTo({top:0, behavior:'smooth'}); tst(dolu ? 'Yeni haber açıldı · önceki iş Taslaklar\'da' : 'Yeni haber açıldı · önce fotoğrafı seç'); }
 async function taslakSakla(){ const L = LSg('kh.taslak', []); const c = document.createElement('canvas'); const [W, H] = ORAN[D.oran]; kartCiz(c, Infinity, 8);
   const k = document.createElement('canvas'), s = 180/Math.max(W, H); k.width = Math.round(W*s); k.height = Math.round(H*s); k.getContext('2d').drawImage(c, 0, 0, k.width, k.height); c.width = 0;
   const kayit = {id:D.id, ad:D.manset || 'Başlıksız', z:Date.now(), k:k.toDataURL('image/jpeg', .7), d:Object.assign({}, D)};
@@ -7267,7 +7278,7 @@ function ac(){ if (ACIK) return; ACIK = true; if (!kok) kur(); kok.hidden = fals
 function kapat(){ if (!ACIK) return; ACIK = false; durdur(); kok.hidden = true; document.documentElement.classList.remove('kh-acik'); kaydet(); }
 addEventListener('popstate', () => { if (ACIK) kapat(); });
 function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k, v]) => [k, [v.ad, v.l, v.b, v.s]])); kok = document.createElement('section'); kok.id = 'khaber'; kok.className = 'kh'; kok.hidden = true;
-  kok.innerHTML = `<header class="kh-ust"><button class="kh-ik" id="khKapat" aria-label="Kapat">✕</button><div class="kh-bas"><b id="khBaslik">${esc(M.ad)}</b><small>${esc(M.slogan)}</small></div><button class="kh-b" id="khTsBtn">Taslaklar</button></header>
+  kok.innerHTML = `<header class="kh-ust"><button class="kh-ik" id="khKapat" aria-label="Kapat">✕</button><div class="kh-bas"><b id="khBaslik">${esc(M.ad)}</b><small>${esc(M.slogan)}</small></div><button class="kh-b p kh-yeniB" id="khYeniH" title="Yeni haber başlat (şu anki taslaklara kaydedilir)">＋ Yeni</button><button class="kh-b" id="khTsBtn">Taslaklar</button></header>
   <div class="kh-ic"><div class="kh-onz"><canvas id="khCv" aria-label="Haber kartı önizlemesi"></canvas><div class="kh-onz-alt"><button class="kh-b p" id="khOyna">▶ Sesli önizle</button><button class="kh-b" id="khTlAc" aria-pressed="true">▾ Katmanlar</button><span class="kh-boy" role="group" aria-label="Önizleme boyu"><button class="kh-c" data-onz="buyuk" title="Büyük önizleme">Büyük</button><button class="kh-c" data-onz="kucuk" title="Küçük önizleme">Küçük</button><button class="kh-c" data-onz="gizli" title="Önizlemeyi gizle, ayarlara yer aç">Gizle</button></span><span class="kh-n" id="khSesNot"></span></div><div class="kh-n kh-ipucu">Fotoğrafı önizlemede sürükleyerek kaydır; iki parmakla büyüt.</div><div id="khTl" class="kh-tl"></div></div>
   <div class="kh-pan"><div id="khTaslak" class="kh-tsl" hidden></div>
    <section class="kh-s kh-kat"><div class="kh-kb"><h3>Katmanlar · seçili öğe</h3><span class="kh-n" id="khTlSure"></span></div>
@@ -7362,7 +7373,7 @@ function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k,
   on('#khPay', async () => paylas(await gorselDosya(), paylasimMetni())); on('#khKay', async () => { const f = await gorselDosya(); if (typeof saveFile === 'function') saveFile(f.name, f); else paylas(f); });
   on('#khVidPay', () => VIDEO && paylas(VIDEO, paylasimMetni())); on('#khVidKay', () => { if (VIDEO){ if (typeof saveFile === 'function') saveFile(VIDEO.name, VIDEO); else paylas(VIDEO); } });
   on('#khMetKop', async () => { try { await navigator.clipboard.writeText(paylasimMetni()); tst('Paylaşım metni kopyalandı'); } catch(e){ tst('Kopyalanamadı'); } });
-  on('#khTsKay', taslakSakla); on('#khYeni', () => { if (!confirm('Yeni kart açılsın mı? (Bu kart taslak olarak saklanır)')) return; taslakSakla(); const o = D.oran, s = D.sablon; D = yeniD(); ekDoldur(); ek2Doldur(); D.oran = o; D.sablon = s; D.sayi = M.sayi; FOTO = null; IDB.del('foto'); kaydet(); formDoldur(); ciz(); });
+  on('#khTsKay', taslakSakla); on('#khYeni', yeniHaber); on('#khYeniH', yeniHaber);
   const mk = () => { M.ad = $h('#khM_ad').value.trim() || 'KABATAŞ HABER'; M.slogan = $h('#khM_sl').value.trim(); M.hesap = $h('#khM_hs').value.trim(); LSs('kh.marka', M); $h('#khBaslik').textContent = M.ad; ciz(); };
   ['#khM_ad', '#khM_sl', '#khM_hs'].forEach(id => on(id, mk, 'input'));
   /* önizlemede sürükle / iki parmakla büyüt */
