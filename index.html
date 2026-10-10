@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="6.3" data-ad="Karanlık Oda" data-tarih="10.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="6.4" data-ad="Karanlık Oda" data-tarih="10.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -337,7 +337,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.3 · 10.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.4 · 10.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -7436,8 +7436,9 @@ function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k,
       if (yatay || !akt) onzH = kul; else if (klv) onzH = Math.round(Math.max(70, Math.min(130, kul*.24))); else onzH = Math.round(kul*(akt === 'kat' ? .6 : kok.classList.contains('onz-kucuk') ? .32 : .47));
       if (kok.classList.contains('onz-gizli') && akt && !yatay) onzH = altH + tlH + 16;
       onz.style.height = (yatay || !akt) ? '' : onzH + 'px';
-      kok.style.setProperty('--cvH', Math.max(56, onzH - altH - tlH - 16) + 'px'); };
-    const ac = (k, zorla) => { if (!zorla && k === akt) k = ''; akt = k; kok.dataset.arac = k; BOL.forEach(x => x.classList.toggle('aktif', x.dataset.arac === k));
+      kok.style.setProperty('--cvH', Math.max(56, onzH - altH - tlH - 16) + 'px');
+      const fa = document.activeElement; if (klv && fa && pan.contains(fa)) setTimeout(() => { const pr = pan.getBoundingClientRect(), rr = fa.getBoundingClientRect(), ph = pb.offsetHeight; if (rr.top < pr.top + ph + 6 || rr.bottom > pr.bottom - 8) pan.scrollBy({top: rr.top - pr.top - ph - 14}); }, 40); };
+    const ac = (k, zorla) => { if (!zorla && k === akt) k = ''; if (!k && kok.classList.contains('onz-gizli')){ const bb = kok.querySelector('[data-onz="buyuk"]'); if (bb) bb.click(); } akt = k; kok.dataset.arac = k; BOL.forEach(x => x.classList.toggle('aktif', x.dataset.arac === k));
       nav.querySelectorAll('[data-nav]').forEach(b => { const o = b.dataset.nav === k; b.classList.toggle('on', o); b.setAttribute('aria-pressed', o); });
       const A = ARAC.find(a => a[0] === k); $h('#khPanAd').textContent = A ? A[2] : ''; $h('#khTlAc').setAttribute('aria-pressed', k === 'kat');
       if (k && k !== 'taslak') LSs('kh.arac', k); pan.scrollTop = 0; yerlesim(); requestAnimationFrame(() => requestAnimationFrame(yerlesim)); if (k === 'kat' && typeof tlCiz === 'function') try { tlCiz(); } catch(e){}
@@ -7448,11 +7449,55 @@ function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k,
     $h('#khPanKapa').addEventListener('click', () => ac(''));
     $h('#khTlAc').addEventListener('click', e => { if (!aktif()) return; e.stopImmediatePropagation(); ac('kat'); }, true);
     $h('#khTsBtn').addEventListener('click', () => { if (!aktif()) return; const t = $h('#khTaslak'); if (t && !t.hidden) ac('taslak', true); else if (akt === 'taslak') ac(LSg('kh.arac', 'haber'), true); });
-    kok.querySelectorAll('[data-onz]').forEach(b => b.addEventListener('click', () => setTimeout(yerlesim, 0)));
+    kok.querySelectorAll('[data-onz]').forEach(b => b.addEventListener('click', () => { if (aktif() && !akt) ac(LSg('kh.arac', 'haber'), true); setTimeout(yerlesim, 0); }));
     pan.addEventListener('focusin', e => { if (!aktif() || !yaz(e.target)) return; const el = e.target; setTimeout(() => { yerlesim(); setTimeout(() => { const pr = pan.getBoundingClientRect(), r = el.getBoundingClientRect(), pbH = pb.offsetHeight; if (r.top < pr.top + pbH + 6 || r.bottom > pr.bottom - 6) pan.scrollBy({top: r.top - pr.top - pbH - 14, behavior:'smooth'}); }, 60); }, 200); });
     pan.addEventListener('focusout', () => setTimeout(yerlesim, 200));
     if (window.visualViewport){ visualViewport.addEventListener('resize', yerlesim); visualViewport.addEventListener('scroll', yerlesim); }
     addEventListener('resize', yerlesim); (mq.addEventListener ? mq.addEventListener('change', uygula) : mq.addListener(uygula)); uygula(); setTimeout(yerlesim, 350); if (document.fonts) document.fonts.ready.then(yerlesim);
+    /* 6.4: önizlemede yazıya dokun → ilgili düzenleme alanı açılır; ek (zamanlı) yazıyı parmakla sürükleyip yerini değiştir */
+    (() => { const cv = $h('#khCv'); if (!cv) return; const x = cv.getContext('2d'); let ISK = [];
+      const kayit = (t, X, Y) => { try { const s = String(t); if (!s.trim() || x.globalAlpha < .05) return; const m = x.getTransform(), fm = /(\d+(?:\.\d+)?)px/.exec(x.font), fs = fm ? +fm[1] : 20, w = x.measureText(s).width, al = x.textAlign, bl = x.textBaseline;
+          const x0 = al === 'center' ? X - w/2 : (al === 'right' || al === 'end') ? X - w : X, y0 = bl === 'middle' ? Y - fs*.55 : (bl === 'top' || bl === 'hanging') ? Y : Y - fs*.85, y1 = y0 + fs*1.1;
+          const P = [[x0, y0], [x0 + w, y0], [x0, y1], [x0 + w, y1]].map(([a, b]) => [m.a*a + m.c*b + m.e, m.b*a + m.d*b + m.f]);
+          ISK.push({t:s, x0:Math.min(...P.map(q => q[0])), x1:Math.max(...P.map(q => q[0])), y0:Math.min(...P.map(q => q[1])), y1:Math.max(...P.map(q => q[1])), ey:EY_AKTIF}); if (ISK.length > 500) ISK = ISK.slice(-250); } catch(e){} };
+      const fT = x.fillText.bind(x), sT = x.strokeText.bind(x), cR = x.clearRect.bind(x);
+      x.fillText = (t, X, Y, mw) => { kayit(t, X, Y); return mw === undefined ? fT(t, X, Y) : fT(t, X, Y, mw); };
+      x.strokeText = (t, X, Y, mw) => { kayit(t, X, Y); return mw === undefined ? sT(t, X, Y) : sT(t, X, Y, mw); };
+      x.clearRect = (a, b, c, d) => { if (a <= 0 && b <= 0 && c >= cv.width && d >= cv.height) ISK = []; return cR(a, b, c, d); };
+      const N = v => String(v || '').toLocaleUpperCase('tr').replace(/\s+/g, ' ').trim();
+      const alanGit = el => { if (!el) return; if (aktif()){ const b = el.closest('section[data-arac]'); if (b) ac(b.dataset.arac, true); }
+        requestAnimationFrame(() => { const kutu = el.matches('[data-si],section,.kh-et') ? el : (el.closest('label,.kh-r') || el);
+          if (aktif()){ const pr = pan.getBoundingClientRect(), kr = kutu.getBoundingClientRect(); pan.scrollTo({top: Math.max(0, pan.scrollTop + kr.top - pr.top - pb.offsetHeight - 12), behavior:'smooth'}); } else kutu.scrollIntoView({block:'center', behavior:'smooth'});
+          kutu.classList.remove('kh-vurgu'); void kutu.offsetWidth; kutu.classList.add('kh-vurgu'); setTimeout(() => kutu.classList.remove('kh-vurgu'), 1600);
+          const f = el.matches('input:not([type=file]):not([type=range]):not([type=checkbox]),textarea') ? el : el.querySelector && el.querySelector('textarea,input:not([type=file]):not([type=range]):not([type=checkbox])');
+          if (f) setTimeout(() => { try { f.focus({preventScroll:true}); } catch(e){} }, 380); }); };
+      const hedef = k => { const t = N(k.t); if (!t) return null; const has = v => { const n = N(v); return !!n && (n.includes(t) || (t.length > 3 && t.includes(n))); };
+        if (t.length > 50 && /•/.test(k.t)) return '#kh_bantMetin';
+        if (has(D.manset) || /^(MANŞET BURAYA|BÜYÜK MANŞET|FLAŞ HABER|BAŞLIK|SÖZ BURAYA)$/.test(t)) return '#kh_manset';
+        if (has(D.spot)) return '#kh_spot';
+        const si = (D.sahneler || []).findIndex(z => has(z.manset) || has(z.spot)); if (si >= 0) return `#khSahneler [data-si="${si}"]`;
+        if (has(D.acilisMetin)) return '#kh_acilisMetin'; if (has(D.kapanisMetin)) return '#kh_kapanisMetin';
+        if (has(D.metin)) return '#kh_metin'; if (has(D.kisi)) return '#kh_kisi'; if (has(D.yer)) return '#kh_yer';
+        if (has(D.bantMetin) || /•/.test(k.t)) return '#kh_bantMetin';
+        if (has(M.ad)) return '#khM_ad'; if (has(M.slogan)) return '#khM_sl'; if (has(M.hesap)) return '#khM_hs';
+        if (ETIKET.some(e => t.startsWith(N(e[0])))) return '.kh-et';
+        if (/^\d{1,2}:\d{2}$/.test(t)) return '#kh_altBant';
+        return null; };
+      const yeri = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left)*cv.width/r.width, (e.clientY - r.top)*cv.height/r.height]; };
+      const bul = ([px, py]) => { const pd = cv.width*.012; for (let i = ISK.length - 1; i >= 0; i--){ const k = ISK[i]; if (px >= k.x0 - pd && px <= k.x1 + pd && py >= k.y0 - pd && py <= k.y1 + pd) return k; } return null; };
+      const parmak = new Set(); let dok = null, sonDok = null;
+      cv.addEventListener('pointerdown', e => { parmak.add(e.pointerId); if (parmak.size > 1){ dok = null; return; } if (e.button > 0) return;
+        const k = bul(yeri(e)); dok = {k, x0:e.clientX, y0:e.clientY, oynadi:false, id:e.pointerId};
+        if (k && k.ey){ const Y = (D.yazilar || []).find(y => y.id === k.ey); if (Y){ dok.Y = Y; dok.ox = Y.ox || 0; dok.oy = Y.oy || 0; try { cv.setPointerCapture(e.pointerId); } catch(_){} e.stopImmediatePropagation(); e.preventDefault(); } } }, true);
+      cv.addEventListener('pointermove', e => { if (!dok || dok.id !== e.pointerId) return; if (Math.hypot(e.clientX - dok.x0, e.clientY - dok.y0) > 7) dok.oynadi = true;
+        if (dok.Y){ e.stopImmediatePropagation(); if (!dok.oynadi) return; const r = cv.getBoundingClientRect(); dok.Y.ox = kis(dok.ox + (e.clientX - dok.x0)/r.width, -.8, .8); dok.Y.oy = kis(dok.oy + (e.clientY - dok.y0)/r.height, -.9, .9); if (TL.P) tlGit(TL.t); else ciz(); } }, true);
+      const bit = e => { parmak.delete(e.pointerId); if (!dok || dok.id !== e.pointerId) return; const d = dok; dok = null;
+        if (d.Y){ e.stopImmediatePropagation(); if (d.oynadi){ kaydet(); tst('Yazının yeri değişti · çift dokun: yerine döndür'); return; } const simdi = Date.now(); if (sonDok && sonDok.id === d.Y.id && simdi - sonDok.t < 380){ sonDok = null; d.Y.ox = 0; d.Y.oy = 0; kaydet(); if (TL.P) tlGit(TL.t); else ciz(); tst('Yazı yerine döndü'); return; }
+          sonDok = {id:d.Y.id, t:simdi}; TL.sel = 'ey:' + d.Y.id; try { aracCiz(); } catch(_){} katmanGit('ey:' + d.Y.id); return; }
+        if (!d.oynadi && d.k){ const q = hedef(d.k); if (q) alanGit($h(q)); } };
+      cv.addEventListener('pointerup', bit, true); cv.addEventListener('pointercancel', e => { parmak.delete(e.pointerId); dok = null; }, true);
+      cv.title = 'Yazıya dokun: düzenle · ek yazıyı sürükle: yerini değiştir';
+    })();
     return {aktif, ac, yerlesim, akt:() => akt, bolum: el => { const x = el && el.closest('section[data-arac]'); return x ? x.dataset.arac : ''; }}; })();
   on('#khVidGiz', () => { const s = $h('#khVidSonuc'), g = s.classList.toggle('gizli'); $h('#khVidGiz').textContent = g ? '▾ Videoyu göster' : '▴ Videoyu gizle'; if (g){ try { $h('#khVidOn').pause(); } catch(e){} } });
   on('#khVidBoy', () => { const v = kok.querySelector('.kh-vid'), b = v.classList.toggle('buyuk'); $h('#khVidBoy').textContent = b ? '⤡ Küçült' : '⤢ Büyüt'; });
@@ -7765,7 +7810,7 @@ function yaziMutlak(Y, P){ if (Y.sid && P){ const p = P.parca.find(q => sid(q) =
 function yaziBagla(Y, P){ if (!P) return; const m = (Y.a + Y.b)/2, p = P.parca.find(q => m >= q.a && m < q.b) || P.parca[P.parca.length - 1]; if (!p) return; Y.sid = sid(p); Y.ra = Math.round((Y.a - p.a)*10)/10; Y.rb = Math.round((Y.b - p.a)*10)/10; }
 function ekYaziCiz(x, W, H, t, P){ if (D.ekGizli || !(D.yazilar || []).length || t === Infinity) return; const g = guvenli(W, H), ac = markaRenk();
   for (const Y of D.yazilar){ const [ya, yb] = yaziMutlak(Y, P); if (!Y.t || t < ya || t >= yb) continue; const k = ease(Math.min(1, (t - ya)/.35, (yb - t)/.35)); if (k <= 0) continue;
-    const yy = Y.konum === 'ust' ? g.u + W*.17 : Y.konum === 'orta' ? H*.42 : H - g.a - W*.36; x.save(); x.globalAlpha = Math.min(1, k*1.4); x.textBaseline = 'alphabetic';
+    const yy = Y.konum === 'ust' ? g.u + W*.17 : Y.konum === 'orta' ? H*.42 : H - g.a - W*.36; x.save(); EY_AKTIF = Y.id; x.translate((Y.ox || 0)*W, (Y.oy || 0)*H); x.globalAlpha = Math.min(1, k*1.4); x.textBaseline = 'alphabetic';
     if (Y.stil === 'canli'){ const fs = W*.034; x.font = `700 ${fs}px Oswald`; const tx = TR(Y.t), w = x.measureText(tx).width + fs*2.2, X = W - g.m - w, YY = g.u + W*.1; x.fillStyle = '#d7191f'; rr(x, X, YY, w, fs*1.7, fs*.3); x.fill();
       x.fillStyle = '#fff'; x.globalAlpha = .55 + .45*Math.abs(Math.sin(t*3)); x.beginPath(); x.arc(X + fs*.8, YY + fs*.85, fs*.28, 0, 7); x.fill(); x.globalAlpha = 1; x.textAlign = 'left'; x.fillText(tx, X + fs*1.4, YY + fs*1.22); }
     else if (Y.stil === 'buyuk'){ const s = sigdir(x, TR(Y.t), q => `400 ${q}px "Bebas Neue"`, W*.86, H*.22, .95, W*.16, W*.06, 3), sc = .7 + .3*k; x.translate(W/2, yy); x.scale(sc, sc); x.textAlign = 'center'; x.lineJoin = 'round';
@@ -7776,7 +7821,8 @@ function ekYaziCiz(x, W, H, t, P){ if (D.ekGizli || !(D.yazilar || []).length ||
     else { const fs = W*.038, et = Y.stil === 'etiket'; x.font = `${et ? 700 : 600} ${fs}px ${et ? 'Oswald' : 'Montserrat'}`; const L = satirla(x, et ? TR(Y.t) : Y.t, W*.78).slice(0, 4), w = Math.max(...L.map(l => x.measureText(l).width)) + fs*1.4, h = L.length*fs*1.3 + fs*.8, dx = -(1 - k)*W*.4;
       x.fillStyle = et ? ac : 'rgba(255,255,255,.96)'; x.fillRect(g.m + dx, yy, w, h); if (!et){ x.fillStyle = ac; x.fillRect(g.m + dx, yy, fs*.22, h); } x.fillStyle = et ? '#fff' : '#111'; x.textAlign = 'left';
       L.forEach((l, i) => x.fillText(l, g.m + fs*.7 + dx, yy + fs*1.15 + i*fs*1.3)); }
-    x.restore(); } }
+    x.restore(); EY_AKTIF = null; } }
+let EY_AKTIF = null;
 function ornekRozet(x, W, H){ if (!D.ornek) return; const fs = W*.024, tx = 'ÖRNEK İÇERİK'; x.save(); x.font = `700 ${fs}px Montserrat`; const w = x.measureText(tx).width + fs*1.4; x.fillStyle = 'rgba(0,0,0,.55)'; rr(x, W/2 - w/2, H*.012 + (H/W > 1.6 ? H*.06 : 0), w, fs*1.7, fs*.4); x.fill();
   x.strokeStyle = '#ffd400'; x.lineWidth = 2; x.stroke(); x.fillStyle = '#ffd400'; x.textAlign = 'center'; x.fillText(tx, W/2, H*.012 + (H/W > 1.6 ? H*.06 : 0) + fs*1.2); x.restore(); }
 let ZAMANDA = false;
@@ -7877,19 +7923,19 @@ function katmanGit(key){ const m = /^(\w+):(\d+)(?::(-?\d+))?/.exec(key) || [], 
     else if (m[1] === 'foto') h = ref === 'ana' ? $h('#khFotoIn') : kart;
     else if (m[1] === 'ses') h = ref === 'ana' ? $h('#kh_metin') : kart;
     else h = ref === 'ana' ? $h('#kh_manset') : kart; }
-  if (st && h){ const b = STUDYO.bolum(h); if (b) STUDYO.ac(b, true); }
+  if (st && h){ const b = STUDYO.bolum(h); if (b) STUDYO.ac(b, true); if (/^ey:/.test(key)) h = $h('#khTlArac [data-ty="t"]') || h; }
   if (h && !gor(h)) h = h.closest('label,section,.kh-r') || h;
   if (!gor(h)) h = $h('#khTlArac');
   const kutu = /^ey:/.test(key) ? ($h('#khTlArac') || h) : (h.matches('[data-si],section') ? h : m[1] === 'foto' && ref === 'ana' ? h.closest('section') : (h.closest('label,.kh-r') || h.closest('section') || h));
   if (st){ const pan = $h('.kh-pan'), pbH = ($h('.kh-panb') || {}).offsetHeight || 0; requestAnimationFrame(() => { const pr = pan.getBoundingClientRect(), kr = kutu.getBoundingClientRect(), bos = pr.height - pbH;
-      pan.scrollTo({top: Math.max(0, pan.scrollTop + kr.top - pr.top - pbH - Math.max(8, (bos - Math.min(kr.height, bos))/2)), behavior:'smooth'}); }); }
+      void bos; pan.scrollTo({top: Math.max(0, pan.scrollTop + kr.top - pr.top - pbH - 12), behavior:'smooth'}); }); }
   else { const ic = $h('.kh-ic'), onz = $h('.kh-onz'), kr = kutu.getBoundingClientRect();
     if (ic && onz){ const or = onz.getBoundingClientRect(), ust = (or.left < kr.right && or.right > kr.left) ? or.bottom : ic.getBoundingClientRect().top, alan = innerHeight - ust;
       const y = kr.top - ic.getBoundingClientRect().top + ic.scrollTop - (ust - ic.getBoundingClientRect().top) - Math.max(10, (alan - Math.min(kr.height, alan))/2);
       ic.scrollTo({top:Math.max(0, y), behavior:'smooth'}); } else kutu.scrollIntoView({block:'center', behavior:'smooth'}); }
   kutu.classList.remove('kh-vurgu'); void kutu.offsetWidth; kutu.classList.add('kh-vurgu'); setTimeout(() => kutu.classList.remove('kh-vurgu'), 1600);
   f = h.matches('input:not([type=file]):not([type=range]),textarea,select') ? h : h.querySelector('textarea,input:not([type=file]):not([type=range])');
-  if (f) setTimeout(() => { try{ f.focus({preventScroll:true}); }catch(e){} }, 420); }
+  if (f) setTimeout(() => { const g = /^ey:/.test(key) ? ($h('#khTlArac [data-ty="t"]') || f) : f; try{ g.focus({preventScroll:true}); }catch(e){} }, 420); }
 function tlBagla(){ const k = $h('#khTl'); if (!k || k._b) return; k._b = 1; let dr = null;
   const zaman = e => { const ic = k.querySelector('.tl-ic'), r = ic.getBoundingClientRect(); return (e.clientX - r.left)/TL.pps; };
   k.addEventListener('pointerdown', e => { if (e.button > 0) return; const lb = e.target.closest('.tl-l');
