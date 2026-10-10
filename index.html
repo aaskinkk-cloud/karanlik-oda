@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="5.5" data-ad="Karanlık Oda" data-tarih="10.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="5.6" data-ad="Karanlık Oda" data-tarih="10.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -337,7 +337,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 5.5 · 10.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 5.6 · 10.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -4179,20 +4179,23 @@ function yaziYerlestir(ctx,T,W,H){ const fs=Math.max(4,T.sz*Math.min(W,H)); cons
       const gx=SK?1.6:.4; ucgen(ctx,c,s00,s10,s11,d00,d10,d11,gx); ucgen(ctx,c,s00,s11,s01,d00,d11,d01,gx); } }
   ctx.restore(); c.width=0; }
 /* tüm yazılar: her biri kendi katmanında; "nesnenin arkasında" olanlardan özne çıkarılır; yüzeye uyum karışımı */
-function yazilariCiz(ctx,W,H,texts,maskeO,mw,mh){ if(!texts||!texts.length) return;
+function yazilariCiz(ctx,W,H,texts,maskeO,mw,mh,zemin){ if(!texts||!texts.length) return;
   let mc=null; if(maskeO&&texts.some(t=>t.behind)){ mc=document.createElement("canvas"); mc.width=mw; mc.height=mh; const x=mc.getContext("2d"), im=x.createImageData(mw,mh); for(let i=0;i<mw*mh;i++){ im.data[i*4+3]=Math.round(maskeO[i]*255); } x.putImageData(im,0,0); }
   for(const T of texts){ if(!T.t||T.gizli) continue; const L=document.createElement("canvas"); L.width=W; L.height=H; const x=L.getContext("2d"); yaziYerlestir(x,T,W,H);
     if(T.behind&&mc){ x.globalCompositeOperation="destination-out"; x.imageSmoothingQuality="high"; x.drawImage(mc,0,0,W,H); x.globalCompositeOperation="source-over"; }
-    const u=((T.mk&&T.mk.uyum)||0)/100; if(u){ let ok=false; try{ ok=yuzeyKaynastir(ctx,L,W,H,T.mk); }catch(e){ console.warn("yüzeye kaynaştırma",e); }
+    const u=((T.mk&&T.mk.uyum)||0)/100; if(u){ let ok=false; try{ ok=yuzeyKaynastir(ctx,L,W,H,T.mk,zemin); }catch(e){ console.warn("yüzeye kaynaştırma",e); }
       if(!ok){ ctx.save(); ctx.globalAlpha=1-u*.45; ctx.drawImage(L,0,0); ctx.globalCompositeOperation="soft-light"; ctx.globalAlpha=u; ctx.drawImage(L,0,0); ctx.globalCompositeOperation="multiply"; ctx.globalAlpha=u*.25; ctx.drawImage(L,0,0); ctx.restore(); } }
     else ctx.drawImage(L,0,0); L.width=0; } }
 /* 5.2: yazıyı yüzeye gerçekten oturt — alttaki fotoğrafın ışığı, gölgesi, dokusu ve greni yazıya geçer; boya emilir; isteğe bağlı aşınma */
 function mkUyumDeger(mk){ const u=(mk.uyum||0)/100; return {u, isik:(mk.isik??Math.round(u*100))/100, kab:(mk.kabart??Math.round(u*55))/100, asin:(mk.asin??0)/100, gren:(mk.gren??Math.round(u*60))/100, emil:(mk.emil??Math.round(u*45))/100}; }
-function yuzeyKaynastir(ctx,L,W,H,mk){ const V=mkUyumDeger(mk); if(!V.u) return false;
+function yuzeyKaynastir(ctx,L,W,H,mk,zemin){ const V=mkUyumDeger(mk); if(!V.u) return false;
   const lx=L.getContext("2d",{willReadFrequently:true}); let x0=W,y0=H,x1=-1,y1=-1; const st=Math.max(1,Math.round(Math.max(W,H)/700));
   const kaba=lx.getImageData(0,0,W,H).data; for(let y=0;y<H;y+=st) for(let x=0;x<W;x+=st){ if(kaba[(y*W+x)*4+3]>2){ if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; } }
   if(x1<0) return true; const pad=Math.ceil(Math.max(W,H)*.02)+st; x0=Math.max(0,x0-pad); y0=Math.max(0,y0-pad); x1=Math.min(W-1,x1+pad); y1=Math.min(H-1,y1+pad);
-  const w=x1-x0+1, h=y1-y0+1, n=w*h; const F=ctx.getImageData(x0,y0,w,h), f=F.data, T=lx.getImageData(x0,y0,w,h).data;
+  const w=x1-x0+1, h=y1-y0+1, n=w*h; let F;
+  if(zemin&&zemin.width){ const z=document.createElement("canvas"); z.width=w; z.height=h; const zx=z.getContext("2d",{willReadFrequently:true}); const kx=zemin.width/W, ky=zemin.height/H; zx.drawImage(zemin,x0*kx,y0*ky,w*kx,h*ky,0,0,w,h); F=zx.getImageData(0,0,w,h); z.width=0; }
+  else F=ctx.getImageData(x0,y0,w,h);
+  const f=F.data, T=lx.getImageData(x0,y0,w,h).data, OUT=new ImageData(w,h), o=OUT.data;
   /* fotoğraf parlaklığı, yumuşatılmışı (genel ışık) ve yerel doku */
   const Y=new Float32Array(n); for(let i=0;i<n;i++) Y[i]=.2126*f[i*4]+.7152*f[i*4+1]+.0722*f[i*4+2];
   const kutu=(a,r)=>{ const o=new Float32Array(n), t=new Float32Array(n); for(let y=0;y<h;y++){ let s=0; const b=y*w; for(let x=-r;x<=r;x++) s+=a[b+Math.min(w-1,Math.max(0,x))]; for(let x=0;x<w;x++){ t[b+x]=s/(2*r+1); s+=a[b+Math.min(w-1,x+r+1)]-a[b+Math.max(0,x-r)]; } }
@@ -4208,8 +4211,8 @@ function yuzeyKaynastir(ctx,L,W,H,mk){ const V=mkUyumDeger(mk); if(!V.u) return 
     if(ns){ const e=ns[i]*.55+(.5-(Y[i]-YD[i])/(4*sig+1))*.45; a*=Math.min(1,Math.max(0,(e-(V.asin*.62))/.08)); if(a<=0.002) continue; }
     const gnl=Math.pow(Math.max(.05,YG[i]/Math.max(8,Ym)),.85), yrl=Math.max(.2,(YD[i]+6)/(YG[i]+6)), isik=1+V.isik*(gnl-1)+V.kab*1.4*(yrl-1);
     const gr=V.gren?(Y[i]-YD[i])*V.gren*.9+(rnd()-.5)*sig*V.gren*.6:0;
-    for(let c=0;c<3;c++){ const tc=T[j+c]/Math.max(a,.004), fc=f[i*4+c]; let v=tc*isik+gr; v=v*(1-V.emil*.45)+(tc*fc/255)*V.emil*.45; v=Math.max(0,Math.min(255,v)); const A=a*(1-V.emil*.12); f[i*4+c]=fc*(1-A)+v*A; } }
-  ctx.putImageData(F,x0,y0); return true; }
+    const A=a*(1-V.emil*.12); for(let c=0;c<3;c++){ const tc=T[j+c], fc=f[i*4+c]; let v=tc*isik+gr; v=v*(1-V.emil*.45)+(tc*fc/255)*V.emil*.45; o[i*4+c]=Math.max(0,Math.min(255,v)); } o[i*4+3]=Math.round(A*255); }
+  const K=document.createElement("canvas"); K.width=w; K.height=h; K.getContext("2d").putImageData(OUT,0,0); ctx.drawImage(K,x0,y0); K.width=0; return true; }
 /* 5.2: otomatik uyum — fotoğraftaki yüzeyin dokusuna ve ışığına bakar */
 function mkOtomatik(T){ try{ const c=ED.prevCanvas||ED.baseCanvas; if(!c) return null; const k=yaziKutu(T,c.width,c.height), W=c.width,H=c.height, x0=Math.max(0,Math.round((k.cx-k.w/2)*W)), y0=Math.max(0,Math.round((k.cy-k.h/2)*H)), w=Math.max(4,Math.min(W-x0,Math.round(k.w*W))), h=Math.max(4,Math.min(H-y0,Math.round(k.h*H)));
   const d=c.getContext("2d",{willReadFrequently:true}).getImageData(x0,y0,w,h).data; let s=0,s2=0,g=0,n=0; for(let i=0;i<d.length;i+=4){ const v=.2126*d[i]+.7152*d[i+1]+.0722*d[i+2]; s+=v; s2+=v*v; n++; if(i+4<d.length){ const v2=.2126*d[i+4]+.7152*d[i+5]+.0722*d[i+6]; g+=Math.abs(v2-v); } }
@@ -4319,7 +4322,7 @@ function yaziOnizle(pw,ph){ let c=$("#txCv"); if(!c){ c=el("canvas",{id:"txCv",c
   let bekle=false; for(const t of tx){ if(t.kombin){ if(!kbFontHazir(t)){ bekle=true; kbFontYukle(t).then(()=>requestRender()); } continue; } const k=t.f+(t.w||400)+(t.it?1:0); if(!_fontHazir.has(k)){ bekle=true; fontYukle(t.f,t.w||400,t.it).then(()=>requestRender()); } }
   let O=null,mw=0,mh=0; if(s.sel&&tx.some(t=>t.behind)){ const k2=Math.min(1,640/Math.max(pw,ph)); mw=Math.max(8,Math.round(pw*k2)); mh=Math.max(8,Math.round(ph*k2)); const key=JSON.stringify([s.sel.ops,s.geo,mw,mh])+(s.sel.m||"").length+(s.sel.m||"").slice(-30);
     if(_yzM.key===key) O=_yzM.O; else { _yzM.key=key; _yzM.O=null; ciktiSecim(s,mw,mh,ED.pW,ED.pH).then(o=>{ if(_yzM.key===key){ _yzM.O=o; requestRender(); } }); } }
-  void bekle; yazilariCiz(x,pw,ph,tx,O,mw,mh); }
+  void bekle; yazilariCiz(x,pw,ph,tx,O,mw,mh,$("#gl")); }
 async function yaziDisa(cv,state,sw,sh){ const tx=(state.texts||[]).filter(t=>t.t&&!t.gizli); if(!tx.length) return cv;
   for(const t of tx){ await fontYukle(t.f,t.w||400,t.it); if(t.kombin) await kbFontYukle(t); if(t.imza) await imzaHazir(t.imza); }
   let O=null,mw=0,mh=0; if(state.sel&&tx.some(t=>t.behind)){ const k=Math.min(1,1400/Math.max(cv.width,cv.height)); mw=Math.round(cv.width*k); mh=Math.round(cv.height*k); O=await ciktiSecim(state,mw,mh,sw,sh); }
