@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="5.9" data-ad="Karanlık Oda" data-tarih="10.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="6.0" data-ad="Karanlık Oda" data-tarih="10.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -337,7 +337,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 5.9 · 10.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.0 · 10.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6779,6 +6779,9 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-ipucu{text-align:center;margin-top:4px}
 .kh-pan{padding:10px 12px calc(28px + env(safe-area-inset-bottom,0px));display:grid;gap:12px;max-width:760px;width:100%;margin:0 auto;box-sizing:border-box}
 .tl-b{touch-action:manipulation}
+.kh.onz-kucuk .kh-onz canvas{max-height:17vh!important}
+.kh.onz-gizli .kh-onz canvas,.kh.onz-gizli .kh-onz .kh-ipucu{display:none!important}
+.kh.onz-gizli .kh-onz-alt{margin-top:0}
 @keyframes khVurgu{0%,60%{box-shadow:0 0 0 3px var(--accent)}100%{box-shadow:0 0 0 0 transparent}}
 .kh-vurgu{animation:khVurgu 1.6s ease-out;border-radius:10px}
 .kh-s{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:10px;min-width:0}
@@ -7253,7 +7256,7 @@ function kapat(){ if (!ACIK) return; ACIK = false; durdur(); kok.hidden = true; 
 addEventListener('popstate', () => { if (ACIK) kapat(); });
 function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k, v]) => [k, [v.ad, v.l, v.b, v.s]])); kok = document.createElement('section'); kok.id = 'khaber'; kok.className = 'kh'; kok.hidden = true;
   kok.innerHTML = `<header class="kh-ust"><button class="kh-ik" id="khKapat" aria-label="Kapat">✕</button><div class="kh-bas"><b id="khBaslik">${esc(M.ad)}</b><small>${esc(M.slogan)}</small></div><button class="kh-b" id="khTsBtn">Taslaklar</button></header>
-  <div class="kh-ic"><div class="kh-onz"><canvas id="khCv" aria-label="Haber kartı önizlemesi"></canvas><div class="kh-onz-alt"><button class="kh-b p" id="khOyna">▶ Sesli önizle</button><button class="kh-b" id="khTlAc" aria-pressed="true">▾ Katmanlar</button><span class="kh-n" id="khSesNot"></span></div><div class="kh-n kh-ipucu">Fotoğrafı önizlemede sürükleyerek kaydır; iki parmakla büyüt.</div><div id="khTl" class="kh-tl"></div></div>
+  <div class="kh-ic"><div class="kh-onz"><canvas id="khCv" aria-label="Haber kartı önizlemesi"></canvas><div class="kh-onz-alt"><button class="kh-b p" id="khOyna">▶ Sesli önizle</button><button class="kh-b" id="khTlAc" aria-pressed="true">▾ Katmanlar</button><button class="kh-b" id="khOnzB" title="Önizleme boyutu: küçült · gizle · göster">⊟ Küçült</button><span class="kh-n" id="khSesNot"></span></div><div class="kh-n kh-ipucu">Fotoğrafı önizlemede sürükleyerek kaydır; iki parmakla büyüt.</div><div id="khTl" class="kh-tl"></div></div>
   <div class="kh-pan"><div id="khTaslak" class="kh-tsl" hidden></div>
    <section class="kh-s kh-kat"><div class="kh-kb"><h3>Katmanlar · seçili öğe</h3><span class="kh-n" id="khTlSure"></span></div>
     <div class="kh-r"><button class="kh-b kh-mini" id="khTlZk">−</button><button class="kh-b kh-mini" id="khTlZb">＋</button><button class="kh-b kh-mini" id="khTlYazi">＋ Yazı</button><button class="kh-b kh-mini" id="khTlBas">⏮ Başa</button><button class="kh-b kh-mini p" id="khDemo">🎬 Örnek bülten</button></div>
@@ -7324,6 +7327,12 @@ function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k,
   on('#khTlZk', () => { TL.pps = Math.max(4, TL.pps/1.5); tlCiz(); }); on('#khTlZb', () => { TL.pps = Math.min(80, TL.pps*1.5); tlCiz(); });
   const tlAcik = v => { kok.classList.toggle('tl-kapali', !v); const b = $h('#khTlAc'); b.setAttribute('aria-pressed', v); b.textContent = v ? '▾ Katmanlar' : '▸ Katmanlar'; LSs('kh.tlAcik', v); };
   tlAcik(LSg('kh.tlAcik', true)); on('#khTlAc', () => tlAcik(kok.classList.contains('tl-kapali')));
+  /* 6.0: önizlemeyi küçült / gizle / göster (seçim hatırlanır) */
+  const onzBoy = v => { v = ['normal', 'kucuk', 'gizli'].includes(v) ? v : 'normal'; kok.classList.toggle('onz-kucuk', v === 'kucuk'); kok.classList.toggle('onz-gizli', v === 'gizli');
+    const b = $h('#khOnzB'); b.textContent = v === 'normal' ? '⊟ Küçült' : v === 'kucuk' ? '◌ Gizle' : '⊞ Göster'; b.setAttribute('aria-pressed', v !== 'normal'); LSs('kh.onzBoy', v); kok._onz = v; };
+  onzBoy(LSg('kh.onzBoy', 'normal'));
+  on('#khOnzB', () => onzBoy(kok._onz === 'normal' ? 'kucuk' : kok._onz === 'kucuk' ? 'gizli' : 'normal'));
+  on('#khOyna', () => { if (kok._onz === 'gizli') onzBoy('kucuk'); });
   on('#khTlYazi', yaziEkle); on('#khTlBas', () => { tlGit(0); const sk = $h('#khTl .tl-kay'); if (sk) sk.scrollLeft = 0; }); on('#khDemo', demoYukle);
   on('#kh_manset', () => { if (D.ornek){ D.ornek = false; kaydet(); } }, 'input');
   on('#khEkIn', async e => { const fs = [...e.target.files]; e.target.value = ''; for (const f of fs.slice(0, 12)){ const t = {}; await sahneFotoKoy(t, f); D.ekFoto.push(t.fid); } kaydet(); formDoldur(); tst(fs.length + ' fotoğraf eklendi · videoda kayarak değişecek'); }, 'change');
