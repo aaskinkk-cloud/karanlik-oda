@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="6.1" data-ad="Karanlık Oda" data-tarih="10.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="6.2" data-ad="Karanlık Oda" data-tarih="10.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -337,7 +337,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.1 · 10.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.2 · 10.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6881,6 +6881,53 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 #khVidSonuc .kh-vid.buyuk video{max-height:72vh}
 #khVidSonuc.gizli .kh-vid{display:none}
 @media (min-width:900px){.kh-ic{flex-direction:row;align-items:flex-start}.kh-onz{flex:1 1 55%;height:100%;overflow:auto;border-bottom:0;border-right:1px solid var(--line)}.kh-pan{flex:1 1 45%;max-width:none;height:100%;overflow:auto}.kh-ic{overflow:hidden}.kh:not(.tl-kapali) .kh-onz canvas{max-height:52vh}}
+
+/* 6.2 · STÜDYO DÜZENİ: önizleme üstte, araç çubuğu altta, her araç kendi panelinde */
+.kh-panb,.kh-nav{display:none}
+.kh.kh-studyo{bottom:auto;height:100%}
+.kh-studyo .kh-ust{padding-top:calc(env(safe-area-inset-top,0px) + 6px);padding-bottom:6px;gap:8px}
+.kh-studyo .kh-ust .kh-bas b{font-size:15.5px}
+.kh-studyo .kh-ust .kh-bas small{font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kh-studyo .kh-ust .kh-b{padding:7px 12px;min-height:38px}
+.kh-studyo .kh-ic{flex-direction:column;overflow:hidden}
+.kh-studyo .kh-onz{position:relative;top:auto;flex:0 0 auto;max-height:none!important;overflow:hidden;padding:8px 10px 6px;transition:height .2s ease}
+.kh-studyo[data-arac=""] .kh-onz{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;border-bottom:0}
+.kh.kh-studyo .kh-onz canvas{max-height:var(--cvH,34vh)!important;max-width:100%}
+.kh-studyo .kh-onz-alt{flex-wrap:nowrap;gap:6px;margin-top:6px;overflow-x:auto;scrollbar-width:none;justify-content:center}
+.kh-studyo .kh-onz-alt::-webkit-scrollbar{display:none}
+.kh-studyo .kh-onz-alt .kh-b{padding:6px 11px;min-height:36px;font-size:13.5px;white-space:nowrap;flex:0 0 auto}
+.kh-studyo .kh-boy{flex:0 0 auto}.kh-studyo .kh-boy .kh-c{padding:6px 9px;min-height:36px;font-size:12.5px}
+.kh-studyo .kh-ipucu,.kh-studyo #khSesNot:empty{display:none!important}
+.kh-studyo .kh-onz .kh-tl{display:none!important}
+.kh-studyo[data-arac="kat"]:not(.kh-klv) .kh-onz .kh-tl{display:grid!important;max-height:var(--tlH,230px);overflow:auto}
+.kh-studyo.onz-gizli #khTlAc{display:inline-flex!important}
+.kh-studyo .kh-pan{flex:1 1 0;min-height:0;overflow:auto;overscroll-behavior:contain;padding:0 12px 18px;display:block;max-width:none;margin:0;border-top:1px solid var(--line)}
+.kh-studyo[data-arac=""] .kh-pan{display:none}
+.kh-studyo .kh-pan>section.kh-s{display:none;border:0;background:none;box-shadow:none;padding:2px 0 0;border-radius:0}
+.kh-studyo .kh-pan>section.kh-s.aktif{display:grid}
+.kh-studyo .kh-pan>section.kh-s.aktif>h3{display:none}
+.kh-studyo .kh-pan>section.kh-s.aktif~section.kh-s.aktif{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.kh-studyo .kh-pan>section.kh-s.aktif~section.kh-s.aktif>h3{display:block}
+.kh-studyo .kh-panb{display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:3;background:var(--bg);padding:9px 0 7px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.kh-panb b{font:700 13px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.kh-panb .kh-b{min-height:34px;padding:5px 12px}
+.kh-studyo .kh-nav{display:flex;flex:0 0 auto;overflow-x:auto;scrollbar-width:none;gap:2px;padding:4px 6px calc(4px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--surface)}
+.kh-studyo .kh-nav::-webkit-scrollbar{display:none}
+.kh-studyo .kh-nav{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent)}
+.kh-studyo .kh-nav.son{-webkit-mask-image:none;mask-image:none}
+.kh-nav button{flex:1 0 auto;min-width:62px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 6px 5px;border:0;background:none;color:var(--muted);font:600 11.5px var(--f-ui);border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.kh-nav button i{font-style:normal;font-size:19px;line-height:1;filter:grayscale(.35)}
+.kh-nav button.on{color:var(--accent);background:color-mix(in srgb,var(--accent) 15%,transparent)}
+.kh-nav button.on i{filter:none}
+.kh-studyo.kh-klv .kh-nav,.kh-studyo.kh-klv .kh-onz-alt{display:none!important}
+.kh-studyo.kh-klv .kh-onz{padding:4px 10px}
+@media (orientation:landscape) and (max-height:560px){
+ .kh-studyo .kh-ic{flex-direction:row}
+ .kh-studyo .kh-onz{flex:0 0 46%;height:100%;display:flex;flex-direction:column;justify-content:center;border-bottom:0;border-right:1px solid var(--line);overflow:auto}
+ .kh-studyo .kh-pan{flex:1 1 0;height:100%;border-top:0}
+ .kh-studyo[data-arac=""] .kh-onz{flex:1 1 auto;border-right:0}
+ .kh-studyo .kh-nav button{flex-direction:row;gap:5px;min-width:0;padding:6px 10px}
+}
 </style>
 <script>
 /* ===================== KABATAŞ HABER — gazete köşesi (Karanlık Oda 5.2 · 10.10.2026) =====================
@@ -7361,6 +7408,46 @@ function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k,
   pan.addEventListener('focusin', e => { if (innerWidth >= 900 || !yaz(e.target)) return; kok.classList.add('onz-klavye');
     setTimeout(() => { const ic = kok.querySelector('.kh-ic'), onz = kok.querySelector('.kh-onz'), r = e.target.getBoundingClientRect(), alt = onz.getBoundingClientRect().bottom; if (r.top < alt + 8) ic.scrollBy({top:r.top - alt - 40, behavior:'smooth'}); }, 160); });
   pan.addEventListener('focusout', () => setTimeout(() => { if (!yaz(document.activeElement)) kok.classList.remove('onz-klavye'); }, 120));
+  /* 6.2 · STÜDYO DÜZENİ: telefonda önizleme üstte, araç çubuğu altta; her araç kendi panelinde açılır (uzun sayfa kaydırma yok) */
+  STUDYO = (() => { const ic = kok.querySelector('.kh-ic'), onz = kok.querySelector('.kh-onz');
+    const S0 = [...pan.querySelectorAll(':scope > section.kh-s')], bul = t => S0.find(x => { const h = x.querySelector(':scope > h3'); return h && h.textContent.includes(t); });
+    const b5 = bul('Bülten'); let sah = null;
+    if (b5){ const ara = [...b5.querySelectorAll(':scope > .kh-ara')].find(a => /sahne/i.test(a.textContent)); if (ara){ sah = document.createElement('section'); sah.className = 'kh-s'; sah.innerHTML = '<h3>Haber sahneleri</h3>'; let n = ara.nextSibling; ara.remove(); while (n){ const x = n.nextSibling; sah.appendChild(n); n = x; } b5.after(sah); } }
+    const tsS = document.createElement('section'); tsS.className = 'kh-s'; tsS.innerHTML = '<h3>Taslaklar</h3>'; const tk = $h('#khTaslak'); if (tk) tsS.appendChild(tk); pan.prepend(tsS);
+    const ARAC = [['haber','📰','Haber',bul('Haber')],['foto','📷','Foto',bul('Fotoğraf')],['kat','🧩','Katmanlar',pan.querySelector('.kh-kat')],['ses','🎙️','Ses',bul('Seslendirme')],['paylas','📤','Paylaş',bul('Paylaş')],['bicim','🎨','Biçim',bul('Biçim')],['sahne','🎞️','Sahneler',sah],['tv','📺','TV · Müzik',b5],['marka','🔴','Logo · künye',bul('Kanal logosu'),bul('künyesi')],['taslak','🗂️','Taslaklar',tsS]].filter(a => a[3]);
+    ARAC.forEach(a => a.slice(3).forEach(x => x && (x.dataset.arac = a[0]))); const BOL = ARAC.flatMap(a => a.slice(3).filter(Boolean));
+    const nav = document.createElement('nav'); nav.className = 'kh-nav'; nav.setAttribute('aria-label', 'Araçlar');
+    nav.innerHTML = ARAC.filter(a => a[0] !== 'taslak').map(([k, i, a]) => `<button type="button" data-nav="${k}" aria-pressed="false"><i aria-hidden="true">${i}</i><span>${a}</span></button>`).join(''); kok.appendChild(nav);
+    const pb = document.createElement('div'); pb.className = 'kh-panb'; pb.innerHTML = '<b id="khPanAd"></b><button type="button" class="kh-b kh-mini" id="khPanKapa" title="Paneli kapat, önizlemeyi büyüt">▾ Kapat</button>'; pan.prepend(pb);
+    const mq = matchMedia('(max-width:899px), (orientation:landscape) and (max-height:560px)'); let akt = ''; const enH = {};
+    const aktif = () => kok.classList.contains('kh-studyo');
+    const yerlesim = () => { if (!aktif()){ kok.style.height = ''; kok.style.top = ''; return; }
+      const vv = window.visualViewport, H = Math.round(vv ? vv.height : innerHeight); kok.style.height = H + 'px'; kok.style.top = Math.round(vv ? vv.offsetTop : 0) + 'px';
+      const yon = innerWidth > innerHeight ? 'y' : 'd'; enH[yon] = Math.max(enH[yon] || 0, innerHeight, H); const klv = kok.classList.contains('onz-klavye') && !!akt && H < enH[yon]*.82; kok.classList.toggle('kh-klv', klv);
+      const ust = kok.querySelector('.kh-ust').offsetHeight, nv = klv ? 0 : nav.offsetHeight, kul = H - ust - nv, yatay = innerWidth > innerHeight && innerHeight <= 560;
+      const alt = onz.querySelector('.kh-onz-alt'), altH = klv ? 0 : alt.offsetHeight + 6, tl = onz.querySelector('.kh-tl'), tlM = Math.max(120, Math.min(240, Math.round(kul*.3))), tlH = akt === 'kat' && !klv ? Math.min(tl.scrollHeight || tlM, tlM) + 8 : 0;
+      kok.style.setProperty('--tlH', tlM + 'px'); let onzH;
+      if (yatay || !akt) onzH = kul; else if (klv) onzH = Math.round(Math.max(70, Math.min(130, kul*.24))); else onzH = Math.round(kul*(akt === 'kat' ? .6 : kok.classList.contains('onz-kucuk') ? .32 : .47));
+      if (kok.classList.contains('onz-gizli') && akt && !yatay) onzH = altH + tlH + 16;
+      onz.style.height = (yatay || !akt) ? '' : onzH + 'px';
+      kok.style.setProperty('--cvH', Math.max(56, onzH - altH - tlH - 16) + 'px'); };
+    const ac = (k, zorla) => { if (!zorla && k === akt) k = ''; akt = k; kok.dataset.arac = k; BOL.forEach(x => x.classList.toggle('aktif', x.dataset.arac === k));
+      nav.querySelectorAll('[data-nav]').forEach(b => { const o = b.dataset.nav === k; b.classList.toggle('on', o); b.setAttribute('aria-pressed', o); });
+      const A = ARAC.find(a => a[0] === k); $h('#khPanAd').textContent = A ? A[2] : ''; $h('#khTlAc').setAttribute('aria-pressed', k === 'kat');
+      if (k && k !== 'taslak') LSs('kh.arac', k); pan.scrollTop = 0; yerlesim(); requestAnimationFrame(() => requestAnimationFrame(yerlesim)); if (k === 'kat' && typeof tlCiz === 'function') try { tlCiz(); } catch(e){}
+      const b = nav.querySelector('.on'); if (b) b.scrollIntoView({inline:'nearest', block:'nearest'}); };
+    const uygula = () => { const st = mq.matches; kok.classList.toggle('kh-studyo', st); if (st){ ac(akt || LSg('kh.arac', 'haber'), true); } else { delete kok.dataset.arac; BOL.forEach(x => x.classList.remove('aktif')); onz.style.height = ''; yerlesim(); } };
+    const navSon = () => nav.classList.toggle('son', nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4); nav.addEventListener('scroll', navSon, {passive:true}); setTimeout(navSon, 400);
+    nav.addEventListener('click', e => { const b = e.target.closest('[data-nav]'); if (b) ac(b.dataset.nav); });
+    $h('#khPanKapa').addEventListener('click', () => ac(''));
+    $h('#khTlAc').addEventListener('click', e => { if (!aktif()) return; e.stopImmediatePropagation(); ac('kat'); }, true);
+    $h('#khTsBtn').addEventListener('click', () => { if (!aktif()) return; const t = $h('#khTaslak'); if (t && !t.hidden) ac('taslak', true); else if (akt === 'taslak') ac(LSg('kh.arac', 'haber'), true); });
+    kok.querySelectorAll('[data-onz]').forEach(b => b.addEventListener('click', () => setTimeout(yerlesim, 0)));
+    pan.addEventListener('focusin', e => { if (!aktif() || !yaz(e.target)) return; const el = e.target; setTimeout(() => { yerlesim(); setTimeout(() => { const pr = pan.getBoundingClientRect(), r = el.getBoundingClientRect(), pbH = pb.offsetHeight; if (r.top < pr.top + pbH + 6 || r.bottom > pr.bottom - 6) pan.scrollBy({top: r.top - pr.top - pbH - 14, behavior:'smooth'}); }, 60); }, 200); });
+    pan.addEventListener('focusout', () => setTimeout(yerlesim, 200));
+    if (window.visualViewport){ visualViewport.addEventListener('resize', yerlesim); visualViewport.addEventListener('scroll', yerlesim); }
+    addEventListener('resize', yerlesim); (mq.addEventListener ? mq.addEventListener('change', uygula) : mq.addListener(uygula)); uygula(); setTimeout(yerlesim, 350); if (document.fonts) document.fonts.ready.then(yerlesim);
+    return {aktif, ac, yerlesim, akt:() => akt, bolum: el => { const x = el && el.closest('section[data-arac]'); return x ? x.dataset.arac : ''; }}; })();
   on('#khVidGiz', () => { const s = $h('#khVidSonuc'), g = s.classList.toggle('gizli'); $h('#khVidGiz').textContent = g ? '▾ Videoyu göster' : '▴ Videoyu gizle'; if (g){ try { $h('#khVidOn').pause(); } catch(e){} } });
   on('#khVidBoy', () => { const v = kok.querySelector('.kh-vid'), b = v.classList.toggle('buyuk'); $h('#khVidBoy').textContent = b ? '⤡ Küçült' : '⤢ Büyüt'; });
   on('#khTlYazi', yaziEkle); on('#khTlBas', () => { tlGit(0); const sk = $h('#khTl .tl-kay'); if (sk) sk.scrollLeft = 0; }); on('#khDemo', demoYukle);
@@ -7769,12 +7856,13 @@ async function aracIslem(id, el){ const p = seciliParca(), ref = kaynak(p), j = 
     else if (id === 'ysil'){ D.yazilar = D.yazilar.filter(y => y !== Y); TL.sel = null; } }
   kaydet(); formDoldur(); sahneCiz(); await tlYenile(); if (TL.P) tlGit(TL.t); }
 async function anaBasYap(j){ const E = D.ekFoto, id = E[j - 1], c = await sahneFotoAl({fid:id}); if (!c) return; if (FOTO){ const t = {}; await sahneFotoKoy(t, await canvasBlob(FOTO)); E[j - 1] = t.fid; } else E.splice(j - 1, 1); await fotoYukle(await canvasBlob(c)); }
-function aracGoster(){ if (innerWidth >= 900) return; const ic = $h('.kh-ic'), kat = $h('.kh-kat'), onz = $h('.kh-onz'); if (!ic || !kat || !onz) return; const kr = kat.getBoundingClientRect(), ob = onz.getBoundingClientRect().bottom;
+let STUDYO = null;
+function aracGoster(){ if (STUDYO && STUDYO.aktif()){ STUDYO.ac('kat', true); return; } if (innerWidth >= 900) return; const ic = $h('.kh-ic'), kat = $h('.kh-kat'), onz = $h('.kh-onz'); if (!ic || !kat || !onz) return; const kr = kat.getBoundingClientRect(), ob = onz.getBoundingClientRect().bottom;
   if (kr.top < ob - 4 || kr.top > innerHeight - 90){ const y = kr.top - ic.getBoundingClientRect().top + ic.scrollTop - onz.offsetHeight - 6; ic.scrollTo({top:Math.max(0, y), behavior:'smooth'}); } }
 function yaziEkle(){ const Y = {id:Date.now().toString(36), t:'Detaylar haberimizde', a:Math.max(0, TL.t), b:Math.max(0, TL.t) + 3, stil:'kutu', konum:'ust'}; yaziBagla(Y, TL.P); D.yazilar.push(Y); TL.sel = 'ey:' + Y.id; kaydet(); tlYenile().then(() => { tlGit(Y.a + .5); aracGoster(); }); }
-/* 5.9: katmana çift dokununca ilgili düzenleme bölümüne git */
+/* 5.9 → 6.2: katmana çift dokununca ilgili düzenleme bölümüne git (stüdyoda o aracın paneli açılır) */
 function katmanGit(key){ const m = /^(\w+):(\d+)(?::(-?\d+))?/.exec(key) || [], p = m[2] != null && TL.P ? TL.P.parca[+m[2]] : null, ref = kaynak(p);
-  const gor = e => e && e.offsetParent !== null; let h = null, f = null;
+  const gor = e => e && e.offsetParent !== null; let h = null, f = null; const st = STUDYO && STUDYO.aktif();
   if (/^ey:/.test(key)) h = $h('#khTlArac [data-ty="t"]');
   else if (key === 'muzik') h = $h('#kh_muzikSes');
   else if (key === 'bant') h = $h('#kh_bantMetin') || $h('#kh_altBant');
@@ -7783,12 +7871,16 @@ function katmanGit(key){ const m = /^(\w+):(\d+)(?::(-?\d+))?/.exec(key) || [], 
     else if (m[1] === 'foto') h = ref === 'ana' ? $h('#khFotoIn') : kart;
     else if (m[1] === 'ses') h = ref === 'ana' ? $h('#kh_metin') : kart;
     else h = ref === 'ana' ? $h('#kh_manset') : kart; }
+  if (st && h){ const b = STUDYO.bolum(h); if (b) STUDYO.ac(b, true); }
   if (h && !gor(h)) h = h.closest('label,section,.kh-r') || h;
   if (!gor(h)) h = $h('#khTlArac');
-  const kutu = /^ey:/.test(key) ? ($h('#khTlArac') || h) : (h.matches('[data-si],section') ? h : m[1] === 'foto' && ref === 'ana' ? h.closest('section') : (h.closest('label,.kh-r') || h.closest('section') || h)); const ic = $h('.kh-ic'), onz = $h('.kh-onz'), kr = kutu.getBoundingClientRect();
-  if (ic && onz){ const or = onz.getBoundingClientRect(), ust = (or.left < kr.right && or.right > kr.left) ? or.bottom : ic.getBoundingClientRect().top, alan = innerHeight - ust;
-    const y = kr.top - ic.getBoundingClientRect().top + ic.scrollTop - (ust - ic.getBoundingClientRect().top) - Math.max(10, (alan - Math.min(kr.height, alan))/2);
-    ic.scrollTo({top:Math.max(0, y), behavior:'smooth'}); } else kutu.scrollIntoView({block:'center', behavior:'smooth'});
+  const kutu = /^ey:/.test(key) ? ($h('#khTlArac') || h) : (h.matches('[data-si],section') ? h : m[1] === 'foto' && ref === 'ana' ? h.closest('section') : (h.closest('label,.kh-r') || h.closest('section') || h));
+  if (st){ const pan = $h('.kh-pan'), pbH = ($h('.kh-panb') || {}).offsetHeight || 0; requestAnimationFrame(() => { const pr = pan.getBoundingClientRect(), kr = kutu.getBoundingClientRect(), bos = pr.height - pbH;
+      pan.scrollTo({top: Math.max(0, pan.scrollTop + kr.top - pr.top - pbH - Math.max(8, (bos - Math.min(kr.height, bos))/2)), behavior:'smooth'}); }); }
+  else { const ic = $h('.kh-ic'), onz = $h('.kh-onz'), kr = kutu.getBoundingClientRect();
+    if (ic && onz){ const or = onz.getBoundingClientRect(), ust = (or.left < kr.right && or.right > kr.left) ? or.bottom : ic.getBoundingClientRect().top, alan = innerHeight - ust;
+      const y = kr.top - ic.getBoundingClientRect().top + ic.scrollTop - (ust - ic.getBoundingClientRect().top) - Math.max(10, (alan - Math.min(kr.height, alan))/2);
+      ic.scrollTo({top:Math.max(0, y), behavior:'smooth'}); } else kutu.scrollIntoView({block:'center', behavior:'smooth'}); }
   kutu.classList.remove('kh-vurgu'); void kutu.offsetWidth; kutu.classList.add('kh-vurgu'); setTimeout(() => kutu.classList.remove('kh-vurgu'), 1600);
   f = h.matches('input:not([type=file]):not([type=range]),textarea,select') ? h : h.querySelector('textarea,input:not([type=file]):not([type=range])');
   if (f) setTimeout(() => { try{ f.focus({preventScroll:true}); }catch(e){} }, 420); }
