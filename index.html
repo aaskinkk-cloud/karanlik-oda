@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="5.6" data-ad="Karanlık Oda" data-tarih="10.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="5.7" data-ad="Karanlık Oda" data-tarih="10.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -337,7 +337,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 5.6 · 10.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 5.7 · 10.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -2739,6 +2739,33 @@ const LOOKS=[
  {id:"pastel",cat:"lr",n:"Yumuşak pastel",p:{exposure:8,contrast:-20,fade:18,saturation:-15,vibrance:10,tint:-4,highlights:-10,cbHr:5,cbHb:4},h:{7:[0,0,10],0:[0,-10,8]}},
  {id:"bwhard",cat:"lr",n:"Sert siyah-beyaz",p:{saturation:-100,contrast:45,clarity:30,blacks:-20,whites:20,grain:12},h:{0:[0,0,10],5:[0,0,-25]}},
  {id:"sepia",cat:"lr",n:"Sepya",p:{saturation:-100,contrast:10,fade:10,grain:12,cbSr:10,cbSb:-18,cbMr:12,cbMb:-16,cbHr:6,cbHb:-8}},
+ /* 5.7: Sonbahar koleksiyonu */
+ {id:"au_altin",cat:"son",n:"Altın sonbahar",p:{temp:20,tint:4,vibrance:18,contrast:10,highlights:-16,shadows:12,clarity:8,cbHr:8,cbHb:-10},h:{1:[-4,22,4],2:[-25,24,2],3:[-85,-10,-4],4:[-40,-30,0]}},
+ {id:"au_kizil",cat:"son",n:"Kızıl yapraklar",p:{temp:16,contrast:14,clarity:10,vibrance:14,highlights:-14,vignette:-12},h:{0:[6,26,-6],1:[-8,30,-2],2:[-14,8,-4],3:[-75,-30,-12]}},
+ {id:"au_bakir",cat:"son",n:"Bakır orman",p:{temp:14,contrast:18,highlights:-22,shadows:8,vignette:-18,clarity:10,cbSb:12,cbSg:4,cbHr:14,cbHb:-12},h:{1:[-4,22,-6],2:[-12,10,-6],3:[-78,-30,-12],5:[-6,-10,-8]}},
+ {id:"au_sis",cat:"son",n:"Sisli sonbahar sabahı",p:{temp:10,contrast:-10,fade:20,dehaze:-14,highlights:-10,shadows:10,saturation:-6,cbHr:6,cbHb:-4},h:{1:[0,10,6],2:[-8,0,4],3:[-60,-30,6]}},
+ {id:"au_kahve",cat:"son",n:"Kahve & tarçın",p:{temp:16,tint:4,saturation:-18,contrast:16,blacks:-10,fade:12,grain:10,vignette:-20,cbSr:6,cbSb:-4},h:{0:[8,-8,-6],1:[0,10,-8],2:[-14,-20,-10],3:[-65,-45,-15],5:[0,-40,-10]}},
+ {id:"au_kehribar",cat:"son",n:"Kehribar ışık",p:{temp:26,exposure:4,highlights:-24,shadows:18,vibrance:18,cbHr:12,cbHb:-14,vignette:-10},h:{1:[0,18,8],2:[-10,12,4],3:[-55,-10,0]}},
+ {id:"au_bal",cat:"son",n:"Bal rengi film",p:{temp:18,saturation:-10,contrast:-4,fade:16,grain:18,cbSr:8,cbSb:-6,cbHr:8,cbHb:-10,vignette:-14},h:{2:[-10,-5,0],3:[-60,-25,0]}},
+ {id:"au_kasim",cat:"son",n:"Kasım melankolisi",p:{temp:4,saturation:-30,contrast:10,fade:10,vignette:-22,cbSb:14,cbSr:-6,cbHr:8,cbHb:-4},h:{1:[0,15,0],3:[-50,-25,-8]}},
+ {id:"au_orman",cat:"son",n:"Orman yolu · HDR",p:{clarity:22,dehaze:14,shadows:26,highlights:-30,vibrance:20,sharpen:14,contrast:8,temp:8},h:{1:[-4,20,0],2:[-8,10,0],3:[-62,-8,-5]}},
+ {id:"au_tl",cat:"son",n:"Turuncu & lacivert",p:{contrast:14,temp:6,vibrance:10,cbSr:-12,cbSb:18,cbHr:16,cbHb:-12},h:{1:[-4,25,4],2:[-6,10,0],3:[-65,-25,-8],5:[-10,10,-10]}},
+ {id:"au_yagmur",cat:"son",n:"Yağmur sonrası",p:{contrast:12,clarity:18,vibrance:14,saturation:6,exposure:-6,temp:6,dehaze:10,highlights:-18,blacks:-6},h:{1:[0,15,-5],3:[-40,-10,-8],5:[0,8,-6]}},
+ {id:"au_findik",cat:"son",n:"Fındık hasadı",p:{temp:14,vibrance:16,clarity:12,contrast:10,shadows:12,highlights:-12,texture:10},h:{1:[-6,18,-4],2:[-10,8,-4],3:[-35,8,-6]}},
+ /* 5.7: Çiçek · gül · meyve */
+ {id:"fl_gul",cat:"cicek",n:"Kırmızı gül",p:{vibrance:12,contrast:10,clarity:6,highlights:-14,temp:4,vignette:-10},h:{0:[0,26,-6],7:[-6,18,-2],3:[0,-14,-10],2:[0,-6,0]}},
+ {id:"fl_pembe",cat:"cicek",n:"Pembe gül · romantik",p:{exposure:6,contrast:-8,fade:10,highlights:-12,shadows:14,tint:6,cbHr:6,cbHb:2},h:{7:[4,18,6],0:[6,10,4],3:[0,-22,4]}},
+ {id:"fl_beyaz",cat:"cicek",n:"Beyaz çiçek · ferah",p:{exposure:10,whites:10,highlights:-22,shadows:10,temp:-4,saturation:-6,clarity:4},h:{3:[-6,-10,8],2:[0,-10,6]}},
+ {id:"fl_lavanta",cat:"cicek",n:"Lavanta",p:{temp:-6,tint:8,fade:8,contrast:-4,vibrance:10,cbHb:6},h:{6:[6,22,-4],5:[10,12,-4],7:[0,10,0],3:[-10,-25,0]}},
+ {id:"fl_lale",cat:"cicek",n:"Lale bahçesi",p:{vibrance:32,saturation:10,contrast:12,clarity:8,dehaze:6,highlights:-10},h:{0:[0,15,-4],2:[0,15,0],7:[0,12,0],3:[0,12,-6]}},
+ {id:"fl_aycicek",cat:"cicek",n:"Ayçiçeği",p:{temp:10,contrast:12,clarity:10,vibrance:18,highlights:-12},h:{2:[-4,25,4],1:[0,15,0],5:[0,18,-8],3:[-6,8,-4]}},
+ {id:"fl_makro",cat:"cicek",n:"Çiçek makro · yumuşak",p:{clarity:-10,vibrance:18,highlights:-14,shadows:10,sharpen:10,vignette:-16,fade:4},h:{3:[0,-10,-6]}},
+ {id:"fr_taze",cat:"cicek",n:"Taze meyve",p:{vibrance:30,saturation:8,clarity:14,sharpen:20,contrast:14,highlights:-12},h:{0:[0,18,-4],1:[0,18,0],2:[0,15,0],3:[0,14,-4]}},
+ {id:"fr_kiraz",cat:"cicek",n:"Kiraz & çilek",p:{contrast:14,vibrance:14,clarity:10,temp:4,highlights:-10},h:{0:[2,28,-6],7:[-4,12,0],3:[4,10,-6]}},
+ {id:"fr_narenciye",cat:"cicek",n:"Narenciye",p:{temp:10,exposure:4,vibrance:22,clarity:8,highlights:-12},h:{1:[0,25,2],2:[0,25,4],3:[0,8,0]}},
+ {id:"fr_uzum",cat:"cicek",n:"Üzüm bağı · koyu meyve",p:{contrast:18,blacks:-10,vignette:-20,clarity:12,temp:6,highlights:-16},h:{6:[0,20,-8],7:[0,15,-6],0:[0,10,-6],3:[-8,-8,-6]}},
+ {id:"fr_findik",cat:"cicek",n:"Fındık & kestane",p:{temp:16,tint:3,contrast:16,clarity:14,texture:12,vignette:-16},h:{1:[-6,14,-10],2:[-12,0,-8],3:[-12,-10,-6]}},
+ {id:"fr_natur",cat:"cicek",n:"Natürmort · karanlık",p:{exposure:-10,contrast:20,highlights:-20,blacks:-20,shadows:-6,vignette:-32,saturation:-6,vibrance:14,clarity:10,temp:6,fade:4}},
 ];
 const lookById=id=>LOOKS.find(l=>l.id===id);
 
@@ -3017,9 +3044,13 @@ function renderPanel0(){
     if(s.look.id){ add(slider({id:"lookamt",label:"Yoğunluk",min:0,max:150,get:()=>s.look.amt,set:v=>{s.look.amt=v;},def:100,fmt:v=>v+"%"})); }
     if(s.look.id){ const lk=resolveLook(s.look); add(el("div",{class:"eff-list"},effectRow("look","Nerede uygulansın ("+(lk?lk.n:"filtre")+")"))); }
     add(el("div",{class:"subhead"},"Mevsim ve hava")); add(strip);
+    const stripS=el("div",{class:"presets"}); const itemsS=LOOKS.filter(l=>l.cat==="son").map(l=>mk(l.id,l.n)); stripS.append(...itemsS);
+    add(el("div",{class:"subhead"},"🍂 Sonbahar koleksiyonu")); add(stripS);
+    const stripC=el("div",{class:"presets"}); const itemsC=LOOKS.filter(l=>l.cat==="cicek").map(l=>mk(l.id,l.n)); stripC.append(...itemsC);
+    add(el("div",{class:"subhead"},"🌹 Çiçek · gül · meyve")); add(stripC);
     const strip2=el("div",{class:"presets"}); const items2=LOOKS.filter(l=>l.cat==="lr").map(l=>mk(l.id,l.n)); strip2.append(...items2);
     add(el("div",{class:"subhead"},"Lightroom tarzı")); add(strip2);
-    requestAnimationFrame(()=>drawLookThumbs([...items,...items2]));
+    requestAnimationFrame(()=>drawLookThumbs([...items,...itemsS,...itemsC,...items2]));
     add(el("div",{class:"subhead"},"Hazır ayarlarım"));
     add(presetList(true));
     add(el("div",{class:"btn-row"},
