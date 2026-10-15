@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="6.4" data-ad="Karanlık Oda" data-tarih="10.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="6.5" data-ad="Karanlık Oda" data-tarih="13.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -337,7 +337,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.4 · 10.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.5 · 13.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6832,7 +6832,8 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .tl-cb{height:20px;border-bottom:1px solid var(--line)}
 .tl-l{display:flex;align-items:center;gap:3px;width:100%;height:28px;border:0;border-top:1px solid var(--line);background:transparent;color:var(--muted);font:500 10.5px var(--f-ui);padding:0 4px;white-space:nowrap;overflow:hidden}
 .tl-cb+.tl-l{border-top:0}.tl-l i{font-style:normal;width:14px;text-align:center;flex:none}
-.tl-l.pas{text-decoration:line-through;opacity:.55}
+.tl-l.pas{text-decoration:line-through;opacity:.55}.tl-s.pas .tl-b{opacity:.35}
+.kh-msr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:6px 0}.kh-msn{font:700 12px Oswald,sans-serif;padding:3px 8px;border-radius:3px;min-width:90px;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;border:1px solid var(--line)}.kh-msc{display:flex;gap:4px;flex-wrap:wrap}.kh-msc .kh-rk{width:22px;height:22px}.kh-rk.on{outline:2px solid var(--acc,#e8a33d);outline-offset:2px}.kh-msb{display:flex;gap:4px}.kh-sn input{width:70px}
 .tl-kay{overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x}
 .tl-ic{position:relative;min-width:100%}
 .tl-cet{position:relative;height:20px;border-bottom:1px solid var(--line);background:var(--surface);cursor:ew-resize}
@@ -7082,19 +7083,19 @@ function sigdir(x, metin, font, maxW, maxH, lh, enB, enK, enCok){ let lo = enK, 
     if (ok){ iyi = {s:m, L}; lo = m; } else hi = m; }
   if (!iyi){ x.font = font(enK); iyi = {s:enK, L:satirla(x, metin, maxW)}; if (enCok && iyi.L.length > enCok){ iyi.L = iyi.L.slice(0, enCok); iyi.L[enCok - 1] += '…'; } } x.font = font(iyi.s); return iyi; }
 function yaz(x, L, X, Y, s, lh, hiza, gor){ L.forEach((l, i) => { const yy = Y + i*s*lh; if (gor && gor(i, l, yy) === false) return; x.textAlign = hiza || 'left'; x.fillText(l, X, yy); }); }
-function foto(x, X, Y, w, h, kb){ if (typeof GAL !== 'undefined' && GAL && GAL.list.length > 1 && GAL.tG != null){ galeriCiz(x, X, Y, w, h); return; } if (!FOTO){ const g = x.createLinearGradient(X, Y, X + w, Y + h); g.addColorStop(0, '#2b3a44'); g.addColorStop(1, '#101418'); x.fillStyle = g; x.fillRect(X, Y, w, h); return; }
+function foto(x, X, Y, w, h, kb){ if (D.gizFoto){ const g = x.createLinearGradient(X, Y, X + w, Y + h); g.addColorStop(0, '#2b3a44'); g.addColorStop(1, '#101418'); x.fillStyle = g; x.fillRect(X, Y, w, h); return; } if (typeof GAL !== 'undefined' && GAL && (GAL.list.length > 1 || fa(GAL.list[0])) && GAL.tG != null){ galeriCiz(x, X, Y, w, h); return; } if (!FOTO){ const g = x.createLinearGradient(X, Y, X + w, Y + h); g.addColorStop(0, '#2b3a44'); g.addColorStop(1, '#101418'); x.fillStyle = g; x.fillRect(X, Y, w, h); return; }
   const iw = FOTO.width, ih = FOTO.height, sc = Math.max(w/iw, h/ih)*(D.fz || 1)*(kb || 1), dw = iw*sc, dh = ih*sc;
   let dx = X + w/2 - dw*(D.fx ?? .5), dy = Y + h/2 - dh*(D.fy ?? .5); dx = kis(dx, X + w - dw, X); dy = kis(dy, Y + h - dh, Y);
   x.save(); x.beginPath(); x.rect(X, Y, w, h); x.clip(); x.imageSmoothingQuality = 'high'; x.drawImage(FOTO, dx, dy, dw, dh); x.restore(); }
 const tarihYaz = (ts, kisa) => new Date(ts || Date.now()).toLocaleDateString('tr-TR', kisa ? {day:'numeric', month:'long', year:'numeric'} : {weekday:'long', day:'numeric', month:'long', year:'numeric'});
 function kagit(x, W, H, renk){ x.fillStyle = renk || '#f3eee2'; x.fillRect(0, 0, W, H); let s = 7; const r = () => (s = (s*16807) % 2147483647)/2147483647;
   x.globalAlpha = .05; for (let i = 0; i < W*H/900; i++){ x.fillStyle = r() < .5 ? '#000' : '#7a5c2e'; x.fillRect(r()*W, r()*H, 1.6, 1.6); } x.globalAlpha = 1; }
-function logo(x, X, Y, s, ac, koyu){ /* kanal simgesi + gazete adı */ x.save(); ikonCiz(x, M.logo, X, Y, s, markaRenk()); x.textBaseline = 'middle';
+function logo(x, X, Y, s, ac, koyu){ /* kanal simgesi + gazete adı */ x.save(); ikonCiz(x, aktifLogo(), X, Y, s, markaRenk()); x.textBaseline = 'middle';
   x.textAlign = 'left'; x.fillStyle = koyu ? '#111' : '#fff'; x.font = `700 ${s*.42}px Oswald`; x.fillText(TR(M.ad), X + s*1.22, Y + s*.36); x.globalAlpha = .85; x.font = `italic 400 ${s*.26}px "Playfair Display"`; x.fillText(M.slogan, X + s*1.22, Y + s*.78); x.restore(); x.textBaseline = 'alphabetic'; }
 function guvenliTaban(W, H){ return H/W > 1.6 ? H*.17 : H*.035; }
 function guvenli(W, H){ const dik = H/W > 1.6; return {u:dik ? H*.11 : H*.035, a:guvenliTaban(W, H) + (D.altBant ? W*.072 + W*.014 : 0), m:W*.06}; }
 /* altyazı (video) */
-function altyazi(x, W, H, t, yb){ if (!D.altyazi || !SES || t === Infinity) return; const sg = SES.segs.find(s => t >= s.a && t < s.b + .15); if (!sg) return;
+function altyazi(x, W, H, t, yb){ if (!D.altyazi || D.gizSes || !SES || t === Infinity) return; const sg = SES.segs.find(s => t >= s.a && t < s.b + .15); if (!sg) return;
   const fs = W*.042; x.font = `700 ${fs}px Montserrat`; const L = satirla(x, sg.t, W*.84).slice(0, 3), h = L.length*fs*1.25 + fs*.7, y = yb - h;
   x.fillStyle = 'rgba(0,0,0,.72)'; rr(x, W*.06, y, W*.88, h, fs*.35); x.fill(); x.fillStyle = '#fff'; x.textBaseline = 'top'; yaz(x, L, W/2, y + fs*.4, fs, 1.25, 'center'); x.textBaseline = 'alphabetic'; }
 
@@ -7182,11 +7183,11 @@ const CIZ = {
     x.font = `500 ${W*.022}px Oswald`; x.fillStyle = '#fff'; x.textAlign = 'right'; x.fillText(TR(M.slogan) + ' · ' + TR(M.hesap), W - g.m, H - g.a); altyazi(x, W, H, t, H - g.a - W*.05); }
 };
 function kartCiz(c, t, dur, tG){ const [W, H] = ORAN[D.oran] || ORAN['4:5']; if (c.width !== W || c.height !== H){ c.width = W; c.height = H; } const x = c.getContext('2d'); x.save(); x.clearRect(0, 0, W, H);
-  try { (CIZ[D.sablon] || CIZ.sondakika)(x, W, H, t == null ? Infinity : t, dur || 8); if (D.altBant) tvBant(x, W, H, tG != null ? tG : (t == null ? Infinity : t), D.etiket); if (!ZAMANDA) ornekRozet(x, W, H); } catch(e){ console.warn('Kabataş Haber çizim', e); } x.restore(); }
+  try { const _mn = D.manset; if (D.sablon !== 'renkli' && _mn && /\*/.test(_mn)) D.manset = String(_mn).replace(/\*/g, ''); try { (D.gizManset ? CIZ._yalin : (CIZ[D.sablon] || CIZ.sondakika))(x, W, H, t == null ? Infinity : t, dur || 8); } finally { D.manset = _mn; } if (D.altBant) tvBant(x, W, H, tG != null ? tG : (t == null ? Infinity : t), D.etiket); if (!ZAMANDA) ornekRozet(x, W, H); } catch(e){ console.warn('Kabataş Haber çizim', e); } x.restore(); }
 
 /* ---------- ses üretimi ---------- */
 const cumleler = t => String(t || '').replace(/\s+/g, ' ').match(/[^.!?…]+[.!?…]*["”’)]?/g)?.map(s => s.trim()).filter(s => /[\p{L}\p{N}]/u.test(s)) || [];
-const okunacak = () => (D.metin || [D.manset, D.spot].filter(Boolean).join('. ')).trim();
+const okunacak = () => (D.metin || [String(D.manset || '').replace(/\*/g, '').replace(/\s*\n\s*/g, '. '), D.spot].filter(Boolean).join('. ')).trim();
 function jenerik(sr){ const n = Math.round(sr*1.1), o = new Float32Array(n), N = [[0, 880], [.16, 1174.7], [.32, 1568]];
   N.forEach(([b, f]) => { const s0 = Math.round(b*sr); for (let i = 0; i < sr*.75 && s0 + i < n; i++){ const tt = i/sr, e = Math.min(1, tt*80)*Math.exp(-tt*5.5); o[s0 + i] += .22*e*(Math.sin(2*Math.PI*f*tt) + .35*Math.sin(2*Math.PI*f*2*tt)); } }); return o; }
 async function sesHazirla(bildir){ if (!HSes) throw new Error('Ses motoru yok');
@@ -7379,8 +7380,8 @@ function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k,
   on('#khKapat', () => { try { history.back(); } catch(e){ kapat(); } }); on('#khTsBtn', taslakListe);
   kok.addEventListener('click', e => { const b = e.target.closest('button'); if (!b || !kok.contains(b)) return;
     if (b.dataset.oran){ D.oran = b.dataset.oran; kaydet(); formDoldur(); ciz(); }
-    else if (b.dataset.sb){ D.sablon = b.dataset.sb; kaydet(); formDoldur(); ciz(); }
-    else if (b.dataset.et){ D.etiket = b.dataset.et; kaydet(); formDoldur(); ciz(); }
+    else if (b.dataset.sb){ D.sablon = b.dataset.sb; tvOto('sb'); kaydet(); formDoldur(); ciz(); }
+    else if (b.dataset.et){ D.etiket = b.dataset.et; tvOto('et'); kaydet(); formDoldur(); ciz(); }
     else if (b.dataset.bs){ D.bantStil = b.dataset.bs; D.altBant = true; kaydet(); formDoldur(); ciz(); }
     else if (b.dataset.mz){ D.muzik = b.dataset.mz; kaydet(); formDoldur(); }
     else if (b.dataset.mzd !== undefined){ const i = document.createElement('input'); i.type = 'file'; i.accept = 'audio/*'; i.onchange = () => muzikDosyaKoy(i.files[0]); i.click(); }
@@ -7539,7 +7540,7 @@ const EK = {altBant:true, bantStil:'kirmizi', bantMetin:'', muzik:'gergin', muzi
 Object.keys(EK).forEach(k => { if (D[k] === undefined) D[k] = Array.isArray(EK[k]) ? [] : EK[k]; });
 const BH = () => (ORAN[D.oran] || ORAN['4:5'])[0]*.072;
 const saatYaz = ts => new Date(ts || Date.now()).toLocaleTimeString('tr-TR', {hour:'2-digit', minute:'2-digit'});
-const bantYazisi = () => (D.bantMetin || [D.manset].concat((D.sahneler || []).map(s => s.manset)).filter(Boolean).join('   •   ') || M.slogan) + '   •   ' + M.ad + ' — ' + M.slogan;
+const bantYazisi = () => (D.bantMetin || [D.manset].concat((D.sahneler || []).map(s => s.manset)).map(v => String(v || '').replace(/\*/g, '').replace(/\s*\n\s*/g, ' ')).filter(Boolean).join('   •   ') || M.slogan) + '   •   ' + M.ad + ' — ' + M.slogan;
 /* TV alt bandı: solda etiket, ortada kayan yazı, sağda saat */
 function tvBant(x, W, H, t, lab){ const st = BANT[D.bantStil] || BANT.kirmizi, h = BH(), y = H - guvenliTaban(W, H) - h, lw = W*.25, rw = W*.15;
   x.save(); x.textBaseline = 'middle';
@@ -7547,7 +7548,7 @@ function tvBant(x, W, H, t, lab){ const st = BANT[D.bantStil] || BANT.kirmizi, h
   const tk = '   ' + bantYazisi() + '   '; x.save(); x.beginPath(); x.rect(lw, y, W - lw - rw, h); x.clip(); x.fillStyle = st.bi; x.font = `500 ${h*.44}px Oswald`; x.textAlign = 'left';
   const tw = Math.max(1, x.measureText(tk).width), off = t === Infinity ? 0 : (t*W*.16) % tw; x.fillText(tk, lw + W*.015 - off, y + h*.52); x.fillText(tk, lw + W*.015 - off + tw, y + h*.52); x.restore();
   x.fillStyle = st.l; x.beginPath(); x.moveTo(0, y); x.lineTo(lw, y); x.lineTo(lw - h*.35, y + h); x.lineTo(0, y + h); x.closePath(); x.fill();
-  x.fillStyle = st.li; x.font = `700 ${h*.4}px Oswald`; x.textAlign = 'center'; const L = TR(lab || 'GÜNDEM'); x.fillText(L.length > 14 ? L.split(' ')[0] : L, lw*.46, y + h*.53);
+  const kl = D.konuLogo !== false && KONU_LOGO[D.etiket], is = h*.72; if (kl) ikonCiz(x, kl, h*.16, y + (h - is)/2, is, st.li === '#fff' || st.li === '#ffffff' ? '#00000055' : markaRenk()); x.textBaseline = 'middle'; x.fillStyle = st.li; x.textAlign = 'center'; const L0 = TR(lab || 'GÜNDEM'), L = L0.length > 14 ? L0.split(' ')[0] : L0, sol = kl ? h*.16 + is + h*.12 : h*.2, sag = lw - h*.42, alanW = Math.max(10, sag - sol); let fsz = h*.4; x.font = `700 ${fsz}px Oswald`; const lwd = x.measureText(L).width; if (lwd > alanW){ fsz *= alanW/lwd; x.font = `700 ${fsz}px Oswald`; } x.fillText(L, (sol + sag)/2, y + h*.53);
   x.fillStyle = st.s; x.beginPath(); x.moveTo(W - rw + h*.3, y); x.lineTo(W, y); x.lineTo(W, y + h); x.lineTo(W - rw, y + h); x.closePath(); x.fill();
   x.fillStyle = st.si; x.font = `700 ${h*.42}px Oswald`; x.fillText(saatYaz(D.tarih), W - rw*.45, y + h*.53); x.restore(); x.textBaseline = 'alphabetic'; }
 /* TV şablonu: iki katlı alt yazı (etiket + manşet), spot şeridi */
@@ -7588,10 +7589,10 @@ function kapanisCiz(x, W, H, t){ const st = BANT[D.bantStil] || BANT.kirmizi, ac
 /* ---------- sahneler (bülten) ---------- */
 const SF = new Map();   /* sahne fotoğrafları: id → canvas */
 async function sahneFotoAl(sc){ if (!sc.fid) return null; if (SF.has(sc.fid)) return SF.get(sc.fid); const b = await IDB.get('sf_' + sc.fid); if (!b) return null;
-  try { const bm = await createImageBitmap(b); const c = document.createElement('canvas'); c.width = bm.width; c.height = bm.height; c.getContext('2d').drawImage(bm, 0, 0); SF.set(sc.fid, c); return c; } catch(e){ return null; } }
+  try { const bm = await createImageBitmap(b); const c = document.createElement('canvas'); c.width = bm.width; c.height = bm.height; c.getContext('2d').drawImage(bm, 0, 0); (c._fid = sc.fid, SF.set(sc.fid, c)); return c; } catch(e){ return null; } }
 async function sahneFotoKoy(sc, file){ let bm; try { bm = await createImageBitmap(file, {imageOrientation:'from-image'}); } catch(e){ tst('Fotoğraf açılamadı'); return; }
   const s = Math.min(1, 2000/Math.max(bm.width, bm.height)), c = document.createElement('canvas'); c.width = Math.round(bm.width*s); c.height = Math.round(bm.height*s); c.getContext('2d').drawImage(bm, 0, 0, c.width, c.height);
-  sc.fid = sc.fid || (Date.now().toString(36) + Math.random().toString(36).slice(2, 5)); SF.set(sc.fid, c); IDB.set('sf_' + sc.fid, await new Promise(r => c.toBlob(r, 'image/jpeg', .88)));
+  sc.fid = sc.fid || (Date.now().toString(36) + Math.random().toString(36).slice(2, 5)); (c._fid = sc.fid, SF.set(sc.fid, c)); IDB.set('sf_' + sc.fid, await new Promise(r => c.toBlob(r, 'image/jpeg', .88)));
   let y = []; try { y = yuzBul(c); } catch(e){} if (y.length){ sc.fx = y.reduce((a, f) => a + f.x, 0)/y.length; sc.fy = Math.max(0, y.reduce((a, f) => a + f.y, 0)/y.length - .05); } else { sc.fx = .5; sc.fy = .42; } }
 const yeniSahne = () => ({id:Date.now().toString(36) + Math.random().toString(36).slice(2, 4), etiket:'GÜNDEM', manset:'', spot:'', metin:'', fid:null, fx:.5, fy:.42, fz:1});
 
@@ -7610,17 +7611,17 @@ async function sesUret(metin, bildir){ metin = String(metin || '').trim(); if (!
 const GECIS = .6, SES_GEC = .45;
 async function fotoListe(ids){ const o = []; for (const id of (ids || [])){ const c = await sahneFotoAl({fid:id}); if (c) o.push(c); } return o; }
 async function planKur(bildir, opt){ const sc0 = {ref:'ana', d:{}, foto:FOTO, liste:[FOTO].filter(Boolean).concat(await fotoListe(D.ekFoto)), fx:D.fx, fy:D.fy, fz:D.fz, metin:okunacak()};
-  const ekler = []; for (const s of (D.sahneler || [])){ if (!s.manset && !s.fid && !s.metin) continue; const f1 = await sahneFotoAl(s); ekler.push({ref:s, d:{sablon:s.sablon || D.sablon, maddeler:s.maddeler || '', manset:s.manset, spot:s.spot, metin:s.metin, etiket:s.etiket || D.etiket, fx:s.fx, fy:s.fy, fz:s.fz || 1}, foto:f1, liste:[f1].filter(Boolean).concat(await fotoListe(s.ek)), metin:(s.metin || [s.manset, s.spot].filter(Boolean).join('. ')).trim()}); }
+  const ekler = []; for (const s of (D.sahneler || [])){ if (!s.manset && !s.fid && !s.metin) continue; const f1 = await sahneFotoAl(s); ekler.push({ref:s, d:{sablon:s.sablon || D.sablon, maddeler:s.maddeler || '', manset:s.manset, spot:s.spot, metin:s.metin, etiket:s.etiket || D.etiket, fx:s.fx, fy:s.fy, fz:s.fz || 1}, foto:f1, liste:[f1].filter(Boolean).concat(await fotoListe(s.ek)), metin:(s.metin || [String(s.manset || '').replace(/\*/g, '').replace(/\s*\n\s*/g, '. '), s.spot].filter(Boolean).join('. ')).trim()}); }
   const sahneler = [sc0, ...ekler], P = {parca:[], top:0}; let t = 0, n = 0;
   const sesli = async (m, i) => { if (!m) return null; if (opt && opt.tahmin){ const mm = String(m).trim(), kk = [HKS.ses, HKS.hiz, HKS.ton, mm].join('|'); if (SES_ON.has(kk)) return SES_ON.get(kk); const cs = cumleler(mm), segs = []; let tt = 0; (cs.length ? cs : [mm]).forEach((c, k) => { if (k) tt += .3; const d = Math.max(.8, c.split(/\s+/).length/2.4/(HKS.hiz || 1)); segs.push({a:tt, b:tt + d, t:c}); tt += d; }); return {tahmini:true, sure:tt, segs}; } bildir && bildir(`Seslendiriliyor ${i}/${sahneler.length + (D.spiker ? 2 : 0)}`); try { return await sesUret(m, bildir); } catch(e){ bildir && bildir('Ses yok: ' + (e.message || e)); return null; } };
   if (D.acilis){ const ses = D.spiker ? await sesli(D.acilisMetin, ++n) : null; const sure = D.acilisSure ? Math.max(ses ? ses.sure + 1.3 : 1.5, D.acilisSure) : Math.max(ACILIS_SN, ses ? ses.sure + 1.3 : 0); P.parca.push({tip:'acilis', a:t, b:t + sure, ses, sesA:t + 1.0}); t += sure; }
-  for (const s of sahneler){ const ses = await sesli(s.metin, ++n); const ov = s.ref === 'ana' ? D.anaSure : s.ref.sure, sure = ov ? Math.max(ses ? ses.sure + SES_GEC + .4 : 1.5, ov) : Math.max(5, ses ? ses.sure + SES_GEC + .7 : 6); P.parca.push({tip:'sahne', s, a:t, b:t + sure, ses, sesA:t + SES_GEC}); t += sure; }
+  for (const s of sahneler){ const ses = await sesli(s.metin, ++n); const ov = s.ref === 'ana' ? D.anaSure : s.ref.sure, sure = Math.max(fotoSnToplam(s.liste), ov ? Math.max(ses ? ses.sure + SES_GEC + .4 : 1.5, ov) : Math.max(5, ses ? ses.sure + SES_GEC + .7 : 6)); P.parca.push({tip:'sahne', s, a:t, b:t + sure, ses, sesA:t + SES_GEC}); t += sure; }
   if (D.kapanis){ const ses = D.spiker ? await sesli(D.kapanisMetin, ++n) : null; const sure = D.kapanisSure ? Math.max(ses ? ses.sure + 1.0 : 1.5, D.kapanisSure) : Math.max(KAPANIS_SN, ses ? ses.sure + 1.0 : 0); P.parca.push({tip:'kapanis', a:t, b:t + sure, ses, sesA:t + .6}); t += sure; }
   P.top = t; return P; }
 function parcaCiz(c, p, tl){ const [W, H] = ORAN[D.oran] || ORAN['4:5']; if (c.width !== W || c.height !== H){ c.width = W; c.height = H; } const x = c.getContext('2d');
   if (p.tip === 'acilis'){ acilisCiz(x, W, H, tl); return; } if (p.tip === 'kapanis'){ kapanisCiz(x, W, H, tl); if (D.altBant) tvBant(x, W, H, p.a + tl, M.ad); return; }
   const eD = D, eF = FOTO, eS = SES; D = Object.assign({}, eD, p.s.d); FOTO = p.s.foto; SES = p.ses ? {segs:p.ses.segs.map(q => ({a:q.a + SES_GEC, b:q.b + SES_GEC, t:q.t}))} : null;
-  const eG = GAL; GAL = (p.s.liste || []).length > 1 ? {list:p.s.liste, a:p.a, b:p.b, tG:p.a + tl} : null;
+  const eG = GAL; GAL = ((p.s.liste || []).length > 1 || fa((p.s.liste || [])[0])) ? {list:p.s.liste, a:p.a, b:p.b, tG:p.a + tl} : null;
   try { kartCiz(c, tl, p.b - p.a, p.a + tl); } finally { D = eD; FOTO = eF; SES = eS; GAL = eG; } }
 function zamanCiz0(c, P, t){ let i = P.parca.findIndex(p => t < p.b); if (i < 0) i = P.parca.length - 1; const p = P.parca[i], nx = P.parca[i + 1];
   if (nx && t > p.b - GECIS){ const q = (t - (p.b - GECIS))/GECIS; parcaCiz(_gA, p, t - p.a); parcaCiz(_gB, nx, 0); if (c.width !== _gA.width || c.height !== _gA.height){ c.width = _gA.width; c.height = _gA.height; } gecisYap(c, _gA, _gB, q, gecisStil(i)); }
@@ -7645,7 +7646,7 @@ function muzikUret(stil, sure, sr){ if (!stil || stil === 'yok') return null; co
 
 /* ---------- karışım: konuşma + müzik (konuşmada kısılır) + geçiş sesleri ---------- */
 async function karisim(P, bildir){ const SR = 48000, N = Math.ceil((P.top + .3)*SR), oc = new OfflineAudioContext(2, N, SR), ana = oc.createDynamicsCompressor(); ana.threshold.value = -10; ana.ratio.value = 4; ana.connect(oc.destination);
-  const konus = []; P.parca.forEach(p => { if (!p.ses || !p.ses.pcm) return; const b = oc.createBuffer(1, p.ses.pcm.length, p.ses.sr); b.copyToChannel(p.ses.pcm, 0); const s = oc.createBufferSource(); s.buffer = b;
+  const konus = []; P.parca.forEach(p => { if (D.gizSes || !p.ses || !p.ses.pcm) return; const b = oc.createBuffer(1, p.ses.pcm.length, p.ses.sr); b.copyToChannel(p.ses.pcm, 0); const s = oc.createBufferSource(); s.buffer = b;
     const g = oc.createGain(); g.gain.value = 1; s.connect(g); g.connect(ana); s.start(p.sesA); p.ses.segs.forEach(q => konus.push([p.sesA + q.a, p.sesA + q.b])); });
   if (D.muzik && D.muzik !== 'yok'){ bildir && bildir('Haber müziği hazırlanıyor…'); await new Promise(r => setTimeout(r, 0)); const MS = 24000, m = D.muzik === 'dosya' ? null : muzikUret(D.muzik, P.top + .3, MS), mb = D.muzik === 'dosya' ? await muzikDosyaTampon(oc) : null;
     if (m || mb){ let b = mb; if (!b){ b = oc.createBuffer(1, m.length, MS); b.copyToChannel(m, 0); } const s = oc.createBufferSource(); s.buffer = b; if (mb){ s.loop = true; s.loopEnd = b.duration; } const g = oc.createGain(), L = (D.muzikSes ?? 35)/100*.55, dk = L*.3;
@@ -7769,7 +7770,7 @@ function galeriZaman(G){ const n = G.list.length, dur = G.b - G.a, beat = 60/(BP
 function fotoTek(x, img, X, Y, w, h, fx, fy, z, ox, oy){ const iw = img.width, ih = img.height, sc = Math.max(w/iw, h/ih)*z, dw = iw*sc, dh = ih*sc;
   let dx = X + w/2 - dw*fx + (ox || 0)*w, dy = Y + h/2 - dh*fy + (oy || 0)*h; dx = kis(dx, X + w - dw, X); dy = kis(dy, Y + h - dh, Y); x.drawImage(img, dx, dy, dw, dh); }
 function galeriCiz(x, X, Y, w, h){ const G = GAL, T = galeriZaman(G), tg = kis(G.tG, G.a, G.b - .001); let k = 0; while (k < G.list.length - 1 && tg >= T[k + 1]) k++;
-  const yuz = (i, u) => { const img = G.list[i]; const tip = i % 4, fx = i === 0 ? (D.fx ?? .5) : .5, fy = i === 0 ? (D.fy ?? .42) : .45, z0 = (i === 0 ? D.fz || 1 : 1);
+  const yuz = (i, u) => { const img = G.list[i]; let tip = i % 4, fx = i === 0 ? (D.fx ?? .5) : .5, fy = i === 0 ? (D.fy ?? .42) : .45, z0 = (i === 0 ? D.fz || 1 : 1); const A = fa(img); if (A){ const ax = A.fx ?? fx, ay = A.fy ?? fy, az = (A.z || 1)*z0, hr = A.hr || 'oto'; if (hr === 'sabit') return [img, ax, ay, az, 0]; if (hr === 'yak') return [img, ax, ay, az*(1 + .12*u), 0]; if (hr === 'uzak') return [img, ax, ay, az*(1.12 - .12*u), 0]; if (hr === 'sol') return [img, ax, ay, az*1.12, (.5 - u)*.08]; if (hr === 'sag') return [img, ax, ay, az*1.12, (u - .5)*.08]; fx = ax; fy = ay; z0 = az; }
     if (tip === 0) return [img, fx, fy, z0*(1 + .1*u), 0]; if (tip === 1) return [img, fx, fy, z0*(1.12 - .1*u), 0]; if (tip === 2) return [img, fx, fy, z0*1.12, (.5 - u)*.07]; return [img, fx, fy, z0*1.12, (u - .5)*.07]; };
   const u = (tg - T[k])/Math.max(.1, T[k + 1] - T[k]), tr = k ? kis((tg - T[k])/.6, 0, 1) : 1, e = ease(tr);
   x.save(); x.beginPath(); x.rect(X, Y, w, h); x.clip(); x.imageSmoothingQuality = 'high';
@@ -7856,8 +7857,8 @@ function tlCiz(){ const k = $h('#khTl'); if (!k || !TL.P) return; const P = TL.P
   (D.yazilar || []).forEach(Y => { const ya = Y.a, yb = Y.b; satir.ekyazi += bl('tl-ey', ya, yb, `<i class="tl-h l" data-h="0"></i><span>${esc(String(Y.t).split('\n')[0])}</span><i class="tl-h" data-h="1"></i>`, 'ey:' + Y.id, nl > 1 ? `top:${2 + Y._l*20/nl}px;height:${20/nl}px;line-height:${20/nl - 2}px;font-size:${nl > 2 ? 8 : 9.5}px` : ''); });
   const mz = D.muzik === 'yok' ? '' : D.muzik === 'dosya' ? '📁 ' + (D.muzikAd || 'Kendi müziğim') : (MUZIK.find(m => m[0] === D.muzik) || ['', ''])[1];
   satir.muzik = mz ? bl('tl-mz', 0, P.top, `<span>♪ ${esc(mz)} · %${D.muzikSes ?? 35}</span>`, 'muzik') : ''; satir.bant = D.altBant ? bl('tl-bn', 0, P.top, `<span>${esc(bantYazisi()).slice(0, 120)}</span>`, 'bant') : '';
-  const pas = {muzik:D.muzik === 'yok', efekt:!D.sfx, bant:!D.altBant, ekyazi:D.ekGizli}; const adim = pps >= 24 ? 2 : pps >= 12 ? 5 : 10; let cet = ''; for (let s = 0; s <= P.top; s += adim) cet += `<span style="left:${X(s)}">${Math.floor(s/60)}:${String(Math.floor(s % 60)).padStart(2, '0')}</span>`;
-  k.innerHTML = `<div class="tl-et"><div class="tl-cb"></div>${SERITLER.map(([id, ad, ic]) => `<button class="tl-l${pas[id] ? ' pas' : ''}" data-l="${id}" title="${['muzik', 'efekt', 'bant', 'ekyazi'].includes(id) ? 'Dokun: aç / kapat' : ''}"><i>${ic}</i>${ad}</button>`).join('')}</div>
+  const pas = {muzik:D.muzik === 'yok', efekt:!D.sfx, bant:!D.altBant, ekyazi:D.ekGizli, foto:!!D.gizFoto, manset:!!D.gizManset, ses:!!D.gizSes}; const adim = pps >= 24 ? 2 : pps >= 12 ? 5 : 10; let cet = ''; for (let s = 0; s <= P.top; s += adim) cet += `<span style="left:${X(s)}">${Math.floor(s/60)}:${String(Math.floor(s % 60)).padStart(2, '0')}</span>`;
+  k.innerHTML = `<div class="tl-et"><div class="tl-cb"></div>${SERITLER.map(([id, ad, ic]) => `<button class="tl-l${pas[id] ? ' pas' : ''}" data-l="${id}" title="${id !== 'sahne' ? 'Dokun: göster / gizle' : ''}"><i>${ic}</i>${ad}</button>`).join('')}</div>
     <div class="tl-kay"><div class="tl-ic" style="width:${Wd}px"><div class="tl-cet">${cet}</div>${SERITLER.map(([id]) => `<div class="tl-s${pas[id] ? ' pas' : ''}" data-s="${id}">${satir[id]}${id === 'ekyazi' && !satir.ekyazi ? '<span class="tl-ip">＋ Yazı ile zamanlı yazı ekle</span>' : ''}</div>`).join('')}<i class="tl-ok" style="left:${X(TL.t)}"></i></div></div>`;
   k.querySelector('.tl-kay').scrollLeft = sl; const s = $h('#khTlSure'); if (s) s.textContent = `${Math.floor(P.top/60)} dk ${Math.round(P.top % 60)} sn` + (P.parca.some(p => p.ses && p.ses.tahmini) ? ' · süreler tahmini (ses oluşunca kesinleşir)' : ''); aracCiz(); }
 function tlOynatma(t){ TL.t = t; const o = $h('#khTl .tl-ok'); if (o) o.style.left = (t*TL.pps).toFixed(1) + 'px'; const sk = $h('#khTl .tl-kay'); if (sk && calis){ const x = t*TL.pps; if (x > sk.scrollLeft + sk.clientWidth*.8 || x < sk.scrollLeft) sk.scrollLeft = x - sk.clientWidth*.3; } }
@@ -7939,7 +7940,7 @@ function katmanGit(key){ const m = /^(\w+):(\d+)(?::(-?\d+))?/.exec(key) || [], 
 function tlBagla(){ const k = $h('#khTl'); if (!k || k._b) return; k._b = 1; let dr = null;
   const zaman = e => { const ic = k.querySelector('.tl-ic'), r = ic.getBoundingClientRect(); return (e.clientX - r.left)/TL.pps; };
   k.addEventListener('pointerdown', e => { if (e.button > 0) return; const lb = e.target.closest('.tl-l');
-    if (lb){ const l = lb.dataset.l; if (l === 'muzik'){ if (D.muzik === 'yok'){ D.muzik = D._mzEski || 'gergin'; } else { D._mzEski = D.muzik; D.muzik = 'yok'; } } else if (l === 'efekt') D.sfx = !D.sfx; else if (l === 'bant') D.altBant = !D.altBant; else if (l === 'ekyazi') D.ekGizli = !D.ekGizli; else return;
+    if (lb){ const l = lb.dataset.l; if (l === 'muzik'){ if (D.muzik === 'yok'){ D.muzik = D._mzEski || 'gergin'; } else { D._mzEski = D.muzik; D.muzik = 'yok'; } } else if (l === 'efekt') D.sfx = !D.sfx; else if (l === 'bant') D.altBant = !D.altBant; else if (l === 'ekyazi') D.ekGizli = !D.ekGizli; else if (l === 'foto') D.gizFoto = !D.gizFoto; else if (l === 'manset') D.gizManset = !D.gizManset; else if (l === 'ses') D.gizSes = !D.gizSes; else return;
       kaydet(); formDoldur(); ciz(); tlYenile(); return; }
     const b = e.target.closest('.tl-b'); const t0 = zaman(e);
     if (!b){ if (e.target.closest('.tl-ic')){ dr = {tip:'gez'}; k.querySelector('.tl-kay').style.touchAction = 'none'; tlGit(t0); } return; }
@@ -7964,7 +7965,7 @@ function tlBagla(){ const k = $h('#khTl'); if (!k || k._b) return; k._b = 1; let
   const a = $h('#khTlArac');
   a.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const p = seciliParca(), ref = kaynak(p);
     if (b.dataset.ta) aracIslem(b.dataset.ta, b);
-    else if (b.dataset.tsb){ if (ref === 'ana') D.sablon = b.dataset.tsb; else if (ref) ref.sablon = b.dataset.tsb; kaydet(); formDoldur(); ciz(); tlYenile().then(() => tlGit(TL.t)); }
+    else if (b.dataset.tsb){ if (ref === 'ana'){ D.sablon = b.dataset.tsb; tvOto('sb'); } else if (ref) ref.sablon = b.dataset.tsb; kaydet(); formDoldur(); ciz(); tlYenile().then(() => tlGit(TL.t)); }
     else if (b.dataset.tys || b.dataset.tyk){ const Y = D.yazilar.find(y => 'ey:' + y.id === TL.sel); if (!Y) return; if (b.dataset.tys) Y.stil = b.dataset.tys; else Y.konum = b.dataset.tyk; kaydet(); aracCiz(); tlGit(Math.max(TL.t, Y.a + .4)); }
     else if (b.dataset.tmz){ D.muzik = b.dataset.tmz; kaydet(); formDoldur(); tlYenile(); }
     else if (b.dataset.tbs){ D.bantStil = b.dataset.tbs; D.altBant = true; kaydet(); formDoldur(); ciz(); tlYenile().then(() => tlGit(TL.t)); } });
@@ -8018,6 +8019,136 @@ async function demoYukle(){ if (!confirm('Örnek bülten yüklensin mi? Şu anki
   catch(e){ console.warn(e); tst('Örnek yüklenemedi: ' + (e.message || e)); } finally { bz && bz.close(); } }
 
 window.KabatasHaber = {ac, kapat, ciz:kartCiz, D:() => D, plan:planKur, zaman:zamanCiz, karisim, marka:markaGorsel, ikon:ikonCiz, demo:demoYukle, tl:TL, video:videoYap, VIDEO:() => VIDEO};
+
+/* ===================== 6.5 · Kabataş Haber: foto süresi ve foto katman araçları, katman gizleme, renkli (biçimli) manşet,
+   biçime göre TV görünümü, konuya göre logo ===================== */
+/* --- foto ayarları: D.fa[anahtar] = {sn, z, fx, fy, hr, sig}; anahtar: sahne fotoğrafının kimliği, ana fotoğraf için 'ana' --- */
+function faKey(c){ return c ? (c._fid || (c === FOTO ? 'ana' : null)) : null; }
+function fa(c){ const k = faKey(c); if (!k) return null; const A = (D.fa || {})[k]; return A && Object.keys(A).length ? A : null; }
+function fotoSnToplam(list){ const s = (list || []).map(c => { const A = fa(c); return A && A.sn > 0 ? A.sn : 0; }); if (!s.some(Boolean)) return 0; return s.reduce((t, v) => t + (v || 1.5), 0); }
+{ const _gz = galeriZaman; galeriZaman = function(G){ const n = G.list.length, set = G.list.map(c => { const A = fa(c); return A && A.sn > 0 ? A.sn : 0; });
+    if (!set.some(Boolean)) return _gz.apply(this, arguments);
+    const dur = G.b - G.a, sabit = set.reduce((t, v) => t + v, 0), bos = set.filter(v => !v).length, her = bos ? Math.max(1.2, (dur - sabit)/bos) : 0, T = [G.a]; let t = G.a;
+    set.forEach((v, i) => { t += v || her; T.push(i === n - 1 ? Math.max(G.b, t) : Math.min(t, G.b - .05)); }); for (let i = 1; i < T.length; i++) T[i] = Math.max(T[i], T[i - 1] + .05); return T; }; }
+{ const _ft = fotoTek; fotoTek = function(x, img, X, Y, w, h, fx, fy, z, ox, oy){ const A = fa(img); if (!A || !A.sig) return _ft.apply(this, arguments);
+    x.save(); try { x.filter = `blur(${Math.round(Math.max(w, h)*.025)}px) brightness(.55)`; } catch(e){} _ft(x, img, X, Y, w, h, .5, .5, 1.15, 0, 0); x.restore();
+    const s = Math.min(w/img.width, h/img.height)*Math.min(1.3, z || 1), dw = img.width*s, dh = img.height*s; x.drawImage(img, X + (w - dw)/2 + (ox || 0)*w, Y + (h - dh)/2 + (oy || 0)*h, dw, dh); }; }
+/* --- manşet katmanı gizliyken: yalnız fotoğraf + logo --- */
+CIZ._yalin = function(x, W, H, t, dur){ const g = guvenli(W, H); foto(x, 0, 0, W, H, t === Infinity ? 1.02 : 1 + .06*kis(t/dur, 0, 1)); logo(x, g.m, g.u, W*.075, markaRenk()); };
+
+/* --- konuya göre logo --- */
+const KONU_LOGO = {'SON DAKİKA':'simsek', 'SICAK GELİŞME':'alev', 'FLAŞ':'simsek', 'ÖZEL HABER':'mercek', 'GÜNDEM':'yayin', 'MÜJDE':'yildiz', 'DUYURU':'megafon', 'UYARI':'unlem',
+  'YEREL':'kalkan', 'HASAT':'findik', 'HAVA DURUMU':'gunes', 'SPOR':'top', 'TEBRİK':'kupa', 'ANMA':'mum', 'RÖPORTAJ':'mikrofon'};
+function aktifLogo(){ return D.konuLogo === false ? M.logo : (KONU_LOGO[D.etiket] || M.logo); }
+{ const _ik = ikonCiz, YENI = {simsek:1, alev:1, mercek:1, yildiz:1, megafon:1, unlem:1, gunes:1, top:1, kupa:1, mum:1};
+  ikonCiz = function(x, stil, X, Y, s, ac){ if (!YENI[stil]) return _ik.apply(this, arguments); ac = ac || markaRenk(); const cx = X + s/2, cy = Y + s/2, r = s/2;
+    x.save(); x.fillStyle = ac; x.beginPath(); x.arc(cx, cy, r, 0, 7); x.fill(); x.strokeStyle = 'rgba(255,255,255,.9)'; x.lineWidth = s*.03; x.beginPath(); x.arc(cx, cy, r*.86, 0, 7); x.stroke();
+    x.fillStyle = '#fff'; x.strokeStyle = '#fff'; x.lineCap = 'round'; x.lineJoin = 'round'; const P = (...a) => { x.beginPath(); for (let i = 0; i < a.length; i += 2){ const px = cx + a[i]*s, py = cy + a[i + 1]*s; i ? x.lineTo(px, py) : x.moveTo(px, py); } x.closePath(); x.fill(); };
+    switch (stil){
+      case 'simsek': P(.06, -.32, -.16, .04, -.01, .04, -.07, .32, .16, -.06, .01, -.06); break;
+      case 'alev': x.beginPath(); x.moveTo(cx, cy - s*.32); x.bezierCurveTo(cx + s*.26, cy - s*.06, cx + s*.2, cy + s*.3, cx, cy + s*.3); x.bezierCurveTo(cx - s*.2, cy + s*.3, cx - s*.26, cy + s*.02, cx - s*.08, cy - s*.12); x.bezierCurveTo(cx - s*.06, cy, cx + s*.02, cy - s*.14, cx, cy - s*.32); x.fill();
+        x.fillStyle = ac; x.beginPath(); x.moveTo(cx, cy + s*.02); x.bezierCurveTo(cx + s*.1, cy + s*.1, cx + s*.08, cy + s*.24, cx, cy + s*.24); x.bezierCurveTo(cx - s*.08, cy + s*.24, cx - s*.1, cy + s*.12, cx, cy + s*.02); x.fill(); break;
+      case 'mercek': x.lineWidth = s*.07; x.beginPath(); x.arc(cx - s*.05, cy - s*.05, s*.15, 0, 7); x.stroke(); x.beginPath(); x.moveTo(cx + s*.06, cy + s*.06); x.lineTo(cx + s*.22, cy + s*.22); x.stroke(); break;
+      case 'yildiz': { x.beginPath(); for (let i = 0; i < 10; i++){ const a = -Math.PI/2 + i*Math.PI/5, rr2 = i % 2 ? s*.13 : s*.3; const px = cx + Math.cos(a)*rr2, py = cy + Math.sin(a)*rr2 + s*.02; i ? x.lineTo(px, py) : x.moveTo(px, py); } x.closePath(); x.fill(); break; }
+      case 'megafon': P(-.22, -.06, .14, -.24, .14, .22, -.22, .06); x.fillRect(cx - s*.27, cy - s*.07, s*.07, s*.14); x.lineWidth = s*.05; x.beginPath(); x.moveTo(cx - s*.12, cy + s*.08); x.lineTo(cx - s*.08, cy + s*.24); x.stroke(); break;
+      case 'unlem': rr(x, cx - s*.05, cy - s*.3, s*.1, s*.38, s*.05); x.fill(); x.beginPath(); x.arc(cx, cy + s*.22, s*.06, 0, 7); x.fill(); break;
+      case 'gunes': x.beginPath(); x.arc(cx, cy, s*.13, 0, 7); x.fill(); x.lineWidth = s*.05; for (let i = 0; i < 8; i++){ const a = i*Math.PI/4; x.beginPath(); x.moveTo(cx + Math.cos(a)*s*.2, cy + Math.sin(a)*s*.2); x.lineTo(cx + Math.cos(a)*s*.3, cy + Math.sin(a)*s*.3); x.stroke(); } break;
+      case 'top': x.beginPath(); x.arc(cx, cy, s*.28, 0, 7); x.fill(); x.fillStyle = ac; { x.beginPath(); for (let i = 0; i < 5; i++){ const a = -Math.PI/2 + i*2*Math.PI/5; const px = cx + Math.cos(a)*s*.1, py = cy + Math.sin(a)*s*.1; i ? x.lineTo(px, py) : x.moveTo(px, py); } x.closePath(); x.fill();
+          x.strokeStyle = ac; x.lineWidth = s*.02; for (let i = 0; i < 5; i++){ const a = -Math.PI/2 + i*2*Math.PI/5; x.beginPath(); x.moveTo(cx + Math.cos(a)*s*.1, cy + Math.sin(a)*s*.1); x.lineTo(cx + Math.cos(a)*s*.27, cy + Math.sin(a)*s*.27); x.stroke(); } } break;
+      case 'kupa': x.beginPath(); x.moveTo(cx - s*.18, cy - s*.26); x.lineTo(cx + s*.18, cy - s*.26); x.quadraticCurveTo(cx + s*.18, cy + s*.06, cx, cy + s*.08); x.quadraticCurveTo(cx - s*.18, cy + s*.06, cx - s*.18, cy - s*.26); x.fill();
+        x.lineWidth = s*.04; x.beginPath(); x.arc(cx - s*.18, cy - s*.14, s*.08, Math.PI*.5, Math.PI*1.5); x.stroke(); x.beginPath(); x.arc(cx + s*.18, cy - s*.14, s*.08, -Math.PI*.5, Math.PI*.5); x.stroke();
+        x.fillRect(cx - s*.03, cy + s*.06, s*.06, s*.12); x.fillRect(cx - s*.13, cy + s*.18, s*.26, s*.06); break;
+      case 'mum': x.fillRect(cx - s*.08, cy - s*.04, s*.16, s*.32); x.beginPath(); x.moveTo(cx, cy - s*.3); x.bezierCurveTo(cx + s*.09, cy - s*.18, cx + s*.06, cy - s*.08, cx, cy - s*.08); x.bezierCurveTo(cx - s*.06, cy - s*.08, cx - s*.09, cy - s*.18, cx, cy - s*.3); x.fill(); break;
+    } x.restore(); x.textBaseline = 'alphabetic'; }; }
+
+/* --- biçime göre TV görünümü: bant rengi konuya (etikete), müzik ve geçiş şablona göre --- */
+Object.defineProperty(BANT, 'konu', {enumerable:true, get(){ const [, c, i] = etk(D.etiket), acik = /^#f|^#e[0-9a-f]/i.test(c); return {ad:'Konu rengi', l:c, li:i, b:acik ? '#111111' : '#ffffff', bi:acik ? '#fff' : '#111', s:acik ? c : '#111', si:acik ? '#111' : '#fff'}; }});
+const TVSB = {sondakika:{muzik:'gergin', gecis:'serit'}, tv:{muzik:'kurumsal', gecis:'serit'}, gazete:{muzik:'kurumsal', gecis:'kaydir'}, tabloid:{muzik:'gergin', gecis:'flas'}, modern:{muzik:'kurumsal', gecis:'daire'},
+  alinti:{muzik:'sakin', gecis:'panjur'}, ozet:{muzik:'kurumsal', gecis:'kaydir'}, flas:{muzik:'gergin', gecis:'glitch'}, renkli:{muzik:'gergin', gecis:'serit'}};
+function tvOto(tur){ if (D.tvOto === false) return; if (tur === 'et'){ D.bantStil = 'konu'; return; } const m = TVSB[D.sablon]; if (!m) return; if (D.muzik !== 'dosya' && D.muzik !== 'yok') D.muzik = m.muzik; D.gecis = m.gecis; D.bantStil = 'konu'; }
+
+/* --- renkli (biçimli) manşet: her satır ayrı kutu; *kelime* vurgulu --- */
+const MS_RENK = [['#d7191f','#fff'],['#ffd400','#111'],['#ffffff','#111'],['#111111','#fff'],['#0b4f8a','#fff'],['#1f8a4c','#fff'],['#ff5a00','#fff'],['#5b3fa0','#fff']];
+const msSatirlar = () => String(D.manset || '').split('\n').map(s => s.trim()).filter(Boolean).slice(0, 6);
+function msStil(i, n){ const S = (D.ms || [])[i]; if (S && S.bg) return S; const [, ac, ink] = etk(D.etiket);
+  if (i === 0 && n > 1) return {bg:ac, ink, boy:'k'}; return i % 2 ? {bg:'#111111', ink:'#fff', boy:'o'} : {bg:'#ffffff', ink:'#111', boy:'b'}; }
+SABLON.push(['renkli', 'Renkli manşet']);
+CIZ.renkli = function(x, W, H, t, dur){ const g = guvenli(W, H), [, ac] = etk(D.etiket);
+  foto(x, 0, 0, W, H, t === Infinity ? 1.02 : 1 + .07*kis(t/dur, 0, 1)); let gr = x.createLinearGradient(0, H*.3, 0, H); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(0,0,0,.8)'); x.fillStyle = gr; x.fillRect(0, 0, W, H);
+  gr = x.createLinearGradient(0, 0, 0, H*.2); gr.addColorStop(0, 'rgba(0,0,0,.5)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = gr; x.fillRect(0, 0, W, H*.2); logo(x, g.m, g.u, W*.075, ac);
+  const raw = msSatirlar(); if (!raw.length) raw.push('MANŞET BURAYA'); const U = Math.min(W, H*.9), maxW = W - 2*g.m, BOY = {b:.085, o:.062, k:.044};
+  const sf = W > H ? W*.024 : W*.034; const sp = D.spot ? (() => { x.font = `500 ${sf}px Montserrat`; return satirla(x, D.spot, maxW - sf*1.4).slice(0, 3); })() : [], spH = sp.length ? sp.length*sf*1.32 + sf*1.1 : 0;
+  const alt = H - g.a - W*.03 - spH - (sp.length ? W*.02 : 0), ust = g.u + W*.13;
+  const kur2 = k => { const out = []; raw.forEach((l, i) => { const S = msStil(i, raw.length), fs = U*(BOY[S.boy] || BOY.b)*k, pad = fs*.32; x.font = `700 ${fs}px Oswald`;
+      const tok = TR(l).split(/\s+/); let cur = []; const gen = a => x.measureText(a.join(' ').replace(/\*/g, '')).width;
+      tok.forEach(w => { const d = cur.concat(w); if (cur.length && gen(d) > maxW - 2*pad){ out.push({S, fs, pad, r:i, t:cur.join(' ')}); cur = [w]; } else cur = d; }); if (cur.length) out.push({S, fs, pad, r:i, t:cur.join(' ')}); }); return out; };
+  let k = 1, L = kur2(k), hT = () => L.reduce((s, q) => s + q.fs*1.32 + q.fs*.12, 0); while (hT() > alt - ust && k > .45){ k -= .07; L = kur2(k); }
+  let y = alt - hT(); const y0 = y; let vur = false;
+  let sonR = -1; L.forEach((q, i) => { if (q.r !== sonR){ vur = false; sonR = q.r; } const p = pr(t, .15 + i*.12, .6 + i*.12), h = q.fs*1.32; x.font = `700 ${q.fs}px Oswald`; const w = x.measureText(q.t.replace(/\*/g, '')).width + 2*q.pad;
+    x.save(); x.globalAlpha = p; x.translate(-(1 - p)*(w + g.m), 0); x.fillStyle = q.S.bg; x.fillRect(g.m, y, w, h);
+    const acikZ = /^#f|^#e[0-9a-f]/i.test(q.S.bg), vRenk = acikZ ? (ac === '#ffd400' ? '#d7191f' : ac) : '#ffd400'; let xx = g.m + q.pad; x.textBaseline = 'middle'; x.textAlign = 'left';
+    q.t.split(/(\*)/).forEach(par => { if (par === '*'){ vur = !vur; return; } if (!par) return; x.fillStyle = vur ? vRenk : q.S.ink; x.fillText(par, xx, y + h*.54); xx += x.measureText(par).width; });
+    x.restore(); y += h + q.fs*.12; }); x.textBaseline = 'alphabetic';
+  if (sp.length){ const sy = alt + W*.02; x.globalAlpha = pr(t, .7, 1.2); x.fillStyle = 'rgba(10,12,14,.78)'; x.fillRect(g.m, sy, maxW, spH); x.fillStyle = '#fff'; x.font = `500 ${sf}px Montserrat`; yaz(x, sp, g.m + sf*.7, sy + sf*1.25, sf, 1.32, 'left'); x.globalAlpha = 1; }
+  altyazi(x, W, H, t, y0 - W*.03); };
+const MS_ORNEK = [
+  {ad:'Son dakika uyarı', et:'SON DAKİKA', m:"SON DAKİKA\nKabataş'ta *sağanak* uyarısı\nOkullar yarın tatil", sp:'Valilik açıklamasına göre yağış öğleden sonra kuvvetlenecek.', ms:[{bg:'#d7191f', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}, {bg:'#ffd400', ink:'#111', boy:'o'}]},
+  {ad:'Hasat', et:'HASAT', m:"FINDIK HASADI\nRekolte *geçen yıldan yüksek*", sp:'Üreticiler hasadın yüzde 80\'inin tamamlandığını söyledi.', ms:[{bg:'#8a6a1c', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}]},
+  {ad:'Müjde', et:'MÜJDE', m:"MÜJDE\nYayla yolu *asfaltlanıyor*\nÇalışma pazartesi başlıyor", sp:'', ms:[{bg:'#1f8a4c', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}, {bg:'#111111', ink:'#fff', boy:'o'}]},
+  {ad:'Röportaj', et:'RÖPORTAJ', m:"RÖPORTAJ\nMuhtar anlattı:\n*\"Köyümüz yeniden canlanıyor\"*", sp:'Göçün ardından köye dönen aileler sayısı her yıl artıyor.', ms:[{bg:'#37474f', ink:'#fff', boy:'k'}, {bg:'#111111', ink:'#fff', boy:'o'}, {bg:'#ffffff', ink:'#111', boy:'b'}]},
+  {ad:'Hava durumu', et:'HAVA DURUMU', m:"HAVA DURUMU\nHafta sonu *güneşli*\nGece serin: 8°C", sp:'', ms:[{bg:'#1b74c9', ink:'#fff', boy:'k'}, {bg:'#ffd400', ink:'#111', boy:'b'}, {bg:'#111111', ink:'#fff', boy:'o'}]},
+  {ad:'Duyuru', et:'DUYURU', m:"DUYURU\nSu kesintisi\n*Cuma 09.00–16.00*", sp:'Yeni Mahalle ve çevresinde planlı bakım çalışması yapılacak.', ms:[{bg:'#5b3fa0', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}, {bg:'#111111', ink:'#fff', boy:'o'}]},
+  {ad:'Spor', et:'SPOR', m:"SPOR\nKabataşspor *3 puanı* aldı", sp:'Deplasmanda 2-1 kazanan ekip liderle arayı kapattı.', ms:[{bg:'#00897b', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}]},
+  {ad:'Tebrik', et:'TEBRİK', m:"TEBRİK\nİlçe birincisi\n*Kabataş'tan*", sp:'', ms:[{bg:'#c2185b', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}, {bg:'#ffd400', ink:'#111', boy:'o'}]}];
+function msEditorCiz(){ const k = $h('#khMsEd'); if (!k) return; const L = msSatirlar();
+  k.innerHTML = !L.length ? '' : L.map((l, i) => { const S = msStil(i, L.length); return `<div class="kh-msr"><span class="kh-msn" style="background:${S.bg};color:${S.ink}">${esc(l.replace(/\*/g, '')).slice(0, 26)}</span>
+    <span class="kh-msc">${MS_RENK.map(([b, c]) => `<button class="kh-rk${b === S.bg ? ' on' : ''}" data-msr="${i}" data-bg="${b}" data-ink="${c}" style="--rk:${b}" aria-label="Arka plan ${b}"></button>`).join('')}</span>
+    <span class="kh-msb">${[['k','Küçük'],['o','Orta'],['b','Büyük']].map(([b, v]) => `<button class="kh-c${(S.boy || 'b') === b ? ' on' : ''}" data-msb="${i}" data-boy="${b}">${v}</button>`).join('')}</span></div>`; }).join(''); }
+
+/* --- arayüz: kur / formDoldur eklemeleri --- */
+{ const _kur = kur; kur = function(){ _kur.apply(this, arguments);
+    const mL = $h('#kh_manset') && $h('#kh_manset').closest('label');
+    if (mL) mL.insertAdjacentHTML('afterend', `<div class="kh-ms"><div class="kh-ara">Renkli manşet · her satır ayrı kutu</div><p class="kh-n">Manşeti satır satır yaz (Enter). Her satırın kutu rengini ve boyunu seç. <b>*yıldız içi*</b> vurgulu renkte yazılır. Bu görünüm <b>Renkli manşet</b> biçiminde çıkar.</p>
+      <div id="khMsEd"></div><div class="kh-r"><button class="kh-b" data-msuse>🎨 Renkli manşeti kullan</button><button class="kh-b" data-msres>Renkleri sıfırla</button></div>
+      <div class="kh-ara">Örnek manşetler</div><div class="kh-r">${MS_ORNEK.map((o, i) => `<button class="kh-c" data-mso="${i}">${esc(o.ad)}</button>`).join('')}</div></div>`);
+    const et = $h('.kh-et'); if (et) et.insertAdjacentHTML('afterend', '<label class="kh-ch"><input type="checkbox" id="kh_konuLogo"> Logo konuya göre değişsin (Röportaj → mikrofon, Hava → güneş, Spor → top…)</label>');
+    const ab = $h('#kh_altBant'); if (ab) ab.closest('label').insertAdjacentHTML('beforebegin', '<label class="kh-ch"><input type="checkbox" id="kh_tvOto"> TV görünümü biçime göre kendiliğinden değişsin (bant rengi konuya, müzik ve geçiş şablona göre)</label>');
+    const bs = $h('[data-bs]'); if (bs && !$h('[data-bs="konu"]')) bs.insertAdjacentHTML('beforebegin', '<button class="kh-c kh-bs" data-bs="konu" style="--b1:#888;--b2:#fff;--b3:#111">Konu rengi</button>');
+    kok.addEventListener('change', e => { const id = e.target.id; if (id === 'kh_konuLogo'){ D.konuLogo = e.target.checked; kaydet(); ciz(); tlYenileSoon(); } else if (id === 'kh_tvOto'){ D.tvOto = e.target.checked; if (D.tvOto){ tvOto('sb'); tvOto('et'); } kaydet(); formDoldur(); ciz(); tlYenileSoon(); } });
+    kok.addEventListener('input', e => { if (e.target.id === 'kh_manset') msEditorCiz(); });
+    kok.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.msr != null){ const i = +b.dataset.msr, L = msSatirlar(); D.ms = (D.ms || []).slice(0, Math.max(L.length, 6)); for (let j = 0; j < L.length; j++) if (!D.ms[j]) D.ms[j] = Object.assign({}, msStil(j, L.length)); D.ms[i] = Object.assign({}, D.ms[i], {bg:b.dataset.bg, ink:b.dataset.ink}); if (D.sablon !== 'renkli'){ D.sablon = 'renkli'; tvOto('sb'); } }
+      else if (b.dataset.msb != null){ const i = +b.dataset.msb, L = msSatirlar(); D.ms = D.ms || []; for (let j = 0; j < L.length; j++) if (!D.ms[j]) D.ms[j] = Object.assign({}, msStil(j, L.length)); D.ms[i].boy = b.dataset.boy; if (D.sablon !== 'renkli'){ D.sablon = 'renkli'; tvOto('sb'); } }
+      else if (b.dataset.msuse !== undefined){ D.sablon = 'renkli'; tvOto('sb'); }
+      else if (b.dataset.msres !== undefined){ D.ms = []; }
+      else if (b.dataset.mso != null){ const o = MS_ORNEK[+b.dataset.mso]; D.manset = o.m; D.spot = o.sp; D.etiket = o.et; D.ms = o.ms.map(q => Object.assign({}, q)); D.sablon = 'renkli'; D.ornek = false; tvOto('sb'); tvOto('et'); }
+      else return; kaydet(); formDoldur(); ciz(); tlYenileSoon(); });
+    const a = $h('#khTlArac'); if (a){ a.addEventListener('click', e => { const b = e.target.closest('[data-fa]'); if (b) faIslem(b.dataset.fa, b); });
+      a.addEventListener('input', e => { const el = e.target; if (el.dataset.far) faDeger(el.dataset.far, +el.value, el); }); a.addEventListener('change', e => { const el = e.target; if (el.dataset.far === 'sn') tlYenile().then(() => tlGit(TL.t)); }); } }; }
+{ const _fd = formDoldur; formDoldur = function(){ _fd.apply(this, arguments); if (!kok) return; const a = $h('#kh_konuLogo'); if (a) a.checked = D.konuLogo !== false; const b = $h('#kh_tvOto'); if (b) b.checked = D.tvOto !== false;
+    kok.querySelectorAll('[data-bs]').forEach(x => x.setAttribute('aria-pressed', x.dataset.bs === D.bantStil)); msEditorCiz(); }; }
+
+/* --- foto katmanı araçları (seçili fotoğraf) --- */
+function faSecili(){ const m = /^foto:(\d+):(\d+)$/.exec(TL.sel || ''); if (!m || !TL.P) return null; const p = TL.P.parca[+m[1]], j = +m[2]; if (!p || !p.s) return null; const c = (p.s.liste || [])[j]; const key = faKey(c); return key ? {p, j, c, key} : null; }
+function faAl(key, yarat){ D.fa = D.fa || {}; if (!D.fa[key] && yarat) D.fa[key] = {}; return D.fa[key] || {}; }
+function faSure(S){ const L = S.p.s.liste || []; if (L.length < 2) return S.p.b - S.p.a; const T = galeriZaman({list:L, a:S.p.a, b:S.p.b}); return T[S.j + 1] - T[S.j]; }
+function faDeger(alan, v, el){ const S = faSecili(); if (!S) return; const A = faAl(S.key, true);
+  if (alan === 'sn'){ A.sn = Math.max(.5, Math.min(60, v || 0)); } else A[alan] = v; const o = el && el.previousElementSibling; if (o && o.tagName === 'OUTPUT') o.textContent = alan === 'z' ? '×' + v.toFixed(2) : Math.round(v*100) + '%';
+  kaydet(); if (alan !== 'sn'){ ciz(); tlGit(TL.t); } }
+async function faIslem(id){ const S = faSecili(); if (!S) return; const A = faAl(S.key, true), cur = faSure(S);
+  if (id === 'sn-') A.sn = Math.max(.5, Math.round((cur - .5)*10)/10); else if (id === 'sn+') A.sn = Math.round((cur + .5)*10)/10; else if (id === 'sn0') delete A.sn;
+  else if (/^hr:/.test(id)) A.hr = id.slice(3); else if (id === 'sig') A.sig = !A.sig; else if (id === 'sifir'){ D.fa[S.key] = {}; }
+  else if (id === 'cog'){ const ref = kaynak(S.p), t = {}; await sahneFotoKoy(t, await canvasBlob(S.c)); if (A && Object.keys(A).length) D.fa[t.fid] = Object.assign({}, A);
+    if (ref === 'ana') D.ekFoto.splice(S.j, 0, t.fid); else { const L2 = [ref.fid, ...(ref.ek || [])].filter(Boolean); L2.splice(S.j + 1, 0, t.fid); ref.fid = L2[0]; ref.ek = L2.slice(1); } TL.sel = null; }
+  kaydet(); formDoldur(); sahneCiz(); const t0 = TL.t; await tlYenile(); if (TL.sel){ const S2 = faSecili(); if (S2){ const L = S2.p.s.liste || [], T = L.length > 1 ? galeriZaman({list:L, a:S2.p.a, b:S2.p.b}) : [S2.p.a]; tlGit(T[S2.j] + .3); return; } } tlGit(t0); }
+{ const _ac = aracCiz; aracCiz = function(){ _ac.apply(this, arguments); const S = faSecili(), a = $h('#khTlArac'); if (!S || !a) return; const A = faAl(S.key, false), n = (S.p.s.liste || []).length, sn = faSure(S), hr = A.hr || 'oto';
+    const B = (id, l, cls) => `<button class="kh-b kh-mini${cls ? ' ' + cls : ''}" data-fa="${id}">${l}</button>`, T = (id, l, cls) => `<button class="kh-b kh-mini${cls ? ' ' + cls : ''}" data-ta="${id}">${l}</button>`;
+    a.innerHTML = `<b>Fotoğraf ${S.j + 1} / ${n}</b> <small>${sn.toFixed(1)} sn · ${A.sn ? 'elle' : 'otomatik'}</small>
+      <div class="kh-r">${B('sn-', '− 0,5 sn')}<label class="kh-l kh-sn">Süre <input type="number" min="0.5" max="60" step="0.5" value="${(A.sn || sn).toFixed(1)}" data-far="sn"> sn</label>${B('sn+', '+ 0,5 sn')}${A.sn ? B('sn0', 'Otomatik') : ''}</div>
+      <label class="kh-l">Büyüt <output>×${(A.z || 1).toFixed(2)}</output><input type="range" min="1" max="3" step="0.02" value="${A.z || 1}" data-far="z"></label>
+      <div class="kh-iki"><label class="kh-l">Yatay <output>${Math.round((A.fx ?? .5)*100)}%</output><input type="range" min="0" max="1" step="0.01" value="${A.fx ?? .5}" data-far="fx"></label><label class="kh-l">Dikey <output>${Math.round((A.fy ?? .45)*100)}%</output><input type="range" min="0" max="1" step="0.01" value="${A.fy ?? .45}" data-far="fy"></label></div>
+      <div class="kh-r">${[['oto','Hareket: otomatik'],['sabit','Sabit'],['yak','Yakınlaş'],['uzak','Uzaklaş'],['sol','Sola kay'],['sag','Sağa kay']].map(([k2, v]) => `<button class="kh-c${k2 === hr ? ' on' : ''}" data-fa="hr:${k2}">${v}</button>`).join('')}<button class="kh-c${A.sig ? ' on' : ''}" data-fa="sig">Tamamı görünsün (sığdır)</button></div>
+      <div class="kh-r">${S.j > 0 ? T('fsol', '← Önce') + T('fbas', 'Baş fotoğraf yap') : ''}${S.j < n - 1 ? T('fsag', 'Sonra →') : ''}${T('foto+', '＋ Foto')}${B('cog', '⧉ Çoğalt')}${B('sifir', '↺ Ayarları sıfırla')}${T('fsil', '✕ Sil', 'tl-sil')}</div>`; }; }
 
 /* ---------- uygulamaya bağla: ana ekran kartı + düzenleyicide "Haber" sekmesi ---------- */
 try { const a = document.querySelector('#home .actions'); if (a && !document.getElementById('khAcBtn')){ const b = document.createElement('button'); b.type = 'button'; b.className = 'act kh-act'; b.id = 'khAcBtn';
