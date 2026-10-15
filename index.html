@@ -328,6 +328,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
   <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 7V4h14v3M12 4v16M9 20h6"/></symbol>
   <symbol id="i-full" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="i-face" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="9" cy="10.5" r=".9"/><circle cx="15" cy="10.5" r=".9"/><path d="M8.8 14.6c1.8 1.7 4.6 1.7 6.4 0"/></symbol>
   <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></symbol>
  </defs>
 </svg>
@@ -337,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.5 · 13.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.6 · 15.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -2308,7 +2309,7 @@ function skyMap(src,w,h){ // üst kenara bağlı, düzgün ve açık bölgeler =
   m=boxBlur(m,w,h,Math.max(1,r>>1));
   src._sky[key]=m; return m; }
 function lmDab(ctx,x,y,rad,mode,strength,hard){ const col=mode==="erase"?"0,0,0":"255,255,255";
-  const g=ctx.createRadialGradient(x,y,rad*Math.max(hard,0.6)*0.98,x,y,rad); const a=Math.min(1,strength); g.addColorStop(0,`rgba(${col},${a})`); g.addColorStop(1,`rgba(${col},0)`);
+  const g=ctx.createRadialGradient(x,y,rad*(hard<0?Math.min(.97,-hard):Math.max(hard,0.6))*0.98,x,y,rad); const a=Math.min(1,strength); g.addColorStop(0,`rgba(${col},${a})`); g.addColorStop(1,`rgba(${col},0)`);
   ctx.globalCompositeOperation="source-over"; ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,rad,0,Math.PI*2); ctx.fill(); }
 function lmStroke(ctx,st,from){ const w=ctx.canvas.width,h=ctx.canvas.height,L=Math.max(w,h); const rad=st.size*L; const step=Math.max(1,rad*0.25); let last=null; const pts=st.points;
   for(let i=Math.max(0,(from||0)-1);i<pts.length;i++){ const x=pts[i][0]*w, y=pts[i][1]*h;
@@ -2905,7 +2906,7 @@ function restore(i){ if(i<0||i>=ED.hist.length) return; const prev=ED.state; ED.
   syncLayers(prev); updateUndo(); markTabs(); renderPanel(); requestRender(); saveRecordSoon(); }
 function updateUndo(){ $("#undoBtn").disabled=ED.hi<=0; $("#redoBtn").disabled=ED.hi>=ED.hist.length-1; }
 function syncLayers(prev){
-  const bbCh=!prev||JSON.stringify([prev.bb,prev.sel])!==JSON.stringify([ED.state.bb,ED.state.sel]); if(bbCh){ _ants.key=null; _yzM.key=null; }
+  const bbCh=!prev||JSON.stringify([prev.bb,prev.sel,prev.selfi])!==JSON.stringify([ED.state.bb,ED.state.sel,ED.state.selfi]); if(bbCh){ _ants.key=null; _yzM.key=null; }
   if(!prev||JSON.stringify(prev.heal)!==JSON.stringify(ED.state.heal)) rebuildBase(); else if(bbCh) rebuildBase(true);
   if(!prev||JSON.stringify(prev.strokes)!==JSON.stringify(ED.state.strokes)) rebuildMask();
   if(!prev||JSON.stringify(prev.overlay)!==JSON.stringify(ED.state.overlay)) ensureOverlay();
@@ -2917,7 +2918,7 @@ function rebuildBase(onlyOverlay){
     for(const op of ED.state.heal) (op.t==="eye"?applyRedEye:applyHeal)(hx,h.width,h.height,op); ED.healed=h; }
   const c=ED.baseCanvas, x=c.getContext("2d",{willReadFrequently:true}); x.globalCompositeOperation="source-over"; x.globalAlpha=1; x.drawImage(ED.healed,0,0);
   const ov=ED.state.overlay; if(ov&&ED.ov.img&&ED.ov.id===ov.blobId) compositeOverlay(x,c.width,c.height,ov,ED.ov.img,ED.ov.mask,ED.prevCanvas);
-  if(!(ED.state.bb&&ED.state.bb.on&&ED._bbCv)){ ED.pipe.setSource(c); ED._srcNow=c; } if(!(ED.state.bb&&ED.state.bb.on)) ED._bbCv=null; bbTazele(); }
+  if(!(ekAcik(ED.state)&&ED._bbCv)){ ED.pipe.setSource(c); ED._srcNow=c; } if(!ekAcik(ED.state)) ED._bbCv=null; bbTazele(); }
 function maskCanvasFor(w,h,strokes){ const s=MASK_LONG/Math.max(w,h); const c=document.createElement("canvas"); c.width=Math.max(1,Math.round(w*s)); c.height=Math.max(1,Math.round(h*s));
   const x=c.getContext("2d"); x.fillStyle="#000"; x.fillRect(0,0,c.width,c.height); for(const st of strokes) strokeDabs(x,st,0); x.globalCompositeOperation="source-over"; return c; }
 function rebuildMask(){ ED.maskCanvas=maskCanvasFor(ED.pW,ED.pH,ED.state.strokes); ED.pipe.setMask(ED.maskCanvas); }
@@ -2972,17 +2973,18 @@ async function openRecord(rec){
 function closeEditor(){ saveRecordSoon(); $("#editor").hidden=true; $("#home").hidden=false; renderLibrary(); }
 
 /* ---------- sekmeler ---------- */
-const TABS=[["auto","Otomatik","i-auto"],["filters","Filtreler","i-filter"],["light","Işık","i-light"],["color","Renk","i-color"],["hsl","HSL","i-hsl"],["curves","Eğriler","i-curve"],["detail","Detay","i-detail"],["fx","Efektler","i-fx"],["text","Yazı·İmza","i-text"],["hdr","HDR","i-hdr"],["crop","Kırp","i-crop"],["overlay","Katman","i-stack"],["retouch","Rötuş","i-heal"],["brush","Fırça","i-brush"],["history","Geçmiş","i-hist"],["export","Kaydet","i-save"]];
+const TABS=[["auto","Otomatik","i-auto"],["filters","Filtreler","i-filter"],["selfi","Selfi","i-face"],["light","Işık","i-light"],["color","Renk","i-color"],["hsl","HSL","i-hsl"],["curves","Eğriler","i-curve"],["detail","Detay","i-detail"],["fx","Efektler","i-fx"],["text","Yazı·İmza","i-text"],["hdr","HDR","i-hdr"],["crop","Kırp","i-crop"],["overlay","Katman","i-stack"],["retouch","Rötuş","i-heal"],["brush","Fırça","i-brush"],["history","Geçmiş","i-hist"],["export","Kaydet","i-save"]];
 const TAB_KEYS={light:["exposure","brightness","contrast","highlights","shadows","whites","blacks"],color:["temp","tint","saturation","vibrance","cbSr","cbSg","cbSb","cbMr","cbMg","cbMb","cbHr","cbHg","cbHb"],detail:["clarity","texture","sharpen","deblur","denoise","dehaze"],fx:["fade","vignette","grain","bgblur"],hdr:["hdr"],retouch:["skin"]};
-function buildTabs(){ const t=$("#tabs"); t.innerHTML=""; for(const [id,l,ic] of TABS) t.append(el("button",{class:"tab","data-t":id,onclick:()=>setTab(id)},ico(ic),el("span",null,l))); markTabs(); }
+function buildTabs(){ const t=$("#tabs"); t.innerHTML=""; for(const [id,l,ic] of (typeof aktifSekmeler==="function"?aktifSekmeler():TABS)) t.append(el("button",{class:"tab","data-t":id,onclick:()=>setTab(id)},ico(ic),el("span",null,l))); markTabs(); }
 function markTabs(){ if(!ED.state) return; const s=ED.state; const mod={
   filters:!!s.look.id||false, hsl:s.hsl.some(v=>v), curves:!isCurveId(s.curves), crop:JSON.stringify(s.geo)!==JSON.stringify(defaultState().geo),
-  retouch:s.heal.length>0||!!s.p.skin, text:(s.texts||[]).length>0, overlay:!!s.overlay, brush:s.strokes.length>0, auto:AUTO_KEYS.some(k=>s.auto&&s.auto.amt[k]) };
+  retouch:s.heal.length>0||!!s.p.skin, text:(s.texts||[]).length>0, overlay:!!s.overlay, brush:s.strokes.length>0, auto:AUTO_KEYS.some(k=>s.auto&&s.auto.amt[k]), selfi:(typeof selfiAcik==="function"&&selfiAcik(s))||!!s.p.skin };
   for(const k in TAB_KEYS) mod[k]=TAB_KEYS[k].some(q=>s.p[q]); mod.hdr=mod.hdr||!!(s.auto&&s.auto.amt.hdr); mod.fx=mod.fx||!!(s.bb&&s.bb.on);
   document.querySelectorAll(".tab").forEach(b=>{ const on=b.dataset.t===ED.tab; b.classList.toggle("on",on); b.setAttribute("aria-pressed",on);
     let d=b.querySelector(".dot"); if(mod[b.dataset.t]&&!d) b.append(el("i",{class:"dot"})); if(!mod[b.dataset.t]&&d) d.remove(); }); }
 function setTab(id){ const prev=ED.tab; ED.tab=id; ED.tool=null;
   if(id==="retouch") ED.tool=ED.retouchTool||"heal"; if(id==="brush") ED.tool="brush";
+  if(id==="selfi"&&typeof selfiAl==="function"){ const S_=selfiAl(); if(!S_.yuzler){ S_.yuzler=yuzBul(ED.prevCanvas).map(f=>({x:f.x,y:f.y,s:f.s,on:true})); } }
   if(prev==="crop"&&id!=="crop"){ ED.view={z:1,tx:0,ty:0}; ED.cropEdit=false; commit("Kırpma / döndürme"); }
   if(id==="crop"){ ED.view={z:1,tx:0,ty:0}; ED.cropEdit=true; }
   markTabs(); renderPanel(); requestRender(); kaydetDugme();
@@ -3195,6 +3197,7 @@ function renderPanel0(){
     ED.hist.forEach((h,i)=>L_.prepend(el("button",{class:i===ED.hi?"cur":i>ED.hi?"fut":"",onclick:()=>restore(i)},el("span",{class:"n"},i),el("span",{style:"flex:1"},h.label),el("span",{class:"mono",style:"font-size:11px;color:var(--muted)"},new Date(h.t).toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"})))));
     add(L_); break; }
   case "overlay": overlayPanel(add); break;
+  case "selfi": selfiPanel(add); break;
   case "export": renderExport(P_); break;
   }
   bolumle(P_);
@@ -3532,6 +3535,7 @@ async function renderFull(blob,state,target,pipe,sizeOpt,recalcAuto){ // target:
     if(AUTO_KEYS.some(k=>state.auto.amt[k])||(state.look&&state.look.id)) state.auto.calc=computeAuto(c); }
   { const sl=lmSlots(state); if(sl.length){ const r=buildLM(state.lmask,sl,c,sw,sh,false); pipe.setLayerMask(r.rgba,r.w,r.h); } }
   const lkS=resolveLook(state.look); const srcSt=lkS&&lkS.style?styleStats(c):null; if(srcSt) state={...state,_src:srcSt};
+  if(selfiAcik(state)){ try{ await selfiUygula(x,sw,sh,state); }catch(e){ console.warn(e); } }
   if(state.bb&&state.bb.on){ try{ await bulanikUygula(x,sw,sh,state); }catch(e){ console.warn(e); } }
   pipe.setSource(c); c.width=0;
   if(state.strokes.length) pipe.setMask(maskCanvasFor(sw,sh,state.strokes));
@@ -3655,9 +3659,9 @@ function initStage(){
   new ResizeObserver(()=>requestRender()).observe(st);
 }
 function showCursorRing(e){
-  if(!(ED.tool==="brush"||ED.tool==="heal"||ED.tool==="eye"||ED.tool==="lm"||ED.tool==="ov"||ED.tool==="sel"||ED.tool==="bbp")) return; let r=$(".cursor-ring"); const st=$("#stage"), sr=st.getBoundingClientRect(), gr=$("#gl").getBoundingClientRect();
+  if(!(ED.tool==="brush"||ED.tool==="heal"||ED.tool==="eye"||ED.tool==="lm"||ED.tool==="ov"||ED.tool==="sel"||ED.tool==="bbp"||ED.tool==="sac")) return; let r=$(".cursor-ring"); const st=$("#stage"), sr=st.getBoundingClientRect(), gr=$("#gl").getBoundingClientRect();
   if(!r){ r=el("div",{class:"cursor-ring"}); st.append(r); }
-  const L=Math.max(gr.width,gr.height)/(ED.tab==="crop"?1:1); const rad=(ED.tool==="sel"||ED.tool==="bbp"?ED.ekBrush.size/100*0.9:ED.tool==="brush"?ED.brush.size/100*0.9:ED.tool==="lm"?ED.lmBrush.size/100*0.9:ED.tool==="ov"?ED.ovBrush.size/100*0.9:ED.retouchSize/100)*L/ED.view.z*(ED.pW>=ED.pH?1:1);
+  const L=Math.max(gr.width,gr.height)/(ED.tab==="crop"?1:1); const rad=(ED.tool==="sel"||ED.tool==="bbp"||ED.tool==="sac"?ED.ekBrush.size/100*0.9:ED.tool==="brush"?ED.brush.size/100*0.9:ED.tool==="lm"?ED.lmBrush.size/100*0.9:ED.tool==="ov"?ED.ovBrush.size/100*0.9:ED.retouchSize/100)*L/ED.view.z*(ED.pW>=ED.pH?1:1);
   const d=rad*2*(ED.tool==="brush"?1:1); r.style.width=r.style.height=d+"px";
   if(e&&e.clientX!=null){ r.style.left=(e.clientX-sr.left)+"px"; r.style.top=(e.clientY-sr.top)+"px"; } else { r.style.left=sr.width/2+"px"; r.style.top=sr.height/2+"px"; clearTimeout(r._t); r._t=setTimeout(()=>r.remove(),900); }
 }
@@ -3924,7 +3928,7 @@ async function secimMaske(sel,W,H){ if(!sel) return null; let M=sel.m?Float32Arr
   return M; }
 
 /* ---------- bulanıklık maskesi: nerede ve ne kadar ---------- */
-const BB_ALAN=[["arka","Arka plan (özne korunur)"],["ust","Yukarıdan Bulanıklaştır"],["sekil","Oval / kare alan"],["yuz","Yüzler"],["ozne","Seçili nesne"],["tilt","Tilt-shift şeridi"],["tum","Tüm fotoğraf"]];
+const BB_ALAN=[["arka","Arka plan (özne korunur)"],["firca","Yalnız fırçayla boyadığım yer"],["ust","Çizgiye göre (eğilebilir)"],["sekil","Oval / kare alan"],["yuz","Yüzler"],["ozne","Seçili nesne"],["tilt","Tilt-shift şeridi"],["tum","Tüm fotoğraf"]];
 const BB_HAZIR=[
  ["gauss","Gaussian Blur",{kind:"gauss",amt:35,feather:40,depth:0}],
  ["portre","Yumuşak Portre Bulanıklığı",{kind:"lens",amt:42,feather:70,depth:45}],
@@ -3939,14 +3943,18 @@ const BB_HAZIR=[
  ["zoom","Zoom Arka Planınızı Bulanıklaştırma",{kind:"zoom",amt:55,feather:50,depth:100}]
 ];
 const bbVars=()=>({on:true,kind:"lens",amt:55,feather:55,depth:85,glow:0,alan:"arka",inv:false,koru:true,ust:{y:.5,soft:.18},sekil:{t:"oval",x:.5,y:.5,w:.32,h:.4,rot:0},faces:[],paint:[],preset:"dslr"});
+function ust01(B){ if(!B.ust) B.ust={y:.5,soft:.18}; if(B.ust.y0==null) B.ust.y0=B.ust.y; if(B.ust.y1==null) B.ust.y1=B.ust.y; }
+/* noktanın eğik çizgiye dik uzaklığı (görüntü yüksekliği biriminde; çizginin üstü negatif) */
+function ustUz(B,u,v,asp){ const y0=B.ust.y0!=null?B.ust.y0:B.ust.y, y1=B.ust.y1!=null?B.ust.y1:B.ust.y, yl=y0+(y1-y0)*u, e=(y1-y0)/Math.max(.01,asp); return (v-yl)/Math.sqrt(1+e*e); }
 async function bbMaske(s,W,H){ const B=s.bb, n=W*H, M=new Float32Array(n);
   const S=(B.alan==="arka"||B.alan==="ozne"||(B.alan==="ust"&&B.koru)||(B.alan==="tilt"&&B.koru))?await secimMaske(s.sel,W,H):null;
   const asp=W/H;
   for(let y=0;y<H;y++) for(let x=0;x<W;x++){ const i=y*W+x, u=(x+.5)/W, v=(y+.5)/H; let m=1;
     if(B.alan==="arka") m=S?1-S[i]:0;
     else if(B.alan==="ozne") m=S?S[i]:0;
-    else if(B.alan==="ust"){ const f=Math.max(.01,B.ust.soft); m=smooth(B.ust.y+f/2,B.ust.y-f/2,v); if(S) m*=1-S[i]; }
-    else if(B.alan==="tilt"){ const hb=.1, f=Math.max(.02,B.ust.soft); m=smooth(hb,hb+f,Math.abs(v-B.ust.y)); if(S) m*=1-S[i]; }
+    else if(B.alan==="ust"){ const f=Math.max(.01,B.ust.soft), dv=ustUz(B,u,v,asp); m=B.ust.alt?smooth(-f/2,f/2,dv):smooth(f/2,-f/2,dv); if(S) m*=1-S[i]; }
+    else if(B.alan==="tilt"){ const hb=.1, f=Math.max(.02,B.ust.soft); m=smooth(hb,hb+f,Math.abs(ustUz(B,u,v,asp))); if(S) m*=1-S[i]; }
+    else if(B.alan==="firca") m=0;
     else if(B.alan==="yuz"){ m=0; for(const f of B.faces||[]){ if(!f.on) continue; const dx=(u-f.x)/f.rx, dy=(v-f.y)/f.ry, d=Math.sqrt(dx*dx+dy*dy); m=Math.max(m,smooth(1.12,.82,d)); } }
     else if(B.alan==="sekil"){ const k=B.sekil, c=Math.cos(-k.rot), sn=Math.sin(-k.rot); let dx=(u-k.x)*asp, dy=(v-k.y); const rx=dx*c-dy*sn, ry=dx*sn+dy*c; const ax=k.w/2*asp, ay=k.h/2;
       let d; if(k.t==="kare") d=Math.max(Math.abs(rx)/ax,Math.abs(ry)/ay); else d=Math.sqrt((rx/ax)**2+(ry/ay)**2); m=smooth(1,1.35,d); if(B.inv) m=1-m; }
@@ -3960,6 +3968,8 @@ async function bbMaske(s,W,H){ const B=s.bb, n=W*H, M=new Float32Array(n);
   /* derinlik: özneden uzaklaştıkça bulanıklık artar */
   const D=gaussB(Mf,W,H,Math.round(Math.max(W,H)*.07)), dp=B.depth/100, R=new Float32Array(n);
   for(let i=0;i<n;i++) R[i]=1-dp+dp*Math.pow(smooth(.15,.95,D[i]),.8);
+  /* 6.6: dokunarak seçilen odak — odaktan uzaklaştıkça (özellikle dikeyde, zemin düzlemi gibi) bulanıklık kademeli artar */
+  if(B.odak&&B.odak.kademe!==false&&(B.alan==="arka"||B.alan==="ust")){ for(let y=0;y<H;y++){ const dv=Math.abs((y+.5)/H-B.odak.y); for(let x=0;x<W;x++){ const du=Math.abs((x+.5)/W-B.odak.x)*asp, k=smooth(.02,.6,Math.hypot(du*.45,dv)); R[y*W+x]*=.35+.65*k; } } }
   let cx=.5, cy=.5; if(S){ let sx=0,sy=0,sw=0; for(let i=0;i<n;i++){ const t=S[i]; if(t>.5){ sx+=t*(i%W); sy+=t*(i/W|0); sw+=t; } } if(sw){ cx=sx/sw/W; cy=sy/sw/H; } } else if(B.alan==="sekil"){ cx=B.sekil.x; cy=B.sekil.y; }
   return {M:Mf,R,cx,cy}; }
 
@@ -3983,7 +3993,7 @@ async function bulanikUygula(ctx,W,H,s){
   /* küçük kopya; arka plan ağırlıklı (özne rengi arka plana taşmasın) */
   const sm=griOku(ctx.canvas,sw,sh), lin=B.kind==="lens"||B.kind==="zoom"; const g=lin?2.2:1;
   const Ms=olcekle(M,mw,mh,sw,sh), wgt=new Float32Array(sw*sh), P=new Float32Array(sw*sh*3);
-  for(let i=0;i<sw*sh;i++){ const wv=B.alan==="tum"||B.alan==="yuz"||B.alan==="ozne"||B.alan==="sekil"?1:Math.max(.03,Ms[i]); wgt[i]=wv; for(let k=0;k<3;k++){ const v=sm[i*4+k]/255; P[i*3+k]=(lin?Math.pow(v,g):v)*wv; } }
+  for(let i=0;i<sw*sh;i++){ const wv=B.alan==="tum"||B.alan==="yuz"||B.alan==="ozne"||B.alan==="sekil"||B.alan==="firca"?1:Math.max(.03,Ms[i]); wgt[i]=wv; for(let k=0;k<3;k++){ const v=sm[i*4+k]/255; P[i*3+k]=(lin?Math.pow(v,g):v)*wv; } }
   const r1=rMax/f, rs=[r1*.38,r1];
   const lv=rs.map(r=>blurKatman(P,sw,sh,r,B.kind,cx,cy,B.amt/100)), wl=rs.map(r=>{ const W3=new Float32Array(sw*sh*3); for(let i=0;i<sw*sh;i++) W3[i*3]=W3[i*3+1]=W3[i*3+2]=wgt[i]; return blurKatman(W3,sw,sh,r,B.kind,cx,cy,B.amt/100); });
   for(const [a,b] of [[lv[0],wl[0]],[lv[1],wl[1]]]) for(let i=0;i<a.length;i++){ let v=a[i]/Math.max(1e-4,b[i]); a[i]=lin?Math.pow(Math.max(0,v),1/g):v; }
@@ -4297,15 +4307,15 @@ function imzaYeni(n){ const o=imzaSon()||{}; return Object.assign(yzVars(),{t:"�
 IMZA_PNG.forEach((u,i)=>imzaImg(i+1));
 
 /* ================= v4 arayüz ve bağlantılar ================= */
-ED.ekBrush={mode:"add",size:5,strength:100}; ED.antsOn=true; ED.yzSel=null;
+ED.ekBrush={mode:"add",size:5,strength:100,hard:60}; ED.antsOn=true; ED.yzSel=null;
 const sleep0=()=>new Promise(r=>setTimeout(r,0));
 /* --- bulanıklığı önizleme kaynağına uygula (eskisini iptal ederek) --- */
 let _bbGen=0;
 async function bbTazele(){ const g=++_bbGen; const s=ED.state; if(!s||!ED.pipe) return;
-  if(!s.bb||!s.bb.on){ return; }
+  if(!ekAcik(s)){ return; }
   await sleep0(); if(g!==_bbGen) return;
   const c=document.createElement("canvas"); c.width=ED.pW; c.height=ED.pH; const x=c.getContext("2d",{willReadFrequently:true}); x.drawImage(ED.baseCanvas,0,0);
-  try{ await bulanikUygula(x,c.width,c.height,s); }catch(e){ console.warn(e); return; }
+  try{ if(selfiAcik(s)) await selfiUygula(x,c.width,c.height,s); if(s.bb&&s.bb.on) await bulanikUygula(x,c.width,c.height,s); }catch(e){ console.warn(e); return; }
   if(g!==_bbGen) return; ED._bbCv=c; ED.pipe.setSource(c); ED._srcNow=c; requestRender(); }
 const bbYenile=debounce(()=>rebuildBase(true),90);
 function bbDegis(label){ bbYenile(); if(label) commit(label); }
@@ -4350,8 +4360,13 @@ function ekCiz(){ const c=ekTuval(), st=$("#stage"); const W=st.clientWidth, H=s
     x.beginPath(); if(k.t==="kare") x.rect(-hw,-hy,hw*2,hy*2); else x.ellipse(0,0,hw,hy,0,0,Math.PI*2); x.stroke(); x.setLineDash([]);
     x.fillStyle="#fff"; for(const [a,b] of [[hw,hy],[-hw,hy],[hw,-hy],[-hw,-hy]]){ x.fillRect(a-5,b-5,10,10); } x.beginPath(); x.moveTo(0,-hy); x.lineTo(0,-hy-26); x.stroke(); x.beginPath(); x.arc(0,-hy-30,6,0,Math.PI*2); x.fill(); x.restore();
     ED._sekilEkran={cx:ctr[0],cy:ctr[1],hw,hy,rot:k.rot}; } else ED._sekilEkran=null;
-  if(bbSek&&(B.alan==="ust"||B.alan==="tilt")){ const a=o2s([0,B.ust.y]), b=o2s([1,B.ust.y]); x.save(); x.strokeStyle="#fff"; x.lineWidth=1.5; x.setLineDash([8,5]); x.shadowColor="rgba(0,0,0,.6)"; x.shadowBlur=3;
-    x.beginPath(); x.moveTo(a[0],a[1]); x.lineTo(b[0],b[1]); x.stroke(); x.setLineDash([]); x.font="600 12px system-ui"; x.fillStyle="#fff"; x.fillText(B.alan==="ust"?"↑ bu çizginin üstü bulanık":"↕ net şerit",a[0]+8,a[1]-7); x.restore(); }
+  ED._ustEkran=null;
+  if(bbSek&&(B.alan==="ust"||B.alan==="tilt")){ ust01(B); const a=o2s([0,B.ust.y0]), b=o2s([1,B.ust.y1]), U=.06, h0=o2s([U,B.ust.y0+(B.ust.y1-B.ust.y0)*U]), h1=o2s([1-U,B.ust.y0+(B.ust.y1-B.ust.y0)*(1-U)]);
+    x.save(); x.strokeStyle="#fff"; x.lineWidth=1.5; x.setLineDash([8,5]); x.shadowColor="rgba(0,0,0,.6)"; x.shadowBlur=3;
+    x.beginPath(); x.moveTo(a[0],a[1]); x.lineTo(b[0],b[1]); x.stroke(); x.setLineDash([]);
+    for(const h of [h0,h1]){ x.beginPath(); x.arc(h[0],h[1],8,0,Math.PI*2); x.fillStyle="#c56a1d"; x.fill(); x.lineWidth=2; x.strokeStyle="#fff"; x.stroke(); }
+    x.font="600 12px system-ui"; x.fillStyle="#fff"; x.fillText(B.alan==="ust"?(B.ust.alt?"↓ bu çizginin altı bulanık":"↑ bu çizginin üstü bulanık"):"↕ net şerit",h0[0]+14,h0[1]-10); x.restore();
+    ED._ustEkran={a,b,h:[h0,h1]}; }
   if(bbSek&&B.alan==="yuz") (B.faces||[]).forEach((f,i)=>{ const c0=o2s([f.x,f.y]), r=o2s([f.x+f.rx,f.y]), q=o2s([f.x,f.y+f.ry]); x.save(); x.strokeStyle=f.on?"#fff":"rgba(255,255,255,.45)"; x.setLineDash(f.on?[]:[4,4]); x.lineWidth=1.5; x.beginPath(); x.ellipse(c0[0],c0[1],Math.abs(r[0]-c0[0]),Math.abs(q[1]-c0[1]),0,0,Math.PI*2); x.stroke(); x.font="700 12px system-ui"; x.fillStyle="#fff"; x.fillText(String(i+1),c0[0]-4,c0[1]-Math.abs(q[1]-c0[1])-6); x.restore(); });
   if(ED._objRect){ const r=ED._objRect; x.save(); x.strokeStyle="#fff"; x.setLineDash([5,4]); x.lineWidth=1.5; x.strokeRect(L+Math.min(r.a[0],r.b[0])*GW,T+Math.min(r.a[1],r.b[1])*GH,Math.abs(r.b[0]-r.a[0])*GW,Math.abs(r.b[1]-r.a[1])*GH); x.restore(); }
   ED._mkEkran=null;
@@ -4383,10 +4398,16 @@ async function yaziDisa(cv,state,sw,sh){ const tx=(state.texts||[]).filter(t=>t.
 /* --- sahne etkileşimi: fırçalar, çizgi, şekil, nesne çerçevesi, yazı taşıma --- */
 let ekG=null;
 function ekDown(e,oo,inside){ const s=ED.state; const B=s.bb;
-  const fircaOp=(mode)=>({t:"stroke",mode,size:+(ED.ekBrush.size/100/ED.view.z*.9+.002).toFixed(5),strength:ED.ekBrush.strength/100,hard:.35,points:[toSrc(oo)]});
+  const fircaOp=(mode)=>({t:"stroke",mode,size:+(ED.ekBrush.size/100/ED.view.z*.9+.002).toFixed(5),strength:ED.ekBrush.strength/100,hard:ED.ekBrush.hard!=null?-(ED.ekBrush.hard/100):.35,points:[toSrc(oo)]});
   if(ED.tool==="sel"&&inside){ if(!s.sel) s.sel={m:null,ops:[],src:"elle"}; const op=fircaOp(ED.ekBrush.mode==="sub"?"sub":"add"); s.sel.ops=[...(s.sel.ops||[]),op]; ekG={t:"sel",op}; showCursorRing(e); return true; }
   if(ED.tool==="bbp"&&inside&&B){ const op=fircaOp(ED.ekBrush.mode==="erase"?"erase":"paint"); B.paint=[...(B.paint||[]),op]; ekG={t:"bbp",op}; showCursorRing(e); return true; }
-  if(ED.tool==="ust"&&inside&&B){ B.ust.y=clamp(toSrc(oo)[1],0,1); ekG={t:"ust"}; ekCiz(); bbYenile(); return true; }
+  if(ED.tool==="sac"&&inside){ const S_=selfiAl(); const op=fircaOp(ED.ekBrush.mode==="erase"?"erase":"paint"); S_.sac.firca=[...(S_.sac.firca||[]),op]; ekG={t:"sac",op}; showCursorRing(e); return true; }
+  if(ED.tool==="odak"&&inside){ ED.tool=null; renderPanel(); odakNoktasi(toSrc(oo)); return true; }
+  if(B&&B.on&&(B.alan==="ust"||B.alan==="tilt")&&(ED.tab==="fx"||ED.tab==="filters")&&ED._ustEkran&&e&&e.clientX!=null){ const U=ED._ustEkran, sr=$("#stage").getBoundingClientRect(), px=e.clientX-sr.left, py=e.clientY-sr.top, tol=e.pointerType==="touch"?28:18;
+    for(const k of [0,1]){ const h=U.h[k]; if(Math.hypot(px-h[0],py-h[1])<tol){ ekG={t:"ustUc",k}; return true; } }
+    const ax=U.a[0],ay=U.a[1],bx=U.b[0],by=U.b[1], L2=(bx-ax)**2+(by-ay)**2||1, t=clamp(((px-ax)*(bx-ax)+(py-ay)*(by-ay))/L2,0,1), dd=Math.hypot(px-(ax+t*(bx-ax)),py-(ay+t*(by-ay)));
+    if(dd<tol*.7&&ED.tool!=="ust"){ ust01(B); ekG={t:"ustKay",v0:toSrc(oo)[1],y0:B.ust.y0,y1:B.ust.y1}; return true; } }
+  if(ED.tool==="ust"&&inside&&B){ const yy=clamp(toSrc(oo)[1],0,1); B.ust.y=yy; B.ust.y0=yy; B.ust.y1=yy; ekG={t:"ust"}; ekCiz(); bbYenile(); return true; }
   if(ED.tool==="obj"&&inside){ ED._objRect={a:oo,b:oo}; ekG={t:"obj"}; return true; }
   if(B&&B.on&&B.alan==="sekil"&&(ED.tab==="fx"||ED.tab==="filters")&&ED._sekilEkran&&!ED.tool){ const S_=ED._sekilEkran, sr=$("#stage").getBoundingClientRect(); const px=e.clientX-sr.left-S_.cx, py=e.clientY-sr.top-S_.cy;
     const c=Math.cos(-S_.rot), sn=Math.sin(-S_.rot), lx=px*c-py*sn, ly=px*sn+py*c;
@@ -4404,7 +4425,9 @@ function ekDown(e,oo,inside){ const s=ED.state; const B=s.bb;
     if(ED.yzSel){ ED.yzSel=null; renderPanel(); ekCiz(); } }
   return false; }
 function ekMove(e){ if(!ekG) return false; const s=ED.state, B=s.bb, oo=canvasPoint(e);
-  if(ekG.t==="sel"||ekG.t==="bbp"){ ekG.op.points.push(toSrc(oo)); showCursorRing(e); if(ekG.t==="bbp") bbYenile(); else { _ants.key=null; clearTimeout(ekG._t); ekG._t=setTimeout(()=>{ _ants.key=null; ekCiz(); },120); } return true; }
+  if(ekG.t==="ustUc"){ ust01(B); const p=toSrc(oo), U=.06, vv=clamp(p[1],-.2,1.2); if(ekG.k===0) B.ust.y0=(vv-U*B.ust.y1)/(1-U); else B.ust.y1=(vv-U*B.ust.y0)/(1-U); B.ust.y=(B.ust.y0+B.ust.y1)/2; ekCiz(); bbYenile(); return true; }
+  if(ekG.t==="ustKay"){ const dv=toSrc(oo)[1]-ekG.v0; B.ust.y0=ekG.y0+dv; B.ust.y1=ekG.y1+dv; B.ust.y=(B.ust.y0+B.ust.y1)/2; ekCiz(); bbYenile(); return true; }
+  if(ekG.t==="sel"||ekG.t==="bbp"||ekG.t==="sac"){ ekG.op.points.push(toSrc(oo)); showCursorRing(e); if(ekG.t==="bbp") bbYenile(); else if(ekG.t==="sac") selfiTazele(); else { _ants.key=null; clearTimeout(ekG._t); ekG._t=setTimeout(()=>{ _ants.key=null; ekCiz(); },120); } return true; }
   if(ekG.t==="ust"){ B.ust.y=clamp(toSrc(oo)[1],0,1); ekCiz(); bbYenile(); return true; }
   if(ekG.t==="obj"){ ED._objRect.b=[clamp(oo[0],0,1),clamp(oo[1],0,1)]; ekCiz(); return true; }
   if(ekG.t==="tasi"){ const p=toSrc(oo); B.sekil.x=clamp(ekG.x0+p[0]-ekG.s0[0],0,1); B.sekil.y=clamp(ekG.y0+p[1]-ekG.s0[1],0,1); ekCiz(); bbYenile(); return true; }
@@ -4421,6 +4444,9 @@ function ekUp(){ if(!ekG) return false; const g=ekG; ekG=null; const s=ED.state;
   if(g.t==="sel"){ g.op.points=g.op.points.map(p=>[+p[0].toFixed(4),+p[1].toFixed(4)]); _ants.key=null; commit(ED.ekBrush.mode==="sub"?"Seçimden çıkarıldı":"Seçime eklendi"); rebuildBase(true); ekCiz(); renderPanel(); }
   else if(g.t==="bbp"){ g.op.points=g.op.points.map(p=>[+p[0].toFixed(4),+p[1].toFixed(4)]); commit(ED.ekBrush.mode==="erase"?"Bulanıklık silindi":"Bulanıklık boyandı"); rebuildBase(true); }
   else if(g.t==="ust") commit("Bulanıklık çizgisi");
+  else if(g.t==="ustUc") commit("Bulanıklık çizgisi eğildi");
+  else if(g.t==="ustKay") commit("Bulanıklık çizgisi taşındı");
+  else if(g.t==="sac"){ g.op.points=g.op.points.map(p=>[+p[0].toFixed(4),+p[1].toFixed(4)]); commit(ED.ekBrush.mode==="erase"?"Saç alanından çıkarıldı":"Saç alanına eklendi"); rebuildBase(true); }
   else if(g.t==="obj"){ const r=ED._objRect; ED._objRect=null; ekCiz(); const a=r.a,b=r.b; if(Math.abs(b[0]-a[0])<.02||Math.abs(b[1]-a[1])<.02){ toast("Nesnenin çevresine bir çerçeve sürükle."); return true; }
     const ps=[[a[0],a[1]],[b[0],a[1]],[a[0],b[1]],[b[0],b[1]]].map(p=>toSrc(p)); const xs=ps.map(p=>p[0]), ys=ps.map(p=>p[1]); const x0=clamp(Math.min(...xs),0,1), y0=clamp(Math.min(...ys),0,1);
     ED.tool=null; ozneSec({x:x0,y:y0,w:clamp(Math.max(...xs),0,1)-x0,h:clamp(Math.max(...ys),0,1)-y0},"Nesne çerçeveyle seçildi"); }
@@ -4443,6 +4469,9 @@ function bulanikPanel(add){ const s=ED.state, B=s.bb;
   const on=!!(B&&B.on);
   add(el("div",{class:"grp-bas"},el("span",null,"Akıllı bulanıklaştırma"),
     on?el("button",{class:"btn ghost",style:"padding:5px 10px",onclick:()=>{ s.bb.on=false; ED.tool=null; commit("Bulanıklaştırma kapatıldı"); rebuildBase(true); renderPanel(); }},ico("i-reset"),"Kapat"):null));
+  add(el("div",{class:"btn-row"},
+    el("button",{class:"btn"+(ED.tool==="bbp"&&B&&B.alan==="firca"?" pri":""),onclick:()=>{ const b=bbAl(); b.on=true; b.alan="firca"; if(!b.amt||b.amt<40) b.amt=60; ED.tool="bbp"; ED.ekBrush.mode="paint"; commit("Bulanıklaştırma fırçası"); rebuildBase(true); renderPanel(); toast("Bulanıklaşmasını istediğin yeri boya · Sil ile geri al"); }},ico("i-brush"),"Bulanıklaştırma fırçası"),
+    el("button",{class:"btn"+(ED.tool==="odak"?" pri":""),onclick:()=>{ ED.tool=ED.tool==="odak"?null:"odak"; renderPanel(); if(ED.tool) toast("Net kalacak nesneye dokun: alan otomatik bulunur, çevresi uzaklığa göre bulanıklaşır."); }},ico("i-auto"),"Dokunarak odak seç")));
   /* 1 · seçim */
   add(el("div",{class:"adim"},"1 · Seçim"));
   add(el("div",{class:"btn-row"},
@@ -4453,7 +4482,8 @@ function bulanikPanel(add){ const s=ED.state, B=s.bb;
       el("button",{class:"chip"+(ED.tool==="sel"&&ED.ekBrush.mode==="add"?" on":""),onclick:()=>{ const a=ED.tool==="sel"&&ED.ekBrush.mode==="add"; ED.tool=a?null:"sel"; ED.ekBrush.mode="add"; renderPanel(); requestRender(); }},"＋ Seçime ekle"),
       el("button",{class:"chip"+(ED.tool==="sel"&&ED.ekBrush.mode==="sub"?" on":""),onclick:()=>{ const a=ED.tool==="sel"&&ED.ekBrush.mode==="sub"; ED.tool=a?null:"sel"; ED.ekBrush.mode="sub"; renderPanel(); requestRender(); }},"－ Seçimden çıkar"),
       el("button",{class:"chip",onclick:()=>{ s.sel=null; _ants.key=null; ED.tool=ED.tool==="sel"?null:ED.tool; commit("Seçim temizlendi"); rebuildBase(true); renderPanel(); requestRender(); }},"Seçimi temizle")));
-    if(ED.tool==="sel"||ED.tool==="bbp") add(slider({id:"ekbs",label:"Fırça boyutu",min:5,max:200,get:()=>Math.round(ED.ekBrush.size*10),set:v=>{ ED.ekBrush.size=v/10; showCursorRing(); },def:50,fmt:v=>(v/10).toFixed(1)+"%"}));
+    if(ED.tool==="sel"||ED.tool==="bbp") add(slider({id:"ekbs",label:"Fırça boyutu",min:5,max:200,get:()=>Math.round(ED.ekBrush.size*10),set:v=>{ ED.ekBrush.size=v/10; showCursorRing(); },def:50,fmt:v=>(v/10).toFixed(1)+"%"}),
+      slider({id:"ekbh",label:"Fırça sertliği",min:0,max:95,get:()=>ED.ekBrush.hard??60,set:v=>{ ED.ekBrush.hard=v; },def:60,fmt:v=>v+"%"}));
     add(el("label",{class:"toggle"},"Seçim sınırını karınca çizgisiyle göster",el("input",{type:"checkbox",checked:ED.antsOn,onchange:e=>{ ED.antsOn=e.target.checked; ekCiz(); }}))); }
   else add(el("p",{class:"note",style:"margin:0"},"Önce bulanık kalmayacak ana nesneyi seç. Otomatik seçim cihaz üstünde, renk, netlik ve yüz ipuçlarıyla yapılır; sınırları fırçayla düzeltebilirsin."));
   /* 2 · nerede */
@@ -4461,10 +4491,14 @@ function bulanikPanel(add){ const s=ED.state, B=s.bb;
   const alan=B?B.alan:"arka";
   add(chips(BB_ALAN,alan,v=>{ const b=bbAl(); b.alan=v; b.on=true; if(v==="yuz"&&!(b.faces||[]).length){ yuzlerBul(); return; } if(v==="ust"||v==="tilt") ED.tool=v==="ust"?"ust":null; else if(ED.tool==="ust") ED.tool=null;
     if((v==="arka"||v==="ozne")&&!s.sel){ ozneSec(null); } commit("Bulanıklık alanı: "+BB_ALAN.find(x=>x[0]===v)[1]); rebuildBase(true); renderPanel(); requestRender(); }));
-  if(B&&B.alan==="ust"){ add(el("button",{class:"btn"+(ED.tool==="ust"?" pri":""),onclick:()=>{ ED.tool=ED.tool==="ust"?null:"ust"; renderPanel(); }},ED.tool==="ust"?"Fotoğrafa dokun: o noktanın üstü bulanıklaşır":"Çizgiyi fotoğrafa dokunarak yerleştir"));
+  if(B&&(B.alan==="ust"||B.alan==="tilt")){ ust01(B); const egim=()=>Math.round(Math.atan((B.ust.y1-B.ust.y0)/(ED.pW/ED.pH))*180/Math.PI);
+    add(slider({id:"ustegim",label:"Çizginin eğimi (sol uç sabit)",min:-45,max:45,get:egim,set:v=>{ B.ust.y1=B.ust.y0+Math.tan(v*Math.PI/180)*(ED.pW/ED.pH); B.ust.y=(B.ust.y0+B.ust.y1)/2; bbYenile(); ekCiz(); },def:0,fmt:v=>v+"°",commitLabel:"Çizgi eğimi"}));
+    add(el("p",{class:"note",style:"margin:0"},"Çizginin iki ucundaki turuncu tutamaçları sürükle: bir uç sabit kalır, diğeri yukarı-aşağı oynar (eğik bulanıklık hattı). Çizginin ortasını sürüklemek tamamını kaydırır.")); }
+  if(B&&B.alan==="ust"){ add(el("label",{class:"toggle"},"Çizginin altını bulanıklaştır",el("input",{type:"checkbox",checked:!!B.ust.alt,onchange:e=>{ B.ust.alt=e.target.checked; commit(B.ust.alt?"Çizginin altı bulanık":"Çizginin üstü bulanık"); rebuildBase(true); ekCiz(); }})));
+    add(el("button",{class:"btn"+(ED.tool==="ust"?" pri":""),onclick:()=>{ ED.tool=ED.tool==="ust"?null:"ust"; renderPanel(); }},ED.tool==="ust"?"Fotoğrafa dokun: çizgi oraya (yatay) taşınır":"Çizgiyi fotoğrafa dokunarak yerleştir"));
     add(slider({id:"ustsoft",label:"Geçiş genişliği",min:2,max:60,get:()=>Math.round(B.ust.soft*100),set:v=>{ B.ust.soft=v/100; bbYenile(); ekCiz(); },def:18,fmt:v=>v+"%"}));
     add(el("label",{class:"toggle"},"Ana objeyi otomatik koru",el("input",{type:"checkbox",checked:!!B.koru,onchange:e=>{ B.koru=e.target.checked; if(B.koru&&!s.sel) ozneSec(null); commit(B.koru?"Ana obje korunuyor":"Ana obje koruması kapalı"); rebuildBase(true); }}))); }
-  if(B&&B.alan==="tilt"){ add(slider({id:"tilty",label:"Net şeridin yeri",min:5,max:95,get:()=>Math.round(B.ust.y*100),set:v=>{ B.ust.y=v/100; bbYenile(); ekCiz(); },def:50,fmt:v=>v+"%"}));
+  if(B&&B.alan==="tilt"){ add(slider({id:"tilty",label:"Net şeridin yeri",min:5,max:95,get:()=>Math.round(B.ust.y*100),set:v=>{ ust01(B); const d=v/100-(B.ust.y0+B.ust.y1)/2; B.ust.y0+=d; B.ust.y1+=d; B.ust.y=v/100; bbYenile(); ekCiz(); },def:50,fmt:v=>v+"%"}));
     add(slider({id:"tilts",label:"Geçiş genişliği",min:2,max:60,get:()=>Math.round(B.ust.soft*100),set:v=>{ B.ust.soft=v/100; bbYenile(); },def:18,fmt:v=>v+"%"})); }
   if(B&&B.alan==="sekil"){ add(chips([["oval","Oval / daire"],["kare","Kare / dikdörtgen"]],B.sekil.t,v=>{ B.sekil.t=v; commit("Alan: "+v); rebuildBase(true); renderPanel(); requestRender(); }));
     add(el("label",{class:"toggle"},"İçini bulanıklaştır (dışı net kalsın)",el("input",{type:"checkbox",checked:!!B.inv,onchange:e=>{ B.inv=e.target.checked; commit("Alan tersine çevrildi"); rebuildBase(true); }})));
@@ -4491,7 +4525,9 @@ function bulanikPanel(add){ const s=ED.state, B=s.bb;
       el("button",{class:"chip"+(ED.tool==="bbp"&&ED.ekBrush.mode==="paint"?" on":""),onclick:()=>{ const a=ED.tool==="bbp"&&ED.ekBrush.mode==="paint"; ED.tool=a?null:"bbp"; ED.ekBrush.mode="paint"; renderPanel(); }},"Bulanıklaştır"),
       el("button",{class:"chip"+(ED.tool==="bbp"&&ED.ekBrush.mode==="erase"?" on":""),onclick:()=>{ const a=ED.tool==="bbp"&&ED.ekBrush.mode==="erase"; ED.tool=a?null:"bbp"; ED.ekBrush.mode="erase"; renderPanel(); }},"Sil (net bırak)"),
       el("button",{class:"chip",disabled:!(B.paint&&B.paint.length),onclick:()=>{ B.paint=[]; commit("Bulanıklık fırçası temizlendi"); rebuildBase(true); renderPanel(); }},"Fırça izlerini temizle")));
-    if(ED.tool==="bbp"&&!s.sel) add(slider({id:"ekbs2",label:"Fırça boyutu",min:5,max:200,get:()=>Math.round(ED.ekBrush.size*10),set:v=>{ ED.ekBrush.size=v/10; showCursorRing(); },def:50,fmt:v=>(v/10).toFixed(1)+"%"})); }
+    if(ED.tool==="bbp"&&!s.sel) add(slider({id:"ekbs2",label:"Fırça boyutu",min:5,max:200,get:()=>Math.round(ED.ekBrush.size*10),set:v=>{ ED.ekBrush.size=v/10; showCursorRing(); },def:50,fmt:v=>(v/10).toFixed(1)+"%"}),
+      slider({id:"ekbh2",label:"Fırça sertliği",min:0,max:95,get:()=>ED.ekBrush.hard??60,set:v=>{ ED.ekBrush.hard=v; },def:60,fmt:v=>v+"%"}));
+    if(B.odak) add(el("label",{class:"toggle"},"Kademeli alan derinliği (odaktan uzaklaştıkça artar)",el("input",{type:"checkbox",checked:B.odak.kademe!==false,onchange:e=>{ B.odak.kademe=e.target.checked; commit("Kademeli alan derinliği"); rebuildBase(true); }}))); }
 }
 
 /* --- yazı paneli --- */
@@ -8245,6 +8281,222 @@ async function fotoYukleSessiz(){ if (typeof ED !== 'undefined' && ED.rec && ED.
   addEventListener('resize', () => { uygula(); setTimeout(klavye, 80); });
   uygula(); ipucu();
 })();
+</script>
+<style>/* 6.6 */
+.basit-btn{border:1px solid var(--line);background:transparent;color:inherit;border-radius:999px;padding:6px 11px;font-size:13px;font-weight:600;white-space:nowrap;flex:none;margin-left:4px}
+.basit-btn.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.kam{display:flex;flex-direction:column;gap:8px}.kam-v{width:100%;max-height:60vh;background:#000;border-radius:12px;object-fit:contain}
+.kam-z{display:flex;align-items:center;gap:6px;font-size:13px}.kam-z input{width:120px}
+</style>
+<script>
+"use strict";
+/* ================== Karanlık Oda 6.6 (15.10.2026) ==================
+   · Basit mod: yalnız temel sekmeler (Otomatik, Filtreler, Selfi, Işık, Renk, Efektler, Kırp, Yazı, Kaydet)
+   · Selfi: kişi / arka plan ayrı ayrı, arka planı değiştir (renk, geçiş, fotoğraf) ve bulanıklaştır,
+     güzellik (pürüzsüz cilt, cilt tonu, göz, diş), saç rengi ve parlaklığı, geniş kadraj (uzaklaştır), geniş açı kamera
+   · Akıllı bulanıklaştırma: yalnız fırça alanı, fırça sertliği, eğimli çizgi, dokunarak odak (alan derinliği)
+   Hepsi cihazda çalışır; özne/saç/yüz bulma klasik görüntü işlemedir (yapay zekâ modeli yok). */
+
+/* ---------- Basit mod ---------- */
+const BASIT_TAB=["auto","filters","selfi","light","color","fx","crop","text","export"];
+function basitMi(){ try{ return localStorage.getItem("ko.basit")==="1"; }catch(e){ return false; } }
+function aktifSekmeler(){ return basitMi()?TABS.filter(t=>BASIT_TAB.includes(t[0])):TABS; }
+function basitDugmeTazele(){ const on=basitMi(); document.querySelectorAll(".basit-btn").forEach(b=>{ b.classList.toggle("on",on); b.setAttribute("aria-pressed",on); b.textContent=on?"Basit ✓":"Basit"; b.title=on?"Basit mod açık — tüm araçları göstermek için dokun":"Basit mod: yalnız temel araçlar"; });
+  const hs=$("#basitHome"); if(hs) hs.querySelectorAll("button").forEach(b=>b.classList.toggle("on",(b.dataset.v==="1")===on)); }
+function basitSec(v){ try{ localStorage.setItem("ko.basit",v?"1":"0"); }catch(e){}
+  if(ED.state&&!$("#editor").hidden){ buildTabs(); if(!aktifSekmeler().some(t=>t[0]===ED.tab)) setTab("auto"); else markTabs(); }
+  basitDugmeTazele(); toast(v?"Basit mod açık · yalnız temel araçlar":"Tüm araçlar gösteriliyor"); }
+(function basitKur(){
+  const tb=$("#saveBtn"); if(tb&&!$("#basitBtn")){ const b=el("button",{class:"basit-btn",id:"basitBtn",type:"button",onclick:()=>basitSec(!basitMi())},"Basit"); tb.parentNode.insertBefore(b,tb); }
+  const hb=$("#homeBmod"); if(hb&&!$("#basitHome")){ hb.after(el("div",{class:"bmod home-bmod",id:"basitHome"},el("span",null,"Basit mod:"),
+      el("button",{type:"button","data-v":"1",onclick:()=>basitSec(true)},"Açık"),el("button",{type:"button","data-v":"0",onclick:()=>basitSec(false)},"Kapalı"))); }
+  basitDugmeTazele(); })();
+
+/* ---------- Selfi: durum ---------- */
+const selfiVars=()=>({arka:{tip:"yok",renk:"#f2efe9",g:["#fbe3c9","#c9d8f2"],resim:null,parlak:0,doygun:0},kisi:{parlak:0,sicak:0},
+  guzel:{ton:0,sicak:0,goz:0,dis:0},sac:{renk:null,guc:60,parlak:0,firca:[]},yuzler:null});
+function selfiAl(){ const s=ED.state; if(!s.selfi) s.selfi=selfiVars(); const v=selfiVars(); for(const k of ["arka","kisi","guzel","sac"]) s.selfi[k]=Object.assign(v[k],s.selfi[k]||{}); return s.selfi; }
+function selfiAcik(s){ const S=s&&s.selfi; if(!S) return false; const a=S.arka||{}, k=S.kisi||{}, g=S.guzel||{}, h=S.sac||{};
+  return (a.tip&&a.tip!=="yok"&&a.tip!=="bulanik")||!!a.parlak||!!a.doygun||!!k.parlak||!!k.sicak||!!g.ton||!!g.sicak||!!g.goz||!!g.dis||!!h.renk||!!h.parlak; }
+function ekAcik(s){ return !!(s&&((s.bb&&s.bb.on)||selfiAcik(s))); }
+const hex3=h=>{ h=String(h||"#000").replace("#",""); if(h.length===3) h=h.split("").map(c=>c+c).join(""); return [0,2,4].map(i=>parseInt(h.substr(i,2),16)/255); };
+const _selfiImg=new Map();
+async function selfiResim(url){ if(!url) return null; if(_selfiImg.has(url)) return _selfiImg.get(url); const im=new Image(); im.src=url; await im.decode(); _selfiImg.set(url,im); if(_selfiImg.size>4) _selfiImg.delete(_selfiImg.keys().next().value); return im; }
+/* cilt olasılığı (YCbCr), 0..1 */
+function ciltOlas(r,g,b){ const y=.299*r+.587*g+.114*b, cb=128-.168736*r-.331264*g+.5*b, cr=128+.5*r-.418688*g-.081312*b;
+  if(y<35) return 0; const a=smooth(70,84,cb)*(1-smooth(124,136,cb)), c=smooth(128,140,cr)*(1-smooth(170,182,cr)); return a*c; }
+function yuzlerSelfi(S){ return (S.yuzler&&S.yuzler.length?S.yuzler:[]); }
+
+/* ---------- Selfi: uygula (önizleme ve kayıt aynı yolu kullanır) ---------- */
+async function selfiUygula(ctx,W,H,s){ const S=s.selfi; if(!selfiAcik(s)) return;
+  const im=ctx.getImageData(0,0,W,H), d=im.data, n=W*H;
+  /* kişi maskesi */
+  let Mk=null; if(s.sel){ const [mw,mh]=selSize(W,H); const M=await secimMaske(s.sel,mw,mh); Mk=new Float32Array(n); const sx=mw/W, sy=mh/H; for(let y=0;y<H;y++){ const yy=(y+.5)*sy-.5; for(let x=0;x<W;x++) Mk[y*W+x]=ornek(M,mw,mh,(x+.5)*sx-.5,yy); } }
+  const A=S.arka, K=S.kisi, G=S.guzel, SC=S.sac, Y=yuzlerSelfi(S), L=Math.max(W,H);
+  /* 1 · arka plan değiştir */
+  if(Mk&&A.tip&&A.tip!=="yok"&&A.tip!=="bulanik"){
+    let bg=null; if(A.tip==="resim"&&A.resim){ const img=await selfiResim(A.resim); const c=document.createElement("canvas"); c.width=W; c.height=H; const x=c.getContext("2d",{willReadFrequently:true});
+      const k=Math.max(W/img.naturalWidth,H/img.naturalHeight); x.drawImage(img,(W-img.naturalWidth*k)/2,(H-img.naturalHeight*k)/2,img.naturalWidth*k,img.naturalHeight*k); bg=x.getImageData(0,0,W,H).data; }
+    const c1=hex3(A.tip==="gradyan"?A.g[0]:A.renk), c2=hex3(A.tip==="gradyan"?A.g[1]:A.renk);
+    for(let y=0;y<H;y++){ const t=y/(H-1||1); for(let x=0;x<W;x++){ const i=y*W+x, j=i*4, a=Mk[i]; if(a>.995) continue;
+        for(let k=0;k<3;k++){ const b=bg?bg[j+k]:(c1[k]+(c2[k]-c1[k])*t)*255; d[j+k]=d[j+k]*a+b*(1-a); } } } }
+  /* 2 · arka plan / kişi ışığı */
+  if(Mk&&(A.parlak||A.doygun||K.parlak||K.sicak)){ const ap=A.parlak/100, ad=A.doygun/100, kp=K.parlak/100, ks=K.sicak/100;
+    for(let i=0,j=0;i<n;i++,j+=4){ const a=Mk[i]; let r=d[j],g=d[j+1],b=d[j+2];
+      if(ap||ad){ const w=1-a; if(w>.003){ const l=.299*r+.587*g+.114*b; let r2=l+(r-l)*(1+ad), g2=l+(g-l)*(1+ad), b2=l+(b-l)*(1+ad); const f=ap>=0?1+ap*.8:1+ap*.7;
+          r2*=f; g2*=f; b2*=f; r=r+(r2-r)*w; g=g+(g2-g)*w; b=b+(b2-b)*w; } }
+      if((kp||ks)&&a>.003){ const f=kp>=0?1+kp*.6:1+kp*.6; let r2=r*f*(1+ks*.08), g2=g*f, b2=b*f*(1-ks*.08); r=r+(r2-r)*a; g=g+(g2-g)*a; b=b+(b2-b)*a; }
+      d[j]=clamp(r,0,255); d[j+1]=clamp(g,0,255); d[j+2]=clamp(b,0,255); } }
+  /* 3 · cilt tonu */
+  if(G.ton||G.sicak){ const tn=G.ton/100, sk=G.sicak/100;
+    for(let i=0,j=0;i<n;i++,j+=4){ let w=ciltOlas(d[j],d[j+1],d[j+2]); if(Mk) w*=.25+.75*Mk[i]; if(w<.02) continue;
+      const f=1+tn*.35; const r2=d[j]*f*(1+sk*.07), g2=d[j+1]*f*(1+sk*.015), b2=d[j+2]*f*(1-sk*.08);
+      d[j]=clamp(d[j]+(r2-d[j])*w,0,255); d[j+1]=clamp(d[j+1]+(g2-d[j+1])*w,0,255); d[j+2]=clamp(d[j+2]+(b2-d[j+2])*w,0,255); } }
+  /* 4 · göz ve diş (yüz konumundan) */
+  if((G.goz||G.dis)&&Y.length){ const Lm=new Float32Array(n); for(let i=0,j=0;i<n;i++,j+=4) Lm[i]=(.299*d[j]+.587*d[j+1]+.114*d[j+2])/255;
+    const bl=gaussB(Lm,W,H,Math.max(1,L*.004));
+    for(const f of Y){ if(f.on===false) continue; const fx=f.x*W, fy=f.y*H, fs=f.s*L;
+      const bolge=(cx,cy,rx,ry,fn)=>{ const x0=Math.max(0,Math.floor(cx-rx)), x1=Math.min(W-1,Math.ceil(cx+rx)), y0=Math.max(0,Math.floor(cy-ry)), y1=Math.min(H-1,Math.ceil(cy+ry));
+        for(let y=y0;y<=y1;y++) for(let x=x0;x<=x1;x++){ const dx=(x-cx)/rx, dy=(y-cy)/ry, r=Math.sqrt(dx*dx+dy*dy); if(r>=1) continue; fn(y*W+x,1-smooth(.55,1,r)); } };
+      if(G.goz){ const g=G.goz/100; for(const sx of [-1,1]) bolge(fx+sx*fs*.19,fy-fs*.11,fs*.13,fs*.075,(i,w)=>{ const j=i*4, l=Lm[i], det=(l-bl[i]);
+          const k=w*g; const add=(det*1.4+(l>.55?.05:0)+.03)*255*k; for(let c=0;c<3;c++) d[j+c]=clamp(d[j+c]+add,0,255); }); }
+      if(G.dis){ const g=G.dis/100; bolge(fx,fy+fs*.29,fs*.2,fs*.09,(i,w)=>{ const j=i*4, r=d[j],gg=d[j+1],b=d[j+2], l=(.299*r+.587*gg+.114*b)/255, mx=Math.max(r,gg,b), mn=Math.min(r,gg,b), sat=mx?(mx-mn)/mx:0;
+          const dis=smooth(.32,.55,l)*(1-smooth(.35,.6,sat))*(r>b?1:.6); const k=w*g*dis; if(k<.01) return; const ort=(r+gg+b)/3;
+          const hd=Math.min(255,ort*1.05); d[j]=clamp(r+(hd-r)*k*.7,0,255); d[j+1]=clamp(gg+(hd-gg)*k*.7,0,255); d[j+2]=clamp(b+(hd*.99-b)*k*.75,0,255); }); } } }
+  /* 5 · saç */
+  if((SC.renk||SC.parlak)){ const Ms=sacMaske(d,W,H,Mk,Y,SC); const t=SC.renk?hex3(SC.renk):null, gu=(SC.guc??60)/100, pr=(SC.parlak||0)/100;
+    const tl=t?(.299*t[0]+.587*t[1]+.114*t[2]):0;
+    for(let i=0,j=0;i<n;i++,j+=4){ const w=Ms[i]; if(w<.02) continue; let r=d[j]/255,g=d[j+1]/255,b=d[j+2]/255; const l=.299*r+.587*g+.114*b;
+      if(t){ /* renk: ışığı koru, tonu hedef renge çek; koyu saçta renk görünsün diye hafif aydınlat */ const l2=Math.min(1,(l*(1-gu*.45)+Math.min(1,tl*1.9)*l*gu*.9)*(1+gu*.15)+gu*.03), k=tl>0?l2/tl:0;
+        let r2=t[0]*k, g2=t[1]*k, b2=t[2]*k; const m=Math.max(r2,g2,b2); if(m>1){ r2/=m; g2/=m; b2/=m; } const a=w*gu; r=r+(r2-r)*a; g=g+(g2-g)*a; b=b+(b2-b)*a; }
+      if(pr){ const f=1+pr*.5*w; r*=f; g*=f; b*=f; }
+      d[j]=clamp(r*255,0,255); d[j+1]=clamp(g*255,0,255); d[j+2]=clamp(b*255,0,255); } }
+  ctx.putImageData(im,0,0); }
+/* saç maskesi: başın çevresi + kişi maskesi − cilt − aydınlık zemin; fırçayla eklenir/silinir */
+function sacMaske(d,W,H,Mk,Y,SC){ const n=W*H, L=Math.max(W,H), M=new Float32Array(n);
+  for(const f of Y){ if(f.on===false) continue; const fx=f.x*W, fy=f.y*H-f.s*L*.18, rx=f.s*L*.95, ry=f.s*L*1.05;
+    const x0=Math.max(0,Math.floor(fx-rx)), x1=Math.min(W-1,Math.ceil(fx+rx)), y0=Math.max(0,Math.floor(fy-ry)), y1=Math.min(H-1,Math.ceil(fy+ry*1.25));
+    for(let y=y0;y<=y1;y++) for(let x=x0;x<=x1;x++){ const dx=(x-fx)/rx, dy=(y-fy)/(y>fy?ry*1.25:ry), r=Math.sqrt(dx*dx+dy*dy); if(r>=1) continue; const i=y*W+x, j=i*4;
+      const cl=ciltOlas(d[j],d[j+1],d[j+2]), l=(.299*d[j]+.587*d[j+1]+.114*d[j+2])/255; let w=(1-smooth(.75,1,r))*(1-cl*(Mk?.45:.85))*(1-smooth(.88,.97,l));
+      /* yüzün kendisi (göz, kaş, ağız) saç sayılmasın */ const ex=(x-f.x*W)/(f.s*L*.44), ey=(y-(f.y*H+f.s*L*.1))/(f.s*L*.52), er=Math.sqrt(ex*ex+ey*ey); w*=smooth(.82,1.02,er);
+      /* boyun ve omuz: yüzün altında kalan kısım saç değil (uzun saç fırçayla eklenir) */ if(y>f.y*H+f.s*L*.45) w*=1-smooth(f.y*H+f.s*L*.45,f.y*H+f.s*L*.75,y)*(1-smooth(.35,.6,Math.abs(x-f.x*W)/(f.s*L)));
+      if(Mk) w*=smooth(.3,.8,Mk[i]); M[i]=Math.max(M[i],w); } }
+  if(SC.firca&&SC.firca.length){ const c=document.createElement("canvas"); c.width=W; c.height=H; const x=c.getContext("2d",{willReadFrequently:true}), im=x.createImageData(W,H);
+    for(let i=0;i<n;i++){ const v=Math.round(M[i]*255); im.data[i*4]=im.data[i*4+1]=im.data[i*4+2]=v; im.data[i*4+3]=255; } x.putImageData(im,0,0);
+    for(const op of SC.firca) lmStroke(x,op,0); const q=x.getImageData(0,0,W,H).data; for(let i=0;i<n;i++) M[i]=q[i*4]/255; }
+  return gaussB(M,W,H,Math.max(1,L*.002)); }
+
+/* ---------- Selfi: işlemler ---------- */
+const selfiTazele=debounce(()=>rebuildBase(true),80);
+function selfiDegis(label){ selfiTazele(); if(label) commit(label); markTabs(); }
+async function selfiHazirla(){ const S=selfiAl(); const s=ED.state;
+  if(!S.yuzler){ const yz=yuzBul(ED.prevCanvas); S.yuzler=yz.map(f=>({x:f.x,y:f.y,s:f.s,on:true})); }
+  if(!s.sel) await ozneSec(null,"Selfi: kişi seçildi"); }
+function kisiGerekli(){ if(!ED.state.sel){ toast("Önce kişiyi seç (Kişiyi otomatik seç)."); return false; } return true; }
+/* geniş kadraj: fotoğrafı küçültüp çevresini akıllıca doldurur — yeni fotoğraf olarak açılır */
+async function genisKadraj(oran,dolgu,renk){ const b=busy("Kadraj genişletiliyor…"); await sleep0();
+  try{ const bmp=await createImageBitmap(ED.rec.blob,{imageOrientation:"from-image"}); const s=Math.min(1,4096/Math.max(bmp.width,bmp.height)/oran);
+    const w=Math.round(bmp.width*s), h=Math.round(bmp.height*s), W=Math.round(w*oran), H=Math.round(h*oran), ox=Math.round((W-w)/2), oy=Math.round((H-h)/2);
+    const c=document.createElement("canvas"); c.width=W; c.height=H; const x=c.getContext("2d");
+    if(dolgu==="renk"){ x.fillStyle=renk||"#f2efe9"; x.fillRect(0,0,W,H); }
+    else { /* kenarları aynala + yumuşat: fotoğrafın devamı gibi */ const t=document.createElement("canvas"); t.width=W; t.height=H; const tx=t.getContext("2d");
+      for(let i=-1;i<=1;i++) for(let j=-1;j<=1;j++){ const x0=ox+i*w, y0=oy+j*h; tx.save(); tx.translate(x0+(i?w:0),y0+(j?h:0)); tx.scale(i?-1:1,j?-1:1); tx.drawImage(bmp,0,0,w,h); tx.restore(); }
+      x.filter=`blur(${Math.round(Math.max(W,H)*(dolgu==="bulanik"?.03:.012))}px)`; x.drawImage(t,0,0); x.filter="none";
+      if(dolgu==="bulanik"){ x.fillStyle="rgba(0,0,0,.08)"; x.fillRect(0,0,W,H); } }
+    /* asıl fotoğraf, kenarları yumuşak */ const f=document.createElement("canvas"); f.width=w; f.height=h; const fx=f.getContext("2d"); fx.drawImage(bmp,0,0,w,h); bmp.close();
+    const fe=Math.round(Math.min(w,h)*(dolgu==="renk"?0:.035)); if(fe>0){ fx.globalCompositeOperation="destination-in";
+      for(const [x0,y0,x1,y1,rx,ry,rw,rh] of [[0,0,fe,0,0,0,fe,h],[w,0,w-fe,0,w-fe,0,fe,h],[0,0,0,fe,0,0,w,fe],[0,h,0,h-fe,0,h-fe,w,fe]]){ const g=fx.createLinearGradient(x0,y0,x1,y1); g.addColorStop(0,"rgba(0,0,0,0)"); g.addColorStop(1,"rgba(0,0,0,1)");
+        const m=document.createElement("canvas"); m.width=w; m.height=h; const mx=m.getContext("2d"); mx.fillStyle="#000"; mx.fillRect(0,0,w,h); mx.clearRect(rx,ry,rw,rh); mx.fillStyle=g; mx.fillRect(rx,ry,rw,rh); fx.drawImage(m,0,0); } }
+    x.drawImage(f,ox,oy);
+    const blob=await new Promise(r=>c.toBlob(r,"image/jpeg",.94)); b.close(); if(!blob){ toast("Genişletilemedi."); return; }
+    await openFile(new File([blob],(ED.rec.name||"foto")+"_genis.jpg",{type:"image/jpeg"})); setTimeout(()=>{ try{ setTab("selfi"); }catch(e){} toast("Geniş kadraj yeni fotoğraf olarak açıldı · asıl fotoğraf kitaplıkta duruyor"); },400); }
+  catch(e){ b.close(); console.error(e); toast("Genişletilemedi: "+(e.message||e)); } }
+/* geniş açı kamera */
+async function selfiKamera(){ if(!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia)){ toast("Bu tarayıcıda kamera açılamıyor; telefonun kamerasıyla çekip galeriden seç."); return; }
+  let yon=localStorage.getItem("ko.kamYon")||"user", st=null; const v=el("video",{playsinline:"",autoplay:"",muted:"",class:"kam-v"}); v.muted=true;
+  const zm=el("input",{type:"range",min:1,max:1,step:.05,value:1}), zl=el("span",{class:"mono"},"1×"), not=el("p",{class:"note",style:"margin:6px 0 0"},"");
+  const ac=async()=>{ try{ st&&st.getTracks().forEach(t=>t.stop()); st=await navigator.mediaDevices.getUserMedia({video:{facingMode:yon,width:{ideal:4096},height:{ideal:3072}},audio:false}); v.srcObject=st; await v.play().catch(()=>{});
+      const tr=st.getVideoTracks()[0], cap=tr.getCapabilities?tr.getCapabilities():{}; if(cap.zoom){ zm.min=cap.zoom.min; zm.max=cap.zoom.max; zm.step=cap.zoom.step||.1; zm.value=cap.zoom.min; try{ await tr.applyConstraints({advanced:[{zoom:cap.zoom.min}]}); }catch(e){} zl.textContent=(+cap.zoom.min).toFixed(1)+"×"; zm.disabled=false;
+        not.textContent=cap.zoom.min<1?"En geniş açı seçildi ("+(+cap.zoom.min).toFixed(1)+"×). Kaydırarak yakınlaştırabilirsin.":"Bu kamera 1×'in altına inmiyor; daha geniş kadraj için arka kamerayı dene ya da çektikten sonra \"Kadrajı genişlet\"i kullan."; }
+      else { zm.disabled=true; not.textContent="Bu kamera tarayıcıya yakınlaştırma ayarı vermiyor (genelde ön kamerada). Daha geniş kadraj için çektikten sonra \"Kadrajı genişlet\"i kullan."; } }
+    catch(e){ not.textContent="Kamera açılamadı: "+(e.message||e); } };
+  zm.oninput=async()=>{ zl.textContent=(+zm.value).toFixed(1)+"×"; try{ await st.getVideoTracks()[0].applyConstraints({advanced:[{zoom:+zm.value}]}); }catch(e){} };
+  const kapat=sheet("Selfi · geniş açı",el("div",{class:"kam"},v,el("div",{class:"btn-row"},el("button",{class:"btn",onclick:()=>{ yon=yon==="user"?"environment":"user"; try{ localStorage.setItem("ko.kamYon",yon); }catch(e){} ac(); }},"Ön / arka kamera"),el("span",{style:"flex:1"}),el("label",{class:"kam-z"},"Yakınlık ",zm,zl)),not),
+    [{t:"Vazgeç",cls:"ghost",fn:()=>{ st&&st.getTracks().forEach(t=>t.stop()); }},{t:"Çek",cls:"pri",fn:()=>{ if(!v.videoWidth){ toast("Kamera hazır değil."); return false; } const c=document.createElement("canvas"); c.width=v.videoWidth; c.height=v.videoHeight; const x=c.getContext("2d"); if(yon==="user"){ x.translate(c.width,0); x.scale(-1,1); } x.drawImage(v,0,0);
+      st&&st.getTracks().forEach(t=>t.stop()); c.toBlob(b=>{ if(b) openFile(new File([b],"selfi_"+new Date().toISOString().slice(0,19).replace(/[:T]/g,"-")+".jpg",{type:"image/jpeg"})).then(()=>setTimeout(()=>{ try{ setTab("selfi"); }catch(e){} },300)); },"image/jpeg",.95); }}]);
+  void kapat; ac(); }
+
+/* ---------- Selfi paneli ---------- */
+function selfiPanel(add){ const s=ED.state, S=selfiAl(), A=S.arka, K=S.kisi, G=S.guzel, SC=S.sac;
+  add(panelHead("Selfi ve portre",selfiAcik(s)||s.p.skin?el("button",{class:"btn ghost",style:"padding:5px 10px",onclick:()=>{ s.selfi=selfiVars(); s.selfi.yuzler=S.yuzler; s.p.skin=0; if(s.bb&&s.bb.alan==="arka") s.bb.on=false; commit("Selfi ayarları sıfırlandı"); rebuildBase(true); renderPanel(); requestRender(); }},ico("i-reset"),"Sıfırla"):null));
+  add(el("div",{class:"btn-row"},el("button",{class:"btn",onclick:selfiKamera},ico("i-cam"),"Geniş açı kamera"),el("button",{class:"btn",onclick:()=>genisSor()},"Kadrajı genişlet (uzaklaştır)")));
+  /* kişi */
+  add(el("div",{class:"subhead"},"1 · Kişi ve arka plan"));
+  const yz=S.yuzler||[];
+  add(el("div",{class:"btn-row"},el("button",{class:"btn pri",onclick:async()=>{ S.yuzler=null; s.sel=null; await selfiHazirla(); renderPanel(); }},ico("i-auto"),s.sel?"Kişiyi yeniden seç":"Kişiyi otomatik seç"),
+    el("button",{class:"btn"+(ED.tool==="sel"&&ED.ekBrush.mode==="add"?" pri":""),disabled:!s.sel,onclick:()=>{ const a=ED.tool==="sel"&&ED.ekBrush.mode==="add"; ED.tool=a?null:"sel"; ED.ekBrush.mode="add"; renderPanel(); }},"＋ Ekle"),
+    el("button",{class:"btn"+(ED.tool==="sel"&&ED.ekBrush.mode==="sub"?" pri":""),disabled:!s.sel,onclick:()=>{ const a=ED.tool==="sel"&&ED.ekBrush.mode==="sub"; ED.tool=a?null:"sel"; ED.ekBrush.mode="sub"; renderPanel(); }},"－ Çıkar")));
+  add(el("p",{class:"note",style:"margin:0"},(s.sel?"Kişi seçili (karınca çizgisi). ":"")+(yz.length?`${yz.length} yüz bulundu. `:S.yuzler?"Yüz bulunamadı — göz, diş ve saç ayarları yüz gerektirir. ":"")+"Seçim kenarlarını ＋/－ fırçayla düzeltebilirsin."));
+  if(ED.tool==="sel") add(slider({id:"sfbs",label:"Fırça boyutu",min:5,max:200,get:()=>Math.round(ED.ekBrush.size*10),set:v=>{ ED.ekBrush.size=v/10; showCursorRing(); },def:50,fmt:v=>(v/10).toFixed(1)+"%"}));
+  const SS=(id,lab,obj,k,min,max,etik)=>slider({id,label:lab,min,max,get:()=>obj[k]||0,set:v=>{ obj[k]=v; selfiTazele(); },def:0,fmt:v=>(v>0&&min<0?"+":"")+v,commitLabel:etik||lab});
+  add(SS("sfkp","Kişi parlaklığı",K,"parlak",-60,60),SS("sfks","Kişi sıcaklığı",K,"sicak",-60,60));
+  /* arka plan */
+  add(el("div",{class:"subhead"},"2 · Arka plan"));
+  add(chips([["yok","Olduğu gibi"],["bulanik","Bulanık"],["renk","Düz renk"],["gradyan","Renk geçişi"],["resim","Fotoğraf"]],A.tip,async v=>{ if(v!=="yok"&&!s.sel){ await selfiHazirla(); if(!s.sel) return; }
+    A.tip=v; if(v==="bulanik"){ const B=bbAl(); Object.assign(B,{on:true,alan:"arka",kind:"lens",amt:Math.max(B.amt||0,55),feather:55,depth:85,preset:"dslr"}); } else if(s.bb&&s.bb.alan==="arka"&&s.bb.on&&A.tip!=="bulanik") s.bb.on=false;
+    if(v==="resim"&&!A.resim){ resimSecSelfi(); } commit("Arka plan: "+v); rebuildBase(true); renderPanel(); requestRender(); }));
+  if(A.tip==="bulanik"&&s.bb){ const B=s.bb; add(slider({id:"sfbb",label:"Arka plan bulanıklığı",min:0,max:100,get:()=>B.amt,set:v=>{ B.amt=v; B.on=true; bbYenile(); },def:55,fmt:v=>v+"%",commitLabel:"Arka plan bulanıklığı"}));
+    add(el("p",{class:"note",style:"margin:0"},"İnce ayar (derinlik, tür, fırça) Efektler › Akıllı bulanıklaştırma'da.")); }
+  if(A.tip==="renk") add(el("div",{class:"swatches"},["#ffffff","#f2efe9","#e8e2d6","#d9e4ef","#cfe3d4","#f4d6d6","#2b2b2b","#1f3b5a"].map(c=>el("button",{class:"sw"+(A.renk===c?" on":""),style:`background:${c}`,"aria-label":c,onclick:()=>{ A.renk=c; selfiDegis("Arka plan rengi"); renderPanel(); }})),
+    el("input",{type:"color",value:A.renk,title:"Başka renk",oninput:e=>{ A.renk=e.target.value; selfiTazele(); },onchange:()=>commit("Arka plan rengi")})));
+  if(A.tip==="gradyan") add(el("div",{class:"swatches"},[["#fbe3c9","#c9d8f2"],["#ffe1e1","#ffd9a8"],["#d6f0ff","#e9d6ff"],["#e6f4e8","#c9e3f6"],["#2b2b2b","#5a6b80"],["#f7f3ea","#dcd2c1"]].map(g=>el("button",{class:"sw"+(A.g.join()===g.join()?" on":""),style:`background:linear-gradient(${g[0]},${g[1]})`,onclick:()=>{ A.g=g.slice(); selfiDegis("Arka plan geçişi"); renderPanel(); }}))));
+  if(A.tip==="resim") add(el("button",{class:"btn",onclick:resimSecSelfi},ico("i-img"),A.resim?"Başka arka plan fotoğrafı seç":"Arka plan fotoğrafı seç"));
+  add(SS("sfap","Arka plan parlaklığı",A,"parlak",-80,80),SS("sfad","Arka plan doygunluğu",A,"doygun",-100,80));
+  /* güzellik */
+  add(el("div",{class:"subhead"},"3 · Güzellik"));
+  add(pSlider("skin","Cilt pürüzsüzleştirme"));
+  add(SS("sfct","Cilt aydınlığı",G,"ton",-50,60),SS("sfcs","Cilt tonu (soğuk ↔ sıcak)",G,"sicak",-60,60));
+  const yuzYok=!yz.length; const gz=SS("sfgz","Göz parlaklığı ve netliği",G,"goz",0,100), ds=SS("sfds","Diş beyazlatma",G,"dis",0,100);
+  if(yuzYok){ [gz,ds].forEach(w=>{ w.style.opacity=".5"; w.querySelector("input").disabled=true; }); }
+  add(gz,ds);
+  if(yuzYok) add(el("p",{class:"note",style:"margin:0"},S.yuzler?"Göz ve diş için yüz bulunamadı. Yüzün net ve önden göründüğü bir fotoğrafta çalışır.":"Göz ve diş için önce \"Kişiyi otomatik seç\"e dokun (yüz de bulunur)."));
+  add(el("button",{class:"btn",onclick:()=>{ s.p.skin=Math.max(s.p.skin,32); G.ton=Math.max(G.ton,10); G.sicak=G.sicak||6; if(yz.length){ G.goz=Math.max(G.goz,35); G.dis=Math.max(G.dis,30); } selfiDegis("Hızlı güzellik"); renderPanel(); requestRender(); }},ico("i-auto"),"Hızlı güzellik (doğal)"));
+  /* saç */
+  add(el("div",{class:"subhead"},"4 · Saç"));
+  add(el("div",{class:"swatches"},[[null,"Doğal"],["#2a1a12","Koyu kahve"],["#5a3a22","Kestane"],["#8a5a2b","Bal köpüğü"],["#b88a4a","Karamel"],["#d8b46a","Sarı"],["#7a2a22","Kızıl"],["#5a2a4a","Mürdüm"],["#9aa0a8","Gri"],["#1d1d1f","Siyah"]].map(([c,ad])=>el("button",{class:"sw"+((SC.renk||null)===c?" on":""),title:ad,"aria-label":ad,style:c?`background:${c}`:"background:repeating-linear-gradient(45deg,#ccc 0 4px,#fff 4px 8px)",onclick:()=>{ if(c&&!yz.length){ toast("Saç için önce yüz bulunmalı (Kişiyi otomatik seç)."); return; } SC.renk=c; selfiDegis(c?"Saç rengi: "+ad:"Saç rengi kaldırıldı"); renderPanel(); }})),
+    el("input",{type:"color",value:SC.renk||"#5a3a22",title:"Başka renk",oninput:e=>{ SC.renk=e.target.value; selfiTazele(); },onchange:()=>{ commit("Saç rengi"); renderPanel(); }})));
+  if(SC.renk) add(slider({id:"sfsg",label:"Renk yoğunluğu",min:10,max:100,get:()=>SC.guc??60,set:v=>{ SC.guc=v; selfiTazele(); },def:60,fmt:v=>v+"%",commitLabel:"Saç rengi yoğunluğu"}));
+  add(SS("sfsp","Saç parlaklığı",SC,"parlak",-50,60));
+  add(el("div",{class:"chips"},
+    el("button",{class:"chip"+(ED.tool==="sac"&&ED.ekBrush.mode==="paint"?" on":""),onclick:()=>{ const a=ED.tool==="sac"&&ED.ekBrush.mode==="paint"; ED.tool=a?null:"sac"; ED.ekBrush.mode="paint"; renderPanel(); }},"＋ Saç alanına ekle (fırça)"),
+    el("button",{class:"chip"+(ED.tool==="sac"&&ED.ekBrush.mode==="erase"?" on":""),onclick:()=>{ const a=ED.tool==="sac"&&ED.ekBrush.mode==="erase"; ED.tool=a?null:"sac"; ED.ekBrush.mode="erase"; renderPanel(); }},"－ Saç alanından çıkar"),
+    el("button",{class:"chip",disabled:!(SC.firca&&SC.firca.length),onclick:()=>{ SC.firca=[]; selfiDegis("Saç fırçası temizlendi"); renderPanel(); }},"Fırça izlerini temizle")));
+  if(ED.tool==="sac") add(slider({id:"sfsb",label:"Fırça boyutu",min:5,max:200,get:()=>Math.round(ED.ekBrush.size*10),set:v=>{ ED.ekBrush.size=v/10; showCursorRing(); },def:50,fmt:v=>(v/10).toFixed(1)+"%"}));
+  add(el("p",{class:"note"},"Saç alanı yüzün çevresinden otomatik bulunur; taşan ya da eksik yeri fırçayla düzelt. Kişi, saç ve yüz bulma cihaz üstünde klasik görüntü işlemeyle yapılır; karmaşık arka planlarda kenarları fırçayla düzeltmek gerekebilir."));
+}
+function resimSecSelfi(){ const i=el("input",{type:"file",accept:"image/*"}); i.onchange=async()=>{ const f=i.files&&i.files[0]; if(!f) return; try{ const bmp=await createImageBitmap(f,{imageOrientation:"from-image"}); const k=Math.min(1,1600/Math.max(bmp.width,bmp.height));
+    const c=document.createElement("canvas"); c.width=Math.round(bmp.width*k); c.height=Math.round(bmp.height*k); c.getContext("2d").drawImage(bmp,0,0,c.width,c.height); bmp.close();
+    const S=selfiAl(); S.arka.resim=c.toDataURL("image/jpeg",.86); S.arka.tip="resim"; selfiDegis("Arka plan fotoğrafı"); renderPanel(); }catch(e){ toast("Fotoğraf açılamadı."); } }; i.click(); }
+function genisSor(){ let oran=1.3, dolgu="akilli", renk="#f2efe9";
+  const bilgi=el("p",{class:"note",style:"margin:0"},""); const yaz=()=>{ bilgi.textContent=`Kadraj %${Math.round((oran-1)*100)} genişler. Fotoğraf yeni bir kopya olarak açılır (asıl fotoğraf kitaplıkta kalır). Yapılan düzenlemeler bu kopyaya taşınmaz — önce genişletip sonra düzenlemen önerilir.`; }; yaz();
+  const sl=slider({id:"gkor",label:"Uzaklaştırma",min:110,max:180,get:()=>Math.round(oran*100),set:v=>{ oran=v/100; yaz(); },def:130,fmt:v=>"%"+(v-100)});
+  const ch=chips([["akilli","Fotoğrafın devamı gibi"],["bulanik","Bulanık zemin"],["renk","Düz renk"]],dolgu,v=>{ dolgu=v; ch.querySelectorAll(".chip").forEach(b=>b.classList.toggle("on",b.textContent===({akilli:"Fotoğrafın devamı gibi",bulanik:"Bulanık zemin",renk:"Düz renk"})[v])); });
+  sheet("Kadrajı genişlet (uzaklaştır)",el("div",null,sl,ch,el("label",{class:"toggle"},"Düz renk",el("input",{type:"color",value:renk,oninput:e=>{ renk=e.target.value; }})),bilgi),[{t:"Vazgeç",cls:"ghost"},{t:"Genişlet",cls:"pri",fn:()=>{ genisKadraj(oran,dolgu,renk); }}]); }
+
+/* ---------- 3.4 · dokunarak odak (alan derinliği) ---------- */
+async function odakNoktasi(p){ const b=busy("Odak alanı bulunuyor…"); await sleep0();
+  try{ const [u,v]=p; let en=null;
+    for(const k of [0,.62,.42,.86]){ const w=Math.min(1,k*1.0), h=Math.min(1,k*1.25); const rect=k?{x:clamp(u-w/2,0,1-w),y:clamp(v-h/2,0,1-h),w,h}:null; const r=ozneBul(ED.prevCanvas,rect);
+      const M=r.M, W=r.W, H=r.H, px=clamp(Math.round(u*W),0,W-1), py=clamp(Math.round(v*H),0,H-1);
+      /* dokunulan noktanın bağlı olduğu parça */ let tohum=-1; if(M[py*W+px]>.4) tohum=py*W+px; else { let ed=1e9; const R=Math.round(Math.max(W,H)*.05); for(let y=Math.max(0,py-R);y<=Math.min(H-1,py+R);y++) for(let x=Math.max(0,px-R);x<=Math.min(W-1,px+R);x++){ const d=(x-px)**2+(y-py)**2; if(M[y*W+x]>.5&&d<ed){ ed=d; tohum=y*W+x; } } }
+      if(tohum<0) continue; const K=new Uint8Array(W*H), q=[tohum]; K[tohum]=1; let a=0; while(q.length){ const i=q.pop(); a++; const x=i%W, y=i/W|0; for(const j of [x>0?i-1:-1,x<W-1?i+1:-1,y>0?i-W:-1,y<H-1?i+W:-1]) if(j>=0&&!K[j]&&M[j]>.35){ K[j]=1; q.push(j); } }
+      if(a<W*H*.004) continue; const out=new Float32Array(W*H); for(let i=0;i<W*H;i++) out[i]=K[i]?M[i]:0; en={M:gaussB(out,W,H,1),W,H}; break; }
+    if(!en){ toast("Bu noktada belirgin bir nesne bulunamadı — Nesneyi çerçevele ile dene."); return; }
+    const s=ED.state; s.sel={m:maskePng(en.M,en.W,en.H),ops:[],src:"odak"}; let a=0; for(const x of en.M) a+=x; ED.selOran=a/en.M.length; _ants.key=null;
+    const B=bbAl(); Object.assign(B,{on:true,alan:"arka",kind:"lens",amt:Math.max(B.amt||0,60),feather:55,depth:90,preset:"dslr"}); B.odak={x:u,y:v,kademe:true};
+    commit("Odak noktası seçildi"); rebuildBase(true); renderPanel(); requestRender(); toast("Odak seçildi · çevresi uzaklığa göre kademeli bulanıklaştı"); }
+  catch(e){ console.error(e); toast("Odak seçilemedi."); } finally{ b.close(); } }
+
 </script>
 </body>
 </html>
