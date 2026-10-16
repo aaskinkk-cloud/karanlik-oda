@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.8 · 16.10.2026
+**Güncel sürüm:** 6.9 · 16.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,11 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.9** (16.10.2026) – **Bloğum: kendi Blogger düzenim**
+  - HTML çıktısı bloğundaki kalıba göre üretilir (Ayarlar → *Kendi blog düzenim*, varsayılan açık): manşet fotoğrafı yazının başına **gizli** (`display: none`) eklenir, ardından `<hr />`; paragraflar `<div style="text-align: justify;">`, aralarında `<div><br /></div>`; ara başlıklar `<hr />` + `<h3 style="text-align: left;">` bölümleri; `dropcap`, `tr_bq` alıntı korunur; imza son paragraf olur, sonuna **[favorite]** eklenir (şablon ilk fotoğrafı tam ekran manşet yapıp başa alır); ardından `<hr />` + takip et düğmesi.
+  - Yayınla → **🖼️ Manşet fotoğrafı**: Blogger'a yüklenen fotoğrafın bağlantısı yapıştırılır. Önizleme [favorite] etkisini taklit eder (fotoğraf üstte tam ekran, başlık üzerinde).
+  - [favorite] yalnızca yazıda fotoğraf varsa eklenir; Ayarlar'dan kapatılabilir.
+  - Yeni şablon: **Çok başlıklı yazı** (Ordan burdan gibi): dropcap'li selam, başlıklar, alıntılar, "Bitirirken".
 - **6.8** (16.10.2026) – **✍️ Bloğum**: ana ekranda yeni kart; Blogger için yazı stüdyosu (Blogger AI Studio’nun yazı araçları Karanlık Oda’ya taşındı).
   - **Masa:** saate göre selam, daktilo efektli *günün ilhamı* (30 yazı fikri), “Bu ilhamla yaz”, yazı/kelime/bu ay/seri sayaçları, son 4 hafta yazma takvimi, 8 şablon (deneme, kitap incelemesi, sıladan notlar, gezi, şiir, şarkı hikâyesi, liste), arama ve kapaklı yazı kartları.
   - **Yaz:** kâğıt görünümlü editör — kapak (renk geçişi ya da görsel), kategori, başlık, spot, künye; araç çubuğu (geri/ileri, paragraf, H2/H3, kalın, eğik, altı çizili, fosforlu vurgu, alıntı tr_bq, listeler, bağlantı, görsel, ortala, ilk harf büyük, biçim temizle, HTML kaynağı, odak modu). **＋ Blok** paleti: ara/alt başlık, alıntı, büyük alıntı, not kutusu, kitap kartı, şiir, soru–cevap, listeler, görsel (cihazdan ya da bağlantıdan, alt metinli), YouTube, ayırıcı, tarih–yer satırı, otomatik içindekiler, bağlantı. Yapıştırılan metin temizlenir. Otomatik kayıt, kelime hedefi halkası, okuma süresi.
