@@ -338,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.13 · 16.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.14 · 16.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -8743,6 +8743,20 @@ html.bl-acik,html.bl-acik body{overflow:hidden}
 .bl-kars{position:relative;display:flex}.bl-kars .bl-kart{flex:1;min-width:0}
 .bl-kx{position:absolute;top:8px;right:8px;min-width:36px;height:36px;padding:0 10px;border-radius:99px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(6px);color:var(--text);font:600 12.5px var(--f-ui);z-index:2}
 .bl-kx.onay,.bl-b.onay{background:#b3261e!important;color:#fff!important;border-color:transparent!important}
+/* 6.13b · telefonda üst çubuk: etiketli sekmeler, tek satır */
+@media (max-width:600px){
+ .bl-logo,.bl-marka{display:none}
+ .bl-ust{gap:8px;padding:calc(env(safe-area-inset-top,0px) + 6px) 10px 6px}
+ .bl-ik{width:38px;height:38px}
+ .bl-sek{flex:1;margin:0;min-width:0}
+ .bl-sek button{flex:1;justify-content:center;padding:8px 4px;font-size:13.5px}
+ .bl-sek button span{display:inline!important}
+ .bl-sayfa{padding:10px 12px calc(32px + env(safe-area-inset-bottom,0px) + var(--kb,0px))}
+ .bl-k{padding:12px;gap:9px;border-radius:14px}
+ .bl-yh{padding:10px 12px}
+ .bl-onz-ust{flex-wrap:nowrap}.bl-onz-ust .bl-b{min-height:36px;padding:6px 11px;flex:none}.bl-onz-ust .et{display:none}
+ .bl-onz-sar{padding:8px}
+}
 /* 6.12 */
 .bl-sayfa{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px) + var(--kb,0px))}
 .bl-gsar{display:flex;gap:6px;align-items:stretch}.bl-gsar .bl-gk{flex:1;min-width:0}
@@ -9102,7 +9116,7 @@ function cizYay(){S.g='yay';const y=S.y;if(!y){cizAna();return}kaydetSimdi();if(
      <label>OAuth Client ID<input id="f-cid" value="${esc(DB.ayar.cid)}" placeholder="….apps.googleusercontent.com"></label>
      <div class="bl-dug"><button class="bl-b" data-a="gonderTaslak">Taslak gönder</button><button class="bl-b p" data-a="gonderYayin">Yayımla</button></div><div id="bl-gonder-sonuc" class="not"></div></details>
     <div class="bl-k"><h3>🗂️ Yazı</h3><div class="bl-dug"><button class="bl-b" data-a="cogalt">⧉ Çoğalt</button><button class="bl-b t" data-a="sil">🗑 Sil</button></div></div>`;
-  cerceve(`<div class="bl-yay-izgara"><div class="bl-onz-sar${S.onzAc?' ac':''}" id="bl-onzsar"><div class="bl-onz-ust"><b style="font:600 15px Literata,Georgia,serif;margin-right:auto">Blogger görünümü</b><button class="bl-b" data-a="onzMasa" ${!S.onzMobil?'style="border-color:var(--tl)"':''}>🖥️ Masaüstü</button><button class="bl-b" data-a="onzMobil" ${S.onzMobil?'style="border-color:var(--tl)"':''}>📱 Telefon</button></div><iframe class="bl-onz${S.onzMobil?' mobil':''}" id="bl-onz" title="Önizleme" sandbox="allow-same-origin"></iframe></div>
+  cerceve(`<div class="bl-yay-izgara"><div class="bl-onz-sar${S.onzAc?' ac':''}" id="bl-onzsar"><div class="bl-onz-ust"><b style="font:600 15px Literata,Georgia,serif;margin-right:auto">Blogger görünümü</b><button class="bl-b" data-a="onzMasa" title="Masaüstü görünümü" ${!S.onzMobil?'style="border-color:var(--tl)"':''}>🖥️<span class="et"> Masaüstü</span></button><button class="bl-b" data-a="onzMobil" title="Telefon görünümü" ${S.onzMobil?'style="border-color:var(--tl)"':''}>📱<span class="et"> Telefon</span></button><button class="bl-b bl-onztog" data-a="onzTog" title="Önizlemeyi kapat">✕</button></div><iframe class="bl-onz${S.onzMobil?' mobil':''}" id="bl-onz" title="Önizleme" sandbox="allow-same-origin"></iframe></div>
    <div class="bl-yp"><div class="bl-yh"><div class="bl-puan" style="--p:${s.p};--c:${s.p>=75?'#2f9e5b':s.p>=50?'#d9822b':'#c0392b'}"><span>${s.p}</span></div><div><h3>${durum}</h3><p>${eks?eks+' öneri · ':''}${w} kelime · ${dk} dk okuma</p></div></div>
     <div class="bl-ytab" role="tablist">${sk.map(([id,ad])=>`<button role="tab" class="${sek===id?'on':''}" aria-selected="${sek===id}" data-a="yTab" data-v="${id}">${ad}</button>`).join('')}</div>
     ${ic}
