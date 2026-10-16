@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.7 · 16.10.2026
+**Güncel sürüm:** 6.8 · 16.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -12,9 +12,15 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Selfi** – kişi ve arka plan ayrı ayrı; arka planı değiştir (renk, geçiş, fotoğraf) ya da bulanıklaştır; güzellik (pürüzsüz cilt, cilt tonu, göz, diş); saç rengi ve parlaklığı; geniş açı kamera ve kadrajı genişletme (uzaklaştırma).
 - **Kırp · Katman · Toplu işlem.**
 - **Basit mod** – üst çubuktaki *Basit* düğmesi (ya da ana sayfadaki seçim) yalnız temel sekmeleri gösterir.
+- **✍️ Bloğum** – Blogger için yazı stüdyosu: şablonlar, zengin bloklar (kitap kartı, not kutusu, büyük alıntı, şiir, video…), canlı Blogger önizlemesi, hazırlık puanı, tek dokunuşla HTML kopyası.
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.8** (16.10.2026) – **✍️ Bloğum**: ana ekranda yeni kart; Blogger için yazı stüdyosu (Blogger AI Studio’nun yazı araçları Karanlık Oda’ya taşındı).
+  - **Masa:** saate göre selam, daktilo efektli *günün ilhamı* (30 yazı fikri), “Bu ilhamla yaz”, yazı/kelime/bu ay/seri sayaçları, son 4 hafta yazma takvimi, 8 şablon (deneme, kitap incelemesi, sıladan notlar, gezi, şiir, şarkı hikâyesi, liste), arama ve kapaklı yazı kartları.
+  - **Yaz:** kâğıt görünümlü editör — kapak (renk geçişi ya da görsel), kategori, başlık, spot, künye; araç çubuğu (geri/ileri, paragraf, H2/H3, kalın, eğik, altı çizili, fosforlu vurgu, alıntı tr_bq, listeler, bağlantı, görsel, ortala, ilk harf büyük, biçim temizle, HTML kaynağı, odak modu). **＋ Blok** paleti: ara/alt başlık, alıntı, büyük alıntı, not kutusu, kitap kartı, şiir, soru–cevap, listeler, görsel (cihazdan ya da bağlantıdan, alt metinli), YouTube, ayırıcı, tarih–yer satırı, otomatik içindekiler, bağlantı. Yapıştırılan metin temizlenir. Otomatik kayıt, kelime hedefi halkası, okuma süresi.
+  - **Yayınla:** Blogger görünümünde canlı önizleme (masaüstü/telefon), hazırlık puanı (başlık, uzunluk, ara başlık, açıklama, etiket, görsel alt metni, anahtar kelime), etiket/arama açıklaması/kalıcı bağlantı/hashtag, imza ve takip bandı; **HTML kodunu kopyala** (stiller satır içinde — şablona ek CSS gerekmez), biçimli kopya, .html indir, isteğe bağlı doğrudan Blogger’a gönderme (OAuth Client ID ile).
+  - Örnek makale (“Ekim’de Sıla”), yedekle/yükle, imza ayarı. Yapı esnek: `Blogum.BLOK`, `SABLON`, `KAT`, `ILHAM`, `INLINE` dizilerine satır ekleyerek yeni blok/şablon/kategori eklenir. Veriler cihazda (`ko-blog-v1`).
 - **6.7** (16.10.2026) – Kabataş Haber: **Bölüm şablonları**
   - Araç çubuğunun başında yeni **📑 Şablonlar** aracı: 14 kalıcı (silinmeyen) metin + video taslağı — Son dakika · Sıcak gelişme · Spor (maç sonucu) · Hava durumu · Röportaj · Gündem/yerel · Duyuru · Uyarı/kesinti · Müjde · Fındık/hasat · Tebrik · Anma · Özel haber/dosya · Haftalık bülten.
   - Her şablonda: manşet, spot, seslendirme metni, paylaşım metni, hashtag, kayan bant yazısı, açılış/kapanış cümlesi, **sahneler** (ör. spor: gol anı → puan durumu → sıradaki maç; röportaj: 3 soru-cevap), ek yazılar (CANLI, isim/unvan, GOOOL!, SORU 1…), müzik, TV bandı rengi ve geçiş türü hazır. Kartlar canlı önizlemeli; şablon görselleri cihazda çizilir (stat, stüdyo, haber merkezi, gökyüzü, kutlama, mum…).

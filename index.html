@@ -10,7 +10,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="6.5" data-ad="Karanlık Oda" data-tarih="13.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="6.8" data-ad="Karanlık Oda" data-tarih="16.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -338,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.7 · 16.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.8 · 16.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -8559,6 +8559,460 @@ async function fotoYukleSessiz(){ if (typeof ED !== 'undefined' && ED.rec && ED.
 })();
 
 </script>
+<style id="bl-css">/* ===== Bloğum (6.8) — Karanlık Oda içinde blog yazı stüdyosu ===== */
+html.bl-acik,html.bl-acik body{overflow:hidden}
+.bl{--pp:#fdfbf6;--pi:#1e2a32;--pm:#6b7a84;--tl:#2a9d97;--tl2:#5cb5b1;--tls:rgba(42,157,151,.12);--am:#d9822b;--pl:#7a4e9c;--pl2:#e9e2f3;--sh:0 1px 2px rgba(20,30,40,.06),0 18px 40px -22px rgba(20,30,40,.45);
+  position:fixed;inset:0;z-index:61;background:var(--bg);color:var(--text);display:flex;flex-direction:column;font-family:var(--f-ui);animation:blGir .3s cubic-bezier(.22,.8,.24,1)}
+:root[data-theme="dark"] .bl{--pp:#1a2024;--pi:#e9e6df;--pm:#97a3ab;--tls:rgba(92,181,177,.16);--pl2:#2b2433;--sh:0 1px 2px #0006,0 20px 44px -22px #000}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .bl{--pp:#1a2024;--pi:#e9e6df;--pm:#97a3ab;--tls:rgba(92,181,177,.16);--pl2:#2b2433;--sh:0 1px 2px #0006,0 20px 44px -22px #000}}
+@keyframes blGir{from{opacity:0;transform:translateY(16px)}}
+.bl *{box-sizing:border-box}
+.bl button{font-family:inherit;cursor:pointer}
+.bl-ust{display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px 8px;background:var(--surface);border-bottom:1px solid var(--line);flex:none}
+.bl-logo{width:38px;height:38px;border-radius:50% 50% 50% 9px;background:linear-gradient(135deg,var(--tl),#1d6b68);color:#fff;font:600 21px "Literata",Georgia,serif;display:grid;place-items:center;flex:none;box-shadow:0 6px 16px -6px rgba(42,157,151,.7)}
+.bl-marka{display:flex;flex-direction:column;line-height:1.1;min-width:0}
+.bl-marka b{font:600 18px "Literata",Georgia,serif;letter-spacing:-.01em}
+.bl-marka small{color:var(--muted);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bl-sek{display:flex;gap:3px;background:var(--surface-2);border-radius:12px;padding:3px;margin:0 auto}
+.bl-sek button{border:0;background:transparent;color:var(--muted);padding:7px 14px;border-radius:9px;font:600 13px var(--f-ui);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.bl-sek button.on{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+.bl-ik{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface-2);color:var(--text);font-size:17px;flex:none;display:grid;place-items:center}
+.bl-ic{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
+.bl-sayfa{max-width:1180px;margin:0 auto;padding:16px 14px calc(40px + env(safe-area-inset-bottom,0px))}
+/* ---- Ana sayfa ---- */
+.bl-hero{position:relative;overflow:hidden;border-radius:22px;padding:28px 24px 24px;color:#fff;background:#14363a;box-shadow:var(--sh);isolation:isolate}
+.bl-hero:before{content:"";position:absolute;inset:-40%;z-index:-1;background:radial-gradient(40% 40% at 25% 30%,#2a9d97 0,transparent 70%),radial-gradient(35% 35% at 75% 25%,#d9822b 0,transparent 70%),radial-gradient(45% 45% at 60% 80%,#7a4e9c 0,transparent 70%),radial-gradient(30% 30% at 15% 85%,#b0560e 0,transparent 70%);filter:blur(30px);animation:blMesh 18s ease-in-out infinite alternate}
+.bl-hero:after{content:"";position:absolute;inset:0;z-index:-1;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E")}
+@keyframes blMesh{to{transform:translate(6%,4%) rotate(8deg) scale(1.08)}}
+.bl-hero small.bl-tarih{font:500 12.5px var(--f-ui);letter-spacing:.12em;text-transform:uppercase;opacity:.82}
+.bl-hero h1{margin:8px 0 6px;font:600 clamp(28px,5.2vw,46px)/1.08 "Literata",Georgia,serif;letter-spacing:-.02em}
+.bl-hero h1 em{font-style:italic;color:#ffd9a8}
+.bl-ilham{margin:14px 0 18px;max-width:640px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.12);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2)}
+.bl-ilham .et{font:700 11px var(--f-ui);letter-spacing:.14em;text-transform:uppercase;opacity:.75;display:flex;justify-content:space-between;align-items:center}
+.bl-ilham .et button{border:0;background:rgba(255,255,255,.18);color:#fff;border-radius:999px;padding:3px 10px;font:600 11.5px var(--f-ui)}
+.bl-ilham p{margin:6px 0 0;font:italic 500 clamp(16px,2.6vw,20px)/1.45 "Literata",Georgia,serif;min-height:1.45em}
+.bl-ilham p .imlec{display:inline-block;width:2px;height:1em;background:#fff;vertical-align:-2px;margin-left:2px;animation:blIm 1s steps(1) infinite}
+@keyframes blIm{50%{opacity:0}}
+.bl-cta{display:flex;gap:10px;flex-wrap:wrap}
+.bl-cta button{border:0;border-radius:14px;padding:13px 18px;font:700 15px var(--f-ui);display:inline-flex;align-items:center;gap:8px;transition:transform .15s}
+.bl-cta button:active{transform:scale(.97)}
+.bl-cta .ana{background:#fff;color:#14363a;box-shadow:0 10px 24px -10px rgba(0,0,0,.6)}
+.bl-cta .ikinci{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.28)}
+.bl-sayac{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:20px}
+.bl-sayac div{background:rgba(0,0,0,.18);border-radius:12px;padding:10px 12px}
+.bl-sayac b{display:block;font:600 24px/1 "Literata",Georgia,serif}
+.bl-sayac span{font-size:11.5px;opacity:.8}
+.bl-takvim{display:flex;gap:4px;margin-top:12px;align-items:center;flex-wrap:wrap;font-size:11.5px;opacity:.9}
+.bl-takvim i{width:12px;height:12px;border-radius:3px;background:rgba(255,255,255,.16);display:inline-block}
+.bl-takvim i.on{background:#ffd9a8}.bl-takvim i.bugun{outline:1.5px solid #fff;outline-offset:1px}
+.bl-bas{display:flex;align-items:center;gap:10px;margin:26px 2px 12px}
+.bl-bas h2{margin:0;font:600 21px "Literata",Georgia,serif;letter-spacing:-.01em}
+.bl-bas .say{font-size:12px;color:var(--muted);background:var(--surface-2);border-radius:999px;padding:2px 9px}
+.bl-bas .sag{margin-left:auto;display:flex;gap:8px}
+.bl-ara{border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:10px;padding:8px 11px;font:14px var(--f-ui);width:min(220px,40vw)}
+.bl-sablonlar{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr);gap:12px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory}
+.bl-sab{scroll-snap-align:start;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:14px;display:grid;gap:6px;color:var(--text);transition:transform .15s,box-shadow .15s}
+.bl-sab:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.bl-sab .ik{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:21px;background:var(--c,var(--tls))}
+.bl-sab b{font:600 15px "Literata",Georgia,serif}.bl-sab span{font-size:12px;color:var(--muted);line-height:1.4}
+.bl-izgara{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.bl-kart{border:1px solid var(--line);background:var(--surface);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;text-align:left;color:var(--text);padding:0;transition:transform .15s,box-shadow .15s}
+.bl-kart:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.bl-kapak{height:132px;position:relative;background:var(--kp,linear-gradient(135deg,#2a9d97,#7a4e9c));background-size:cover;background-position:center}
+.bl-kapak .durum{position:absolute;left:10px;top:10px;font:700 10.5px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;background:rgba(255,255,255,.92);color:#1e2a32;padding:4px 8px;border-radius:999px}
+.bl-kapak .durum.hazir{background:#ffe4b8}.bl-kapak .durum.yay{background:#c9f0d8}
+.bl-kapak .ornek{position:absolute;right:10px;top:10px;font:700 10.5px var(--f-ui);background:#1e2a32;color:#ffd9a8;padding:4px 8px;border-radius:999px}
+.bl-kart .gv{padding:12px 14px 14px;display:grid;gap:5px;flex:1}
+.bl-kart .kat{font:700 10.5px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--tl)}
+.bl-kart b{font:600 17px/1.3 "Literata",Georgia,serif}
+.bl-kart p{margin:0;font-size:13px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bl-kart .alt{display:flex;gap:10px;font-size:11.5px;color:var(--muted);margin-top:auto;padding-top:6px}
+.bl-bos{border:1.5px dashed var(--line);border-radius:18px;padding:30px;text-align:center;color:var(--muted)}
+/* ---- Yazı masası ---- */
+.bl-masa>*,.bl-yay-izgara>*{min-width:0}
+.bl-masa{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
+@media (max-width:980px){.bl-masa{grid-template-columns:1fr}.bl-yan{display:none}}
+.bl-arac{position:sticky;top:0;z-index:5;display:flex;gap:4px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:7px;margin:0 0 12px;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 18px -12px rgba(0,0,0,.35)}
+.bl-arac::-webkit-scrollbar{display:none}
+.bl-arac button{flex:none;border:0;background:transparent;color:var(--text);min-width:36px;height:36px;padding:0 9px;border-radius:9px;font:600 13.5px var(--f-ui);display:inline-flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap}
+.bl-arac button:hover{background:var(--surface-2)}
+.bl-arac button.on{background:var(--tls);color:var(--tl)}
+.bl-arac .ay{width:1px;height:22px;background:var(--line);flex:none;margin:0 3px}
+.bl-arac .ekle{background:linear-gradient(135deg,var(--tl),#1d6b68);color:#fff;padding:0 13px}
+.bl-arac .ekle:hover{filter:brightness(1.08);background:linear-gradient(135deg,var(--tl),#1d6b68)}
+.bl-kagit{background:var(--pp);color:var(--pi);border-radius:6px 6px 18px 18px;box-shadow:var(--sh);border-top:4px solid var(--tl);overflow:hidden}
+.bl-kkapak{height:clamp(150px,26vw,250px);background:var(--kp,linear-gradient(135deg,#2a9d97,#7a4e9c));background-size:cover;background-position:center;position:relative}
+.bl-kkapak .dg{position:absolute;right:12px;bottom:12px;display:flex;gap:6px}
+.bl-kkapak .dg button,.bl-kkapak .dg label{border:0;background:rgba(0,0,0,.55);color:#fff;border-radius:999px;padding:7px 12px;font:600 12.5px var(--f-ui);backdrop-filter:blur(4px);cursor:pointer;position:relative}
+.bl-kkapak .dg input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.bl-yazi{padding:22px clamp(18px,5vw,56px) 40px}
+.bl-katsec{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.bl-katsec select{border:1px solid color-mix(in srgb,var(--pi) 18%,transparent);background:transparent;color:var(--tl);font:700 11.5px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:5px 10px}
+.bl-baslik,.bl-spot{width:100%;border:0;background:transparent;color:var(--pi);outline:0;resize:none;padding:0;display:block}
+.bl-baslik{font:600 clamp(27px,4.4vw,40px)/1.18 "Literata",Georgia,serif;letter-spacing:-.02em;margin:4px 0 8px}
+.bl-spot{font:italic 400 clamp(16px,2.2vw,19px)/1.5 "Literata",Georgia,serif;color:var(--pm);margin-bottom:12px}
+.bl-baslik::placeholder,.bl-spot::placeholder{color:color-mix(in srgb,var(--pm) 70%,transparent)}
+.bl-kunye{display:flex;gap:12px;flex-wrap:wrap;font:600 12px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;color:var(--pm);padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid color-mix(in srgb,var(--pi) 12%,transparent)}
+.bl-govde{outline:0;min-height:50vh;font:18px/1.85 "Literata",Georgia,serif;color:var(--pi);caret-color:var(--tl)}
+.bl-govde:empty:before{content:"Buradan yazmaya başla… Araç çubuğundaki ＋ Blok ile alıntı, kitap kartı, not kutusu, görsel ekleyebilirsin.";color:var(--pm);font-style:italic}
+.bl-govde p{margin:0 0 1.1em}
+.bl-govde h2{font:600 1.45em/1.3 "Literata",Georgia,serif;margin:1.6em 0 .6em;letter-spacing:-.01em}
+.bl-govde h3{font:600 1.2em/1.35 "Literata",Georgia,serif;margin:1.4em 0 .5em;color:var(--tl)}
+.bl-govde a{color:var(--tl);text-decoration-thickness:1px;text-underline-offset:3px}
+.bl-govde img{max-width:100%;height:auto;border-radius:6px}
+.bl-govde ul,.bl-govde ol{padding-left:1.4em;margin:0 0 1.1em}
+.bl-govde .tr_bq,.bl-onz .tr_bq{border-left:4px solid #3aada8;background:color-mix(in srgb,#3aada8 9%,transparent);margin:1.4em 0;padding:.8em 1.2em;font-style:italic;color:inherit}
+.bl-govde .dropcap{float:left;font-size:3.1em;line-height:.9;padding:.06em .08em 0 0;color:#3aada8;font-weight:600}
+.bl-govde .blog-vurgu{background:linear-gradient(transparent 60%,color-mix(in srgb,#3aada8 35%,transparent) 60%);font-weight:600}
+.bl-govde hr{height:1px;border:0;background:color-mix(in srgb,var(--pi) 18%,transparent);margin:2em auto;width:40%}
+.bl-govde [data-bl]{position:relative}
+.bl-govde [data-bl]:hover{outline:1px dashed color-mix(in srgb,var(--tl) 60%,transparent);outline-offset:4px;border-radius:4px}
+.bl-durum{position:sticky;bottom:10px;z-index:4;display:flex;gap:12px;align-items:center;justify-content:center;margin:14px auto 0;width:max-content;max-width:100%;padding:8px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh);font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.bl-durum b{color:var(--text)}
+.bl-halka{--p:0;width:26px;height:26px;border-radius:50%;background:conic-gradient(var(--tl) calc(var(--p)*1%),var(--surface-2) 0);display:grid;place-items:center}
+.bl-halka:after{content:"";width:18px;height:18px;border-radius:50%;background:var(--surface)}
+.bl-kayit{color:var(--ok)}
+/* yan panel ve yayın */
+.bl-yan,.bl-yay{display:grid;gap:12px}
+.bl-yan{position:sticky;top:0}
+.bl-k{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:grid;gap:10px;min-width:0}
+.bl-k h3{margin:0;font:700 12px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--tl);display:flex;align-items:center;gap:8px}
+.bl-k label{font:600 12.5px var(--f-ui);color:var(--muted);display:grid;gap:5px}
+.bl-k input,.bl-k textarea,.bl-k select{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:10px;padding:9px 11px;font:14px var(--f-ui);width:100%}
+.bl-k textarea{resize:vertical}
+.bl-k .not{font-size:11.5px;color:var(--muted);line-height:1.45}
+.bl-onay{display:flex!important;grid-template-columns:none!important;align-items:center;gap:8px!important;color:var(--text)!important;font-weight:500!important}
+.bl-onay input{width:auto!important;accent-color:var(--tl)}
+.bl-dug{display:flex;gap:8px;flex-wrap:wrap}
+.bl-b{border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:11px;padding:10px 14px;font:600 13.5px var(--f-ui);display:inline-flex;align-items:center;gap:7px;min-height:42px}
+.bl-b:hover{border-color:var(--tl)}
+.bl-b.p{background:linear-gradient(135deg,var(--tl),#1d6b68);color:#fff;border-color:transparent}
+.bl-b.t{color:var(--danger)}
+.bl-b.gen{width:100%;justify-content:center}
+.bl-seo{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}
+.bl-puan{--p:0;width:64px;height:64px;border-radius:50%;background:conic-gradient(var(--c,var(--tl)) calc(var(--p)*1%),var(--surface-2) 0);display:grid;place-items:center;font:700 18px "Literata",serif}
+.bl-puan span{width:50px;height:50px;border-radius:50%;background:var(--surface);display:grid;place-items:center}
+.bl-kontrol{display:grid;gap:5px;font-size:12.5px}
+.bl-kontrol div{display:flex;gap:7px;align-items:flex-start}
+.bl-kontrol .i{flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:11px;color:#fff;background:#c0392b}
+.bl-kontrol .i.ok{background:#2f9e5b}.bl-kontrol .i.ort{background:#d9822b}
+.bl-yay-izgara{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:900px){.bl-yay-izgara{grid-template-columns:1fr}}
+.bl-onz-sar{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:10px;position:sticky;top:0}
+.bl-onz-ust{display:flex;gap:6px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.bl-onz{width:100%;height:72vh;border:0;border-radius:10px;background:#fff;display:block;margin:0 auto;transition:width .25s}
+.bl-onz.mobil{width:390px;max-width:100%}
+/* blok paleti */
+.bl-palet-art{position:fixed;inset:0;z-index:70;background:rgba(10,14,16,.45);backdrop-filter:blur(3px);display:flex;align-items:flex-end;justify-content:center;animation:blFade .2s}
+@keyframes blFade{from{opacity:0}}
+.bl-palet{width:min(760px,100%);max-height:78vh;overflow:auto;background:var(--surface);border-radius:22px 22px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px));box-shadow:0 -20px 50px -20px rgba(0,0,0,.5);animation:blYuk .28s cubic-bezier(.22,.8,.24,1)}
+@media (min-width:760px){.bl-palet-art{align-items:center}.bl-palet{border-radius:22px}}
+@keyframes blYuk{from{transform:translateY(40px)}}
+.bl-palet h3{margin:0 0 4px;font:600 20px "Literata",Georgia,serif}
+.bl-palet>p{margin:0 0 12px;color:var(--muted);font-size:13px}
+.bl-palet-iz{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.bl-blok{border:1px solid var(--line);background:var(--surface-2);border-radius:14px;padding:12px;text-align:left;display:grid;gap:4px;color:var(--text)}
+.bl-blok:hover{border-color:var(--tl);background:var(--tls)}
+.bl-blok .ik{font-size:22px}.bl-blok b{font-size:13.5px}.bl-blok span{font-size:11.5px;color:var(--muted);line-height:1.35}
+.bl-kaynak{width:100%;min-height:55vh;font:13px/1.6 var(--f-mono);border:1px dashed var(--line);border-radius:10px;background:var(--pp);color:var(--pi);padding:14px}
+.bl.odak .bl-ust,.bl.odak .bl-yan,.bl.odak .bl-kkapak{display:none}
+.bl.odak .bl-masa{grid-template-columns:minmax(0,760px);justify-content:center}
+.bl.odak .bl-kagit{box-shadow:none;border-top-color:transparent;background:transparent}
+.bl-toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:80;background:#1e2a32;color:#fff;padding:11px 18px;border-radius:999px;font:600 13.5px var(--f-ui);box-shadow:0 12px 30px -10px #000a;max-width:92vw;text-align:center;animation:blFade .2s}
+.bl-toast.h{background:#b3261e}
+.act.bl-act{background:linear-gradient(135deg,#14363a,#2a9d97 55%,#d9822b);color:#fff;border-color:#1d6b68;overflow:hidden}
+.act.bl-act strong{font-family:"Literata",Georgia,serif;letter-spacing:.01em}
+.act.bl-act span{color:#e6f3f2}
+@media (max-width:600px){.bl-sek button span{display:none}.bl-sek button{padding:7px 11px}.bl-marka small{display:none}.bl-sayac{grid-template-columns:repeat(2,1fr)}.bl-hero{padding:22px 18px 18px}.bl-ara{width:130px}}
+@media (prefers-reduced-motion:reduce){.bl,.bl-hero:before,.bl-palet,.bl-palet-art{animation:none!important}}
+</style>
+
+<script>
+/* ===================== 6.8 · BLOĞUM — Blogger için yazı stüdyosu =====================
+   Yapı (sonraki değişiklikler için esnek):
+   BL.BLOK    → eklenebilir içerik blokları (ad, ikon, html) — yeni blok = diziye bir satır
+   BL.SABLON  → yazı şablonları (başlık, kategori, gövde)
+   BL.KAT     → kategoriler (renk + ikon)
+   BL.ILHAM   → ilham cümleleri
+   BL.INLINE  → Blogger'a giden HTML'de sınıf → satır içi stil karşılıkları (şablonda olmayan sınıflar)
+   Veriler bu cihazda: localStorage "ko-blog-v1". */
+(function(){
+'use strict';
+const ANAHTAR='ko-blog-v1', BLOG_URL='https://ahmetaskin.blogspot.com/';
+const $=(s,k)=>(k||document).querySelector(s), $$=(s,k)=>Array.from((k||document).querySelectorAll(s));
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const bugunAnahtar=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const trTarih=t=>new Date(t).toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
+
+/* ---------------- kayıt ---------------- */
+let DB=null;
+function oku(){if(DB)return DB;try{DB=JSON.parse(localStorage.getItem(ANAHTAR)||'null')}catch(e){DB=null}
+  if(!DB||!Array.isArray(DB.yazilar))DB={yazilar:[],ayar:{}};
+  DB.ayar=Object.assign({imza:'Sizlerin hususi dünyanızın hamisi bloğunuzu da iadeyi ziyarette bulunma vaadiyle,\nhoşça kalın ve esen kalın...',hedef:600,gunler:[],imzaVars:true,takipVars:false,gom:true,cid:''},DB.ayar||{});
+  if(!DB.ornekYuklendi){DB.yazilar.unshift(ornekYazi());DB.ornekYuklendi=1;yaz()}
+  return DB}
+function yaz(){try{localStorage.setItem(ANAHTAR,JSON.stringify(DB));return true}catch(e){bildir('Cihaz depolaması doldu — büyük görselleri küçültün ya da eski yazıları silin',1);return false}}
+
+/* ---------------- yapılandırma ---------------- */
+const KAT={deneme:['Kişisel deneme','🖋️','#2a9d97'],edebi:['Edebî yazı','📜','#7a4e9c'],kitap:['Kitap incelemesi','📚','#b0560e'],alinti:['Kitap alıntısı','❝','#8a6d3b'],siir:['Şiir','🌙','#5b4b9a'],muzik:['Müzik ve sanat','🎼','#c2506f'],cay:['Çay ve yaşam','🫖','#2e7d32'],gunluk:['Günlük gözlem','🌤️','#d9822b'],sila:['Sıladan notlar','🌰','#8b5a2b'],bilgi:['Bilgilendirici','💡','#1f6fb0'],diger:['Diğer','✦','#5b646a']};
+const KAPAK=['linear-gradient(135deg,#2a9d97,#14363a)','linear-gradient(135deg,#d9822b,#7a4e9c)','linear-gradient(135deg,#7a4e9c,#14363a)','linear-gradient(135deg,#b0560e,#f0c27b)','linear-gradient(160deg,#1d6b68,#a8d5ba)','linear-gradient(135deg,#3a1c71,#d76d77,#ffaf7b)','linear-gradient(135deg,#0f2027,#2c5364)','linear-gradient(135deg,#8b5a2b,#e6c79c)'];
+const ILHAM=['Çocukluğunun geçtiği sokakta bugün ne değişti, ne aynı kaldı?','Son okuduğun kitaptan aklında kalan tek cümle neydi ve neden?','Bir bardak çayın başında kiminle konuşmak isterdin?','Fındık toplama mevsiminin sesleri ve kokuları…','Ekim yağmurunun pencerene vuruşunu anlat.','Sılaya dönüşün ilk beş dakikası.','Bir şarkı seni hangi yıla götürüyor?','Annenin mutfağından bir tarif ve bir hatıra.','Hayatında “iyi ki” dediğin küçük bir karar.','Bir yayla sabahını hiç görmemiş birine anlat.','Bugün gördüğün en sıradan şeydeki güzellik.','Eski bir fotoğrafın arkasındaki hikâye.','Kabataş’ta en sevdiğin köşe ve orada geçen bir an.','Yalnızlıkla sessizlik arasındaki fark.','Bir dosyanın arasından çıkan beklenmedik bir insan hikâyesi.','Kitaplığındaki en eski kitap ve onu sana kim verdi?','Bir mektup: on yıl önceki kendine.','Komşuluk kültüründen bugüne kalan bir gelenek.','Sonbaharı bir renk olarak anlatsan…','Bir türkünün sözlerinde saklı memleket.','Hayatına dokunmuş bir öğretmen.','Şehirde kaybettiğimiz, köyde hâlâ duran şey.','Uzun bir yolculuğun en kısa anısı.','Yağmurdan sonra toprak kokusu ve bir hatıra.','Bir kelimeyi çok sevdin mi? Hangisi, neden?','Akşam ezanıyla kararan bir köy manzarası.','Bu hafta seni gülümseten bir cümle.','Bir şiiri ilk kez anladığın an.','İnsanın kendine iyi gelmesi ne demek?','Karadeniz’in dalgasını bir dostuna benzet.'];
+const INLINE={'blog-vurgu':'background:linear-gradient(transparent 60%,#bfe6e4 60%);font-weight:600','blog-ayirici':'height:1px;border:0;background:#d5e3e3;margin:2em auto;width:40%','blog-not':'background:#f2f8f8;border:1px solid #cfe5e3;border-radius:10px;padding:14px 18px;margin:1.4em 0','blog-not-b':'display:block;color:#26817d;margin-bottom:4px','blog-kitap':'display:flex;gap:16px;align-items:flex-start;background:#faf6ef;border:1px solid #eadfcc;border-radius:12px;padding:16px;margin:1.6em 0','blog-kitap-kapak':'flex:none;width:72px;height:104px;border-radius:4px;background:linear-gradient(135deg,#b0560e,#7a4e9c);color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px','blog-kitap-ad':'display:block;font-size:1.1em;color:#223240','blog-kitap-yz':'display:block;color:#66798a;font-size:.92em;margin-bottom:6px','blog-buyuk':'font-size:1.45em;line-height:1.45;font-style:italic;text-align:center;color:#26817d;margin:1.6em 8%;padding:.4em 0;border-top:1px solid #cfe5e3;border-bottom:1px solid #cfe5e3','blog-siir':'text-align:center;font-style:italic;line-height:1.9;margin:1.6em 0','blog-soru':'font-weight:700;color:#26817d;margin-bottom:.2em','blog-tarih':'font-size:.85em;letter-spacing:.08em;text-transform:uppercase;color:#66798a','blog-hashtag':'color:#3aada8;font-size:.92em','blog-imza':'margin-top:2em;font-style:italic;color:#475a6c','blog-kapak':'display:block;width:100%;height:auto;border-radius:6px;margin:0 0 1.4em','blog-video':'position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin:1.4em 0','blog-video-if':'position:absolute;inset:0;width:100%;height:100%;border:0','blog-icindekiler':'background:#f7f9f9;border-left:3px solid #3aada8;padding:12px 18px;margin:1.4em 0','blog-ortala':'text-align:center'};
+const ONZ_CSS=Object.keys(INLINE).map(k=>'.'+k+'{'+INLINE[k]+'}').join('\n')+'\n.tr_bq{border-left:4px solid #3aada8;background:#f2f8f8;margin:1.4em 0;padding:.8em 1.2em;font-style:italic;color:#475a6c}\n.dropcap{float:left;font-size:2.6em;line-height:1;padding-right:.08em;color:#3aada8}';
+const FOLLOW='<center><a href="https://www.blogger.com/follow.g?blogID=8664218824522918433" style="margin-left: 1em; margin-right: 1em;"><img alt="kişisel blog,takip et" border="0" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPyS5t4R6vBOuQubX62geFzl8JwHhkbFPZUGpfhkzABACFMyLmTHVJOdfIb2NPm62EgorEecV5bzf7VVCBtDhhMhlQ_Mmg4c1cqrciXrQXk-gDKNC_C5-42pW-stwf6Mhz_3UxQ_bJs_k/s1600/bubloguizle.png" title="kişisel blog, takip et" /></a></center>';
+
+const BLOK=[
+ {k:'h2',ad:'Ara başlık',ik:'H',ac:'Bölüm başlığı',html:s=>`<h2>${s||'Ara başlık'}</h2><p><br></p>`},
+ {k:'h3',ad:'Alt başlık',ik:'h',ac:'Küçük başlık',html:s=>`<h3>${s||'Alt başlık'}</h3><p><br></p>`},
+ {k:'alinti',ad:'Alıntı',ik:'❝',ac:'Şablonundaki tr_bq alıntısı + kaynak',html:s=>{const q=prompt('Kaynak (isteğe bağlı; ör. Yunus Emre)')||'';return `<blockquote class="tr_bq">${s||'Alıntı metni'}${q?' <b><span style="color:#999999;">— '+esc(q)+'</span></b>':''}</blockquote><p><br></p>`}},
+ {k:'buyuk',ad:'Büyük alıntı',ik:'“',ac:'Yazının ortasında öne çıkan cümle',html:s=>`<p class="blog-buyuk" data-bl="buyuk">${s||'Öne çıkarmak istediğin cümle'}</p><p><br></p>`},
+ {k:'not',ad:'Not kutusu',ik:'💡',ac:'Bilgi, ipucu ya da hatırlatma',html:s=>`<div class="blog-not" data-bl="not"><b class="blog-not-b">Not</b>${s||'Kutunun içine yaz…'}</div><p><br></p>`},
+ {k:'kitap',ad:'Kitap kartı',ik:'📚',ac:'Kapak, ad, yazar, kısa değerlendirme',html:()=>{const a=prompt('Kitabın adı','Kitap adı')||'Kitap adı',y=prompt('Yazarı','Yazar')||'Yazar';return `<div class="blog-kitap" data-bl="kitap"><div class="blog-kitap-kapak">📖</div><div><b class="blog-kitap-ad">${esc(a)}</b><span class="blog-kitap-yz">${esc(y)} · Yayınevi, yıl</span>Kitap hakkında iki cümle: neden okudun, sende ne bıraktı?</div></div><p><br></p>`}},
+ {k:'siir',ad:'Şiir / dize',ik:'🌙',ac:'Ortalı, eğik dizeler',html:s=>`<p class="blog-siir" data-bl="siir">${s||'Birinci dize<br>İkinci dize<br>Üçüncü dize'}</p><p><br></p>`},
+ {k:'soru',ad:'Soru – cevap',ik:'❓',ac:'Röportaj ya da kendine sorular',html:()=>`<p class="blog-soru" data-bl="soru">Soru buraya?</p><p>Cevap buraya.</p><p><br></p>`},
+ {k:'liste',ad:'Madde listesi',ik:'•',ac:'Maddeler halinde',html:()=>`<ul><li>Birinci madde</li><li>İkinci madde</li></ul><p><br></p>`},
+ {k:'sira',ad:'Numaralı liste',ik:'1.',ac:'Sıralı adımlar',html:()=>`<ol><li>Birinci adım</li><li>İkinci adım</li></ol><p><br></p>`},
+ {k:'gorsel',ad:'Görsel',ik:'🖼️',ac:'Cihazdan ya da bağlantıdan',ozel:'gorsel'},
+ {k:'video',ad:'YouTube videosu',ik:'▶️',ac:'Bağlantıyı yapıştır, yazıya gömülür',html:()=>{const u=prompt('YouTube bağlantısı')||'';const m=u.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);if(!m){bildir('Geçerli bir YouTube bağlantısı değil',1);return ''}return `<div class="blog-video" data-bl="video"><iframe class="blog-video-if" src="https://www.youtube.com/embed/${m[1]}" allowfullscreen></iframe></div><p><br></p>`}},
+ {k:'ayirici',ad:'Ayırıcı',ik:'—',ac:'Bölümler arasına ince çizgi',html:()=>`<hr class="blog-ayirici"><p><br></p>`},
+ {k:'tarih',ad:'Tarih – yer satırı',ik:'📍',ac:'Ör. KABATAŞ · 16 EKİM 2026',html:()=>`<p class="blog-tarih" data-bl="tarih">KABATAŞ · ${new Date().toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'}).toLocaleUpperCase('tr')}</p>`},
+ {k:'icindekiler',ad:'İçindekiler',ik:'☰',ac:'Ara başlıklardan otomatik',ozel:'icindekiler'},
+ {k:'baglanti',ad:'Bağlantı',ik:'🔗',ac:'Seçili yazıya bağlantı',ozel:'baglanti'}
+];
+const SABLON=[
+ {k:'bos',ad:'Boş sayfa',ik:'✍️',ac:'Beyaz kâğıt, sadece sen',kat:'deneme',baslik:'',spot:'',html:''},
+ {k:'deneme',ad:'Kişisel deneme',ik:'🖋️',ac:'Giriş, düşünce, dönüş',kat:'deneme',baslik:'',spot:'Bir cümleyle: bu yazı neyin peşinde?',html:'<p>Bir sahneyle başla: neredeydin, ne gördün, ne duydun?</p><h2>Asıl mesele</h2><p>O sahnenin sende uyandırdığı düşünce…</p><p class="blog-buyuk" data-bl="buyuk">Yazının kalbindeki cümle.</p><h2>Dönüş</h2><p>Başladığın yere bugünün gözüyle dön.</p>'},
+ {k:'kitap',ad:'Kitap incelemesi',ik:'📚',ac:'Künye, özet, alıntı, değerlendirme',kat:'kitap',baslik:'',spot:'Bu kitabı kime, neden önerirsin?',html:'<div class="blog-kitap" data-bl="kitap"><div class="blog-kitap-kapak">📖</div><div><b class="blog-kitap-ad">Kitap adı</b><span class="blog-kitap-yz">Yazar · Yayınevi, yıl · sayfa</span>Kısa künye ve ilk izlenim.</div></div><h2>Kitap ne anlatıyor?</h2><p>Sürprizleri bozmadan kısa bir özet.</p><h2>Altını çizdiklerim</h2><blockquote class="tr_bq">Sevdiğin bir cümle (kısa tut)</blockquote><h2>Bende bıraktığı</h2><p>Kişisel değerlendirme.</p><div class="blog-not" data-bl="not"><b class="blog-not-b">Kimlere önerilir?</b>Bir iki cümle.</div>'},
+ {k:'sila',ad:'Sıladan notlar',ik:'🌰',ac:'Köy, fındık, yayla, insanlar',kat:'sila',baslik:'',spot:'',html:'<p class="blog-tarih" data-bl="tarih">KABATAŞ · TARİH</p><p>Sabahın ilk sesi neydi?</p><h2>İnsanlar</h2><p>Bugün karşılaştığın biri ve söylediği bir söz.</p><h2>Manzara</h2><p>Gözünün önündekini bir resim gibi anlat.</p>'},
+ {k:'gezi',ad:'Gezi yazısı',ik:'🧭',ac:'Yol, durak, tat, ipucu',kat:'gunluk',baslik:'',spot:'',html:'<p>Yola çıkış anı…</p><h2>Duraklar</h2><ol><li>Birinci durak</li><li>İkinci durak</li></ol><h2>Tadı damağımda kalan</h2><p>…</p><div class="blog-not" data-bl="not"><b class="blog-not-b">Gidecekler için</b>Ulaşım, en iyi saat, dikkat edilecekler.</div>'},
+ {k:'siir',ad:'Şiir ve yorumu',ik:'🌙',ac:'Dizeler + değerlendirme',kat:'siir',baslik:'',spot:'',html:'<p class="blog-siir" data-bl="siir">Birinci dize<br>İkinci dize<br>Üçüncü dize<br>Dördüncü dize</p><hr class="blog-ayirici"><h2>Bu şiir bana ne söylüyor?</h2><p>…</p>'},
+ {k:'muzik',ad:'Bir şarkının hikâyesi',ik:'🎼',ac:'Şarkı, anı, video',kat:'muzik',baslik:'',spot:'',html:'<p>Bu şarkıyı ilk nerede duydun?</p><h2>Şarkının hikâyesi</h2><p>…</p><h2>Bende uyandırdığı</h2><p>…</p>'},
+ {k:'liste',ad:'Liste yazısı',ik:'📝',ac:'“7 şey…” gibi maddeli yazı',kat:'bilgi',baslik:'',spot:'',html:'<p>Kısa giriş.</p><h2>1. Birinci madde</h2><p>…</p><h2>2. İkinci madde</h2><p>…</p><h2>3. Üçüncü madde</h2><p>…</p><p>Kısa kapanış.</p>'}
+];
+function ornekYazi(){return{id:'ornek',ornek:true,baslik:'Ekim’de Sıla: Fındığın Kokusu, Çayın Buğusu',spot:'Şehrin gürültüsünden bir haftalığına kaçıp sılaya döndüğümde, aslında zamanın da yavaşladığını fark ettim.',kat:'sila',kapak:{t:'g',v:KAPAK[7]},durum:'hazir',etiket:'Sıla, Kabataş, Sonbahar, Deneme',hashtag:'#sıla #kabataş #fındık #sonbahar #deneme',aciklama:'Ekim ayında Kabataş’a dönüş: fındık bahçeleri, çay sohbetleri ve yavaşlayan zaman üzerine kişisel bir deneme.',slug:'ekimde-sila-findigin-kokusu',imza:true,takip:false,hashSon:true,olus:Date.now()-864e5,guncel:Date.now()-864e5,
+ html:'<p class="blog-tarih" data-bl="tarih">KABATAŞ · EKİM</p><p><span class="dropcap">S</span>abah henüz aydınlanmamışken bahçenin dibindeki derenin sesi geliyordu. Annem ocağa çaydanlığı çoktan koymuş, pencerenin buğusuna parmağıyla bir çizgi çekmişti. Şehirde her sabah bir yere yetişmeye çalışırken burada sabah, bana yetişmeye çalışıyordu sanki.</p><h2>Fındık bahçesinde bir gün</h2><p>Fındık toplamak sabır işidir. Eğilirsin, avucunu toprağa yaklaştırırsın; her tane, bir yılın emeğidir. Komşu teyzenin dediği gibi: <span class="blog-vurgu">“Fındık acele edeni sevmez.”</span> Öğleye doğru yere serilen bezin üstünde yorgunluk çayı içilir, bir yandan da köyün bütün haberleri konuşulur.</p><blockquote class="tr_bq">Gelin tanış olalım, işi kolay kılalım; sevelim sevilelim, dünya kimseye kalmaz. <b><span style="color:#999999;">— Yunus Emre</span></b></blockquote><p>Bu dizeleri dedem söylerdi; şimdi bahçede, aynı ağaçların altında bir kez daha anlamını düşünüyorum. İş kolaylaşıyor, çünkü yalnız değilsin.</p><p>Öğleden sonra imece başlar. Kimin bahçesi önce bitecekse herkes oraya koşar; kimse kimseye “gel” demez, gelinir. Çocuklar çuvalların arasında saklambaç oynar, yaşlılar gölgede oturup toplanan fındığın kalitesine dair hükümler verir. Bir yıl önceki dolu, iki yıl önceki kuraklık, hep birlikte hatırlanır. Toprağın hafızası insanın hafızasıyla birleşir. Akşam olduğunda yorgunluk değil, bir işi birlikte bitirmenin hafifliği kalır geriye; ellerdeki fındık kabuğu lekesi bile bir nişan gibi taşınır.</p><h2>Çay ocağında sohbet</h2><p>Akşamüstü köy kahvesine indiğimde çay ocağının buharı camlara yapışmıştı. Masada kimin oğlunun şehirde ne iş yaptığı, kimin kızının hangi okulu kazandığı, yayla yolunun ne zaman yapılacağı konuşuluyordu. Çay bardağının ince belinden süzülen ışık, sohbetin sıcaklığını bir kat daha artırıyordu.</p><p>Şehirde “zaman yok” diye kurduğumuz cümleler burada anlamını yitiriyor. Zaman var; hem de bol bol. Yalnız onu harcamayı değil, paylaşmayı biliyorlar. Bir bardak çaya, bir hatıraya, bir hal hatır sorusuna bölünüyor zaman ve her parçası ayrı bir değer kazanıyor.</p><ul><li>Taze demlenmiş çay, ince belli bardakta,</li><li>yanında mısır ekmeği ve köy tereyağı,</li><li>bir de “nasılsın” sorusuna verilmiş uzun bir cevap.</li></ul><p>Sılanın sofrası bu üç şeyle kurulur; gerisi ayrıntıdır.</p><p class="blog-buyuk" data-bl="buyuk">Sılada zaman saatle değil, çayın kaçıncı demlendiğiyle ölçülür.</p><h2>Akşam, ezan ve sessizlik</h2><p>Güneş Karadeniz’in üstünde kızılını bırakıp çekildiğinde köyün ışıkları birer birer yanar. Ezan vadiden vadiye yankılanır. O an, gün boyu biriken bütün seslerin bir yere oturduğunu hissedersiniz.</p><div class="blog-not" data-bl="not"><b class="blog-not-b">Kabataş’a yolunuz düşerse</b>Fındık hasadını görmek için ağustos sonu – eylül başı en güzel zamandır. Yayla yolları ekimde serin ve sisli olur; yanınıza kalın bir hırka alın.</div><div class="blog-kitap" data-bl="kitap"><div class="blog-kitap-kapak">📖</div><div><b class="blog-kitap-ad">Bu hafta elimdeki kitap</b><span class="blog-kitap-yz">Akşamları çay eşliğinde okunanlar</span>Sılada kitap okumak başka türlü; sayfaların arasına derenin sesi karışıyor.</div></div><hr class="blog-ayirici"><p>Bir hafta, bir ömrün içinde küçük bir nokta. Ama bazı noktalar vardır ki cümlenin bütün anlamını değiştirir. Bu dönüş de benim için öyle oldu: şehre geri dönerken yanımda bir çuval fındık, bir kavanoz bal ve hiç bitmeyecekmiş gibi gelen bir sükûnet götürüyordum.</p><p>Dönüş yolunda arabanın camından son kez baktığımda, o sabahki pencere buğusu aklıma geldi. Belki de hepimizin içinde, parmağımızla bir çizgi çekmeyi beklediğimiz buğulu bir pencere vardır.</p>'}}
+
+/* ---------------- yardımcılar ---------------- */
+let tToast=0;function bildir(m,h){let t=$('.bl-toast');if(!t){t=document.createElement('div');t.className='bl-toast';document.body.appendChild(t)}t.textContent=m;t.classList.toggle('h',!!h);t.hidden=false;clearTimeout(tToast);tToast=setTimeout(()=>t.hidden=true,h?5200:2600)}
+const metin=h=>{const d=document.createElement('div');d.innerHTML=h||'';return (d.textContent||'').replace(/\s+/g,' ').trim()};
+const kelime=h=>{const t=metin(h);return t?t.split(' ').length:0};
+const slugla=t=>String(t||'').toLocaleLowerCase('tr').replace(/ç/g,'c').replace(/ğ/g,'g').replace(/ı/g,'i').replace(/ö/g,'o').replace(/ş/g,'s').replace(/ü/g,'u').replace(/[’'"]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,70);
+function kapakStil(y){const k=y.kapak||{};return k.t==='i'&&k.v?`url("${k.v}")`:(k.v||KAPAK[0])}
+function temizle(h){const d=document.createElement('div');d.innerHTML=h;
+  d.querySelectorAll('script,style,meta,link,object,embed,form,input,button').forEach(e=>e.remove());
+  d.querySelectorAll('*').forEach(e=>{[...e.attributes].forEach(a=>{const n=a.name.toLowerCase();if(/^on/.test(n)||/^\s*javascript:/i.test(a.value)||n==='contenteditable'||n==='spellcheck')e.removeAttribute(a.name)})});
+  d.querySelectorAll('p,div,span').forEach(e=>{if(!e.className&&!e.getAttribute('style')&&e.tagName==='SPAN'){e.replaceWith(...e.childNodes)}});
+  return d.innerHTML.replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi,'').replace(/\n{3,}/g,'\n\n').trim()}
+function yapistirTemiz(h){const d=document.createElement('div');d.innerHTML=h;const IZIN=/^(P|H2|H3|H4|B|STRONG|I|EM|U|A|UL|OL|LI|BLOCKQUOTE|BR|IMG|HR)$/;
+  (function gez(n){[...n.childNodes].forEach(c=>{if(c.nodeType===8){c.remove();return}if(c.nodeType!==1)return;gez(c);if(c.tagName==='DIV'){const p=document.createElement('p');while(c.firstChild)p.appendChild(c.firstChild);c.replaceWith(p);return}
+    if(c.tagName==='H1'){const h2=document.createElement('h2');h2.innerHTML=c.innerHTML;c.replaceWith(h2);return}
+    if(!IZIN.test(c.tagName)){c.replaceWith(...c.childNodes);return}[...c.attributes].forEach(a=>{if(!(c.tagName==='A'&&a.name==='href')&&!(c.tagName==='IMG'&&/^(src|alt)$/.test(a.name)))c.removeAttribute(a.name)})})})(d);return d.innerHTML}
+function duzMetinHtml(t){return String(t).split(/\n{2,}/).map(p=>p.trim()).filter(Boolean).map(p=>'<p>'+esc(p).replace(/\n/g,'<br>')+'</p>').join('')}
+
+/* Blogger'a giden son HTML */
+function cikti(y,secenek){secenek=secenek||{};let h=temizle(y.html||'');const d=document.createElement('div');d.innerHTML=h;
+  d.querySelectorAll('[data-bl]').forEach(e=>e.removeAttribute('data-bl'));
+  if(!secenek.sinifli){d.querySelectorAll('[class]').forEach(e=>{const ek=[];e.classList.forEach(c=>{if(INLINE[c])ek.push(INLINE[c])});if(ek.length){e.setAttribute('style',(ek.join(';')+';'+(e.getAttribute('style')||'')).replace(/;;+/g,';'))}})}
+  if(!DB.ayar.gom)d.querySelectorAll('img[src^="data:"]').forEach(im=>{im.replaceWith(document.createTextNode('[GÖRSEL: Blogger’da buraya görsel ekleyin]'))});
+  h=d.innerHTML;
+  if(y.kapak&&y.kapak.t==='i'&&y.kapak.v&&(DB.ayar.gom||!/^data:/.test(y.kapak.v)))h=`<img class="blog-kapak" src="${y.kapak.v}" alt="${esc(y.baslik)}"${secenek.sinifli?'':' style="'+INLINE['blog-kapak']+'"'}>\n`+h;
+  if(y.spot)h=`<p style="font-size:1.12em;font-style:italic;color:#475a6c">${esc(y.spot)}</p>\n`+h;
+  if(y.imza&&DB.ayar.imza)h+=`\n<p class="blog-imza"${secenek.sinifli?'':' style="'+INLINE['blog-imza']+'"'}>${esc(DB.ayar.imza).replace(/\n/g,'<br>')}</p>`;
+  if(y.hashSon&&y.hashtag)h+=`\n<hr />\n<p class="blog-hashtag"${secenek.sinifli?'':' style="'+INLINE['blog-hashtag']+'"'}>${esc(y.hashtag)}</p>`;
+  if(y.takip)h+='\n<hr />\n'+FOLLOW;return h}
+function onizlemeBelge(y){const et=String(y.etiket||'').split(',').map(s=>s.trim()).filter(Boolean).join(' · ');
+  return `<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><style>body{margin:0;background:#eef3f3;font:17px/1.8 Georgia,serif;color:#333}img{max-width:100%;height:auto}${ONZ_CSS}</style><div style="background:#475a6c;color:#fff;padding:14px 20px;font:600 18px sans-serif">Ahmet Aşkın | kişisel blog</div><div style="max-width:720px;margin:20px auto;background:#fff;padding:22px;border-radius:6px"><h1 style="font:600 28px/1.3 sans-serif;color:#475a6c;margin:0 0 6px">${esc(y.baslik||'(başlıksız)')}</h1><div style="font:13px sans-serif;color:#889;margin-bottom:16px">AHMET AŞKIN · ${new Date().toLocaleDateString('tr')}${et?' · '+esc(et):''}</div>${cikti(y)}</div>`}
+function seoKontrol(y){const k=[],w=kelime(y.html),d=document.createElement('div');d.innerHTML=y.html||'';const tl=(y.baslik||'').length,al=(y.aciklama||'').length;
+  k.push([tl>=20&&tl<=70?2:tl?1:0,`Başlık ${tl} karakter`+(tl>70?' — 70’i aşmasın':tl<20?' — biraz daha açıklayıcı olsun':'')]);
+  k.push([w>=600?2:w>=300?1:0,`${w} kelime`+(w<300?' — en az 300 önerilir':w<600?' — 600+ arama motorlarında daha iyi':'')]);
+  k.push([d.querySelectorAll('h2,h3').length>=2?2:d.querySelectorAll('h2,h3').length?1:0,`${d.querySelectorAll('h2,h3').length} ara başlık`]);
+  k.push([al>=110&&al<=160?2:al?1:0,`Arama açıklaması ${al} karakter`+(al?'':' — yaz (Blogger’da “Arama açıklaması”)')]);
+  k.push([String(y.etiket||'').split(',').filter(s=>s.trim()).length>=2?2:y.etiket?1:0,'Etiketler']);
+  const imgs=d.querySelectorAll('img'),altsiz=[...imgs].filter(i=>!i.getAttribute('alt')).length;k.push([imgs.length||(y.kapak&&y.kapak.t==='i')?(altsiz?1:2):1,imgs.length||(y.kapak&&y.kapak.t==='i')?(altsiz?altsiz+' görselin alt metni yok':'Görseller tamam'):'Görsel yok — kapak görseli paylaşımda öne çıkar']);
+  const ilk=metin(y.html).slice(0,200).toLocaleLowerCase('tr'),ana=(y.baslik||'').toLocaleLowerCase('tr').split(/\s+/).filter(x=>x.length>4)[0];k.push([ana&&ilk.includes(ana)?2:1,ana?(ilk.includes(ana)?'Başlıktaki kelime ilk paragrafta geçiyor':'Başlıktaki “'+ana+'” ilk paragrafta geçmiyor'):'Anahtar kelime']);
+  const p=Math.round(k.reduce((a,x)=>a+x[0],0)/(k.length*2)*100);return{k,p}}
+
+/* ---------------- durum ---------------- */
+const S={geri:[],ileri:[],g:'ana',y:null,ara:'',onzMobil:false,kaynak:false,ilhamI:Math.floor(Math.random()*ILHAM.length),tYaz:0,tIlham:0};
+let EL=null;
+function ac(){oku();if(EL)return;EL=document.createElement('div');EL.className='bl';EL.setAttribute('role','dialog');EL.setAttribute('aria-label','Bloğum');document.body.appendChild(EL);document.documentElement.classList.add('bl-acik');
+  if(!document.getElementById('bl-font')){const l=document.createElement('link');l.id='bl-font';l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400;1,7..72,500&display=swap';document.head.appendChild(l)}
+  try{history.pushState({bl:1},'')}catch(e){}cizAna()}
+function kapat(){if(!EL)return;kaydetSimdi();clearInterval(S.tIlham);EL.remove();EL=null;document.documentElement.classList.remove('bl-acik')}
+addEventListener('popstate',()=>{if(EL){if(S.g!=='ana'){kaydetSimdi();S.g='ana';cizAna();try{history.pushState({bl:1},'')}catch(e){}}else kapat()}});
+function ust(){const s=(g,ik,ad)=>`<button class="${S.g===g?'on':''}" data-git="${g}" ${!S.y&&g!=='ana'?'disabled style="opacity:.45"':''}>${ik}<span> ${ad}</span></button>`;
+  return `<div class="bl-ust"><button class="bl-ik" data-a="kapat" title="Karanlık Oda’ya dön" aria-label="Kapat">✕</button><div class="bl-logo">A</div><div class="bl-marka"><b>Bloğum</b><small>Ahmet Aşkın · kişisel blog</small></div><div class="bl-sek">${s('ana','🏠','Masa')}${s('yaz','✍️','Yaz')}${s('yay','🚀','Yayınla')}</div><button class="bl-ik" data-a="yeni" title="Yeni yazı">＋</button></div>`}
+function cerceve(ic){EL.innerHTML=ust()+`<div class="bl-ic"><div class="bl-sayfa">${ic}</div></div>`;EL.onclick=tik}
+
+/* ---------------- Ana sayfa (masa) ---------------- */
+function seri(){const g=new Set(DB.ayar.gunler||[]);let n=0,d=new Date();if(!g.has(bugunAnahtar(d)))d.setDate(d.getDate()-1);while(g.has(bugunAnahtar(d))){n++;d.setDate(d.getDate()-1)}return n}
+function selam(){const h=new Date().getHours();return h<5?'İyi geceler':h<11?'Günaydın':h<17?'İyi günler':h<22?'İyi akşamlar':'İyi geceler'}
+function cizAna(){S.g='ana';const Y=DB.yazilar,tk=Y.reduce((a,y)=>a+kelime(y.html),0),ay=Y.filter(y=>new Date(y.guncel).getMonth()===new Date().getMonth()&&new Date(y.guncel).getFullYear()===new Date().getFullYear()).length,gs=new Set(DB.ayar.gunler||[]);
+  let tak='';for(let i=27;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=bugunAnahtar(d);tak+=`<i class="${gs.has(k)?'on':''}${i===0?' bugun':''}" title="${d.toLocaleDateString('tr-TR')}"></i>`}
+  const q=S.ara.toLocaleLowerCase('tr'),liste=Y.filter(y=>!q||(y.baslik+' '+metin(y.html)+' '+(y.etiket||'')).toLocaleLowerCase('tr').includes(q)).sort((a,b)=>b.guncel-a.guncel);
+  const sn=seri();
+  cerceve(`<section class="bl-hero"><small class="bl-tarih">${new Date().toLocaleDateString('tr-TR',{weekday:'long',day:'numeric',month:'long'})}</small><h1>${selam()} Ahmet Bey,<br><em>bugün ne yazıyoruz?</em></h1>
+   <div class="bl-ilham"><div class="et">✦ Bugünün ilhamı <button data-a="ilham">↻ başka</button></div><p id="bl-ilham-p"></p></div>
+   <div class="bl-cta"><button class="ana" data-a="ilhamla">✍️ Bu ilhamla yaz</button><button class="ikinci" data-a="yeni">＋ Boş sayfa</button>${Y[0]?`<button class="ikinci" data-ac="${esc(liste[0]?liste[0].id:Y[0].id)}">↺ Kaldığın yerden</button>`:''}</div>
+   <div class="bl-sayac"><div><b>${Y.length}</b><span>yazı</span></div><div><b>${tk.toLocaleString('tr-TR')}</b><span>kelime</span></div><div><b>${ay}</b><span>bu ay</span></div><div><b>${sn}${sn?' 🔥':''}</b><span>gün seri</span></div></div>
+   <div class="bl-takvim"><span style="margin-right:6px">Son 4 hafta:</span>${tak}</div></section>
+   <div class="bl-bas"><h2>Bir şablonla başla</h2></div><div class="bl-sablonlar">${SABLON.map(s=>`<button class="bl-sab" data-sab="${s.k}" style="--c:${(KAT[s.kat]||KAT.diger)[2]}22"><span class="ik">${s.ik}</span><b>${s.ad}</b><span>${s.ac}</span></button>`).join('')}</div>
+   <div class="bl-bas"><h2>Yazılarım</h2><span class="say">${Y.length}</span><div class="sag"><input class="bl-ara" id="bl-ara" placeholder="Ara…" value="${esc(S.ara)}"></div></div>
+   ${liste.length?`<div class="bl-izgara">${liste.map(y=>{const kt=KAT[y.kat]||KAT.diger,w=kelime(y.html);return `<button class="bl-kart" data-ac="${esc(y.id)}"><div class="bl-kapak" style="--kp:${esc(kapakStil(y))}"><span class="durum ${y.durum==='hazir'?'hazir':y.durum==='yay'?'yay':''}">${y.durum==='hazir'?'Yayına hazır':y.durum==='yay'?'Yayımlandı':'Taslak'}</span>${y.ornek?'<span class="ornek">Örnek</span>':''}</div><div class="gv"><span class="kat">${kt[1]} ${kt[0]}</span><b>${esc(y.baslik||'(başlıksız)')}</b><p>${esc(y.spot||metin(y.html).slice(0,140))}</p><div class="alt"><span>${trTarih(y.guncel)}</span><span>${w} kelime · ${Math.max(1,Math.round(w/200))} dk</span></div></div></button>`}).join('')}</div>`:`<div class="bl-bos">${q?'Aramaya uyan yazı yok.':'Henüz yazı yok. İlk cümle her zaman en zorudur — gerisi gelir.'}</div>`}
+   <div class="bl-bas"><h2>Ayarlar</h2></div><div class="bl-k"><label>Yazı sonu imzası<textarea id="bl-imza" rows="3">${esc(DB.ayar.imza)}</textarea></label><div class="bl-dug"><label class="bl-onay"><input type="checkbox" id="bl-imzaV" ${DB.ayar.imzaVars?'checked':''}> Yeni yazılarda imza ekli gelsin</label><label class="bl-onay"><input type="checkbox" id="bl-takipV" ${DB.ayar.takipVars?'checked':''}> Takip et bandı ekli gelsin</label><label class="bl-onay"><input type="checkbox" id="bl-gom" ${DB.ayar.gom?'checked':''}> Cihazdan eklenen görselleri kopyaya göm</label></div><label>Günlük kelime hedefi<input id="bl-hedef" type="number" min="100" step="50" value="${DB.ayar.hedef}"></label><div class="bl-dug"><button class="bl-b" data-a="ayarKaydet">💾 Ayarları kaydet</button><button class="bl-b" data-a="cssKopyala" title="Blogger → Tema → HTML Düzenle → ]]&gt;&lt;/b:skin&gt; öncesine bir kez yapıştır">🎨 Blog CSS’ini kopyala</button><button class="bl-b" data-a="disaAktar">⬇ Tüm yazıları yedekle</button><label class="bl-b" style="position:relative;cursor:pointer">⬆ Yedekten yükle<input type="file" accept=".json,application/json" id="bl-ice" style="position:absolute;inset:0;opacity:0"></label>${DB.yazilar.some(y=>y.ornek)?'':'<button class="bl-b" data-a="ornekGeri">↺ Örnek yazıyı geri getir</button>'}</div><p class="not">Yazılar bu cihazda saklanır. Kopyalanan HTML, ek CSS gerektirmeyecek şekilde stilleri içinde taşır; alıntı (tr_bq) ve ilk harf (dropcap) şablonundaki biçimi kullanır.</p></div>`);
+  ilhamYaz();const a=$('#bl-ara',EL);if(a)a.oninput=()=>{S.ara=a.value;clearTimeout(S.tAra);S.tAra=setTimeout(()=>{cizAna();const b=$('#bl-ara',EL);b.focus();b.setSelectionRange(b.value.length,b.value.length)},250)};
+  const ic=$('#bl-ice',EL);if(ic)ic.onchange=()=>iceAktar(ic.files[0])}
+function ilhamYaz(){clearInterval(S.tIlham);const p=$('#bl-ilham-p',EL);if(!p)return;const t=ILHAM[S.ilhamI%ILHAM.length];let i=0;p.innerHTML='<span class="imlec"></span>';S.tIlham=setInterval(()=>{i++;p.innerHTML=esc(t.slice(0,i))+'<span class="imlec"></span>';if(i>=t.length)clearInterval(S.tIlham)},28)}
+
+/* ---------------- Yazı masası ---------------- */
+function yeniYazi(sab,ilham){const s=SABLON.find(x=>x.k===sab)||SABLON[0];const y={id:uid(),baslik:s.baslik||'',spot:ilham?'':s.spot,kat:s.kat,kapak:{t:'g',v:KAPAK[Math.floor(Math.random()*KAPAK.length)]},durum:'taslak',etiket:'',hashtag:'',aciklama:'',slug:'',imza:!!DB.ayar.imzaVars,takip:!!DB.ayar.takipVars,hashSon:true,html:ilham?`<p class="blog-not" data-bl="not"><b class="blog-not-b">İlham</b>${esc(ilham)}</p><p><br></p>`:s.html,olus:Date.now(),guncel:Date.now()};
+  DB.yazilar.unshift(y);yaz();S.y=y;cizYaz()}
+function bul(id){return DB.yazilar.find(y=>y.id===id)}
+function cizYaz(){S.g='yaz';const y=S.y;if(!y){cizAna();return}const kt=KAT[y.kat]||KAT.diger;
+  const btn=(a,ik,t,ek)=>`<button data-k="${a}" title="${t}"${ek||''}>${ik}</button>`;
+  cerceve(`<div class="bl-masa"><div><div class="bl-arac" role="toolbar" aria-label="Biçim">${btn('geri','↶','Geri al')}${btn('ileri','↷','Yinele')}<span class="ay"></span>${btn('p','¶','Normal paragraf')}${btn('h2','H2','Ara başlık')}${btn('h3','H3','Alt başlık')}<span class="ay"></span>${btn('bold','<b>B</b>','Kalın')}${btn('italic','<i>İ</i>','Eğik')}${btn('underline','<u>A</u>','Altı çizili')}${btn('vurgu','<span style="background:linear-gradient(transparent 55%,#bfe6e4 55%)">Vurgu</span>','Fosforlu vurgu')}<span class="ay"></span>${btn('alinti','❝','Alıntı (tr_bq)')}${btn('ul','•','Madde listesi')}${btn('ol','1.','Numaralı liste')}${btn('link','🔗','Bağlantı')}${btn('gorsel','🖼️','Görsel ekle')}${btn('ortala','≡','Ortala')}${btn('dropcap','Aa','İlk harfi büyüt (dropcap)')}<span class="ay"></span><button class="ekle" data-k="palet" title="Blok ekle">＋ Blok</button>${btn('temizle','⌫','Seçili yazının biçimini temizle')}${btn('kaynak','&lt;/&gt;','HTML kaynağı',S.kaynak?' class="on"':'')}${btn('odak','⛶','Odak modu')}</div>
+   <article class="bl-kagit"><div class="bl-kkapak" style="--kp:${esc(kapakStil(y))}"><div class="dg"><button data-a="kapakRenk">🎨 Renk</button><label>🖼️ Kapak görseli<input type="file" accept="image/*" id="bl-kapak-dosya"></label>${y.kapak&&y.kapak.t==='i'?'<button data-a="kapakSil">✕</button>':''}</div></div>
+    <div class="bl-yazi"><div class="bl-katsec"><select id="bl-kat" aria-label="Kategori">${Object.keys(KAT).map(k=>`<option value="${k}"${k===y.kat?' selected':''}>${KAT[k][1]} ${KAT[k][0]}</option>`).join('')}</select></div>
+     <textarea class="bl-baslik" id="bl-baslik" rows="1" placeholder="Başlık">${esc(y.baslik)}</textarea><textarea class="bl-spot" id="bl-spot" rows="1" placeholder="Spot: okuru içeri çekecek tek cümle (isteğe bağlı)">${esc(y.spot)}</textarea>
+     <div class="bl-kunye"><span>Ahmet Aşkın</span><span>${trTarih(y.olus)}</span><span id="bl-okuma"></span></div>
+     ${S.kaynak?`<textarea class="bl-kaynak" id="bl-kaynak" spellcheck="false">${esc(y.html)}</textarea>`:`<div class="bl-govde" id="bl-govde" contenteditable="true" spellcheck="true">${y.html}</div>`}
+    </div></article>
+   <div class="bl-durum" id="bl-durum"></div></div>
+   <aside class="bl-yan">${yanPanel(y)}</aside></div>`);
+  baglaYaz();durumYaz()}
+function yanPanel(y){const s=seoKontrol(y);return `<div class="bl-k"><h3>🎯 Hazırlık</h3><div class="bl-seo"><div class="bl-puan" style="--p:${s.p};--c:${s.p>=75?'#2f9e5b':s.p>=50?'#d9822b':'#c0392b'}"><span>${s.p}</span></div><div class="bl-kontrol">${s.k.slice(0,4).map(x=>`<div><span class="i ${x[0]===2?'ok':x[0]===1?'ort':''}">${x[0]===2?'✓':x[0]===1?'!':'✕'}</span>${esc(x[1])}</div>`).join('')}</div></div><button class="bl-b p gen" data-git="yay">🚀 Yayına hazırla</button></div>
+  <div class="bl-k"><h3>📋 Hızlı kopya</h3><div class="bl-dug"><button class="bl-b" data-a="kopyaHtml">HTML kodu</button><button class="bl-b" data-a="kopyaBaslik">Başlık</button></div><p class="not">Blogger → Yeni yayın → <b>HTML görünümü</b>ne yapıştır.</p></div>
+  <div class="bl-k"><h3>✨ İpucu</h3><p class="not" style="font-size:12.5px">${esc(['Ara başlıklar uzun yazıyı okunur kılar; her 3–4 paragrafta bir.','İlk cümle sahneyle başlarsa okur kalır.','Bir yazı = bir ana fikir. Gerisi onu taşısın.','Büyük alıntı bloğuyla yazının kalbindeki cümleyi öne çıkar.','Kapak görseli Blogger’da paylaşım resmi olur.','Sesli oku: takıldığın yer, okurun da takıldığı yerdir.'][Math.floor(Date.now()/36e5)%6])}</p></div>`}
+function baglaYaz(){const y=S.y,g=$('#bl-govde',EL),k=$('#bl-kaynak',EL);
+  ['bl-baslik','bl-spot'].forEach(id=>{const e=$('#'+id,EL);const boy=()=>{e.style.height='auto';e.style.height=e.scrollHeight+'px'};boy();e.oninput=()=>{y[id==='bl-baslik'?'baslik':'spot']=e.value;boy();kirli()};e.onkeydown=ev=>{if(ev.key==='Enter'){ev.preventDefault();(id==='bl-baslik'?$('#bl-spot',EL):(g||k)).focus()}}});
+  $('#bl-kat',EL).onchange=e=>{y.kat=e.target.value;kirli()};
+  const kd=$('#bl-kapak-dosya',EL);if(kd)kd.onchange=async()=>{const f=kd.files[0];if(!f)return;try{y.kapak={t:'i',v:await kucult(f,1600,.82)};kirli(true);cizYaz()}catch(e){bildir('Görsel okunamadı',1)}};
+  S.geri=[];S.ileri=[];if(g){g.oninput=()=>{y.html=g.innerHTML;kirli();clearTimeout(S.tAn);S.tAn=setTimeout(an,900)};an();g.onpaste=e=>{const cd=e.clipboardData;if(!cd)return;const h=cd.getData('text/html'),t=cd.getData('text/plain');e.preventDefault();document.execCommand('insertHTML',false,h?yapistirTemiz(h):duzMetinHtml(t))};
+    g.onkeyup=g.onmouseup=()=>{S.secim=sakla()};g.onblur=()=>{S.secim=sakla()}}
+  if(k)k.oninput=()=>{y.html=k.value;kirli()}}
+function sakla(){const s=getSelection();if(!s.rangeCount)return null;const r=s.getRangeAt(0);const g=$('#bl-govde',EL);return g&&g.contains(r.commonAncestorContainer)?r.cloneRange():null}
+function geriYukle(){const g=$('#bl-govde',EL);if(!g)return false;g.focus();if(S.secim){const s=getSelection();s.removeAllRanges();s.addRange(S.secim)}return true}
+function kirli(sessiz){const y=S.y;y.guncel=Date.now();clearTimeout(S.tYaz);S.tYaz=setTimeout(kaydetSimdi,700);if(!sessiz)durumYaz('…')}
+function kaydetSimdi(){clearTimeout(S.tYaz);const y=S.y;if(!y||!DB)return;const w=kelime(y.html);if(w>(y._w||0)+20||(w>=50&&!(DB.ayar.gunler||[]).includes(bugunAnahtar()))){DB.ayar.gunler=Array.from(new Set([...(DB.ayar.gunler||[]),bugunAnahtar()])).slice(-400)}y._w=w;if(yaz()&&EL&&S.g==='yaz')durumYaz('ok')}
+function durumYaz(dur){const d=$('#bl-durum',EL);if(!d)return;const w=kelime(S.y.html),dk=Math.max(1,Math.round(w/200)),p=Math.min(100,Math.round(w/(DB.ayar.hedef||600)*100));const o=$('#bl-okuma',EL);if(o)o.textContent=dk+' dk okuma';
+  d.innerHTML=`<span class="bl-halka" style="--p:${p}" title="Hedef: ${DB.ayar.hedef} kelime"></span><span><b>${w}</b> / ${DB.ayar.hedef} kelime</span><span>${dk} dk okuma</span><span class="${dur==='ok'?'bl-kayit':''}">${dur==='…'?'yazılıyor…':'✓ kaydedildi'}</span>${p>=100?'<span>🎉 hedef tamam</span>':''}`;
+  const yan=$('.bl-yan',EL);if(yan&&dur==='ok')yan.innerHTML=yanPanel(S.y)}
+function komut(k){const y=S.y;if(k==='kaynak'){S.kaynak=!S.kaynak;kaydetSimdi();cizYaz();return}if(k==='odak'){EL.classList.toggle('odak');bildir(EL.classList.contains('odak')?'Odak modu — çıkmak için ⛶':'Odak modu kapandı');return}
+  if(k==='palet'){palet();return}if(S.kaynak){bildir('Önce HTML kaynağından görsel düzenleyiciye dön (</>)',1);return}
+  if(!geriYukle())return;const ex=(c,v)=>document.execCommand(c,false,v);if(k!=='geri'&&k!=='ileri')an();
+  switch(k){case'geri':{const g=$('#bl-govde',EL);if(S.geri.length){S.ileri.push(g.innerHTML);g.innerHTML=S.geri.pop()}else ex('undo');break}case'ileri':{const g=$('#bl-govde',EL);if(S.ileri.length){S.geri.push(g.innerHTML);g.innerHTML=S.ileri.pop()}else ex('redo');break}case'p':ex('formatBlock','<p>');break;case'h2':ex('formatBlock','<h2>');break;case'h3':ex('formatBlock','<h3>');break;
+   case'bold':case'italic':case'underline':ex(k);break;case'ul':ex('insertUnorderedList');break;case'ol':ex('insertOrderedList');break;case'ortala':ex('justifyCenter');break;case'temizle':ex('removeFormat');break;
+   case'vurgu':sar('span','blog-vurgu');break;case'alinti':{const s=String(getSelection());ins(BLOK.find(b=>b.k==='alinti').html(esc(s)));break}
+   case'link':baglanti();break;case'gorsel':gorselSec();break;case'dropcap':dropcap();break}
+  const g=$('#bl-govde',EL);if(g){y.html=g.innerHTML;kirli()}}
+function sar(tag,cls){const s=getSelection();if(!s.rangeCount||s.isCollapsed){bildir('Önce yazıdan bir bölüm seç',1);return}const r=s.getRangeAt(0),e=document.createElement(tag);e.className=cls;try{r.surroundContents(e)}catch(x){e.appendChild(r.extractContents());r.insertNode(e)}}
+function an(){const g=$('#bl-govde',EL);if(!g)return;const h=g.innerHTML;if(S.geri[S.geri.length-1]!==h){S.geri.push(h);if(S.geri.length>80)S.geri.shift();S.ileri=[]}}
+function ins(h){if(!h)return;const g=$('#bl-govde',EL);if(!g)return;an();g.focus();let r=S.secim&&g.contains(S.secim.startContainer)?S.secim:null;
+  const fr=document.createRange().createContextualFragment(h),son=fr.lastChild;
+  let blok=null;if(r){if(!r.collapsed)r.deleteContents();blok=r.startContainer;while(blok&&blok.parentNode!==g)blok=blok.parentNode}
+  if(blok&&blok.nodeType===1&&blok.tagName==='P'&&!blok.textContent.trim()&&!blok.querySelector('img'))g.replaceChild(fr,blok);
+  else if(blok&&r&&blok.nodeType===1&&blok.tagName==='P'&&r.startContainer!==blok){/* paragrafın ortasındaysa ikiye böl */const k=document.createRange();k.setStart(r.startContainer,r.startOffset);k.setEndAfter(blok.lastChild||blok);const kalan=k.extractContents();blok.after(fr);if(metin(kalan.textContent||'')||kalan.textContent.trim()){const p2=document.createElement('p');p2.appendChild(kalan);(son&&son.parentNode?son:blok).after(p2)}}
+  else if(blok)blok.after(fr);else g.appendChild(fr);
+  if(son&&son.parentNode){const s2=getSelection(),rr=document.createRange();rr.selectNodeContents(son);rr.collapse(true);s2.removeAllRanges();s2.addRange(rr);S.secim=rr.cloneRange()}
+  S.y.html=g.innerHTML;kirli()}
+function baglanti(){const s=String(getSelection());const u=prompt('Bağlantı adresi (https://…)','https://');if(!u||!/^https?:\/\//.test(u)){if(u)bildir('Adres https:// ile başlamalı',1);return}geriYukle();if(s)document.execCommand('createLink',false,u);else document.execCommand('insertHTML',false,`<a href="${esc(u)}">${esc(u)}</a>`)}
+function dropcap(){const g=$('#bl-govde',EL);if(g.querySelector('.dropcap')){g.querySelectorAll('.dropcap').forEach(e=>e.replaceWith(...e.childNodes));bildir('İlk harf normale döndü')}else{const p=[...g.querySelectorAll('p')].find(p=>/^[\s]*[A-Za-zÇĞİÖŞÜçğıöşü"“]/.test(p.textContent)&&!p.className);if(!p){bildir('İlk paragraf bulunamadı',1);return}const w=document.createTreeWalker(p,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())&&!n.nodeValue.trim());if(!n)return;const i=n.nodeValue.search(/\S/),sp=document.createElement('span');sp.className='dropcap';sp.textContent=n.nodeValue[i];const sag=n.splitText(i);sag.nodeValue=sag.nodeValue.slice(1);sag.parentNode.insertBefore(sp,sag);bildir('İlk harf büyütüldü')}S.y.html=g.innerHTML;kirli()}
+function gorselSec(){const inp=document.createElement('input');inp.type='file';inp.accept='image/*';const u=confirm('Görseli bu cihazdan mı seçeceksin?\n\nTamam: cihazdan (Karanlık Oda’da düzenlediğin fotoğraflar dahil)\nİptal: bağlantı (https://…) gir');
+  if(u){inp.onchange=async()=>{const f=inp.files[0];if(!f)return;try{const v=await kucult(f,1200,.82);const a=prompt('Görsel açıklaması (alt metin — arama motoru ve erişilebilirlik için)','')||'';ins(`<p class="blog-ortala" data-bl="gorsel"><img src="${v}" alt="${esc(a)}"></p><p><br></p>`)}catch(e){bildir('Görsel okunamadı',1)}};inp.click()}
+  else{const v=prompt('Görsel adresi (https://…)');if(!v||!/^https:\/\//.test(v)){if(v)bildir('https:// ile başlamalı',1);return}const a=prompt('Alt metin','')||'';ins(`<p class="blog-ortala" data-bl="gorsel"><img src="${esc(v)}" alt="${esc(a)}"></p><p><br></p>`)}}
+function kucult(f,max,q){return new Promise((ok,red)=>{const r=new FileReader;r.onerror=red;r.onload=()=>{const im=new Image;im.onerror=red;im.onload=()=>{const o=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*o);c.height=Math.round(im.height*o);c.getContext('2d').drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',q))};im.src=r.result};r.readAsDataURL(f)})}
+function icindekiler(){const g=$('#bl-govde',EL);const hs=[...g.querySelectorAll('h2')];if(!hs.length){bildir('Önce ara başlık (H2) ekle',1);return}hs.forEach((h,i)=>{if(!h.id)h.id='b'+(i+1)+'-'+slugla(h.textContent).slice(0,30)});ins(`<div class="blog-icindekiler" data-bl="icindekiler"><b>İçindekiler</b><ol>${hs.map(h=>`<li><a href="#${h.id}">${esc(h.textContent)}</a></li>`).join('')}</ol></div><p><br></p>`)}
+function palet(){const art=document.createElement('div');art.className='bl-palet-art';art.innerHTML=`<div class="bl-palet" role="dialog" aria-label="Blok ekle"><h3>Yazına bir şey ekle</h3><p>İmlecin bulunduğu yere eklenir. Seçili yazı varsa bloğun içine alınır.</p><div class="bl-palet-iz">${BLOK.map(b=>`<button class="bl-blok" data-blok="${b.k}"><span class="ik">${b.ik}</span><b>${b.ad}</b><span>${b.ac}</span></button>`).join('')}</div></div>`;
+  art.onclick=e=>{if(e.target===art){art.remove();return}const b=e.target.closest('[data-blok]');if(!b)return;art.remove();const bl=BLOK.find(x=>x.k===b.dataset.blok);if(S.kaynak){S.kaynak=false;cizYaz()}
+    if(bl.ozel==='gorsel'){gorselSec();return}if(bl.ozel==='icindekiler'){icindekiler();return}if(bl.ozel==='baglanti'){geriYukle();baglanti();return}geriYukle();const sec=String(getSelection());ins(bl.html(sec?esc(sec):''))};document.body.appendChild(art)}
+
+/* ---------------- Yayınla ---------------- */
+function cizYay(){S.g='yay';const y=S.y;if(!y){cizAna();return}kaydetSimdi();if(!y.slug)y.slug=slugla(y.baslik);const s=seoKontrol(y);
+  cerceve(`<div class="bl-yay-izgara"><div class="bl-onz-sar"><div class="bl-onz-ust"><b style="font:600 15px Literata,Georgia,serif;margin-right:auto">Blogger görünümü</b><button class="bl-b" data-a="onzMasa" ${!S.onzMobil?'style="border-color:var(--tl)"':''}>🖥️ Masaüstü</button><button class="bl-b" data-a="onzMobil" ${S.onzMobil?'style="border-color:var(--tl)"':''}>📱 Telefon</button></div><iframe class="bl-onz${S.onzMobil?' mobil':''}" id="bl-onz" title="Önizleme" sandbox="allow-same-origin"></iframe></div>
+   <div class="bl-yay">
+    <div class="bl-k"><h3>🚀 Blogger’a taşı</h3><button class="bl-b p gen" data-a="kopyaHtml">📋 HTML kodunu kopyala</button><div class="bl-dug"><button class="bl-b" data-a="kopyaBaslik">Başlığı kopyala</button><button class="bl-b" data-a="kopyaZengin">Biçimli kopyala</button><button class="bl-b" data-a="indir">⬇ .html indir</button></div>
+     <p class="not"><b>Nasıl:</b> Blogger → <b>＋ Yeni yayın</b> → başlığı yapıştır → sol üstteki kalemden <b>HTML görünümü</b> → kodu yapıştır → sağdaki <b>Etiketler</b> ve <b>Arama açıklaması</b>na aşağıdakileri koy → Yayınla. “Biçimli kopyala”yı <b>Oluştur görünümü</b>nde kullan.</p>
+     <div class="bl-dug"><button class="bl-b" data-a="blogAc">↗ Blogger’ı aç</button>${y.durum!=='yay'?'<button class="bl-b" data-a="yayimlandi">✓ Yayımlandı olarak işaretle</button>':'<button class="bl-b" data-a="taslakYap">↺ Taslağa al</button>'}</div></div>
+    <div class="bl-k"><h3>🎯 Hazırlık puanı</h3><div class="bl-seo"><div class="bl-puan" style="--p:${s.p};--c:${s.p>=75?'#2f9e5b':s.p>=50?'#d9822b':'#c0392b'}"><span>${s.p}</span></div><div class="bl-kontrol">${s.k.map(x=>`<div><span class="i ${x[0]===2?'ok':x[0]===1?'ort':''}">${x[0]===2?'✓':x[0]===1?'!':'✕'}</span>${esc(x[1])}</div>`).join('')}</div></div></div>
+    <div class="bl-k"><h3>🏷️ Künye ve arama</h3>
+     <label>Etiketler (virgülle) <input id="f-etiket" value="${esc(y.etiket)}" placeholder="Deneme, Sıla, Kitap"></label>
+     <label>Arama açıklaması <span class="not" id="f-acik-say"></span><textarea id="f-aciklama" rows="3" placeholder="110–160 karakter; Google’da başlığın altında görünür">${esc(y.aciklama)}</textarea></label>
+     <label>Kalıcı bağlantı (özel) <input id="f-slug" value="${esc(y.slug)}"></label>
+     <label>Hashtagler <input id="f-hashtag" value="${esc(y.hashtag)}" placeholder="#deneme #sıla"></label>
+     <div class="bl-dug"><label class="bl-onay"><input type="checkbox" id="f-imza" ${y.imza?'checked':''}> İmza</label><label class="bl-onay"><input type="checkbox" id="f-hashSon" ${y.hashSon?'checked':''}> Hashtagler sonda</label><label class="bl-onay"><input type="checkbox" id="f-takip" ${y.takip?'checked':''}> Takip et bandı</label></div>
+     <div class="bl-dug"><button class="bl-b" data-a="kopyaEtiket">Etiketleri kopyala</button><button class="bl-b" data-a="kopyaAcik">Açıklamayı kopyala</button></div></div>
+    <details class="bl-k"><summary style="cursor:pointer;font:700 12px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--tl)">🔌 Doğrudan Blogger’a gönder (isteğe bağlı)</summary>
+     <p class="not">Google hesabınla giriş yapıp yazıyı taslak olarak ya da yayımlanmış şekilde gönderir. Bir kez Google Cloud’da Blogger API için OAuth istemci kimliği (Client ID) gerekir; yetkili kaynak olarak <b>https://aaskinkk-cloud.github.io</b> ekli olmalı.</p>
+     <label>OAuth Client ID<input id="f-cid" value="${esc(DB.ayar.cid)}" placeholder="….apps.googleusercontent.com"></label>
+     <div class="bl-dug"><button class="bl-b" data-a="gonderTaslak">Taslak gönder</button><button class="bl-b p" data-a="gonderYayin">Yayımla</button></div><div id="bl-gonder-sonuc" class="not"></div></details>
+    <div class="bl-k"><h3>🗂️ Yazı</h3><div class="bl-dug"><button class="bl-b" data-a="cogalt">⧉ Çoğalt</button><button class="bl-b t" data-a="sil">🗑 Sil</button></div></div>
+   </div></div>`);
+  const f=(id,al,cb)=>{const e=$('#'+id,EL);if(!e)return;e.oninput=e.onchange=()=>{y[al]=e.type==='checkbox'?e.checked:e.value;cb&&cb();kirli(true);onz()}};
+  f('f-etiket','etiket');f('f-aciklama','aciklama',sayAcik);f('f-slug','slug');f('f-hashtag','hashtag');f('f-imza','imza');f('f-hashSon','hashSon');f('f-takip','takip');
+  const c=$('#f-cid',EL);c.onchange=()=>{DB.ayar.cid=c.value.trim();yaz()};sayAcik();onz()}
+function sayAcik(){const e=$('#f-acik-say',EL);if(e)e.textContent='('+String(S.y.aciklama||'').length+' / 160)'}
+function onz(){const f=$('#bl-onz',EL);if(f)f.srcdoc=onizlemeBelge(S.y)}
+async function kopya(t,html){try{if(html&&window.ClipboardItem){await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([t],{type:'text/plain'})})])}else await navigator.clipboard.writeText(t);return true}catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(x){}ta.remove();return ok}}
+
+/* Blogger API (isteğe bağlı) */
+let gTok=null,gExp=0,blogId=null;
+function gis(){return new Promise((ok,red)=>{if(window.google&&google.accounts&&google.accounts.oauth2)return ok();const s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';s.onload=()=>ok();s.onerror=()=>red(new Error('Google giriş kütüphanesi yüklenemedi'));document.head.appendChild(s)})}
+async function girisYap(){if(gTok&&Date.now()<gExp)return;if(!DB.ayar.cid)throw new Error('Önce OAuth Client ID gir');await gis();await new Promise((ok,red)=>{google.accounts.oauth2.initTokenClient({client_id:DB.ayar.cid,scope:'https://www.googleapis.com/auth/blogger',callback:r=>{if(r.error)return red(new Error('Google: '+r.error));gTok=r.access_token;gExp=Date.now()+(r.expires_in-60)*1e3;ok()}}).requestAccessToken()})}
+async function g(p,o={}){const r=await fetch('https://www.googleapis.com/blogger/v3'+p,{...o,headers:{Authorization:'Bearer '+gTok,'content-type':'application/json'}});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(r.status===403?'Yetki hatası: Blogger API etkin mi?':(d.error&&d.error.message)||'Hata '+r.status);return d}
+async function gonder(yay){const y=S.y,son=$('#bl-gonder-sonuc',EL);if(!y.baslik.trim()||!metin(y.html)){bildir('Başlık ve içerik gerekli',1);return}
+  if(!confirm((yay?'YAYIMLANSIN':'Taslak olarak gönderilsin')+' mi?\n\n'+y.baslik+'\nEtiketler: '+(y.etiket||'—')))return;
+  try{son.textContent='Bağlanılıyor…';await girisYap();blogId=blogId||(await g('/blogs/byurl?url='+encodeURIComponent(BLOG_URL))).id;const govde={title:y.baslik,content:cikti(y),labels:String(y.etiket||'').split(',').map(s=>s.trim()).filter(Boolean)};let p;
+   if(y.bloggerId){p=await g(`/blogs/${blogId}/posts/${y.bloggerId}`,{method:'PUT',body:JSON.stringify(govde)});if(yay&&p.status!=='LIVE')p=await g(`/blogs/${blogId}/posts/${y.bloggerId}/publish`,{method:'POST'})}
+   else{p=await g(`/blogs/${blogId}/posts?isDraft=${!yay}`,{method:'POST',body:JSON.stringify(govde)});y.bloggerId=p.id}
+   y.bloggerUrl=p.url;if(yay)y.durum='yay';yaz();son.innerHTML='✔ Gönderildi: <a target="_blank" rel="noopener" href="'+esc(p.url)+'">'+esc(p.url)+'</a>';bildir(yay?'Yayımlandı':'Blogger’a taslak gönderildi')}catch(e){son.textContent='✘ '+e.message;bildir(e.message,1)}}
+
+/* ---------------- olaylar ---------------- */
+async function tik(e){const t=e.target.closest('[data-a],[data-git],[data-k],[data-ac],[data-sab]');if(!t||t.disabled)return;const y=S.y;
+  if(t.dataset.git){kaydetSimdi();const gg=t.dataset.git;if(gg==='ana')cizAna();else if(gg==='yaz')cizYaz();else cizYay();EL.querySelector('.bl-ic').scrollTop=0;return}
+  if(t.dataset.k){e.preventDefault();komut(t.dataset.k);return}
+  if(t.dataset.ac){S.y=bul(t.dataset.ac);S.kaynak=false;cizYaz();return}
+  if(t.dataset.sab){yeniYazi(t.dataset.sab);return}
+  switch(t.dataset.a){
+   case'kapat':kapat();try{history.back()}catch(x){}break;
+   case'yeni':kaydetSimdi();yeniYazi('bos');break;
+   case'ilham':S.ilhamI++;ilhamYaz();break;
+   case'ilhamla':kaydetSimdi();yeniYazi('bos',ILHAM[S.ilhamI%ILHAM.length]);break;
+   case'kapakRenk':{const i=KAPAK.indexOf(y.kapak&&y.kapak.t==='g'?y.kapak.v:'');y.kapak={t:'g',v:KAPAK[(i+1)%KAPAK.length]};kirli(true);$('.bl-kkapak',EL).style.setProperty('--kp',y.kapak.v);break}
+   case'kapakSil':y.kapak={t:'g',v:KAPAK[0]};kirli(true);cizYaz();break;
+   case'kopyaHtml':{const h=cikti(y);if(await kopya(h)){bildir('HTML kodu kopyalandı — Blogger’da HTML görünümüne yapıştır');if(y.durum==='taslak'){y.durum='hazir';yaz()}}else bildir('Kopyalanamadı',1);break}
+   case'kopyaZengin':{const h=cikti(y);bildir(await kopya(metin(h),h)?'Biçimli kopyalandı — Oluştur görünümüne yapıştır':'Kopyalanamadı',!1);break}
+   case'kopyaBaslik':bildir(await kopya(y.baslik||'')?'Başlık kopyalandı':'Kopyalanamadı');break;
+   case'kopyaEtiket':bildir(await kopya(y.etiket||'')?'Etiketler kopyalandı':'Kopyalanamadı');break;
+   case'kopyaAcik':bildir(await kopya(y.aciklama||'')?'Açıklama kopyalandı':'Kopyalanamadı');break;
+   case'indir':{const b=new Blob([onizlemeBelge(y)],{type:'text/html'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(y.slug||slugla(y.baslik)||'yazi')+'.html';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4e3);break}
+   case'blogAc':window.open('https://www.blogger.com/','_blank','noopener');break;
+   case'yayimlandi':y.durum='yay';yaz();cizYay();bildir('Yayımlandı olarak işaretlendi');break;
+   case'taslakYap':y.durum='taslak';yaz();cizYay();break;
+   case'onzMasa':S.onzMobil=false;$('#bl-onz',EL).classList.remove('mobil');break;
+   case'onzMobil':S.onzMobil=true;$('#bl-onz',EL).classList.add('mobil');break;
+   case'gonderTaslak':gonder(false);break;case'gonderYayin':gonder(true);break;
+   case'cogalt':{const k=JSON.parse(JSON.stringify(y));k.id=uid();k.ornek=false;k.baslik=(y.baslik||'')+' (kopya)';k.durum='taslak';delete k.bloggerId;delete k.bloggerUrl;k.olus=k.guncel=Date.now();DB.yazilar.unshift(k);yaz();S.y=k;cizYaz();bildir('Kopya oluşturuldu');break}
+   case'sil':if(confirm('“'+(y.baslik||'başlıksız')+'” silinsin mi? Bu işlem geri alınamaz.')){DB.yazilar=DB.yazilar.filter(x=>x!==y);S.y=null;yaz();cizAna();bildir('Yazı silindi')}break;
+   case'ayarKaydet':DB.ayar.imza=$('#bl-imza',EL).value;DB.ayar.imzaVars=$('#bl-imzaV',EL).checked;DB.ayar.takipVars=$('#bl-takipV',EL).checked;DB.ayar.gom=$('#bl-gom',EL).checked;DB.ayar.hedef=Math.max(100,+$('#bl-hedef',EL).value||600);yaz();bildir('Ayarlar kaydedildi');break;
+   case'cssKopyala':bildir(await kopya(ONZ_CSS)?'Blog CSS’i kopyalandı (isteğe bağlı; kopyalanan HTML zaten stilli)':'Kopyalanamadı');break;
+   case'disaAktar':{const b=new Blob([JSON.stringify({tur:'blogum',surum:1,tarih:new Date().toISOString(),yazilar:DB.yazilar,ayar:DB.ayar})],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='blogum-yedek-'+bugunAnahtar()+'.json';a.click();break}
+   case'ornekGeri':DB.yazilar.unshift(ornekYazi());yaz();cizAna();break;
+  }}
+function iceAktar(f){if(!f)return;const r=new FileReader;r.onload=()=>{try{const d=JSON.parse(r.result);if(!d||!Array.isArray(d.yazilar))throw 0;let n=0;d.yazilar.forEach(y=>{if(!y||!y.id)return;const i=DB.yazilar.findIndex(x=>x.id===y.id);if(i<0){DB.yazilar.push(y);n++}else if((y.guncel||0)>(DB.yazilar[i].guncel||0)){DB.yazilar[i]=y;n++}});if(yaz()){bildir(n+' yazı yüklendi');cizAna()}}catch(e){bildir('Bu dosya Bloğum yedeği değil',1)}};r.readAsText(f)}
+document.addEventListener('selectionchange',()=>{if(EL&&S.g==='yaz'){const r=sakla();if(r)S.secim=r}});
+document.addEventListener('mousedown',e=>{if(EL&&e.target.closest&&e.target.closest('.bl-arac button,.bl-blok'))e.preventDefault()},true);
+document.addEventListener('keydown',e=>{if(!EL)return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();kaydetSimdi();bildir('Kaydedildi')}if(e.key==='Escape'&&EL.classList.contains('odak'))EL.classList.remove('odak')});
+addEventListener('pagehide',()=>{if(EL)kaydetSimdi()});
+
+window.Blogum={ac,kapat,BLOK,SABLON,KAT,ILHAM,INLINE,cikti:y=>cikti(y),veri:()=>oku()};
+
+/* ---------- uygulamaya bağla: ana ekran kartı ---------- */
+try{const a=document.querySelector('#home .actions');if(a&&!document.getElementById('blAcBtn')){const b=document.createElement('button');b.type='button';b.className='act bl-act';b.id='blAcBtn';
+  b.innerHTML='<div><strong>✍️ Bloğum</strong><br><span>Blog yazı stüdyosu: zengin içerik, şablonlar, Blogger’a tek dokunuşla kopya</span></div>';b.addEventListener('click',ac);a.appendChild(b)}}catch(e){console.warn('Bloğum kartı',e)}
+})();
+</script>
+
 <script>
 /* Kurulu uygulama (PWA): çevrimdışı önbellek, uygulama bildirimi, yeni sürüm uyarısı */
 (function(){
