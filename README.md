@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.9 · 16.10.2026
+**Güncel sürüm:** 6.10 · 16.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,11 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.10** (16.10.2026) – **Bloğum: Giriş selamı**
+  - Yaz ekranında başlığın altında **👋 Giriş selamı** kutusu: işaretlenince yazının başına "Aziz misafirlerim ve sevgili blogdaşlarım…" girişi eklenir (ilk harf dropcap); kaldırınca silinir. **Seç ▾** ile 15 giriş: Asıl metin · Kısa ve sıcak · Mevsimden açılan · Uzun aradan sonra · Arı ve köprü · Tek konulu yazı · Kitap üzerine · Sıladan, fındık kokulu · Bayram · Yeni yıl · Buruk/anma · Şiir ve edebiyat · Bir ezgiyle · Çay başında sohbet · Faydalı bir konu. Yazının kategorisine uygun olanlar üstte; **🎲** uygunlar arasından rastgele seçer.
+  - Giriş değiştirilince eskisi silinip yenisi gelir (üst üste binmez); elle düzenlenmiş giriş paragrafı silinmez, uyarı verir. Geri al (↶) çalışır. Yeni giriş eklemek: `GIRIS` dizisine satır.
+  - *Çok başlıklı yazı* şablonu girişi artık bu özellikten alır.
+  - Biçim araç çubuğu geniş ekranda alt satıra kayar (tüm düğmeler görünür: Blok, Biçimi temizle, HTML kaynağı, Odak modu); telefonda yatay kaydırma çubuğu görünür oldu.
 - **6.9** (16.10.2026) – **Bloğum: kendi Blogger düzenim**
   - HTML çıktısı bloğundaki kalıba göre üretilir (Ayarlar → *Kendi blog düzenim*, varsayılan açık): manşet fotoğrafı yazının başına **gizli** (`display: none`) eklenir, ardından `<hr />`; paragraflar `<div style="text-align: justify;">`, aralarında `<div><br /></div>`; ara başlıklar `<hr />` + `<h3 style="text-align: left;">` bölümleri; `dropcap`, `tr_bq` alıntı korunur; imza son paragraf olur, sonuna **[favorite]** eklenir (şablon ilk fotoğrafı tam ekran manşet yapıp başa alır); ardından `<hr />` + takip et düğmesi.
   - Yayınla → **🖼️ Manşet fotoğrafı**: Blogger'a yüklenen fotoğrafın bağlantısı yapıştırılır. Önizleme [favorite] etkisini taklit eder (fotoğraf üstte tam ekran, başlık üzerinde).
