@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.10 · 16.10.2026
+**Güncel sürüm:** 6.11 · 16.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,9 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.11** (16.10.2026) – **Bloğum: Uğurlama + sade giriş/uğurlama**
+  - Yazının sonunda **🤝 Uğurlama** seçimi: 13 kapanış — Siz ne düşünüyorsunuz? · Beğendiniz mi? · Yeniden davet · Sizin tecrübeniz · Konu önerin · Kısa uğurlama · Okudunuz mu? (kitap) · Sizin memleketiniz (sıla) · Bayram · Buruk/anma · Bir dizesi kaldı mı? (şiir) · Sizin şarkınız (müzik) · Faydalı oldu mu? (bilgi). Ayrıca *Ayarlardaki imza* ve *Uğurlamasız*. Kategoriye uygunlar üstte, 🎲 rastgele.
+  - Giriş ve uğurlama artık yazı gövdesinde **görünmez**: editörde yalnız soluk tek satır ("👋 Giriş: …", "🤝 Uğurlama: …"); dokununca liste açılır, seçince kapanır. Metinler HTML kopyasında ve önizlemede eklenir; **[favorite]** uğurlamanın son satırına gelir. 6.10'da gövdeye eklenmiş girişler açılışta gövdeden alınır (elle düzenlenmiş olanlar korunur).
 - **6.10** (16.10.2026) – **Bloğum: Giriş selamı**
   - Yaz ekranında başlığın altında **👋 Giriş selamı** kutusu: işaretlenince yazının başına "Aziz misafirlerim ve sevgili blogdaşlarım…" girişi eklenir (ilk harf dropcap); kaldırınca silinir. **Seç ▾** ile 15 giriş: Asıl metin · Kısa ve sıcak · Mevsimden açılan · Uzun aradan sonra · Arı ve köprü · Tek konulu yazı · Kitap üzerine · Sıladan, fındık kokulu · Bayram · Yeni yıl · Buruk/anma · Şiir ve edebiyat · Bir ezgiyle · Çay başında sohbet · Faydalı bir konu. Yazının kategorisine uygun olanlar üstte; **🎲** uygunlar arasından rastgele seçer.
   - Giriş değiştirilince eskisi silinip yenisi gelir (üst üste binmez); elle düzenlenmiş giriş paragrafı silinmez, uyarı verir. Geri al (↶) çalışır. Yeni giriş eklemek: `GIRIS` dizisine satır.
