@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.6 · 15.10.2026
+**Güncel sürüm:** 6.7 · 16.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -12,9 +12,17 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Selfi** – kişi ve arka plan ayrı ayrı; arka planı değiştir (renk, geçiş, fotoğraf) ya da bulanıklaştır; güzellik (pürüzsüz cilt, cilt tonu, göz, diş); saç rengi ve parlaklığı; geniş açı kamera ve kadrajı genişletme (uzaklaştırma).
 - **Kırp · Katman · Toplu işlem.**
 - **Basit mod** – üst çubuktaki *Basit* düğmesi (ya da ana sayfadaki seçim) yalnız temel sekmeleri gösterir.
-- **Kabataş Haber** – "Sıradan değil, sıladan haberler": haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
+- **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.7** (16.10.2026) – Kabataş Haber: **Bölüm şablonları**
+  - Araç çubuğunun başında yeni **📑 Şablonlar** aracı: 14 kalıcı (silinmeyen) metin + video taslağı — Son dakika · Sıcak gelişme · Spor (maç sonucu) · Hava durumu · Röportaj · Gündem/yerel · Duyuru · Uyarı/kesinti · Müjde · Fındık/hasat · Tebrik · Anma · Özel haber/dosya · Haftalık bülten.
+  - Her şablonda: manşet, spot, seslendirme metni, paylaşım metni, hashtag, kayan bant yazısı, açılış/kapanış cümlesi, **sahneler** (ör. spor: gol anı → puan durumu → sıradaki maç; röportaj: 3 soru-cevap), ek yazılar (CANLI, isim/unvan, GOOOL!, SORU 1…), müzik, TV bandı rengi ve geçiş türü hazır. Kartlar canlı önizlemeli; şablon görselleri cihazda çizilir (stat, stüdyo, haber merkezi, gökyüzü, kutlama, mum…).
+  - **[Köşeli parantezli]** kısımlar doldurulacak yerlerdir: Haber bölümünde sayaç ve **Sıradaki boşluk ▸** düğmesi (alanı açar, boşluğu seçer). Boşluk kalmışken video yapma / paylaşma / kaydetme / metni kopyalama öncesi uyarır.
+  - "Şu anki fotoğrafımı ana fotoğraf yap" seçeneği: kendi fotoğrafınla şablonu birlikte kullan. Şablon açılırken mevcut iş Taslaklar'a kaydedilir.
+  - Yeni kart biçimleri: **Spor · skor tabelası** (takım armaları, skor, durum şeridi, goller) ve **Hava durumu kartı** (büyük derece + ikon, 4–5 günlük kutular; güneş, parçalı, bulut, yağmur, kar, fırtına, sis ikonları videoda hareketli). Veri *Maddeler* alanından okunur, alanın başlığı biçime göre nasıl yazılacağını söyler. Tüm oranlarda (9:16, 4:5, 1:1, 16:9) denendi.
+  - **Kendi şablonlarım:** "💾 Bu işi şablon olarak sakla" — biçim, müzik, bant, metinler, sahne düzeni ve ek yazılar saklanır (fotoğraflar saklanmaz); taslaklar gibi 24 sınırıyla silinmez.
+  - Sahne kartlarına **biçim seçimi**, alıntı biçiminde **söz sahibi**, madde/skor/hava biçiminde **maddeler** alanı eklendi; sahneler kendi söz sahibini ve renkli manşet renklerini kullanır.
 - **6.6** (15.10.2026)
   - **Basit mod** (yeniden): Önceki sürümlerde Karanlık Oda'da basit mod yoktu (Kareden Videoya ve Tını'da vardı). Artık üst çubukta **Basit** düğmesi ve ana sayfada *Basit mod: Açık / Kapalı* seçimi var; açıkken yalnız Otomatik · Filtreler · Selfi · Işık · Renk · Efektler · Kırp · Yazı · Kaydet sekmeleri görünür. Seçim hatırlanır, işlevler silinmez.
   - **Selfi sekmesi:** Kişiyi otomatik seç (yüz ipucuyla) + fırçayla düzelt; kişi ve arka plan için ayrı parlaklık/sıcaklık/doygunluk; arka planı *bulanık · düz renk · renk geçişi · fotoğraf* ile değiştir; güzellik: cilt pürüzsüzleştirme, cilt aydınlığı ve tonu, göz parlaklığı/netliği, diş beyazlatma, *Hızlı güzellik*; saç: 9 hazır renk + renk seçici, yoğunluk, parlaklık, saç alanını fırçayla ekle/çıkar. **Geniş açı kamera** (kamera izin verirse en geniş yakınlığı seçer, ör. 0,6×) ve **Kadrajı genişlet** (fotoğrafı uzaklaştırıp çevresini fotoğrafın devamı gibi / bulanık / düz renkle doldurur; yeni kopya olarak açılır).

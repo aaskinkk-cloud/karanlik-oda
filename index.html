@@ -338,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.6 · 15.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.7 · 16.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6971,6 +6971,21 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
  .kh-studyo[data-arac=""] .kh-onz{flex:1 1 auto;border-right:0}
  .kh-studyo .kh-nav button{flex-direction:row;gap:5px;min-width:0;padding:6px 10px}
 }
+/* 6.7 · bölüm şablonları */
+.kh-sbg{display:grid;grid-template-columns:repeat(auto-fill,minmax(102px,1fr));gap:10px}
+.kh-sbk{position:relative;display:flex;flex-direction:column;gap:3px;padding:0 0 8px;border:1px solid var(--line);background:var(--surface-2);border-radius:12px;overflow:hidden;text-align:left;color:var(--text);font:500 12px var(--f-ui);cursor:pointer}
+.kh-sbk:active{transform:scale(.97)}
+.kh-sbk:focus-visible{outline:2px solid var(--sc,#d7191f);outline-offset:2px}
+.kh-sbi{position:relative;display:block;aspect-ratio:9/16;background:linear-gradient(160deg,#1c2733,#0b0f14);border-bottom:3px solid var(--sc,#d7191f)}
+.kh-sbi img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s}
+.kh-sbi img.ok{opacity:1}
+.kh-sbi>i{position:absolute;left:6px;bottom:6px;font-style:normal;font-size:15px;line-height:1;background:rgba(0,0,0,.6);border-radius:8px;padding:4px 5px}
+.kh-sbk b{font:700 13px var(--f-ui);padding:2px 8px 0;line-height:1.2}
+.kh-sbk small{color:var(--muted);padding:0 8px;line-height:1.25}
+.kh-sbk .kh-sbsil{position:absolute;right:4px;top:4px;font-style:normal;color:#fff;background:rgba(0,0,0,.65);border-radius:999px;padding:3px 7px;font-size:12px}
+.kh-yer{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:color-mix(in srgb,#ffd400 18%,var(--surface));border:1px solid color-mix(in srgb,#ffd400 55%,var(--line));border-radius:10px;padding:7px 10px;font-size:12.5px}
+.kh-yer span{flex:1 1 160px}
+.kh-shx{display:grid;gap:6px}
 </style>
 <script>
 /* ===================== KABATAŞ HABER — gazete köşesi (Karanlık Oda 5.2 · 10.10.2026) =====================
@@ -7374,6 +7389,7 @@ function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k,
   kok.innerHTML = `<header class="kh-ust"><button class="kh-ik" id="khKapat" aria-label="Kapat">✕</button><div class="kh-bas"><b id="khBaslik">${esc(M.ad)}</b><small>${esc(M.slogan)}</small></div><button class="kh-b p kh-yeniB" id="khYeniH" title="Yeni haber başlat (şu anki taslaklara kaydedilir)">＋ Yeni</button><button class="kh-b" id="khTsBtn">Taslaklar</button></header>
   <div class="kh-ic"><div class="kh-onz"><canvas id="khCv" aria-label="Haber kartı önizlemesi"></canvas><div class="kh-onz-alt"><button class="kh-b p" id="khOyna">▶ Sesli önizle</button><button class="kh-b" id="khTlAc" aria-pressed="true">▾ Katmanlar</button><span class="kh-boy" role="group" aria-label="Önizleme boyu"><button class="kh-c" data-onz="buyuk" title="Büyük önizleme">Büyük</button><button class="kh-c" data-onz="kucuk" title="Küçük önizleme">Küçük</button><button class="kh-c" data-onz="gizli" title="Önizlemeyi gizle, ayarlara yer aç">Gizle</button></span><span class="kh-n" id="khSesNot"></span></div><div class="kh-n kh-ipucu">Fotoğrafı önizlemede sürükleyerek kaydır; iki parmakla büyüt.</div><div id="khTl" class="kh-tl"></div></div>
   <div class="kh-pan"><div id="khTaslak" class="kh-tsl" hidden></div>
+   <section class="kh-s kh-sbl"><h3>Bölüm şablonları</h3><div id="khSbl"></div></section>
    <section class="kh-s kh-kat"><div class="kh-kb"><h3>Katmanlar · seçili öğe</h3><span class="kh-n" id="khTlSure"></span></div>
     <div class="kh-r"><button class="kh-b kh-mini" id="khTlZk">−</button><button class="kh-b kh-mini" id="khTlZb">＋</button><button class="kh-b kh-mini" id="khTlYazi">＋ Yazı</button><button class="kh-b kh-mini" id="khTlBas">⏮ Başa</button><button class="kh-b kh-mini p" id="khDemo">🎬 Örnek bülten</button></div>
     <div id="khTlArac" class="kh-tla"></div><p class="kh-n" id="khOrnekNot" hidden>Örnek bülten açık: videoda "ÖRNEK İÇERİK" yazısı görünür. Manşetleri kendi haberinle değiştirince kalkar <button class="kh-b kh-mini" data-ornek-kaldir>Şimdi kaldır</button></p></section>
@@ -7457,7 +7473,7 @@ function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k,
     const b5 = bul('Bülten'); let sah = null;
     if (b5){ const ara = [...b5.querySelectorAll(':scope > .kh-ara')].find(a => /sahne/i.test(a.textContent)); if (ara){ sah = document.createElement('section'); sah.className = 'kh-s'; sah.innerHTML = '<h3>Haber sahneleri</h3>'; let n = ara.nextSibling; ara.remove(); while (n){ const x = n.nextSibling; sah.appendChild(n); n = x; } b5.after(sah); } }
     const tsS = document.createElement('section'); tsS.className = 'kh-s'; tsS.innerHTML = '<h3>Taslaklar</h3>'; const tk = $h('#khTaslak'); if (tk) tsS.appendChild(tk); pan.prepend(tsS);
-    const ARAC = [['haber','📰','Haber',bul('Haber')],['foto','📷','Foto',bul('Fotoğraf')],['kat','🧩','Katmanlar',pan.querySelector('.kh-kat')],['ses','🎙️','Ses',bul('Seslendirme')],['paylas','📤','Paylaş',bul('Paylaş')],['bicim','🎨','Biçim',bul('Biçim')],['sahne','🎞️','Sahneler',sah],['tv','📺','TV · Müzik',b5],['marka','🔴','Logo · künye',bul('Kanal logosu'),bul('künyesi')],['taslak','🗂️','Taslaklar',tsS]].filter(a => a[3]);
+    const ARAC = [['sablon','📑','Şablonlar',bul('Bölüm şablonları')],['haber','📰','Haber',bul('Haber')],['foto','📷','Foto',bul('Fotoğraf')],['kat','🧩','Katmanlar',pan.querySelector('.kh-kat')],['ses','🎙️','Ses',bul('Seslendirme')],['paylas','📤','Paylaş',bul('Paylaş')],['bicim','🎨','Biçim',bul('Biçim')],['sahne','🎞️','Sahneler',sah],['tv','📺','TV · Müzik',b5],['marka','🔴','Logo · künye',bul('Kanal logosu'),bul('künyesi')],['taslak','🗂️','Taslaklar',tsS]].filter(a => a[3]);
     ARAC.forEach(a => a.slice(3).forEach(x => x && (x.dataset.arac = a[0]))); const BOL = ARAC.flatMap(a => a.slice(3).filter(Boolean));
     const nav = document.createElement('nav'); nav.className = 'kh-nav'; nav.setAttribute('aria-label', 'Araçlar');
     nav.innerHTML = ARAC.filter(a => a[0] !== 'taslak').map(([k, i, a]) => `<button type="button" data-nav="${k}" aria-pressed="false"><i aria-hidden="true">${i}</i><span>${a}</span></button>`).join(''); kok.appendChild(nav);
@@ -7647,7 +7663,7 @@ async function sesUret(metin, bildir){ metin = String(metin || '').trim(); if (!
 const GECIS = .6, SES_GEC = .45;
 async function fotoListe(ids){ const o = []; for (const id of (ids || [])){ const c = await sahneFotoAl({fid:id}); if (c) o.push(c); } return o; }
 async function planKur(bildir, opt){ const sc0 = {ref:'ana', d:{}, foto:FOTO, liste:[FOTO].filter(Boolean).concat(await fotoListe(D.ekFoto)), fx:D.fx, fy:D.fy, fz:D.fz, metin:okunacak()};
-  const ekler = []; for (const s of (D.sahneler || [])){ if (!s.manset && !s.fid && !s.metin) continue; const f1 = await sahneFotoAl(s); ekler.push({ref:s, d:{sablon:s.sablon || D.sablon, maddeler:s.maddeler || '', manset:s.manset, spot:s.spot, metin:s.metin, etiket:s.etiket || D.etiket, fx:s.fx, fy:s.fy, fz:s.fz || 1}, foto:f1, liste:[f1].filter(Boolean).concat(await fotoListe(s.ek)), metin:(s.metin || [String(s.manset || '').replace(/\*/g, '').replace(/\s*\n\s*/g, '. '), s.spot].filter(Boolean).join('. ')).trim()}); }
+  const ekler = []; for (const s of (D.sahneler || [])){ if (!s.manset && !s.fid && !s.metin) continue; const f1 = await sahneFotoAl(s); ekler.push({ref:s, d:{sablon:s.sablon || D.sablon, maddeler:s.maddeler || '', kisi:s.kisi != null && s.kisi !== '' ? s.kisi : D.kisi, ms:s.ms || [], manset:s.manset, spot:s.spot, metin:s.metin, etiket:s.etiket || D.etiket, fx:s.fx, fy:s.fy, fz:s.fz || 1}, foto:f1, liste:[f1].filter(Boolean).concat(await fotoListe(s.ek)), metin:(s.metin || [String(s.manset || '').replace(/\*/g, '').replace(/\s*\n\s*/g, '. '), s.spot].filter(Boolean).join('. ')).trim()}); }
   const sahneler = [sc0, ...ekler], P = {parca:[], top:0}; let t = 0, n = 0;
   const sesli = async (m, i) => { if (!m) return null; if (opt && opt.tahmin){ const mm = String(m).trim(), kk = [HKS.ses, HKS.hiz, HKS.ton, mm].join('|'); if (SES_ON.has(kk)) return SES_ON.get(kk); const cs = cumleler(mm), segs = []; let tt = 0; (cs.length ? cs : [mm]).forEach((c, k) => { if (k) tt += .3; const d = Math.max(.8, c.split(/\s+/).length/2.4/(HKS.hiz || 1)); segs.push({a:tt, b:tt + d, t:c}); tt += d; }); return {tahmini:true, sure:tt, segs}; } bildir && bildir(`Seslendiriliyor ${i}/${sahneler.length + (D.spiker ? 2 : 0)}`); try { return await sesUret(m, bildir); } catch(e){ bildir && bildir('Ses yok: ' + (e.message || e)); return null; } };
   if (D.acilis){ const ses = D.spiker ? await sesli(D.acilisMetin, ++n) : null; const sure = D.acilisSure ? Math.max(ses ? ses.sure + 1.3 : 1.5, D.acilisSure) : Math.max(ACILIS_SN, ses ? ses.sure + 1.3 : 0); P.parca.push({tip:'acilis', a:t, b:t + sure, ses, sesA:t + 1.0}); t += sure; }
@@ -8185,6 +8201,354 @@ async function faIslem(id){ const S = faSecili(); if (!S) return; const A = faAl
       <div class="kh-iki"><label class="kh-l">Yatay <output>${Math.round((A.fx ?? .5)*100)}%</output><input type="range" min="0" max="1" step="0.01" value="${A.fx ?? .5}" data-far="fx"></label><label class="kh-l">Dikey <output>${Math.round((A.fy ?? .45)*100)}%</output><input type="range" min="0" max="1" step="0.01" value="${A.fy ?? .45}" data-far="fy"></label></div>
       <div class="kh-r">${[['oto','Hareket: otomatik'],['sabit','Sabit'],['yak','Yakınlaş'],['uzak','Uzaklaş'],['sol','Sola kay'],['sag','Sağa kay']].map(([k2, v]) => `<button class="kh-c${k2 === hr ? ' on' : ''}" data-fa="hr:${k2}">${v}</button>`).join('')}<button class="kh-c${A.sig ? ' on' : ''}" data-fa="sig">Tamamı görünsün (sığdır)</button></div>
       <div class="kh-r">${S.j > 0 ? T('fsol', '← Önce') + T('fbas', 'Baş fotoğraf yap') : ''}${S.j < n - 1 ? T('fsag', 'Sonra →') : ''}${T('foto+', '＋ Foto')}${B('cog', '⧉ Çoğalt')}${B('sifir', '↺ Ayarları sıfırla')}${T('fsil', '✕ Sil', 'tl-sil')}</div>`; }; }
+
+/* ===================== 6.7 · Kabataş Haber: BÖLÜM ŞABLONLARI =====================
+   Her bölüm (son dakika, spor, hava durumu, röportaj, duyuru…) için kalıcı metin + video taslağı:
+   manşet, spot, seslendirme, paylaşım metni, hashtag, sahneler, ek yazılar, müzik, bant, geçiş.
+   [Köşeli parantezli] yerler doldurulacak boşluklardır: sayaç + "Sıradaki boşluk" + paylaşmadan önce uyarı.
+   Yeni kart biçimleri: Spor · skor tabelası, Hava durumu kartı. Kendi şablonun: kalıcı (taslaklar gibi silinmez). */
+
+/* ---------- yeni kart biçimleri ---------- */
+const harf = ad => String(ad || '').replace(/[\[\]]/g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(w => TR(w[0])).join('') || '?';
+function skorAl(){ const L = String(D.maddeler || '').split('\n').map(s => s.trim()).filter(Boolean), tk = s => { const p = String(s || '').split('|').map(q => q.trim()); return {ad:p[0] || '', g:p[1] != null ? p[1] : ''}; };
+  return {ev:tk(L[0] || 'EV SAHİBİ | 0'), dep:tk(L[1] || 'KONUK | 0'), durum:L[2] || 'MAÇ SONUCU', ek:L.slice(3)}; }
+CIZ.skor = function(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac, ink] = etk(D.etiket), yat = W > H, U = yat ? H*.9 : W, S = skorAl();
+  foto(x, 0, 0, W, H, t === Infinity ? 1.03 : 1 + .07*kis(t/dur, 0, 1));
+  const gr = x.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, 'rgba(0,0,0,.6)'); gr.addColorStop(.45, 'rgba(0,0,0,.4)'); gr.addColorStop(1, 'rgba(0,0,0,.92)'); x.fillStyle = gr; x.fillRect(0, 0, W, H);
+  logo(x, g.m, g.u, U*.075, ac); x.fillStyle = '#fff'; x.font = `500 ${U*.026}px Oswald`; x.textAlign = 'right'; x.fillText(tarihYaz(D.tarih, true) + (D.yer ? ' · ' + TR(D.yer) : ''), W - g.m, g.u + U*.05);
+  const pw = Math.min(W - 2*g.m, U*.92), ph = U*.3, px = (W - pw)/2, ust = g.u + U*.16, alt = H - g.a - U*.03;
+  const py = yat ? ust + U*.02 : Math.max(ust + U*.04, (ust + alt)/2 - ph*.95), sw = pw*.34, sx = W/2 - sw/2;
+  const p0 = pr(t, .05, .5), gp = pr(t, .45, .9);
+  x.save(); x.globalAlpha = p0; x.translate(W/2, py + ph/2); x.scale(.85 + .15*p0, .85 + .15*p0); x.translate(-W/2, -(py + ph/2));
+  x.fillStyle = 'rgba(10,12,16,.86)'; rr(x, px, py, pw, ph, U*.03); x.fill(); x.strokeStyle = 'rgba(255,255,255,.2)'; x.lineWidth = U*.004; x.stroke();
+  x.fillStyle = ac; rr(x, sx, py + ph*.14, sw, ph*.72, U*.02); x.fill();
+  const takim = (T, cx, bg, fg) => { const r = ph*.16, cy = py + ph*.33; x.fillStyle = bg; x.beginPath(); x.arc(cx, cy, r, 0, 7); x.fill(); x.strokeStyle = 'rgba(255,255,255,.85)'; x.lineWidth = r*.1; x.stroke();
+    x.fillStyle = fg; x.textAlign = 'center'; x.textBaseline = 'middle'; x.font = `700 ${r*.8}px Oswald`; x.fillText(harf(T.ad), cx, cy + r*.04); x.textBaseline = 'alphabetic';
+    const tw = (pw - sw)/2 - U*.03, n = sigdir(x, TR(T.ad || '—'), s => `700 ${s}px Oswald`, tw, ph*.27, 1.05, ph*.13, ph*.065, 2); x.fillStyle = '#fff';
+    n.L.forEach((l, i) => x.fillText(l, cx, py + ph*.6 + (i + .85)*n.s*1.05)); };
+  takim(S.ev, px + (pw - sw)/4, ac, ink); takim(S.dep, px + pw - (pw - sw)/4, '#ffffff', '#111');
+  x.save(); x.translate(W/2, py + ph/2); x.scale(.55 + .45*gp, .55 + .45*gp); x.globalAlpha = p0*gp; x.fillStyle = ink; x.textAlign = 'center'; x.textBaseline = 'middle';
+  const sk = sigdir(x, `${S.ev.g}  -  ${S.dep.g}`, s => `400 ${s}px "Bebas Neue"`, sw*.86, ph*.6, 1, ph*.66, ph*.25, 1); x.fillText(sk.L[0], 0, sk.s*.04); x.restore(); x.textBaseline = 'alphabetic';
+  const dh = U*.058; x.font = `700 ${dh*.55}px Oswald`; const dt = TR(S.durum), dw = Math.min(pw*.9, x.measureText(dt).width + dh*1.4); x.fillStyle = ac === '#ffffff' ? '#d7191f' : '#ffffff'; rr(x, W/2 - dw/2, py - dh*.5, dw, dh, dh*.2); x.fill();
+  x.fillStyle = ac === '#ffffff' ? '#fff' : '#111'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(dt, W/2, py + dh*.03, dw - dh*.6); x.textBaseline = 'alphabetic'; x.restore();
+  let y = py + ph + U*.04; if (S.ek.length){ x.globalAlpha = pr(t, .8, 1.2); x.fillStyle = 'rgba(255,255,255,.88)'; x.font = `500 ${U*.03}px Montserrat`; x.textAlign = 'center'; const L = satirla(x, S.ek.join('  ·  '), W - 2*g.m).slice(0, 2); yaz(x, L, W/2, y + U*.03, U*.03, 1.3, 'center'); y += L.length*U*.03*1.3 + U*.02; x.globalAlpha = 1; }
+  const sf = U*.032; x.font = `300 ${sf}px Montserrat`; const sp = D.spot ? satirla(x, D.spot, W - 2*g.m).slice(0, 3) : [], spH = sp.length ? sp.length*sf*1.32 : 0;
+  const mTop = y + U*.03, mBot = alt - spH - (sp.length ? U*.025 : 0), mf = s => `700 ${s}px Oswald`;
+  if (mBot - mTop > U*.05){ const m = sigdir(x, TR(D.manset || 'MAÇ SONUCU'), mf, W - 2*g.m, mBot - mTop, 1.08, U*.1, U*.045, 3); x.fillStyle = '#fff'; x.textAlign = 'center'; x.shadowColor = 'rgba(0,0,0,.5)'; x.shadowBlur = U*.012;
+    const my = mTop + Math.max(0, (mBot - mTop - m.L.length*m.s*1.08)/2); m.L.forEach((l, i) => { const p = pr(t, .7 + i*.14, 1.1 + i*.14); x.globalAlpha = p; x.fillText(l, W/2, my + (i + .82)*m.s*1.08 + (1 - p)*U*.03); }); x.globalAlpha = 1; x.shadowBlur = 0; }
+  if (sp.length){ x.font = `300 ${sf}px Montserrat`; x.fillStyle = 'rgba(255,255,255,.92)'; x.globalAlpha = pr(t, 1, 1.5); yaz(x, sp, W/2, alt - spH + sf, sf, 1.32, 'center'); x.globalAlpha = 1; }
+  altyazi(x, W, H, t, py - dh); };
+
+function havaAl(){ return String(D.maddeler || '').split('\n').map(s => s.trim()).filter(Boolean).slice(0, 6).map(l => { const p = l.split('|').map(q => q.trim()); return {gun:p[0] || '', dur:p[1] || '', max:p[2] || '', min:p[3] || ''}; }); }
+const havaTur = s => { s = ' ' + String(s || '').toLocaleLowerCase('tr') + ' ';
+  return /\skar(lı|la|\s|,|\.)/.test(s) ? 'kar' : /fırtına|gök gürültü|şimşek|dolu/.test(s) ? 'firtina' : /sağanak|yağmur|yağış|çisenti/.test(s) ? 'yagmur' : /sis|pus/.test(s) ? 'sis' : /parçalı|az bulut|yer yer/.test(s) ? 'parcali' : /bulut|kapalı/.test(s) ? 'bulut' : 'gunes'; };
+function havaIkon(x, tur, cx, cy, s, t){ const an = (t == null || t === Infinity) ? 0 : t; x.save(); x.lineCap = 'round'; x.lineJoin = 'round';
+  const daire = (X, Y, r) => { x.beginPath(); x.arc(X, Y, r, 0, 7); x.fill(); };
+  const gunes = (X, Y, r) => { const gg = x.createRadialGradient(X, Y, r*.2, X, Y, r*1.9); gg.addColorStop(0, 'rgba(255,214,80,.5)'); gg.addColorStop(1, 'rgba(255,214,80,0)'); x.fillStyle = gg; daire(X, Y, r*1.9);
+    x.strokeStyle = '#ffd23f'; x.lineWidth = r*.2; for (let i = 0; i < 8; i++){ const a = i*Math.PI/4 + an*.5; x.beginPath(); x.moveTo(X + Math.cos(a)*r*1.3, Y + Math.sin(a)*r*1.3); x.lineTo(X + Math.cos(a)*r*1.62, Y + Math.sin(a)*r*1.62); x.stroke(); }
+    const g2 = x.createRadialGradient(X - r*.3, Y - r*.3, r*.1, X, Y, r); g2.addColorStop(0, '#fff3b0'); g2.addColorStop(1, '#ffc21a'); x.fillStyle = g2; daire(X, Y, r); };
+  const bulut = (X, Y, w, renk) => { x.fillStyle = renk; daire(X - w*.22, Y + w*.03, w*.19); daire(X + w*.02, Y - w*.08, w*.26); daire(X + w*.26, Y + w*.05, w*.17); rr(x, X - w*.41, Y + w*.02, w*.84, w*.2, w*.1); x.fill(); };
+  if (tur === 'gunes') gunes(cx, cy, s*.22);
+  else if (tur === 'parcali'){ gunes(cx - s*.12, cy - s*.12, s*.15); bulut(cx + s*.06, cy + s*.06, s*.62, '#f4f7fa'); }
+  else if (tur === 'bulut'){ bulut(cx + s*.13, cy - s*.1, s*.46, '#aeb8c4'); bulut(cx - s*.03, cy + s*.04, s*.7, '#eef2f6'); }
+  else if (tur === 'sis'){ x.strokeStyle = '#dfe5ea'; x.lineWidth = s*.06; for (let i = 0; i < 4; i++){ const o = Math.sin(an*1.2 + i)*s*.05, yy = cy - s*.18 + i*s*.13, w = s*(i % 2 ? .5 : .62); x.beginPath(); x.moveTo(cx - w/2 + o, yy); x.lineTo(cx + w/2 + o, yy); x.stroke(); } }
+  else { bulut(cx, cy - s*.1, s*.7, tur === 'firtina' ? '#7d8794' : '#d5dce4');
+    if (tur === 'firtina'){ x.globalAlpha = an && Math.sin(an*9) < -.3 ? .35 : 1; x.fillStyle = '#ffd23f'; x.beginPath(); [[.03, .1], [-.1, .3], [0, .3], [-.06, .46], [.13, .22], [.03, .22], [.09, .1]].forEach(([a, b], i) => i ? x.lineTo(cx + a*s, cy + b*s) : x.moveTo(cx + a*s, cy + b*s)); x.closePath(); x.fill(); x.globalAlpha = 1; }
+    else for (let i = 0; i < 5; i++){ const u = (i - 2)*s*.13, f = (an*1.4 + i*.37) % 1, yy = cy + s*.15 + f*s*.24; x.globalAlpha = an ? 1 - f*.7 : 1;
+      if (tur === 'yagmur'){ x.strokeStyle = '#5fb0ff'; x.lineWidth = s*.035; x.beginPath(); x.moveTo(cx + u, yy); x.lineTo(cx + u - s*.03, yy + s*.08); x.stroke(); } else { x.fillStyle = '#fff'; daire(cx + u, yy + s*.03, s*.032); } }
+    x.globalAlpha = 1; }
+  x.restore(); }
+CIZ.hava = function(x, W, H, t, dur){ const g = guvenli(W, H), [ad, ac, ink] = etk(D.etiket), yat = W > H, U = yat ? H*.9 : W, k = yat ? .75 : H/W >= 1.6 ? 1 : H/W >= 1.2 ? .85 : .7;
+  const G = havaAl(), g0 = G[0] || {gun:'Bugün', dur:'Güneşli', max:'', min:''}, gun = G.slice(1, yat ? 6 : 5);
+  foto(x, 0, 0, W, H, t === Infinity ? 1.02 : 1 + .06*kis(t/dur, 0, 1));
+  const gr = x.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, 'rgba(6,28,58,.72)'); gr.addColorStop(.45, 'rgba(6,28,58,.35)'); gr.addColorStop(1, 'rgba(3,9,18,.93)'); x.fillStyle = gr; x.fillRect(0, 0, W, H);
+  logo(x, g.m, g.u, U*.075, ac); x.fillStyle = 'rgba(255,255,255,.92)'; x.font = `500 ${U*.026}px Oswald`; x.textAlign = 'right'; x.fillText(TR(tarihYaz(D.tarih, true)), W - g.m, g.u + U*.03); x.fillText(TR(D.yer || 'Kabataş'), W - g.m, g.u + U*.066);
+  let y = g.u + U*.16*k; const eh = U*.058*k; x.font = `700 ${eh*.56}px Oswald`; x.textAlign = 'left'; const ew = x.measureText(TR(ad)).width + eh*.9;
+  x.globalAlpha = pr(t, .05, .45); x.fillStyle = ac; rr(x, g.m, y, ew, eh, eh*.18); x.fill(); x.fillStyle = ink; x.textBaseline = 'middle'; x.fillText(TR(ad), g.m + eh*.45, y + eh*.53); x.textBaseline = 'alphabetic'; x.globalAlpha = 1;
+  y += eh + U*.03*k; const is = U*.3*k, hp = pr(t, .15, .6), tx = g.m + is*1.06, tw = W - g.m - tx;
+  x.save(); x.globalAlpha = hp; x.translate(0, (1 - hp)*U*.03); havaIkon(x, havaTur(g0.dur), g.m + is*.5, y + is*.5, is, t);
+  x.fillStyle = '#fff'; x.textAlign = 'left'; if (g0.max){ const ds = sigdir(x, g0.max + '°', s => `400 ${s}px "Bebas Neue"`, tw, is*.62, 1, U*.26*k, U*.08, 1); x.shadowColor = 'rgba(0,0,0,.35)'; x.shadowBlur = U*.015; x.fillText(ds.L[0], tx, y + is*.58); x.shadowBlur = 0; }
+  const dl = sigdir(x, TR([g0.gun, g0.dur].filter(Boolean).join(' · ')), s => `700 ${s}px Oswald`, tw, U*.06*k, 1, U*.048*k, U*.026, 1); x.fillText(dl.L[0] || '', tx, y + is*.8);
+  if (g0.min){ x.font = `500 ${U*.03*k}px Montserrat`; x.fillStyle = 'rgba(255,255,255,.82)'; x.fillText('En düşük ' + g0.min + '°', tx, y + is*.97); } x.restore();
+  y += is + U*.045*k; const bh = gun.length ? U*.24*k : 0, by = H - g.a - bh - U*.02, sf = U*.032;
+  x.font = `400 ${sf}px Montserrat`; const sp = D.spot ? satirla(x, D.spot, W - 2*g.m).slice(0, 2) : [], spH = sp.length ? sp.length*sf*1.32 + U*.02 : 0, mAlt = by - spH - U*.025;
+  if (mAlt - y > U*.05){ const m = sigdir(x, D.manset || 'Hava durumu', s => `700 ${s}px Oswald`, W - 2*g.m, Math.min(mAlt - y, U*.3), 1.08, U*.095, U*.042, 3), my = mAlt - m.L.length*m.s*1.08;
+    x.fillStyle = '#fff'; x.shadowColor = 'rgba(0,0,0,.45)'; x.shadowBlur = U*.012; x.textAlign = 'left'; m.L.forEach((l, i) => { x.globalAlpha = pr(t, .35 + i*.12, .8 + i*.12); x.fillText(l, g.m, my + (i + .82)*m.s*1.08); }); x.globalAlpha = 1; x.shadowBlur = 0; }
+  if (sp.length){ x.font = `400 ${sf}px Montserrat`; x.fillStyle = 'rgba(255,255,255,.9)'; x.textAlign = 'left'; x.globalAlpha = pr(t, .7, 1.1); yaz(x, sp, g.m, by - spH + sf, sf, 1.32, 'left'); x.globalAlpha = 1; }
+  if (gun.length){ const gap = U*.02, bw = Math.min(U*.3, (W - 2*g.m - gap*(gun.length - 1))/gun.length);
+    gun.forEach((q, i) => { const p = pr(t, .6 + i*.15, 1 + i*.15), bx = g.m + i*(bw + gap); x.save(); x.globalAlpha = p; x.translate(0, (1 - p)*U*.08);
+      x.fillStyle = 'rgba(255,255,255,.14)'; rr(x, bx, by, bw, bh, U*.025); x.fill(); x.strokeStyle = 'rgba(255,255,255,.3)'; x.lineWidth = U*.003; x.stroke();
+      x.fillStyle = '#fff'; x.textAlign = 'center'; const gf = sigdir(x, TR(q.gun), s => `700 ${s}px Oswald`, bw*.88, bh*.16, 1, bh*.15, bh*.08, 1); x.fillText(gf.L[0] || '', bx + bw/2, by + bh*.18);
+      havaIkon(x, havaTur(q.dur), bx + bw/2, by + bh*.45, Math.min(bw*.62, bh*.4), t);
+      x.fillStyle = '#fff'; x.font = `400 ${bh*.22}px "Bebas Neue"`; x.fillText(q.max ? q.max + '°' : '', bx + bw/2, by + bh*.83);
+      if (q.min){ x.fillStyle = 'rgba(255,255,255,.72)'; x.font = `500 ${bh*.09}px Montserrat`; x.fillText(q.min + '°', bx + bw/2, by + bh*.95); } x.restore(); }); }
+  altyazi(x, W, H, t, (gun.length ? by : H - g.a) - spH - U*.03); };
+SABLON.push(['skor', 'Spor · skor tabelası'], ['hava', 'Hava durumu kartı']);
+TVSB.skor = {muzik:'gergin', gecis:'flas'}; TVSB.hava = {muzik:'sakin', gecis:'daire'};
+const MAD_IPUCU = {ozet:'Maddeler (her satır bir madde)', skor:'Skor — 1. satır: ev sahibi | gol · 2. satır: konuk | gol · 3. satır: durum (MAÇ SONUCU · lig) · 4. satır: goller (isteğe bağlı)', hava:'Hava — her satır: gün | durum | en yüksek | en düşük (ör. Bugün | Parçalı bulutlu | 22 | 14). İlk satır büyük gösterilir.'};
+
+/* ---------- şablon fotoğrafları (yer tutucu, cihazda çizilir) ---------- */
+const SB_RES = new Map();
+function sbResimTam(tur){ const DEMO = {koy:0, yol:1, findik:2, bahce:3, yagmur:4, kutuphane:5}; if (tur in DEMO) return demoResim(DEMO[tur]);
+  const W = 1600, H = 1200, c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d'); let s0 = 4242 + tur.length*131; const r = () => (s0 = (s0*16807) % 2147483647)/2147483647;
+  const lin = (x0, y0, x1, y1, a, b) => { const g = x.createLinearGradient(x0, y0, x1, y1); g.addColorStop(0, a); g.addColorStop(1, b); return g; };
+  const isik = (X, Y, R, renk) => { const g = x.createRadialGradient(X, Y, 0, X, Y, R); g.addColorStop(0, renk); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(X - R, Y - R, R*2, R*2); };
+  const daire = (X, Y, R) => { x.beginPath(); x.arc(X, Y, R, 0, 7); x.fill(); };
+  const tepe = (y0, amp, renk) => { x.fillStyle = renk; x.beginPath(); x.moveTo(0, H); for (let i = 0; i <= 64; i++){ const u = i/64; x.lineTo(u*W, y0 + Math.sin(u*6.3 + y0)*amp*.5 + Math.sin(u*2.1)*amp); } x.lineTo(W, H); x.fill(); };
+  if (tur === 'merkez'){ x.fillStyle = lin(0, 0, 0, H, '#0e1d33', '#04060b'); x.fillRect(0, 0, W, H); const gx = W*.66, gy = H*.52, R = H*.42; isik(gx, gy, R*1.5, 'rgba(40,110,220,.38)');
+    x.strokeStyle = 'rgba(120,180,255,.38)'; x.lineWidth = 2; x.beginPath(); x.arc(gx, gy, R, 0, 7); x.stroke();
+    for (let i = -3; i <= 3; i++){ const f = i*Math.PI/8, cr = Math.cos(f); x.beginPath(); x.ellipse(gx, gy + R*Math.sin(f), R*cr, R*cr*.16, 0, 0, 7); x.stroke(); }
+    for (let i = 1; i < 8; i++){ x.beginPath(); x.ellipse(gx, gy, Math.abs(R*Math.cos(i*Math.PI/8)), R, 0, 0, 7); x.stroke(); }
+    for (let i = 0; i < 320; i++){ const a = r()*7, d = Math.sqrt(r())*R*.96; x.fillStyle = `rgba(150,205,255,${.25 + r()*.55})`; daire(gx + Math.cos(a)*d, gy + Math.sin(a)*d, 1.5 + r()*3); }
+    x.save(); x.translate(W*.3, H*.5); x.rotate(-.38); for (let i = 0; i < 5; i++){ x.fillStyle = lin(-W, 0, W, 0, 'rgba(215,25,31,0)', `rgba(215,25,31,${.25 + r()*.3})`); x.fillRect(-W, -H*.5 + i*H*.24 + r()*40, W*2, 14 + r()*50); } x.restore();
+    x.fillStyle = 'rgba(255,255,255,.04)'; for (let y = 0; y < H; y += 6) x.fillRect(0, y, W, 1); }
+  else if (tur === 'stad'){ x.fillStyle = lin(0, 0, 0, H*.5, '#06102a', '#1c2f58'); x.fillRect(0, 0, W, H);
+    [.1, .36, .64, .9].forEach(u => { isik(W*u, H*.07, 300, 'rgba(255,255,225,.55)'); x.fillStyle = '#fffbe6'; for (let i = 0; i < 4; i++) for (let j = 0; j < 2; j++) x.fillRect(W*u - 46 + i*24, H*.05 + j*20, 18, 14); });
+    x.fillStyle = '#161b26'; x.fillRect(0, H*.24, W, H*.24); const CR = ['#d7191f', '#ffffff', '#1f6fd1', '#ffd400', '#3a4150', '#00897b'];
+    for (let i = 0; i < 2600; i++){ x.fillStyle = CR[Math.floor(r()*CR.length)]; x.globalAlpha = .45 + r()*.4; x.fillRect(r()*W, H*.25 + r()*H*.21, 4, 5); } x.globalAlpha = 1;
+    for (let i = 0; i < 8; i++){ x.fillStyle = i % 2 ? '#d7191f' : '#0b2a5b'; x.fillRect(i*W/8, H*.46, W/8, H*.03); }
+    const y0 = H*.49; x.save(); x.beginPath(); x.moveTo(W*.04, y0); x.lineTo(W*.96, y0); x.lineTo(W*1.4, H); x.lineTo(-W*.4, H); x.closePath(); x.clip();
+    for (let i = 0; i < 14; i++){ const a = y0 + (H - y0)*Math.pow(i/14, 1.5), b = y0 + (H - y0)*Math.pow((i + 1)/14, 1.5); x.fillStyle = i % 2 ? '#2f8f3c' : '#287f34'; x.fillRect(0, a, W, b - a + 1); }
+    x.restore(); x.strokeStyle = 'rgba(255,255,255,.85)'; x.lineWidth = 5; x.beginPath(); x.moveTo(W*.07, y0 + 12); x.lineTo(W*.93, y0 + 12); x.stroke(); x.beginPath(); x.moveTo(W*.5, y0 + 12); x.lineTo(W*.5, H); x.stroke();
+    x.beginPath(); x.ellipse(W*.5, H*.74, 250, 78, 0, 0, 7); x.stroke(); x.fillStyle = '#fff'; daire(W*.5, H*.74, 7);
+    const v = x.createRadialGradient(W/2, H*.6, H*.3, W/2, H*.6, H); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.55)'); x.fillStyle = v; x.fillRect(0, 0, W, H); }
+  else if (tur === 'gunes'){ x.fillStyle = lin(0, 0, 0, H*.65, '#2a82db', '#cfeaff'); x.fillRect(0, 0, W, H); isik(W*.74, H*.2, 460, 'rgba(255,244,190,.9)'); x.fillStyle = '#fffbe3'; daire(W*.74, H*.2, 72);
+    for (let i = 0; i < 7; i++){ const X = r()*W, Y = H*.1 + r()*H*.3, s = 60 + r()*70; x.fillStyle = 'rgba(255,255,255,.92)'; [[-1, .2, .8], [0, 0, 1], [1, .15, .85], [.5, .35, .7], [-.5, .35, .7]].forEach(([a, b, c]) => { x.beginPath(); x.ellipse(X + a*s, Y + b*s, s*c, s*c*.7, 0, 0, 7); x.fill(); }); }
+    x.fillStyle = lin(0, H*.6, 0, H*.74, '#2a7fc0', '#17558a'); x.fillRect(0, H*.6, W, H*.14); x.fillStyle = 'rgba(255,255,255,.55)'; for (let i = 0; i < 90; i++){ const X = W*.74 + (r() - .5)*W*.4, Y = H*.61 + r()*H*.12; x.fillRect(X, Y, 20 + r()*50, 3); }
+    tepe(H*.68, 40, '#4f8a45'); tepe(H*.8, 30, '#3a7334'); tepe(H*.92, 18, '#2c5e29'); }
+  else if (tur === 'studyo'){ x.fillStyle = lin(0, 0, 0, H, '#111a33', '#05070d'); x.fillRect(0, 0, W, H); const BK = ['255,179,71', '74,163,255', '255,90,140', '255,235,190'];
+    for (let i = 0; i < 46; i++){ const X = r()*W, Y = r()*H*.7, R = 30 + r()*110; isik(X, Y, R, `rgba(${BK[Math.floor(r()*4)]},${.12 + r()*.25})`); }
+    x.fillStyle = lin(0, H*.72, 0, H, '#2b2f38', '#0f1115'); x.fillRect(0, H*.72, W, H*.28); x.fillStyle = 'rgba(255,255,255,.12)'; x.fillRect(0, H*.72, W, 4);
+    const mx = W*.7; x.strokeStyle = '#2a2d33'; x.lineWidth = 16; x.beginPath(); x.moveTo(mx - 120, H*.74); x.lineTo(mx, H*.48); x.stroke(); x.fillStyle = '#1b1d22'; x.beginPath(); x.ellipse(mx - 120, H*.745, 90, 16, 0, 0, 7); x.fill();
+    x.save(); x.translate(mx + 10, H*.36); x.rotate(.25); x.fillStyle = lin(-60, 0, 60, 0, '#3a3e46', '#14161a'); rr(x, -58, -110, 116, 200, 56); x.fill(); x.strokeStyle = 'rgba(255,255,255,.18)'; x.lineWidth = 3; for (let i = -90; i < 10; i += 14){ x.beginPath(); x.moveTo(-50, i); x.lineTo(50, i); x.stroke(); }
+    x.fillStyle = '#d7191f'; x.fillRect(-58, 18, 116, 22); x.restore(); isik(mx, H*.3, 260, 'rgba(255,255,255,.06)'); }
+  else if (tur === 'kutlama'){ x.fillStyle = lin(0, 0, W, H, '#2a0a4a', '#c2185b'); x.fillRect(0, 0, W, H);
+    for (let i = 0; i < 3; i++){ x.fillStyle = 'rgba(255,255,255,.07)'; x.beginPath(); x.moveTo(W*(.2 + i*.3), 0); x.lineTo(W*(.05 + i*.3), H); x.lineTo(W*(.38 + i*.3), H); x.fill(); }
+    for (let i = 0; i < 12; i++) isik(r()*W, r()*H, 40 + r()*90, 'rgba(255,230,160,.35)'); const KR = ['#ffd400', '#ffffff', '#00c2a8', '#ff5a00', '#5b9cff', '#ff3d7f'];
+    for (let i = 0; i < 300; i++){ x.save(); x.translate(r()*W, r()*H); x.rotate(r()*7); x.fillStyle = KR[Math.floor(r()*KR.length)]; x.globalAlpha = .6 + r()*.4; x.fillRect(-9, -4, 18 + r()*10, 8); x.restore(); }
+    x.lineWidth = 6; for (let i = 0; i < 9; i++){ x.strokeStyle = KR[i % KR.length]; x.globalAlpha = .7; x.beginPath(); const X = r()*W; x.moveTo(X, -20); x.bezierCurveTo(X + 120, H*.2, X - 120, H*.35, X + 60, H*.5); x.stroke(); } x.globalAlpha = 1; }
+  else if (tur === 'mum'){ x.fillStyle = '#0b0907'; x.fillRect(0, 0, W, H); isik(W*.5, H*.55, 760, 'rgba(255,165,60,.32)'); for (let i = 0; i < 30; i++) isik(r()*W, r()*H*.6, 20 + r()*60, `rgba(255,190,110,${.08 + r()*.16})`);
+    const mum = (X, s, al) => { x.globalAlpha = al; const bw = 90*s, bh = 420*s, top = H*.92 - bh; x.fillStyle = lin(X - bw/2, 0, X + bw/2, 0, '#e8dcc0', '#b9a780'); x.fillRect(X - bw/2, top, bw, bh); x.fillStyle = '#f3ead6'; x.beginPath(); x.ellipse(X, top, bw/2, bw*.16, 0, 0, 7); x.fill();
+      x.strokeStyle = '#2b2118'; x.lineWidth = 4*s; x.beginPath(); x.moveTo(X, top); x.lineTo(X, top - 22*s); x.stroke(); isik(X, top - 60*s, 190*s, 'rgba(255,200,90,.55)');
+      const f = x.createLinearGradient(0, top - 120*s, 0, top - 14*s); f.addColorStop(0, '#fff6c8'); f.addColorStop(1, '#ffb02e'); x.fillStyle = f; x.beginPath(); x.moveTo(X, top - 125*s); x.bezierCurveTo(X + 34*s, top - 70*s, X + 22*s, top - 16*s, X, top - 16*s); x.bezierCurveTo(X - 22*s, top - 16*s, X - 34*s, top - 70*s, X, top - 125*s); x.fill(); x.globalAlpha = 1; };
+    mum(W*.3, .7, .55); mum(W*.7, .75, .6); mum(W*.5, 1, 1); }
+  else { x.fillStyle = lin(0, 0, W, H, '#24303a', '#0b0f14'); x.fillRect(0, 0, W, H); }
+  return c; }
+function sbResimKucuk(tur){ if (SB_RES.has(tur)) return SB_RES.get(tur); const c = sbResimTam(tur), k = document.createElement('canvas'); k.width = 480; k.height = 360; k.getContext('2d').drawImage(c, 0, 0, 480, 360); c.width = 0; SB_RES.set(tur, k); return k; }
+async function sbResimBlob(tur){ const c = sbResimTam(tur), b = await canvasBlob(c); c.width = 0; return b; }
+
+/* ---------- hazır bölüm şablonları ---------- */
+const TV0 = {oran:'9:16', yer:'Kabataş', altBant:true, sfx:true, acilis:true, kapanis:true, spiker:true, altyazi:true, jenerik:true, muzikSes:35, bantMetin:'', konuLogo:true,
+  acilisMetin:'Kabataş Haber\'e hoş geldiniz.', kapanisMetin:'Kabataş Haber. Sıradan değil, sıladan haberler. Bizi takip etmeyi unutmayın.'};
+const SB = [
+ {k:'sondakika', ad:'Son dakika', ikon:'🔴', kisa:'Olay yeri · açıklama · CANLI', r:'merkez',
+  d:{sablon:'sondakika', etiket:'SON DAKİKA', muzik:'gergin', gecis:'glitch', bantStil:'kirmizi',
+   manset:'[Mahalle]\'de [olay] meydana geldi', spot:'[Kaç kişi / ne etkilendi]. Ekipler bölgede çalışmalarını sürdürüyor.',
+   metin:'Son dakika. [Mahalle]\'de [olay] meydana geldi. İlk belirlemelere göre [ayrıntı]. Ekipler bölgede çalışmalarını sürdürüyor. Gelişmeleri sizlere aktarmaya devam edeceğiz.',
+   bantMetin:'SON DAKİKA • [Mahalle]\'de [olay] • Ekipler bölgede • Gelişmeler Kabataş Haber\'de',
+   acilisMetin:'Kabataş Haber, son dakika.', aciklama:'🔴 SON DAKİKA | [Mahalle]\'de [olay]. Ayrıntılar ve gelişmeler için takipte kalın.', hashtag:'#sondakika #kabataş #ordu #kabataşhaber'},
+  sahneler:[{etiket:'SON DAKİKA', sablon:'flas', manset:'Ekipler olay yerinde', spot:'[Kurum] ekipleri kısa sürede bölgeye ulaştı.', metin:'[Kurum] ekipleri kısa sürede bölgeye ulaştı. Çalışmalar sürüyor.', r:'yol'},
+   {etiket:'GÜNDEM', sablon:'alinti', manset:'Yetkililerden ilk açıklama', spot:'"[Açıklamadan kısa ve çarpıcı bir cümle]"', kisi:'[Ad Soyad] · [Unvan]', metin:'[Unvan] [Ad Soyad], konuyla ilgili yaptığı açıklamada [açıklamanın özeti] dedi.', r:'merkez'}],
+  yazilar:[{t:'CANLI', s:'ana', ra:.2, rb:6, stil:'canli', konum:'ust'}, {t:'[Muhabir adı]\nKabataş Haber', s:'ana', ra:1.4, rb:5.5, stil:'alt', konum:'ust'}]},
+ {k:'sicak', ad:'Sıcak gelişme', ikon:'🔥', kisa:'Büyük manşet · saat saat · son durum', r:'merkez',
+  d:{sablon:'tabloid', etiket:'SICAK GELİŞME', muzik:'gergin', gecis:'flas', bantStil:'turuncu',
+   manset:'[Konu]\'da sıcak gelişme', spot:'[Gelişmenin bir cümlelik özeti].',
+   metin:'[Konu] ile ilgili sıcak bir gelişme yaşandı. [Gelişmenin özeti]. Saat saat yaşananları derledik.',
+   aciklama:'🔥 SICAK GELİŞME | [Konu]: [kısa özet]. Saat saat yaşananlar haberimizde.', hashtag:'#sıcakgelişme #kabataş #ordu #kabataşhaber'},
+  sahneler:[{etiket:'GÜNDEM', sablon:'ozet', manset:'Saat saat neler oldu?', maddeler:'[Saat] — [İlk gelişme]\n[Saat] — [İkinci gelişme]\n[Saat] — [Son durum]', metin:'Saat [saat] sularında [ilk gelişme]. Ardından [ikinci gelişme]. Son durumda ise [son durum].', r:'merkez'},
+   {etiket:'SICAK GELİŞME', sablon:'modern', manset:'Son durum: [özet]', spot:'[Yetkililer / vatandaşlar ne diyor, bundan sonra ne olacak?]', metin:'Son duruma göre [özet]. [Bundan sonra beklenen].', r:'koy'}],
+  yazilar:[{t:'SON DURUM', s:1, ra:.4, rb:3.4, stil:'etiket', konum:'ust'}]},
+ {k:'spor', ad:'Spor · maç sonucu', ikon:'⚽', kisa:'Skor tabelası · gol · puan durumu', r:'stad',
+  d:{sablon:'skor', etiket:'SPOR', muzik:'gergin', gecis:'flas', bantStil:'lacivert',
+   maddeler:'[EV SAHİBİ] | [2]\n[KONUK] | [1]\nMAÇ SONUCU · [Lig adı]\nGoller: [Oyuncu] [12\'], [Oyuncu] [67\']',
+   manset:'[Takım] sahadan galibiyetle ayrıldı', spot:'[Lig]\'in [hafta]. haftasında oynanan karşılaşma [skor] sona erdi.',
+   metin:'[Lig]\'in [hafta]. haftasında [ev sahibi] ile [konuk] karşı karşıya geldi. Mücadeleyi [kazanan takım] [skor] kazandı. Gollerde [oyuncular] imzası vardı.',
+   bantMetin:'MAÇ SONUCU • [Ev sahibi] [skor] [Konuk] • Puan durumu ve sıradaki maç haberimizde',
+   acilisMetin:'Kabataş Haber spor bülteni.', aciklama:'⚽ MAÇ SONUCU | [Ev sahibi] [skor] [Konuk]. Gol anları ve puan durumu videomuzda.', hashtag:'#spor #kabataşspor #kabataş #ordu #amatörfutbol'},
+  sahneler:[{etiket:'SPOR', sablon:'tabloid', manset:'[Oyuncu]\'dan [dakika]. dakikada müthiş gol', spot:'', metin:'Maçın en güzel anı [dakika]. dakikada geldi. [Oyuncu] [golün kısa anlatımı].', r:'stad'},
+   {etiket:'SPOR', sablon:'ozet', manset:'Puan durumunda son tablo', maddeler:'1. [Takım] — [puan] puan\n2. [Takım] — [puan] puan\n3. [Takım] — [puan] puan\n4. [Takım] — [puan] puan', metin:'Bu sonucun ardından [takım] puanını [puan]\'a yükseltti ve [sıra]. sıraya yerleşti.', r:'stad'},
+   {etiket:'SPOR', sablon:'modern', manset:'Sıradaki maç: [rakip]', spot:'[Gün] [saat]\'te [saha]\'da oynanacak karşılaşmaya tüm taraftarlar davetli.', metin:'Takımın bir sonraki rakibi [rakip]. Karşılaşma [gün] saat [saat]\'te [saha]\'da oynanacak.', r:'stad'}],
+  yazilar:[{t:'GOOOL!', s:0, ra:.4, rb:2.4, stil:'buyuk', konum:'orta'}]},
+ {k:'hava', ad:'Hava durumu', ikon:'☀️', kisa:'Bugün + 4 gün · ikonlu kart · uyarı', r:'gunes',
+  d:{sablon:'hava', etiket:'HAVA DURUMU', muzik:'sakin', gecis:'daire', bantStil:'lacivert', sfx:false,
+   maddeler:'Bugün | [Güneşli] | [22] | [14]\n[Cumartesi] | [Parçalı bulutlu] | [20] | [13]\n[Pazar] | [Sağanak yağışlı] | [17] | [12]\n[Pazartesi] | [Bulutlu] | [18] | [12]\n[Salı] | [Güneşli] | [21] | [13]',
+   manset:'Hafta sonu [güneşli] ve [ılık]', spot:'Kıyıda [durum], yaylalarda [durum] bekleniyor.',
+   metin:'Kabataş\'ta bugün hava [güneşli], en yüksek sıcaklık [22] derece. Hafta sonu [parçalı bulutlu] bir hava bekleniyor, pazar günü [sağanak geçişleri] görülebilir. Yayla yolculuğu planlayanların hava durumunu takip etmesi öneriliyor.',
+   bantMetin:'HAVA DURUMU • Bugün [22]° [güneşli] • Hafta sonu [parçalı bulutlu] • Kaynak: Meteoroloji',
+   acilisMetin:'Kabataş Haber hava durumu.', aciklama:'☀️ HAVA DURUMU | Kabataş\'ta bugün [22]°. Hafta sonu [özet]. Günlük tahmin videomuzda.', hashtag:'#havadurumu #kabataş #ordu #karadeniz #yayla'},
+  sahneler:[{etiket:'HAVA DURUMU', sablon:'hava', manset:'Yarın gün boyu [durum]', maddeler:'Yarın | [Parçalı bulutlu] | [20] | [13]\nSabah | [Güneşli] | [16]\nÖğle | [Parçalı bulutlu] | [20]\nAkşam | [Bulutlu] | [15]', metin:'Yarın sabah [güneşli] başlayacak hava, öğleden sonra [parçalı bulutlu] olacak. Akşam saatlerinde sıcaklık [15] dereceye düşecek.', r:'gunes'},
+   {etiket:'UYARI', sablon:'renkli', manset:'UYARI\n[Pazar] günü *[kuvvetli sağanak]*\nDere yataklarından uzak durun', ms:[{bg:'#e3a000', ink:'#111', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}, {bg:'#111111', ink:'#fff', boy:'o'}], spot:'Meteoroloji [bölge] için [sarı] uyarı yaptı.', metin:'Meteoroloji, [pazar] günü için [kuvvetli sağanak] uyarısı yaptı. Dere yataklarından uzak durulması ve tedbirli olunması öneriliyor.', r:'yagmur'}]},
+ {k:'roportaj', ad:'Röportaj', ikon:'🎙️', kisa:'Konuk · 3 soru-cevap · alıntı kartları', r:'studyo',
+  d:{sablon:'alinti', etiket:'RÖPORTAJ', muzik:'sakin', gecis:'panjur', bantStil:'beyaz', sfx:false,
+   kisi:'[Ad Soyad]', manset:'[Ad Soyad]: [konu] üzerine konuştuk', spot:'"[Röportajdan en çarpıcı cümle]"',
+   metin:'Bu bölümde [unvan] [Ad Soyad] ile [konu] üzerine konuştuk. [Ad Soyad], [kısa tanıtım].',
+   bantMetin:'RÖPORTAJ • [Ad Soyad] • [Unvan] • Tamamı Kabataş Haber\'de',
+   acilisMetin:'Kabataş Haber röportaj.', aciklama:'🎙️ RÖPORTAJ | [Ad Soyad] ile [konu] üzerine konuştuk. "[Çarpıcı cümle]"', hashtag:'#röportaj #kabataş #ordu #kabataşhaber'},
+  sahneler:['Birinci', 'İkinci', 'Üçüncü'].map(n => ({etiket:'RÖPORTAJ', sablon:'alinti', kisi:'[Ad Soyad]', manset:`[${n} soru]?`, spot:`"[${n} cevaptan en önemli cümle]"`, metin:`[${n} soru]? [Ad Soyad] bu soruyu şöyle yanıtladı: [cevabın özeti].`, r:'studyo'})),
+  yazilar:[{t:'[Ad Soyad]\n[Unvan / görevi]', s:'ana', ra:1, rb:6, stil:'alt', konum:'ust'}, {t:'SORU 1', s:0, ra:.3, rb:3, stil:'etiket', konum:'ust'}, {t:'SORU 2', s:1, ra:.3, rb:3, stil:'etiket', konum:'ust'}, {t:'SORU 3', s:2, ra:.3, rb:3, stil:'etiket', konum:'ust'}]},
+ {k:'gundem', ad:'Gündem · yerel haber', ikon:'📰', kisa:'TV bandı · ayrıntı · vatandaş sesi', r:'koy',
+  d:{sablon:'tv', etiket:'GÜNDEM', muzik:'kurumsal', gecis:'serit', bantStil:'kirmizi',
+   manset:'[Kurum / kişi] [ne yaptı]', spot:'[Nerede, ne zaman, kimler etkileniyor?]',
+   metin:'[Kurum] [ne yaptı]. [Nerede, ne zaman]. Çalışmanın [amacı / etkisi] olduğu belirtildi.',
+   aciklama:'📰 [Manşet]. Ayrıntılar haberimizde.', hashtag:'#gündem #kabataş #ordu #kabataşhaber'},
+  sahneler:[{etiket:'YEREL', sablon:'gazete', manset:'Ayrıntılar: [konu]', spot:'[Rakamlar, tarih, maliyet, süre gibi ayrıntılar].', metin:'[Ayrıntıları anlatan iki cümle].', r:'yol'},
+   {etiket:'GÜNDEM', sablon:'alinti', manset:'Vatandaş ne diyor?', spot:'"[Vatandaşın görüşü]"', kisi:'[Vatandaş adı] · [Mahalle]', metin:'Mahalle sakinlerinden [vatandaş adı], [görüşün özeti] dedi.', r:'koy'}]},
+ {k:'duyuru', ad:'Duyuru', ikon:'📣', kisa:'Tarih · yer · şartlar · son gün', r:'kutuphane',
+  d:{sablon:'ozet', etiket:'DUYURU', muzik:'kurumsal', gecis:'kaydir', bantStil:'lacivert', sfx:false,
+   manset:'[Etkinlik / başvuru] başlıyor', maddeler:'Tarih: [gün, saat]\nYer: [adres]\nKimler katılabilir: [şart]\nBilgi: [telefon / kurum]',
+   metin:'[Kurum] tarafından düzenlenen [etkinlik] [tarih] tarihinde [yer]\'de yapılacak. Ayrıntılı bilgi [kurum]\'dan alınabilir.',
+   aciklama:'📣 DUYURU | [Etkinlik] [tarih] tarihinde [yer]\'de. Son başvuru: [son gün].', hashtag:'#duyuru #kabataş #ordu #kabataşhaber'},
+  sahneler:[{etiket:'DUYURU', sablon:'renkli', manset:'UNUTMAYIN\nSon gün *[tarih]*\n[Başvuru yeri]', ms:[{bg:'#5b3fa0', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}, {bg:'#111111', ink:'#fff', boy:'o'}], spot:'', metin:'Unutmayın, son başvuru tarihi [tarih].', r:'kutuphane'}]},
+ {k:'uyari', ad:'Uyarı · kesinti', ikon:'⚠️', kisa:'Su / elektrik / yol · etkilenen yerler', r:'yol',
+  d:{sablon:'flas', etiket:'UYARI', muzik:'gergin', gecis:'glitch', bantStil:'sari',
+   manset:'[Mahalle]\'de [su / elektrik] kesintisi', spot:'[Gün] [saat]–[saat] arasında planlı çalışma yapılacak.',
+   metin:'[Kurum] açıklamasına göre [gün] günü saat [saat] ile [saat] arasında [mahalle]\'de [su / elektrik] kesintisi yapılacak. Vatandaşların tedbir alması isteniyor.',
+   bantMetin:'UYARI • [Mahalle]\'de [gün] [saat]–[saat] [su / elektrik] kesintisi',
+   aciklama:'⚠️ UYARI | [Mahalle]\'de [gün] [saat]–[saat] arası [su / elektrik] kesintisi. Lütfen paylaşın.', hashtag:'#uyarı #kesinti #kabataş #ordu'},
+  sahneler:[{etiket:'UYARI', sablon:'ozet', manset:'Etkilenecek yerler', maddeler:'[Mahalle / sokak]\n[Mahalle / sokak]\n[Mahalle / sokak]', metin:'Kesintiden [mahalleler] etkilenecek.', r:'yol'}]},
+ {k:'mujde', ad:'Müjde', ikon:'🎉', kisa:'Renkli manşet · yatırım · hizmet', r:'koy',
+  d:{sablon:'renkli', etiket:'MÜJDE', muzik:'kurumsal', gecis:'daire', bantStil:'kirmizi',
+   manset:'MÜJDE\n[Yatırım / hizmet] *başlıyor*\n[Ne zaman]', ms:[{bg:'#1f8a4c', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}, {bg:'#111111', ink:'#fff', boy:'o'}],
+   spot:'[Kim duyurdu, kimler yararlanacak?]', metin:'Müjdeli haber. [Yatırım / hizmet] [ne zaman] başlıyor. [Kim] tarafından yapılan açıklamaya göre [ayrıntı].',
+   aciklama:'🎉 MÜJDE | [Yatırım / hizmet] [ne zaman] başlıyor!', hashtag:'#müjde #kabataş #ordu #kabataşhaber'},
+  sahneler:[{etiket:'MÜJDE', sablon:'modern', manset:'Neler değişecek?', spot:'[Yatırımın vatandaşa etkisi, maliyeti, süresi].', metin:'[Yatırımın etkisi]. Çalışmaların [süre] içinde tamamlanması bekleniyor.', r:'yol'}]},
+ {k:'hasat', ad:'Fındık · hasat', ikon:'🌰', kisa:'Hasat · güncel fiyatlar · üretici', r:'bahce',
+  d:{sablon:'sondakika', etiket:'HASAT', muzik:'sakin', gecis:'kaydir', bantStil:'turuncu',
+   manset:'Fındıkta [hasat / fiyat] gelişmesi', spot:'[Rekolte, kalite, alım durumu].',
+   metin:'Fındık bahçelerinde [hasat durumu]. Üreticiler [beklenti]. Güncel fiyatları derledik.',
+   bantMetin:'FINDIK • Levant [fiyat] TL • Giresun [fiyat] TL • TMO [fiyat] TL',
+   aciklama:'🌰 FINDIK | [Hasat / fiyat gelişmesi]. Güncel fiyatlar videomuzda.', hashtag:'#fındık #hasat #kabataş #ordu #karadeniz'},
+  sahneler:[{etiket:'HASAT', sablon:'ozet', manset:'Güncel fındık fiyatları', maddeler:'Levant kalite: [fiyat] TL\nGiresun kalite: [fiyat] TL\nTMO alım fiyatı: [fiyat] TL\nTarih: [gün]', metin:'Güncel fiyatlara göre Levant kalite fındık [fiyat] lira, Giresun kalite [fiyat] lira.', r:'findik'},
+   {etiket:'HASAT', sablon:'alinti', manset:'Üretici ne diyor?', spot:'"[Üreticinin görüşü]"', kisi:'[Üretici adı] · [Köy]', metin:'[Köy] köyünden üretici [ad], [görüşün özeti] dedi.', r:'bahce'}]},
+ {k:'tebrik', ad:'Tebrik · başarı', ikon:'🏆', kisa:'Büyük manşet · TEBRİKLER vurgusu', r:'kutlama',
+  d:{sablon:'tabloid', etiket:'TEBRİK', muzik:'kurumsal', gecis:'flas', bantStil:'beyaz',
+   manset:'[Ad Soyad] [başarı]', spot:'[Okul / kulüp] adına katıldığı [yarışma]da [derece] elde etti. Kendisini tebrik ediyoruz.',
+   metin:'[Okul / kulüp] öğrencisi [Ad Soyad], [yarışma]da [derece] elde etti. Hemşehrimizi tebrik ediyor, başarılarının devamını diliyoruz.',
+   aciklama:'🏆 TEBRİKLER | [Ad Soyad] [yarışma]da [derece]! Gurur duyduk.', hashtag:'#tebrikler #başarı #kabataş #ordu'},
+  sahneler:[], yazilar:[{t:'TEBRİKLER!', s:'ana', ra:.3, rb:2.4, stil:'buyuk', konum:'orta'}]},
+ {k:'anma', ad:'Anma · vefat', ikon:'🕯️', kisa:'Sade · müziksiz · gazete biçimi', r:'mum',
+  d:{sablon:'gazete', etiket:'ANMA', muzik:'yok', gecis:'kaydir', sfx:false, altBant:false, acilis:false, spiker:false,
+   manset:'[Ad Soyad] [anılıyor / hayatını kaybetti]', spot:'Hemşehrimiz [Ad Soyad] [tarih] tarihinde vefat etmiştir. Merhuma rahmet, ailesine ve yakınlarına başsağlığı dileriz.',
+   metin:'Hemşehrimiz [Ad Soyad], [tarih] tarihinde vefat etmiştir. Cenazesi [gün] günü [saat]\'te [yer]\'de toprağa verilecek. Merhuma rahmet, ailesine ve yakınlarına başsağlığı dileriz.',
+   kapanisMetin:'Kabataş Haber.', aciklama:'🕯️ Hemşehrimiz [Ad Soyad] vefat etmiştir. Merhuma rahmet, ailesine başsağlığı dileriz.', hashtag:'#kabataş #ordu #vefat'},
+  sahneler:[]},
+ {k:'ozel', ad:'Özel haber · dosya', ikon:'🔎', kisa:'Gazete · rakamlar · uzman · çözüm', r:'kutuphane',
+  d:{sablon:'gazete', etiket:'ÖZEL HABER', muzik:'kurumsal', gecis:'kaydir', bantStil:'lacivert',
+   manset:'[Konu]: [çarpıcı tespit]', spot:'Kabataş Haber olarak [konu]yu araştırdık. [Bulgunun kısa özeti].',
+   metin:'Kabataş Haber olarak [konu] konusunu araştırdık. [Bulgunun özeti]. Rakamlar, uzman görüşü ve çözüm önerileri haberimizde.',
+   aciklama:'🔎 ÖZEL HABER | [Konu]: [çarpıcı tespit]. Dosyanın tamamı videomuzda.', hashtag:'#özelhaber #kabataş #ordu #kabataşhaber'},
+  sahneler:[{etiket:'ÖZEL HABER', sablon:'ozet', manset:'Rakamlarla [konu]', maddeler:'[Rakam] — [ne anlama geliyor]\n[Rakam] — [ne anlama geliyor]\n[Rakam] — [ne anlama geliyor]', metin:'Rakamlara bakıldığında [özet].', r:'merkez'},
+   {etiket:'ÖZEL HABER', sablon:'alinti', manset:'Uzman görüşü', spot:'"[Uzmanın değerlendirmesi]"', kisi:'[Ad Soyad] · [Uzmanlık]', metin:'[Uzmanlık] [Ad Soyad], [değerlendirmenin özeti] dedi.', r:'studyo'},
+   {etiket:'ÖZEL HABER', sablon:'modern', manset:'Ne yapılmalı?', spot:'[Çözüm önerileri, yetkililerin yanıtı].', metin:'Çözüm için [öneriler].', r:'koy'}]},
+ {k:'bulten', ad:'Haftalık bülten', ikon:'🗞️', kisa:'Gündem + spor + hava + duyuru', r:'koy',
+  d:{sablon:'tv', etiket:'GÜNDEM', muzik:'kurumsal', gecis:'karisik', bantStil:'kirmizi',
+   manset:'Haftanın öne çıkanı: [başlık]', spot:'[Haftanın en önemli gelişmesi bir cümleyle].',
+   metin:'Kabataş\'ta bu hafta öne çıkan gelişme: [başlık]. [Kısa özet].',
+   acilisMetin:'Kabataş Haber\'e hoş geldiniz. İşte haftanın öne çıkan gelişmeleri.',
+   bantMetin:'[Başlık 1] • [Başlık 2] • [Başlık 3] • Hafta sonu [hava]',
+   aciklama:'🗞️ Kabataş\'ta bu hafta: [başlık 1], [başlık 2], [başlık 3] ve hafta sonu hava durumu.', hashtag:'#kabataş #ordu #kabataşhaber #haftalıkbülten'},
+  sahneler:[{etiket:'YEREL', sablon:'sondakika', manset:'[İkinci haber başlığı]', spot:'[Kısa özet].', metin:'[İkinci haberin iki cümlelik özeti].', r:'yol'},
+   {etiket:'SPOR', sablon:'skor', manset:'[Takım] haftayı [galibiyetle] kapattı', maddeler:'[EV SAHİBİ] | [2]\n[KONUK] | [1]\nMAÇ SONUCU', metin:'Sporda [ev sahibi] ile [konuk] karşılaşması [skor] sona erdi.', r:'stad'},
+   {etiket:'HAVA DURUMU', sablon:'hava', manset:'Hafta sonu [durum]', maddeler:'[Cuma] | [Parçalı bulutlu] | [19] | [12]\n[Cumartesi] | [Güneşli] | [21] | [13]\n[Pazar] | [Yağmurlu] | [17] | [12]', metin:'Hafta sonu [cumartesi güneşli, pazar yağmurlu] bir hava bekleniyor.', r:'gunes'},
+   {etiket:'DUYURU', sablon:'ozet', manset:'Bu haftanın duyuruları', maddeler:'[Duyuru 1]\n[Duyuru 2]\n[Duyuru 3]', metin:'Bu haftanın duyuruları: [duyurular].', r:'kutuphane'}]}
+];
+
+/* ---------- doldurulacak yerler ([köşeli parantez]) ---------- */
+const YER_RE = /\[[^\[\]\n]{1,60}\]/, YER_G = /\[[^\[\]\n]{1,60}\]/g;
+const YER_ANA = ['manset', 'spot', 'yer', 'kisi', 'maddeler', 'metin', 'aciklama', 'hashtag', 'bantMetin', 'acilisMetin', 'kapanisMetin'], YER_SH = ['manset', 'spot', 'kisi', 'maddeler', 'metin'];
+function yerSay(){ let n = 0; const say = v => { if (typeof v === 'string'){ const m = v.match(YER_G); if (m) n += m.length; } };
+  YER_ANA.forEach(k => say(D[k])); (D.sahneler || []).forEach(s => YER_SH.forEach(k => say(s[k]))); (D.yazilar || []).forEach(Y => say(Y.t)); return n; }
+function yerListe(){ const o = []; YER_ANA.forEach(k => { if (YER_RE.test(D[k] || '')) o.push({sel:'#kh_' + k}); });
+  (D.sahneler || []).forEach((s, i) => YER_SH.forEach(k => { if (YER_RE.test(s[k] || '')) o.push({sel:`#khSahneler [data-si="${i}"] [data-sk="${k}"]`}); }));
+  (D.yazilar || []).forEach(Y => { if (YER_RE.test(Y.t || '')) o.push({ey:Y.id}); }); return o; }
+function yerSec(el){ if (!el) return; try { el.focus({preventScroll:true}); } catch(e){ el.focus(); } const m = YER_RE.exec(el.value || ''); if (m && el.setSelectionRange) try { el.setSelectionRange(m.index, m.index + m[0].length); } catch(e){}
+  try { el.scrollIntoView({block:'center', behavior:'smooth'}); } catch(e){} }
+function yerGit(){ const L = yerListe(); if (!L.length){ tst('Doldurulacak yer kalmadı ✓'); yerGuncelle(); return; } const it = L[0];
+  if (it.ey){ TL.sel = 'ey:' + it.ey; try { aracGoster(); } catch(e){} setTimeout(() => yerSec($h('#khTlArac [data-ty="t"]')), 160); return; }
+  const el = $h(it.sel); if (!el){ tst('Alan bulunamadı'); return; } if (STUDYO && STUDYO.aktif()){ const b = STUDYO.bolum(el); if (b) STUDYO.ac(b, true); } setTimeout(() => yerSec(el), 90); }
+function yerGuncelle(){ const k = $h('#khYer'); if (!k) return; const n = yerSay(); k.hidden = !n; if (n) k.querySelector('span').innerHTML = `<b>${n}</b> doldurulacak yer var — <b>[köşeli parantezli]</b> kısımları kendi haberinle değiştir.`; }
+let yerT = 0; const yerSoon = () => { clearTimeout(yerT); yerT = setTimeout(yerGuncelle, 300); };
+
+/* ---------- uygula ---------- */
+const SB_ALAN = ['oran', 'sablon', 'etiket', 'manset', 'spot', 'yer', 'metin', 'kisi', 'maddeler', 'aciklama', 'hashtag', 'altyazi', 'jenerik', 'altBant', 'bantStil', 'bantMetin', 'muzik', 'muzikAd', 'muzikBas', 'muzikSes', 'sfx',
+  'acilis', 'kapanis', 'spiker', 'acilisMetin', 'kapanisMetin', 'gecis', 'tvOto', 'konuLogo', 'ms', 'anaSure', 'acilisSure', 'kapanisSure', 'gizManset', 'gizFoto', 'ekGizli'];
+const sbKendi = () => LSg('kh.sablonlar', []);
+const sbBul = k => SB.find(x => x.k === k) || sbKendi().find(x => x.k === k);
+async function sbUygula(k){ const T = sbBul(k); if (!T) return; const dolu = !D.ornek && !!(String(D.manset || '').trim() || FOTO || (D.sahneler || []).length);
+  const kendiFoto = !!(FOTO && $h('#khSbFoto') && $h('#khSbFoto').checked);
+  if (!confirm(`"${T.ad}" şablonu açılsın mı?` + (dolu ? '\nŞu anki çalışma "Taslaklar"a kaydedilir.' : '') + (kendiFoto ? '\nAna fotoğraf olarak şu anki fotoğrafın kullanılır.' : ''))) return;
+  const bz = (typeof busy === 'function') ? busy('Şablon hazırlanıyor…') : null;
+  try { durdur(); if (dolu){ try { await taslakSakla(); } catch(e){} }
+    const S = JSON.parse(JSON.stringify(T)); D = Object.assign(yeniD(), TV0, S.d || {}); ekDoldur(); ek2Doldur();
+    Object.assign(D, {sahneler:[], ekFoto:[], yazilar:[], fa:{}, ornek:false, sayi:M.sayi, sbl:T.k}); if (!S.d || !S.d.ms) D.ms = [];
+    if (D.muzik === 'dosya' && !(await IDB.get('muzikDosya'))) D.muzik = 'kurumsal';
+    { const v = $h('#khVidSonuc'); if (v){ v.hidden = true; const o = $h('#khVidOn'); try { o.pause(); o.removeAttribute('src'); o.load(); } catch(e){} } const n = $h('#khVidNot'); if (n) n.textContent = ''; }
+    if (kendiFoto){ yuzeOdakla(true); } else if (S.r){ FOTO_YUZ = null; await fotoYukle(await sbResimBlob(S.r)); } else await fotoYukle(null);
+    let i = 0; for (const s of (S.sahneler || [])){ const sc = Object.assign(yeniSahne(), s, {id:Date.now().toString(36) + (i++) + Math.random().toString(36).slice(2, 5), fid:null, ek:[]}); delete sc.r; if (s.r) await sahneFotoKoy(sc, await sbResimBlob(s.r)); D.sahneler.push(sc); }
+    D.yazilar = (S.yazilar || []).map((y, j) => { const sid = typeof y.s === 'number' ? (D.sahneler[y.s] || {}).id : y.s; const Y = {id:'s' + Date.now().toString(36) + j, t:y.t, a:y.a || 0, b:y.b || 0, stil:y.stil || 'kutu', konum:y.konum || 'ust'};
+      if (sid){ Y.sid = sid; Y.ra = y.ra || 0; Y.rb = y.rb || 3; } if (y.ox) Y.ox = y.ox; if (y.oy) Y.oy = y.oy; return Y; });
+    TL.sel = null; kaydet(); formDoldur(); try { sahneCiz(); } catch(e){} ciz(); try { await tlYenile(); TL.t = 0; } catch(e){} ciz();
+    if (STUDYO && STUDYO.aktif()) STUDYO.ac('haber', true); else { const ic = kok.querySelector('.kh-ic'); if (ic) ic.scrollTo({top:0, behavior:'smooth'}); }
+    { const cb = $h('#khSbFoto'); if (cb) cb.checked = kendiFoto; }
+    tst(`"${T.ad}" hazır · ` + (yerSay() ? 'köşeli parantezli yerleri doldur' : '"Sesli önizle" ile dinle')); }
+  catch(e){ console.warn(e); tst('Şablon açılamadı: ' + (e.message || e)); } finally { bz && bz.close(); } }
+function sbKendiKaydet(){ const ad = (prompt('Şablonun adı (ör. Pazar bülteni):', D.etiket ? TR(D.etiket) : 'Şablonum') || '').trim(); if (!ad) return;
+  const d = {}; SB_ALAN.forEach(k => { if (D[k] !== undefined) d[k] = JSON.parse(JSON.stringify(D[k])); });
+  const sah = (D.sahneler || []).map(s => ({etiket:s.etiket, sablon:s.sablon || '', manset:s.manset || '', spot:s.spot || '', metin:s.metin || '', maddeler:s.maddeler || '', kisi:s.kisi || '', sure:s.sure || 0}));
+  const yz = (D.yazilar || []).map(Y => { const si = (D.sahneler || []).findIndex(s => s.id === Y.sid); return {t:Y.t, s:si >= 0 ? si : (Y.sid || null), ra:Y.ra, rb:Y.rb, a:Y.a, b:Y.b, stil:Y.stil, konum:Y.konum, ox:Y.ox, oy:Y.oy}; });
+  let img = ''; try { const c = document.createElement('canvas'); kartCiz(c, Infinity, 8); const kk = document.createElement('canvas'); kk.width = 216; kk.height = Math.round(216*c.height/c.width); kk.getContext('2d').drawImage(c, 0, 0, kk.width, kk.height); c.width = 0; img = kk.toDataURL('image/jpeg', .72); } catch(e){}
+  const L = sbKendi(), T = {k:'u' + Date.now().toString(36), ad:ad.slice(0, 40), ikon:'⭐', kisa:`${sah.length + 1} haber · ${D.oran}${FOTO ? ' · fotoğrafsız saklanır' : ''}`, d, sahneler:sah, yazilar:yz, img, z:Date.now()};
+  L.unshift(T); if (L.length > 40) L.length = 40; try { localStorage.setItem('kh.sablonlar', JSON.stringify(L)); } catch(e){ tst('Saklanamadı: tarayıcı belleği dolu. Eski şablonlardan sil.'); return; }
+  sbCiz(); tst(`"${T.ad}" şablon olarak saklandı`); }
+function sbKendiSil(k){ const T = sbKendi().find(x => x.k === k); if (!T || !confirm(`"${T.ad}" şablonu silinsin mi?`)) return; LSs('kh.sablonlar', sbKendi().filter(x => x.k !== k)); sbCiz(); }
+
+/* ---------- galeri ---------- */
+const SB_ONIZ = new Map();
+function sbOnizle(T){ if (SB_ONIZ.has(T.k)) return SB_ONIZ.get(T.k); const eD = D, eF = FOTO, eG = GAL, eS = SES; let url = '';
+  try { const temiz = v => typeof v === 'string' ? v.replace(/\[([^\[\]\n]{1,60})\]/g, '$1') : v, d = {}; Object.entries(T.d || {}).forEach(([k, v]) => d[k] = temiz(v));
+    D = Object.assign(yeniD(), TV0, d, {sahneler:[], yazilar:[], ekFoto:[], fa:{}, ornek:false, gizFoto:false, gizManset:false}); ekDoldur(); ek2Doldur();
+    FOTO = T.r ? sbResimKucuk(T.r) : null; GAL = null; SES = null; const c = document.createElement('canvas'); kartCiz(c, Infinity, 8);
+    const k = document.createElement('canvas'); k.width = 216; k.height = Math.round(216*c.height/c.width); k.getContext('2d').drawImage(c, 0, 0, k.width, k.height); c.width = 0; url = k.toDataURL('image/jpeg', .8); }
+  catch(e){ console.warn('Şablon önizleme', e); } finally { D = eD; FOTO = eF; GAL = eG; SES = eS; } SB_ONIZ.set(T.k, url); return url; }
+const sbKart = (T, kendi) => { const [, c] = etk((T.d || {}).etiket); const n = (T.sahneler || []).length + 1;
+  return `<button type="button" class="kh-sbk" data-sbk="${esc(T.k)}" style="--sc:${c}" title="${esc(T.ad)}"><span class="kh-sbi"><img alt="" data-sbimg="${esc(T.k)}"${kendi && T.img ? ` src="${T.img}" class="ok"` : ''}><i aria-hidden="true">${T.ikon || '⭐'}</i></span>
+    <b>${esc(T.ad)}</b><small>${esc(T.kisa || '')}${kendi ? '' : ` · ${n} haber`}</small>${kendi ? `<i class="kh-sbsil" data-sbsil="${esc(T.k)}" title="Sil">✕</i>` : ''}</button>`; };
+let sbIs = 0;
+function sbCiz(){ const k = $h('#khSbl'); if (!k) return; const K = sbKendi();
+  k.innerHTML = `<p class="kh-n">Her bölüm için hazır <b>metin + video taslağı</b>: manşet, spot, seslendirme, paylaşım metni, hashtag, sahneler, ek yazılar, müzik, TV bandı ve geçişler. Dokun → açılır; <b>[köşeli parantezli]</b> yerleri kendi haberinle doldur. Şablonlar silinmez, her zaman burada.</p>
+    <label class="kh-ch" id="khSbFotoL"><input type="checkbox" id="khSbFoto"${D.sbl ? '' : ' checked'}> Şu anki fotoğrafım varsa onu ana fotoğraf yap (yoksa şablonun görseli kullanılır)</label>
+    <div class="kh-sbg">${SB.map(T => sbKart(T, false)).join('')}</div>
+    <div class="kh-ara">Kendi şablonlarım</div>${K.length ? `<div class="kh-sbg">${K.map(T => sbKart(T, true)).join('')}</div>` : '<p class="kh-n">Henüz yok. Bir haberi beğendiğin gibi kurunca (biçim, müzik, bant, sahne düzeni) aşağıdan şablon olarak sakla; fotoğraflar saklanmaz, yapı ve metinler kalır.</p>'}
+    <div class="kh-r"><button type="button" class="kh-b" id="khSbKaydet">💾 Bu işi şablon olarak sakla</button></div>`;
+  const is = ++sbIs; (async () => { try { if (document.fonts){ await Promise.all(['700 40px Oswald', '400 40px "Bebas Neue"', '700 40px Montserrat', '300 40px Montserrat', '700 40px "Playfair Display"', 'italic 400 40px "Playfair Display"', '500 40px Lora'].map(f => document.fonts.load(f).catch(() => null))); } } catch(e){}
+    for (const T of SB){ if (is !== sbIs || !kok) return; const im = k.querySelector(`[data-sbimg="${T.k}"]`); if (!im) continue; if (!SB_ONIZ.has(T.k)) await new Promise(r => setTimeout(r, 16)); const u = sbOnizle(T); if (u){ im.src = u; im.classList.add('ok'); } } })(); }
+
+/* ---------- sahne kartlarına biçim, maddeler ve söz sahibi ---------- */
+{ const _sc = sahneCiz; sahneCiz = function(){ _sc.apply(this, arguments); const k = $h('#khSahneler'); if (!k) return;
+    k.querySelectorAll('[data-si]').forEach(r => { const i = +r.dataset.si, s = (D.sahneler || [])[i], sp = r.querySelector('[data-sk="spot"]'); if (!s || !sp || r.querySelector('.kh-shx')) return; const cur = s.sablon || D.sablon;
+      sp.insertAdjacentHTML('afterend', `<div class="kh-shx"><select data-sk="sablon" aria-label="Sahnenin biçimi"><option value=""${s.sablon ? '' : ' selected'}>Biçim: ana haberle aynı</option>${SABLON.map(([k2, v]) => `<option value="${k2}"${s.sablon === k2 ? ' selected' : ''}>Biçim: ${esc(v)}</option>`).join('')}</select>
+        ${cur === 'alinti' ? `<input data-sk="kisi" placeholder="Söz sahibi (ad · unvan)" value="${esc(s.kisi || '')}">` : ''}
+        ${MAD_IPUCU[cur] ? `<textarea data-sk="maddeler" rows="3" placeholder="${esc(MAD_IPUCU[cur])}">${esc(s.maddeler || '')}</textarea>` : ''}</div>`); });
+    if (!k._sb67){ k._sb67 = 1; k.addEventListener('change', e => { if (e.target.dataset.sk === 'sablon'){ kaydet(); sahneCiz(); ciz(); try { tlYenileSoon(); } catch(_){} } }); k.addEventListener('input', yerSoon); } }; }
+
+/* ---------- arayüze bağla ---------- */
+{ const _kur = kur; kur = function(){ _kur.apply(this, arguments);
+    const hb = [...kok.querySelectorAll('.kh-pan > section.kh-s')].find(x => { const h = x.querySelector(':scope > h3'); return h && /Haber$/.test(h.textContent.trim()); });
+    if (hb){ const h3 = hb.querySelector(':scope > h3'); h3.insertAdjacentHTML('afterend', '<div class="kh-yer" id="khYer" hidden><span></span><button type="button" class="kh-b kh-mini p" id="khYerGit">Sıradaki boşluk ▸</button></div>'); }
+    const sb = $h('#khSbl'); if (sb) sb.addEventListener('click', e => { const s = e.target.closest('[data-sbsil]'); if (s){ e.stopPropagation(); sbKendiSil(s.dataset.sbsil); return; }
+      if (e.target.closest('#khSbKaydet')){ sbKendiKaydet(); return; } const b = e.target.closest('[data-sbk]'); if (b) sbUygula(b.dataset.sbk); });
+    kok.addEventListener('click', e => { if (e.target.closest('#khYerGit')) yerGit(); });
+    kok.addEventListener('input', yerSoon);
+    /* paylaşmadan / video yapmadan önce: doldurulmamış [yer] kaldıysa sor */
+    kok.addEventListener('click', e => { const b = e.target.closest('#khVid, #khPay, #khKay, #khMetKop'); if (!b) return; const n = yerSay(); if (!n) return;
+      if (!confirm(`${n} doldurulmamış [köşeli parantezli] yer var.\nYine de devam edilsin mi?\n\n"İptal" → ilk boşluğa gider.`)){ e.preventDefault(); e.stopImmediatePropagation(); yerGit(); } }, true);
+    sbCiz(); yerGuncelle(); }; }
+{ const _fd = formDoldur; formDoldur = function(){ _fd.apply(this, arguments); if (!kok) return;
+    const ta = $h('#kh_maddeler'), lb = ta && ta.closest('label'); if (lb && lb.firstChild && lb.firstChild.nodeType === 3) lb.firstChild.textContent = MAD_IPUCU[D.sablon] || 'Maddeler (madde madde şablonu, her satır bir madde)';
+    yerGuncelle(); }; }
+{ const _ty = taslakAc; taslakAc = async function(){ const r = await _ty.apply(this, arguments); yerGuncelle(); return r; }; }
+window.KabatasHaber.sablonlar = SB; window.KabatasHaber.sablonUygula = sbUygula;
+
 
 /* ---------- uygulamaya bağla: ana ekran kartı + düzenleyicide "Haber" sekmesi ---------- */
 try { const a = document.querySelector('#home .actions'); if (a && !document.getElementById('khAcBtn')){ const b = document.createElement('button'); b.type = 'button'; b.className = 'act kh-act'; b.id = 'khAcBtn';
