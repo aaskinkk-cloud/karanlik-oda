@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.11 · 16.10.2026
+**Güncel sürüm:** 6.12 · 16.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,13 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.12** (16.10.2026) – **Bloğum: kendi metinlerim, klavye, yeni "Yayına hazırla"**
+  - Giriş/uğurlama listesinde **✎ Kendi metnim**: kendi metnini yaz, *Kaydet ve seç* de, listede "Benim metinlerim" altında kalıcı olur (🗑 ile silinir). `[köşeli]` yerler doldurulmadıysa yayın kontrolü uyarır.
+  - Yazarken imleç klavyenin altında kalmaz: `visualViewport` ile sayfa kendiliğinden yukarı kayar (iOS'ta klavye yüksekliği kadar alt boşluk eklenir).
+  - **Yayına hazırla** yeniden tasarlandı: hazırlık puanı + sekmeler (Özet · Alıntı · Başlıklar · Etiket·SEO · Çıktı), her eksik için *Düzelt* düğmesi, altta sabit *HTML kodunu kopyala*, telefonda *Önizle* düğmesi.
+  - **Alıntı**: yazıdan 3 cümle önerilir, seçilen cümle geçtiği paragrafın altına Blogger `tr_bq` kutusu olarak girer (ya da kendi cümleni yaz).
+  - **Alt başlıklar yayında H2** olur (eskiden H3). Başlık adını panelden değiştir, paragraf seçip `＋ H2` ile başlık ekle. Başlık öncesi `<hr />` Çıktı sekmesinden kapatılabilir.
+  - Yeni kontroller: doldurulmamış `[köşeli]` yer, aynı cümlenin tekrarı.
 - **6.11** (16.10.2026) – **Bloğum: Uğurlama + sade giriş/uğurlama**
   - Yazının sonunda **🤝 Uğurlama** seçimi: 13 kapanış — Siz ne düşünüyorsunuz? · Beğendiniz mi? · Yeniden davet · Sizin tecrübeniz · Konu önerin · Kısa uğurlama · Okudunuz mu? (kitap) · Sizin memleketiniz (sıla) · Bayram · Buruk/anma · Bir dizesi kaldı mı? (şiir) · Sizin şarkınız (müzik) · Faydalı oldu mu? (bilgi). Ayrıca *Ayarlardaki imza* ve *Uğurlamasız*. Kategoriye uygunlar üstte, 🎲 rastgele.
   - Giriş ve uğurlama artık yazı gövdesinde **görünmez**: editörde yalnız soluk tek satır ("👋 Giriş: …", "🤝 Uğurlama: …"); dokununca liste açılır, seçince kapanır. Metinler HTML kopyasında ve önizlemede eklenir; **[favorite]** uğurlamanın son satırına gelir. 6.10'da gövdeye eklenmiş girişler açılışta gövdeden alınır (elle düzenlenmiş olanlar korunur).

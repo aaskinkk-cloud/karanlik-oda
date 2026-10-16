@@ -338,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.11 · 16.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.12 · 16.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -8739,6 +8739,37 @@ html.bl-acik,html.bl-acik body{overflow:hidden}
 @media(min-width:600px){.bl-arac{flex-wrap:wrap;overflow:visible}}
 @media(max-width:599px){.bl-arac{scrollbar-width:thin}.bl-arac::-webkit-scrollbar{display:block;height:4px}.bl-arac::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}}
 .bl-ug{margin:0 0 12px}.bl-govde+.bl-ug{margin:18px 0 0}
+/* 6.12 */
+.bl-sayfa{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px) + var(--kb,0px))}
+.bl-gsar{display:flex;gap:6px;align-items:stretch}.bl-gsar .bl-gk{flex:1;min-width:0}
+.bl-gx{flex:none;width:38px;border:1px solid var(--line);background:var(--surface-2);color:var(--muted);border-radius:10px;font-size:14px}
+.bl-gx:hover{border-color:var(--tl)}
+.bl-gyaz{display:grid;gap:8px;margin:0 0 10px}
+.bl-gyaz textarea{width:100%;border:1px solid var(--line);background:var(--surface-2);color:var(--text);border-radius:10px;padding:10px 12px;font:15px/1.55 "Literata",Georgia,serif}
+.bl-yp{display:grid;gap:12px;min-width:0;align-content:start}
+.bl-yh{display:flex;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.bl-yh h3{margin:0;font:600 18px "Literata",Georgia,serif}
+.bl-yh p{margin:2px 0 0;font:12.5px var(--f-ui);color:var(--muted)}
+.bl-ytab{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
+.bl-ytab button{flex:none;padding:11px 13px;color:var(--muted);font:600 13.5px var(--f-ui);white-space:nowrap;background:none;border:0;border-bottom:2px solid transparent}
+.bl-ytab button.on{color:var(--tl);border-bottom-color:var(--tl)}
+.bl-ckl{gap:0!important}.bl-ckl>div{align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}.bl-ckl>div:last-child{border:0}
+.bl-ckl .m{flex:1;min-width:0}
+.bl-ckl .i{width:20px;height:20px}
+.bl-fix{flex:none;padding:6px 11px;border-radius:99px;border:1px solid var(--tl);color:var(--tl);background:none;font:600 12.5px var(--f-ui)}
+.bl-q{display:block;width:100%;text-align:left;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);font:15px/1.5 "Literata",Georgia,serif}
+.bl-q.on{border-color:var(--tl);background:color-mix(in srgb,var(--tl) 12%,transparent)}
+.bl-q small{display:block;font:12px var(--f-ui);color:var(--muted);margin-top:4px}
+.bl-yp .tr_bq{border-left:4px solid #3aada8;background:color-mix(in srgb,#3aada8 9%,transparent);margin:0;padding:.8em 1.2em;font:italic 15px/1.6 "Literata",Georgia,serif;border-radius:0 10px 10px 0}
+.bl-hr{display:flex;gap:8px;align-items:center}.bl-hr i{width:3px;align-self:stretch;background:#4caf7a;border-radius:2px}
+.bl-hr input{flex:1;font:600 15px "Literata",Georgia,serif!important}
+.bl-pl{display:grid;gap:4px;max-height:300px;overflow:auto}
+.bl-pr{display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font:13px var(--f-ui)}.bl-pr span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}
+.bl-yact{position:sticky;bottom:0;display:flex;gap:8px;padding:10px 0 2px;background:linear-gradient(transparent,var(--bg) 30%);z-index:4}
+.bl-yact .p{flex:1;justify-content:center}
+@media (max-width:900px){.bl-onz-sar{display:none}.bl-onz-sar.ac{display:block;position:static}.bl-onz{height:60vh}}
+@media (min-width:901px){.bl-onztog{display:none}}
+
 .bl-ugc{border:0;background:none;color:var(--muted);font:500 12.5px var(--f-ui);padding:3px 0;cursor:pointer;opacity:.7}.bl-ugc b{font-weight:600}.bl-ugc i{font-style:normal}.bl-ugc:hover{opacity:1}
 .bl-ug.acik{border:1px solid var(--line);border-radius:12px;padding:6px 10px 10px;background:var(--surface)}.bl-ug.acik .bl-ugc{opacity:1}
 .bl-gust{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap}
@@ -8837,7 +8868,8 @@ function ciktiDuzen(y,secenek){let h=temizle(govdeGirisli(y));const d=document.c
   if(!DB.ayar.gom)d.querySelectorAll('img[src^="data:"]').forEach(im=>{im.replaceWith(document.createTextNode('[GÖRSEL: Blogger’da buraya görsel ekleyin]'))});
   const duz=[];[...d.querySelectorAll('p')].forEach(p=>{const v=document.createElement('div');[...p.attributes].forEach(a=>v.setAttribute(a.name,a.value));const st=v.getAttribute('style')||'';if(!/text-align/.test(st))v.setAttribute('style',(J+' '+st).trim());while(p.firstChild)v.appendChild(p.firstChild);p.replaceWith(v);if(!p.className)duz.push(v)});
   duz.forEach(v=>{const n=v.nextElementSibling;if(n&&duz.includes(n)){const b=document.createElement('div');b.innerHTML='<br />';v.after(b)}});
-  [...d.querySelectorAll('h2,h3')].forEach(x=>{let e=x;if(x.tagName==='H2'){e=document.createElement('h3');[...x.attributes].forEach(a=>e.setAttribute(a.name,a.value));e.innerHTML=x.innerHTML;x.replaceWith(e);const o=e.previousElementSibling;if(o&&o.tagName!=='HR')e.before(document.createElement('hr'))}if(!/text-align/.test(e.getAttribute('style')||''))e.setAttribute('style','text-align: left;'+(e.getAttribute('style')||''))});
+  alintiEkle(d,y);
+  [...d.querySelectorAll('h2,h3')].forEach(x=>{const e=document.createElement('h2');[...x.attributes].forEach(a=>e.setAttribute(a.name,a.value));e.innerHTML=x.innerHTML;x.replaceWith(e);if(DB.ayar.hrBas!==false){const o=e.previousElementSibling;if(o&&o.tagName!=='HR')e.before(document.createElement('hr'))}if(!/text-align/.test(e.getAttribute('style')||''))e.setAttribute('style','text-align: left;'+(e.getAttribute('style')||''))});
   const ku=KAPAK_URL(y),fav=DB.ayar.favori&&(ku||d.querySelector('img'))?'[favorite]':'',imzaVar=imzaParcalar(y).length>0;
   if(fav&&!imzaVar){const t=[...d.querySelectorAll('div,blockquote')].filter(e=>e.textContent.trim()).pop();if(t)t.insertAdjacentHTML('beforeend',fav);else d.insertAdjacentHTML('beforeend','<div>'+fav+'</div>')}
   h=d.innerHTML.replace(/<hr>/g,'<hr />').replace(/<br>/g,'<br />');
@@ -8850,7 +8882,7 @@ function cikti(y,secenek){secenek=secenek||{};if(DB.ayar.duzen)return ciktiDuzen
   d.querySelectorAll('[data-bl]').forEach(e=>e.removeAttribute('data-bl'));
   if(!secenek.sinifli){d.querySelectorAll('[class]').forEach(e=>{const ek=[];e.classList.forEach(c=>{if(INLINE[c])ek.push(INLINE[c])});if(ek.length){e.setAttribute('style',(ek.join(';')+';'+(e.getAttribute('style')||'')).replace(/;;+/g,';'))}})}
   if(!DB.ayar.gom)d.querySelectorAll('img[src^="data:"]').forEach(im=>{im.replaceWith(document.createTextNode('[GÖRSEL: Blogger’da buraya görsel ekleyin]'))});
-  h=d.innerHTML;
+  alintiEkle(d,y);h=d.innerHTML;
   if(y.kapak&&y.kapak.t==='i'&&y.kapak.v&&(DB.ayar.gom||!/^data:/.test(y.kapak.v)))h=`<img class="blog-kapak" src="${y.kapak.v}" alt="${esc(y.baslik)}"${secenek.sinifli?'':' style="'+INLINE['blog-kapak']+'"'}>\n`+h;
   if(y.spot)h=`<p style="font-size:1.12em;font-style:italic;color:#475a6c">${esc(y.spot)}</p>\n`+h;
   h+=imzaParcalar(y).map(t=>`\n<p class="blog-imza"${secenek.sinifli?'':' style="'+INLINE['blog-imza']+'"'}>${esc(t).replace(/\n/g,'<br>')}</p>`).join('');
@@ -8859,14 +8891,17 @@ function cikti(y,secenek){secenek=secenek||{};if(DB.ayar.duzen)return ciktiDuzen
 function onizlemeBelge(y){const et=String(y.etiket||'').split(',').map(s=>s.trim()).filter(Boolean).join(' · ');let ic=cikti(y),kahraman='';
   if(ic.includes('[favorite]')){ic=ic.split('[favorite]').join('');const m=/<img[^>]*src="([^"]+)"/.exec(ic);if(m){kahraman=`<div style="height:62vh;min-height:220px;background:#222 url('${m[1].replace(/'/g,'%27')}') center/cover;position:relative"><div style="position:absolute;inset:auto 0 0 0;padding:40px 20px 18px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font:600 26px/1.3 sans-serif">${esc(y.baslik||'')}</div></div>`;ic=ic.replace(/<a[^>]*>\s*<img[^>]*display:\s*none[^>]*>\s*<\/a>|<img[^>]*display:\s*none[^>]*>/,'')}}
   return `<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><style>body{margin:0;background:#eef3f3;font:17px/1.8 Georgia,serif;color:#333}img{max-width:100%;height:auto}${ONZ_CSS}</style><div style="background:#475a6c;color:#fff;padding:14px 20px;font:600 18px sans-serif">Ahmet Aşkın | kişisel blog</div>${kahraman}<div style="max-width:720px;margin:20px auto;background:#fff;padding:22px;border-radius:6px"><h1 style="font:600 28px/1.3 sans-serif;color:#475a6c;margin:0 0 6px">${esc(y.baslik||'(başlıksız)')}</h1><div style="font:13px sans-serif;color:#889;margin-bottom:16px">AHMET AŞKIN · ${new Date().toLocaleDateString('tr')}${et?' · '+esc(et):''}</div>${ic}</div>`}
-function seoKontrol(y){const k=[],w=kelime(y.html),d=document.createElement('div');d.innerHTML=y.html||'';const tl=(y.baslik||'').length,al=(y.aciklama||'').length;
-  k.push([tl>=20&&tl<=70?2:tl?1:0,`Başlık ${tl} karakter`+(tl>70?' — 70’i aşmasın':tl<20?' — biraz daha açıklayıcı olsun':'')]);
-  k.push([w>=600?2:w>=300?1:0,`${w} kelime`+(w<300?' — en az 300 önerilir':w<600?' — 600+ arama motorlarında daha iyi':'')]);
-  k.push([d.querySelectorAll('h2,h3').length>=2?2:d.querySelectorAll('h2,h3').length?1:0,`${d.querySelectorAll('h2,h3').length} ara başlık`]);
-  k.push([al>=110&&al<=160?2:al?1:0,`Arama açıklaması ${al} karakter`+(al?'':' — yaz (Blogger’da “Arama açıklaması”)')]);
-  k.push([String(y.etiket||'').split(',').filter(s=>s.trim()).length>=2?2:y.etiket?1:0,'Etiketler']);
-  const imgs=d.querySelectorAll('img'),altsiz=[...imgs].filter(i=>!i.getAttribute('alt')).length;k.push([imgs.length||(y.kapak&&y.kapak.t==='i')?(altsiz?1:2):1,imgs.length||(y.kapak&&y.kapak.t==='i')?(altsiz?altsiz+' görselin alt metni yok':'Görseller tamam'):'Görsel yok — kapak görseli paylaşımda öne çıkar']);
-  const ilk=metin(y.html).slice(0,200).toLocaleLowerCase('tr'),ana=(y.baslik||'').toLocaleLowerCase('tr').split(/\s+/).filter(x=>x.length>4)[0];k.push([ana&&ilk.includes(ana)?2:1,ana?(ilk.includes(ana)?'Başlıktaki kelime ilk paragrafta geçiyor':'Başlıktaki “'+ana+'” ilk paragrafta geçmiyor'):'Anahtar kelime']);
+function seoKontrol(y){const k=[],w=kelime(y.html),d=document.createElement('div');d.innerHTML=y.html||'';const tl=(y.baslik||'').length,al=(y.aciklama||'').length,nh=d.querySelectorAll('h2,h3').length;
+  k.push([tl>=20&&tl<=70?2:tl?1:0,`Başlık ${tl} karakter`+(tl>70?' — 70’i aşmasın':tl<20?' — biraz daha açıklayıcı olsun':''),'yaz']);
+  k.push([w>=600?2:w>=300?1:0,`${w} kelime`+(w<300?' — en az 300 önerilir':w<600?' — 600+ arama motorlarında daha iyi':''),'yaz']);
+  k.push([nh>=2?2:nh?1:0,`${nh} ara başlık`+(nh<2?' — yayında H2 olur, okumayı kolaylaştırır':''),'h']);
+  k.push([y.alinti?2:1,y.alinti?'Alıntı kutusu seçildi':'Alıntı seçilmedi — yazından öneri hazırladım','q']);
+  k.push([al>=110&&al<=160?2:al?1:0,`Arama açıklaması ${al} karakter`+(al?'':' — yaz (Blogger’da “Arama açıklaması”)'),'e']);
+  k.push([String(y.etiket||'').split(',').filter(s=>s.trim()).length>=2?2:y.etiket?1:0,'Etiketler','e']);
+  const imgs=d.querySelectorAll('img'),altsiz=[...imgs].filter(i=>!i.getAttribute('alt')).length;k.push([imgs.length||(y.kapak&&y.kapak.t==='i')?(altsiz?1:2):1,imgs.length||(y.kapak&&y.kapak.t==='i')?(altsiz?altsiz+' görselin alt metni yok':'Görseller tamam'):'Görsel yok — kapak görseli paylaşımda öne çıkar','e']);
+  const ilk=metin(y.html).slice(0,200).toLocaleLowerCase('tr'),ana=(y.baslik||'').toLocaleLowerCase('tr').split(/\s+/).filter(x=>x.length>4)[0];k.push([ana&&ilk.includes(ana)?2:1,ana?(ilk.includes(ana)?'Başlıktaki kelime ilk paragrafta geçiyor':'Başlıktaki “'+ana+'” ilk paragrafta geçmiyor'):'Anahtar kelime','yaz']);
+  const bos=bosYerler(y);k.push([bos.length?0:2,bos.length?'Doldurulmamış yer: '+bos.slice(0,3).join(' '):'Boş [köşeli] yer yok','yaz']);
+  const tk=tekrarlar(y);k.push([tk.length?1:2,tk.length?'Aynı cümle iki kez geçiyor: “'+tk[0].slice(0,50)+'…”':'Tekrar eden cümle yok','yaz']);
   const p=Math.round(k.reduce((a,x)=>a+x[0],0)/(k.length*2)*100);return{k,p}}
 
 /* ---------------- durum ---------------- */
@@ -8921,7 +8956,7 @@ const GIRIS=[
  {k:'bilgi',ad:'Faydalı bir konu',ik:'💡',kat:['bilgi'],p:['Aziz misafirlerim ve sevgili blogdaşlarım... Bu defa faydalı olacağını düşündüğüm bir konuyla huzurlarınızdayım. Hepinizi sevgiyle selamlıyorum...','Kendi tecrübelerimden ve araştırmalarımdan derlediklerimi, mümkün olduğunca sade bir dille aktarmaya çalışacağım.']}
 ];
 const gNorm=t=>String(t||'').replace(/\s+/g,' ').trim();
-function girisHtml(k){const G=GIRIS.find(x=>x.k===k)||GIRIS[0];return G.p.map((t,i)=>`<p data-bl="giris">${i?esc(t):'<span class="dropcap">'+esc(t[0])+'</span>'+esc(t.slice(1))}</p>`).join('')}
+function girisHtml(k){const G=ugListe('giris').find(x=>x.k===k)||GIRIS[0];return G.p.map((t,i)=>`<p data-bl="giris">${i?esc(t):'<span class="dropcap">'+esc(t[0])+'</span>'+esc(t.slice(1))}</p>`).join('')}
 function girisSirala(y){const u=GIRIS.filter(g=>g.kat.includes(y.kat)),d=GIRIS.filter(g=>!g.kat.includes(y.kat));return{u,d}}
 const KAPANIS=[
  {k:'soru',ad:'Siz ne düşünüyorsunuz?',ik:'💬',kat:['deneme','edebi','gunluk','diger'],p:['Yazacak daha çok şey olabilir; sözü uzatmadan burada noktalayalım. Peki siz ne düşünüyorsunuz? Bu başlıklardan hangisi size dokundu, hangisine itirazınız var? Yorumlarınızı merakla bekliyorum.','Bir sonraki yazıda buluşmak umuduyla; hususi dünyanızın hamisi bloğunuzu da iadeyi ziyarette bulunma vaadiyle, hoşça kalın, esen kalın...']},
@@ -8940,18 +8975,28 @@ const KAPANIS=[
 ];
 /* 6.11 · giriş ve uğurlama yazı gövdesinde görünmez: seçim saklanır, kopyada ve önizlemede eklenir */
 function govdeGirisli(y){let b=y.html||'';if(y.giris&&!/data-bl="giris"/.test(b))b=girisHtml(y.giris)+b.replace(/<span class="dropcap">([^<]*)<\/span>/g,'$1');return b}
-function imzaParcalar(y){const K=KAPANIS.find(x=>x.k===y.kapanis);if(K)return K.p;return y.imza&&DB.ayar.imza?[DB.ayar.imza]:[]}
+function imzaParcalar(y){const K=ugListe('kapanis').find(x=>x.k===y.kapanis);if(K)return K.p;return y.imza&&DB.ayar.imza?[DB.ayar.imza]:[]}
 function govdeGirisTemizle(y){if(!/data-bl="giris"/.test(y.html||''))return;const d=document.createElement('div');d.innerHTML=y.html;const M=(y.girisMetin||[]).map(gNorm);d.querySelectorAll('[data-bl="giris"]').forEach(e=>{if(M.includes(gNorm(e.textContent)))e.remove();else e.removeAttribute('data-bl')});y.html=d.innerHTML;y.girisMetin=null}
 const ugOzet=g=>g.p[0].replace(/^Aziz misafirlerim,? (ve )?sevgili blogdaşlarım\.\.\.\s*/,'').slice(0,85)+'…';
-function ugPanel(y,tur){const gi=tur==='giris',L=gi?GIRIS:KAPANIS,sec=gi?y.giris:y.kapanis,G=L.find(x=>x.k===sec),ac=S.ugAc===tur;
-  const ad=G?G.ik+' '+G.ad:gi?'yok':(y.imza&&DB.ayar.imza?'✍️ Ayarlardaki imza':'yok'),u=L.filter(g=>g.kat.includes(y.kat)),d=L.filter(g=>!g.kat.includes(y.kat));
+function ugListe(tur){return (tur==='giris'?GIRIS:KAPANIS).concat((DB.ayar.ozel&&DB.ayar.ozel[tur])||[])}
+function htmlDom(y){const d=document.createElement('div');d.innerHTML=y.html||'';return d}
+function duzP(d){return [...d.querySelectorAll('p')].filter(p=>!p.className&&!p.hasAttribute('data-bl')&&!p.closest('blockquote,li,[data-bl]')&&p.textContent.trim().length>20)}
+function cumleler(y){const t=metin(y.html).replace(/\s+/g,' ');return (t.match(/[^.!?…]+[.!?…]+["”’)]*/g)||[]).map(s=>s.trim()).filter(Boolean)}
+function alintiAday(y){const c=cumleler(y),n=c.length;return c.map((s,i)=>{const L=s.length;let p=0;if(L>=45&&L<=140)p+=3;else if(L>=30&&L<=180)p+=1;else p-=3;if(i===0)p+=2;if(n>3&&i>=n-2)p+=1;if((s.match(/,/g)||[]).length<=1)p+=1;if(/\d/.test(s))p-=1;if(/\b(ama|ancak|fakat|aslında|çünkü|oysa|neyse ki)\b/i.test(s))p+=1;if(/^\W*(ve|ama|ki|ise|yine de)\s/i.test(s))p-=1;if(/\[[^\]]+\]/.test(s))p-=5;return{s,p,e:i===0?'Açılış cümlesi':(n>3&&i>=n-2)?'Kapanışa yakın':'Yazının içinden'}}).filter(x=>x.s.length>=30&&x.p>0).sort((a,b)=>b.p-a.p).slice(0,3)}
+function alintiEkle(d,y){const q=(y.alinti||'').trim();if(!q)return;const nd=s=>s.replace(/\s+/g,' ').trim(),L=[...d.querySelectorAll('div,p')].filter(e=>!e.querySelector('div,p,blockquote,h2,h3')&&nd(e.textContent).length>20);const hd=L.find(e=>nd(e.textContent).includes(nd(q)))||L[Math.floor(L.length/2)];if(!hd)return;const b=document.createElement('blockquote');b.className='tr_bq';b.textContent=q;hd.after(b)}
+function bosYerler(y){const gt=[];['giris','kapanis'].forEach(tr=>{const k=tr==='giris'?y.giris:y.kapanis,G=ugListe(tr).find(x=>x.k===k);if(G)gt.push(G.p.join(' '))});const t=metin(y.html)+' '+gt.join(' ')+' '+(y.baslik||'')+' '+(y.spot||'');return (t.match(/\[[^\]\n]{1,40}\]/g)||[]).filter(x=>x!=='[favorite]')}
+function tekrarlar(y){const gor={},kop=[];cumleler(y).forEach(s=>{const k=s.toLocaleLowerCase('tr');if(k.length<25)return;gor[k]=(gor[k]||0)+1;if(gor[k]===2)kop.push(s)});return kop}
+function ugPanel(y,tur){const gi=tur==='giris',L=ugListe(tur),sec=gi?y.giris:y.kapanis,G=L.find(x=>x.k===sec),ac=S.ugAc===tur;
+  const ad=G?G.ik+' '+G.ad:gi?'yok':(y.imza&&DB.ayar.imza?'✍️ Ayarlardaki imza':'yok'),T=L.filter(g=>!g.ozel),oz2=L.filter(g=>g.ozel),u=T.filter(g=>g.kat.includes(y.kat)),d=T.filter(g=>!g.kat.includes(y.kat));
   const kart=g=>`<button class="bl-gk${g.k===sec?' on':''}" data-a="ugSec" data-t="${tur}" data-v="${g.k}"><b>${g.ik} ${esc(g.ad)}</b><span>${esc(ugOzet(g))}</span></button>`;
+  const ozKart=g=>`<div class="bl-gsar">${kart(g)}<button class="bl-gx" data-a="ugSil" data-t="${tur}" data-v="${g.k}" title="Bu metni sil">🗑</button></div>`;
   const oz=gi?[['','✕ Girişsiz']]:[['imza','✍️ Ayarlardaki imza'],['yok','✕ Uğurlamasız']];
+  const yaz=S.ugYaz===tur?`<div class="bl-gyaz"><textarea id="bl-oz-${tur}" rows="5" placeholder="${gi?'Kendi girişin… Paragrafları boş satırla ayır. [köşeli] yerleri sonra doldurursun.':'Kendi uğurlaman… Paragrafları boş satırla ayır.'}"></textarea><div class="bl-dug"><button class="bl-b" data-a="ugYazIptal" data-t="${tur}">İptal</button><button class="bl-b p" data-a="ugKaydet" data-t="${tur}">Kaydet ve seç</button></div></div>`:'';
   return `<div class="bl-ug${ac?' acik':''}" id="bl-${tur}"><button class="bl-ugc" data-a="ugAc" data-t="${tur}" title="${G?esc(G.p.join(' ')):''}">${gi?'👋 Giriş':'🤝 Uğurlama'}: <b>${esc(ad)}</b> <i>${ac?'▴':'▾'}</i></button>
-   ${ac?`<div class="bl-gliste"><div class="bl-gust">${oz.map(([v,a])=>`<button class="bl-b" data-a="ugSec" data-t="${tur}" data-v="${v}">${a}</button>`).join('')}<button class="bl-b" data-a="ugZar" data-t="${tur}">🎲 Rastgele</button></div>${u.length?`<div class="bl-gbas">Bu kategoriye uygun</div>${u.map(kart).join('')}<div class="bl-gbas">Diğerleri</div>`:''}${d.map(kart).join('')}</div>`:''}</div>`}
+   ${ac?`<div class="bl-gliste"><div class="bl-gust">${oz.map(([v,a])=>`<button class="bl-b" data-a="ugSec" data-t="${tur}" data-v="${v}">${a}</button>`).join('')}<button class="bl-b" data-a="ugYaz" data-t="${tur}">✎ Kendi metnim</button><button class="bl-b" data-a="ugZar" data-t="${tur}">🎲 Rastgele</button></div>${yaz}${oz2.length?`<div class="bl-gbas">Benim metinlerim</div>${oz2.map(ozKart).join('')}`:''}${u.length?`<div class="bl-gbas">Bu kategoriye uygun</div>${u.map(kart).join('')}<div class="bl-gbas">Diğerleri</div>`:''}${d.map(kart).join('')}</div>`:''}</div>`}
 function ugYenile(){['giris','kapanis'].forEach(tr=>{const e=$('#bl-'+tr,EL);if(e&&S.y)e.outerHTML=ugPanel(S.y,tr)})}
-function ugKoy(y,tr,v){if(tr==='giris')y.giris=v||null;else if(v==='imza'){y.kapanis=null;y.imza=true}else if(v==='yok'){y.kapanis=null;y.imza=false}else y.kapanis=v;S.ugAc='';kirli(true);ugYenile();
-  const L=tr==='giris'?GIRIS:KAPANIS,G=L.find(x=>x.k===v);bildir(G?(tr==='giris'?'Giriş: ':'Uğurlama: ')+G.ad+' — kopyada ve önizlemede eklenir':tr==='giris'?'Girişsiz':v==='imza'?'Uğurlama: ayarlardaki imza':'Uğurlamasız')}
+function ugKoy(y,tr,v){if(tr==='giris')y.giris=v||null;else if(v==='imza'){y.kapanis=null;y.imza=true}else if(v==='yok'){y.kapanis=null;y.imza=false}else y.kapanis=v;S.ugAc='';S.ugYaz='';kirli(true);ugYenile();
+  const L=ugListe(tr),G=L.find(x=>x.k===v);bildir(G?(tr==='giris'?'Giriş: ':'Uğurlama: ')+G.ad+' — kopyada ve önizlemede eklenir':tr==='giris'?'Girişsiz':v==='imza'?'Uğurlama: ayarlardaki imza':'Uğurlamasız')}
 function yeniYazi(sab,ilham){const s=SABLON.find(x=>x.k===sab)||SABLON[0];const y={id:uid(),baslik:s.baslik||'',spot:ilham?'':s.spot,kat:s.kat,kapak:{t:'g',v:KAPAK[Math.floor(Math.random()*KAPAK.length)]},durum:'taslak',etiket:'',hashtag:'',aciklama:'',slug:'',imza:!!DB.ayar.imzaVars,takip:!!DB.ayar.takipVars,hashSon:true,html:ilham?`<p class="blog-not" data-bl="not"><b class="blog-not-b">İlham</b>${esc(ilham)}</p><p><br></p>`:s.html,olus:Date.now(),guncel:Date.now(),giris:!ilham&&s.giris?s.giris:null};
   DB.yazilar.unshift(y);yaz();S.y=y;cizYaz()}
 function bul(id){return DB.yazilar.find(y=>y.id===id)}
@@ -8977,6 +9022,11 @@ function baglaYaz(){const y=S.y,g=$('#bl-govde',EL),k=$('#bl-kaynak',EL);
   S.geri=[];S.ileri=[];if(g){g.oninput=()=>{y.html=g.innerHTML;kirli();clearTimeout(S.tAn);S.tAn=setTimeout(an,900)};an();g.onpaste=e=>{const cd=e.clipboardData;if(!cd)return;const h=cd.getData('text/html'),t=cd.getData('text/plain');e.preventDefault();document.execCommand('insertHTML',false,h?yapistirTemiz(h):duzMetinHtml(t))};
     g.onkeyup=g.onmouseup=()=>{S.secim=sakla()};g.onblur=()=>{S.secim=sakla()}}
   if(k)k.oninput=()=>{y.html=k.value;kirli()}}
+/* 6.12 · klavye açılınca imleç görünür alanda kalır */
+function imlecGor(){try{const g=$('#bl-govde',EL);if(!g||S.g!=='yaz')return;const s=getSelection();if(!s.rangeCount||!g.contains(s.anchorNode))return;const r=s.getRangeAt(0).cloneRange();r.collapse(false);let b=r.getClientRects();b=b.length?b[b.length-1]:(s.anchorNode.nodeType===1?s.anchorNode:s.anchorNode.parentElement).getBoundingClientRect();
+  const vv=window.visualViewport,alt=vv?vv.offsetTop+vv.height:innerHeight,sc=$('.bl-ic',EL),sinir=alt-Math.min(150,alt*.26);if(sc&&b.bottom>sinir)sc.scrollTop+=Math.ceil(b.bottom-sinir)}catch(e){}}
+(function(){let t=0;const vv=window.visualViewport,git=()=>{cancelAnimationFrame(t);t=requestAnimationFrame(imlecGor)},kb=()=>{if(vv)document.documentElement.style.setProperty('--kb',Math.max(0,Math.round(innerHeight-vv.height-vv.offsetTop))+'px')};
+  if(vv){vv.addEventListener('resize',()=>{kb();git()});vv.addEventListener('scroll',kb)}document.addEventListener('selectionchange',git);document.addEventListener('input',git,true)})();
 function sakla(){const s=getSelection();if(!s.rangeCount)return null;const r=s.getRangeAt(0);const g=$('#bl-govde',EL);return g&&g.contains(r.commonAncestorContainer)?r.cloneRange():null}
 function geriYukle(){const g=$('#bl-govde',EL);if(!g)return false;g.focus();if(S.secim){const s=getSelection();s.removeAllRanges();s.addRange(S.secim)}return true}
 function kirli(sessiz){const y=S.y;y.guncel=Date.now();clearTimeout(S.tYaz);S.tYaz=setTimeout(kaydetSimdi,700);if(!sessiz)durumYaz('…')}
@@ -9014,31 +9064,52 @@ function palet(){const art=document.createElement('div');art.className='bl-palet
     if(bl.ozel==='gorsel'){gorselSec();return}if(bl.ozel==='icindekiler'){icindekiler();return}if(bl.ozel==='baglanti'){geriYukle();baglanti();return}geriYukle();const sec=String(getSelection());ins(bl.html(sec?esc(sec):''))};document.body.appendChild(art)}
 
 /* ---------------- Yayınla ---------------- */
-function cizYay(){S.g='yay';const y=S.y;if(!y){cizAna();return}kaydetSimdi();if(!y.slug)y.slug=slugla(y.baslik);const s=seoKontrol(y);
-  cerceve(`<div class="bl-yay-izgara"><div class="bl-onz-sar"><div class="bl-onz-ust"><b style="font:600 15px Literata,Georgia,serif;margin-right:auto">Blogger görünümü</b><button class="bl-b" data-a="onzMasa" ${!S.onzMobil?'style="border-color:var(--tl)"':''}>🖥️ Masaüstü</button><button class="bl-b" data-a="onzMobil" ${S.onzMobil?'style="border-color:var(--tl)"':''}>📱 Telefon</button></div><iframe class="bl-onz${S.onzMobil?' mobil':''}" id="bl-onz" title="Önizleme" sandbox="allow-same-origin"></iframe></div>
-   <div class="bl-yay">
-    <div class="bl-k"><h3>🚀 Blogger’a taşı</h3><button class="bl-b p gen" data-a="kopyaHtml">📋 HTML kodunu kopyala</button><div class="bl-dug"><button class="bl-b" data-a="kopyaBaslik">Başlığı kopyala</button><button class="bl-b" data-a="kopyaZengin">Biçimli kopyala</button><button class="bl-b" data-a="indir">⬇ .html indir</button></div>
-     <p class="not"><b>Nasıl:</b> Blogger → <b>＋ Yeni yayın</b> → başlığı yapıştır → sol üstteki kalemden <b>HTML görünümü</b> → kodu yapıştır → sağdaki <b>Etiketler</b> ve <b>Arama açıklaması</b>na aşağıdakileri koy → Yayınla. “Biçimli kopyala”yı <b>Oluştur görünümü</b>nde kullan.</p>
-     <div class="bl-dug"><button class="bl-b" data-a="blogAc">↗ Blogger’ı aç</button>${y.durum!=='yay'?'<button class="bl-b" data-a="yayimlandi">✓ Yayımlandı olarak işaretle</button>':'<button class="bl-b" data-a="taslakYap">↺ Taslağa al</button>'}</div></div>
-    <div class="bl-k"><h3>🖼️ Manşet fotoğrafı</h3><label>Fotoğraf bağlantısı (Blogger’a yüklediğin fotoğrafın adresi)<input id="f-kapakUrl" value="${esc(y.kapak&&y.kapak.t==='i'&&/^https?:/.test(y.kapak.v)?y.kapak.v:'')}" placeholder="https://blogger.googleusercontent.com/…"></label><p class="not" id="f-kapakNot">${y.kapak&&y.kapak.t==='i'&&/^data:/.test(y.kapak.v)?'Kapak cihazdan eklenmiş: kopyaya gömülür ama yazıyı ağırlaştırır. Blogger’da fotoğrafı yükleyip bağlantısını buraya yapıştırman daha iyi.':DB.ayar.favori?'Yazı başına gizli eklenir; sondaki <b>[favorite]</b> onu tam ekran manşet yapar.':'[favorite] kapalı (Ayarlar).'}</p></div>
-    <div class="bl-k"><h3>🎯 Hazırlık puanı</h3><div class="bl-seo"><div class="bl-puan" style="--p:${s.p};--c:${s.p>=75?'#2f9e5b':s.p>=50?'#d9822b':'#c0392b'}"><span>${s.p}</span></div><div class="bl-kontrol">${s.k.map(x=>`<div><span class="i ${x[0]===2?'ok':x[0]===1?'ort':''}">${x[0]===2?'✓':x[0]===1?'!':'✕'}</span>${esc(x[1])}</div>`).join('')}</div></div></div>
+function cizYay(){S.g='yay';const y=S.y;if(!y){cizAna();return}kaydetSimdi();if(!y.slug)y.slug=slugla(y.baslik);const s=seoKontrol(y),sek=S.yTab||'o',w=kelime(y.html),dk=Math.max(1,Math.round(w/200));
+  const sk=[['o','Özet'],['q','Alıntı'],['h','Başlıklar'],['e','Etiket · SEO'],['c','Çıktı']];
+  const durum=s.p>=80?'Yayına hazırsın':s.p>=55?'Birkaç öneri var':'Biraz daha çalışalım',eks=s.k.filter(x=>x[0]<2).length;
+  const git=x=>x[2]==='yaz'?`<button class="bl-fix" data-git="yaz">Yazıya dön</button>`:`<button class="bl-fix" data-a="yTab" data-v="${x[2]}">Düzelt</button>`;
+  let ic='';
+  if(sek==='o')ic=`<div class="bl-k"><div class="bl-kontrol bl-ckl">${s.k.map(x=>`<div><span class="i ${x[0]===2?'ok':x[0]===1?'ort':''}">${x[0]===2?'✓':x[0]===1?'!':'✕'}</span><span class="m">${esc(x[1])}</span>${x[0]<2&&x[2]?git(x):''}</div>`).join('')}</div></div>`;
+  else if(sek==='q'){const A=alintiAday(y);ic=`<div class="bl-k"><h3>❝ Alıntı kutusu</h3><p class="not">Seçtiğin cümle, geçtiği paragrafın hemen altına Blogger’daki <b>tr_bq</b> kutusu olarak girer.</p>
+    ${A.length?A.map((a,i)=>`<button class="bl-q${y.alinti===a.s?' on':''}" data-a="alSec" data-i="${i}">“${esc(a.s)}”<small>${a.e}</small></button>`).join(''):'<p class="not">Önerilecek cümle bulunamadı; biraz daha yazınca burada belirir.</p>'}
+    <label>Ya da kendi cümlen<textarea id="f-alinti" rows="2" placeholder="Yazıdan bir cümleyi buraya yapıştır">${esc(y.alinti||'')}</textarea></label>
+    ${y.alinti?`<blockquote class="tr_bq">${esc(y.alinti)}</blockquote><div class="bl-dug"><button class="bl-b" data-a="alKapat">Alıntı kullanma</button></div>`:''}</div>`}
+  else if(sek==='h'){const dm=htmlDom(y),hs=[...dm.querySelectorAll('h2,h3')],ps=duzP(dm);ic=`<div class="bl-k"><h3>H2 Ara başlıklar</h3><p class="not">Yayında hepsi H2 olur (solunda tema çizgisi). Adı buradan değiştirebilirsin.</p>
+    ${hs.length?hs.map((x,i)=>`<div class="bl-hr"><i></i><input class="bl-hi" data-i="${i}" value="${esc(x.textContent)}"><button class="bl-gx" data-a="hSil" data-i="${i}" title="Başlığı kaldır">✕</button></div>`).join(''):'<p class="not">Henüz ara başlık yok.</p>'}</div>
+    <div class="bl-k"><h3>Başlık ekle</h3><p class="not">Başlığın geleceği paragrafı seç, üstüne boş bir H2 konur.</p><div class="bl-pl">${ps.map((p,i)=>`<div class="bl-pr"><span>${esc(p.textContent.trim().split(/\s+/).slice(0,8).join(' '))}…</span><button class="bl-fix" data-a="hEkle" data-i="${i}">＋ H2</button></div>`).join('')||'<p class="not">Paragraf yok.</p>'}</div></div>`}
+  else if(sek==='e')ic=`<div class="bl-k"><h3>🖼️ Manşet fotoğrafı</h3><label>Fotoğraf bağlantısı (Blogger’a yüklediğin fotoğrafın adresi)<input id="f-kapakUrl" value="${esc(y.kapak&&y.kapak.t==='i'&&/^https?:/.test(y.kapak.v)?y.kapak.v:'')}" placeholder="https://blogger.googleusercontent.com/…"></label><p class="not" id="f-kapakNot">${y.kapak&&y.kapak.t==='i'&&/^data:/.test(y.kapak.v)?'Kapak cihazdan eklenmiş: kopyaya gömülür ama yazıyı ağırlaştırır. Blogger’da fotoğrafı yükleyip bağlantısını buraya yapıştırman daha iyi.':DB.ayar.favori?'Yazı başına gizli eklenir; sondaki <b>[favorite]</b> onu tam ekran manşet yapar.':'[favorite] kapalı (Ayarlar).'}</p></div>
     <div class="bl-k"><h3>🏷️ Künye ve arama</h3>
      <label>Etiketler (virgülle) <input id="f-etiket" value="${esc(y.etiket)}" placeholder="Deneme, Sıla, Kitap"></label>
      <label>Arama açıklaması <span class="not" id="f-acik-say"></span><textarea id="f-aciklama" rows="3" placeholder="110–160 karakter; Google’da başlığın altında görünür">${esc(y.aciklama)}</textarea></label>
      <label>Kalıcı bağlantı (özel) <input id="f-slug" value="${esc(y.slug)}"></label>
      <label>Hashtagler <input id="f-hashtag" value="${esc(y.hashtag)}" placeholder="#deneme #sıla"></label>
-     <div class="bl-dug"><label class="bl-onay"><input type="checkbox" id="f-imza" ${y.imza?'checked':''}> İmza</label><label class="bl-onay"><input type="checkbox" id="f-hashSon" ${y.hashSon?'checked':''}> Hashtagler sonda</label><label class="bl-onay"><input type="checkbox" id="f-takip" ${y.takip?'checked':''}> Takip et bandı</label></div>
-     <div class="bl-dug"><button class="bl-b" data-a="kopyaEtiket">Etiketleri kopyala</button><button class="bl-b" data-a="kopyaAcik">Açıklamayı kopyala</button></div></div>
+     <div class="bl-dug"><button class="bl-b" data-a="kopyaEtiket">Etiketleri kopyala</button><button class="bl-b" data-a="kopyaAcik">Açıklamayı kopyala</button></div></div>`;
+  else ic=`<div class="bl-k"><h3>Blogger düzeni</h3>
+     <label class="bl-onay"><input type="checkbox" id="a-favori" ${DB.ayar.favori?'checked':''}> [favorite]: ilk fotoğraf tam ekran manşet olsun</label>
+     <label class="bl-onay"><input type="checkbox" id="a-hrBas" ${DB.ayar.hrBas!==false?'checked':''}> Ara başlıkların üstüne ince çizgi</label>
+     <label class="bl-onay"><input type="checkbox" id="f-imza" ${y.imza?'checked':''}> Ayarlardaki imza</label>
+     <label class="bl-onay"><input type="checkbox" id="f-hashSon" ${y.hashSon?'checked':''}> Hashtagler sonda</label>
+     <label class="bl-onay"><input type="checkbox" id="f-takip" ${y.takip?'checked':''}> Takip et bandı</label></div>
+    <div class="bl-k"><h3>🚀 Blogger’a taşı</h3><div class="bl-dug"><button class="bl-b" data-a="kopyaBaslik">Başlığı kopyala</button><button class="bl-b" data-a="kopyaZengin">Biçimli kopyala</button><button class="bl-b" data-a="indir">⬇ .html indir</button></div>
+     <p class="not"><b>Nasıl:</b> Blogger → <b>＋ Yeni yayın</b> → başlığı yapıştır → sol üstteki kalemden <b>HTML görünümü</b> → kodu yapıştır → <b>Etiket · SEO</b> sekmesindekileri sağdaki alanlara koy → Yayınla. “Biçimli kopyala”yı <b>Oluştur görünümü</b>nde kullan.</p>
+     <div class="bl-dug"><button class="bl-b" data-a="blogAc">↗ Blogger’ı aç</button>${y.durum!=='yay'?'<button class="bl-b" data-a="yayimlandi">✓ Yayımlandı olarak işaretle</button>':'<button class="bl-b" data-a="taslakYap">↺ Taslağa al</button>'}</div></div>
     <details class="bl-k"><summary style="cursor:pointer;font:700 12px var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--tl)">🔌 Doğrudan Blogger’a gönder (isteğe bağlı)</summary>
      <p class="not">Google hesabınla giriş yapıp yazıyı taslak olarak ya da yayımlanmış şekilde gönderir. Bir kez Google Cloud’da Blogger API için OAuth istemci kimliği (Client ID) gerekir; yetkili kaynak olarak <b>https://aaskinkk-cloud.github.io</b> ekli olmalı.</p>
      <label>OAuth Client ID<input id="f-cid" value="${esc(DB.ayar.cid)}" placeholder="….apps.googleusercontent.com"></label>
      <div class="bl-dug"><button class="bl-b" data-a="gonderTaslak">Taslak gönder</button><button class="bl-b p" data-a="gonderYayin">Yayımla</button></div><div id="bl-gonder-sonuc" class="not"></div></details>
-    <div class="bl-k"><h3>🗂️ Yazı</h3><div class="bl-dug"><button class="bl-b" data-a="cogalt">⧉ Çoğalt</button><button class="bl-b t" data-a="sil">🗑 Sil</button></div></div>
-   </div></div>`);
+    <div class="bl-k"><h3>🗂️ Yazı</h3><div class="bl-dug"><button class="bl-b" data-a="cogalt">⧉ Çoğalt</button><button class="bl-b t" data-a="sil">🗑 Sil</button></div></div>`;
+  cerceve(`<div class="bl-yay-izgara"><div class="bl-onz-sar${S.onzAc?' ac':''}" id="bl-onzsar"><div class="bl-onz-ust"><b style="font:600 15px Literata,Georgia,serif;margin-right:auto">Blogger görünümü</b><button class="bl-b" data-a="onzMasa" ${!S.onzMobil?'style="border-color:var(--tl)"':''}>🖥️ Masaüstü</button><button class="bl-b" data-a="onzMobil" ${S.onzMobil?'style="border-color:var(--tl)"':''}>📱 Telefon</button></div><iframe class="bl-onz${S.onzMobil?' mobil':''}" id="bl-onz" title="Önizleme" sandbox="allow-same-origin"></iframe></div>
+   <div class="bl-yp"><div class="bl-yh"><div class="bl-puan" style="--p:${s.p};--c:${s.p>=75?'#2f9e5b':s.p>=50?'#d9822b':'#c0392b'}"><span>${s.p}</span></div><div><h3>${durum}</h3><p>${eks?eks+' öneri · ':''}${w} kelime · ${dk} dk okuma</p></div></div>
+    <div class="bl-ytab" role="tablist">${sk.map(([id,ad])=>`<button role="tab" class="${sek===id?'on':''}" aria-selected="${sek===id}" data-a="yTab" data-v="${id}">${ad}</button>`).join('')}</div>
+    ${ic}
+    <div class="bl-yact"><button class="bl-b bl-onztog" data-a="onzTog">👁 Önizle</button><button class="bl-b p" data-a="kopyaHtml">📋 HTML kodunu kopyala</button></div></div></div>`);
   const f=(id,al,cb)=>{const e=$('#'+id,EL);if(!e)return;e.oninput=e.onchange=()=>{y[al]=e.type==='checkbox'?e.checked:e.value;cb&&cb();kirli(true);onz()}};
   f('f-etiket','etiket');f('f-aciklama','aciklama',sayAcik);f('f-slug','slug');f('f-hashtag','hashtag');f('f-imza','imza');f('f-hashSon','hashSon');f('f-takip','takip');
+  {const e=$('#f-alinti',EL);if(e)e.oninput=()=>{y.alinti=e.value.trim();kirli(true);onz()}}
+  [['a-favori','favori',1],['a-hrBas','hrBas',0]].forEach(([id,key])=>{const e=$('#'+id,EL);if(e)e.onchange=()=>{DB.ayar[key]=e.checked;yaz();onz()}});
+  $$('.bl-hi',EL).forEach(inp=>inp.onchange=()=>{const d=htmlDom(y),x=[...d.querySelectorAll('h2,h3')][+inp.dataset.i];if(x){x.textContent=inp.value;y.html=d.innerHTML;kirli(true);onz()}});
   {const ku=$('#f-kapakUrl',EL);if(ku)ku.oninput=()=>{const v=ku.value.trim();if(!v){if(y.kapak&&y.kapak.t==='i'&&/^https?:/.test(y.kapak.v))y.kapak={t:'g',v:KAPAK[0]}}else if(/^https:\/\/\S+$/.test(v))y.kapak={t:'i',v};else return;kirli(true);onz()}}
-  const c=$('#f-cid',EL);c.onchange=()=>{DB.ayar.cid=c.value.trim();yaz()};sayAcik();onz()}
+  const c=$('#f-cid',EL);if(c)c.onchange=()=>{DB.ayar.cid=c.value.trim();yaz()};sayAcik();onz()}
 function sayAcik(){const e=$('#f-acik-say',EL);if(e)e.textContent='('+String(S.y.aciklama||'').length+' / 160)'}
 function onz(){const f=$('#bl-onz',EL);if(f)f.srcdoc=onizlemeBelge(S.y)}
 async function kopya(t,html){try{if(html&&window.ClipboardItem){await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([t],{type:'text/plain'})})])}else await navigator.clipboard.writeText(t);return true}catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(x){}ta.remove();return ok}}
@@ -9063,9 +9134,20 @@ async function tik(e){const t=e.target.closest('[data-a],[data-git],[data-k],[da
   if(t.dataset.sab){yeniYazi(t.dataset.sab);return}
   switch(t.dataset.a){
    case'kapat':kapat();try{history.back()}catch(x){}break;
-   case'ugAc':S.ugAc=S.ugAc===t.dataset.t?'':t.dataset.t;ugYenile();break;
+   case'ugAc':S.ugAc=S.ugAc===t.dataset.t?'':t.dataset.t;if(!S.ugAc)S.ugYaz='';ugYenile();break;
+   case'ugYaz':S.ugYaz=t.dataset.t;ugYenile();{const a=$('#bl-oz-'+t.dataset.t,EL);if(a)a.focus()}break;
+   case'ugYazIptal':S.ugYaz='';ugYenile();break;
+   case'ugKaydet':{const tr=t.dataset.t,a=$('#bl-oz-'+tr,EL),p=a?a.value.split(/\n\s*\n/).map(x=>x.trim()).filter(Boolean):[];if(!p.length){bildir('Önce metni yaz',1);break}
+    const o=DB.ayar.ozel=DB.ayar.ozel||{giris:[],kapanis:[]};o[tr]=o[tr]||[];const k='o'+Date.now().toString(36);o[tr].push({k,ik:'✎',ad:p[0].replace(/\s+/g,' ').slice(0,24).trim()+(p[0].length>24?'…':''),kat:[],p,ozel:1});yaz();ugKoy(y,tr,k);break}
+   case'ugSil':{const tr=t.dataset.t,o=DB.ayar.ozel&&DB.ayar.ozel[tr];if(!o)break;DB.ayar.ozel[tr]=o.filter(x=>x.k!==t.dataset.v);if((tr==='giris'?y.giris:y.kapanis)===t.dataset.v){if(tr==='giris')y.giris=null;else y.kapanis=null}yaz();kirli(true);ugYenile();bildir('Metin silindi');break}
+   case'yTab':S.yTab=t.dataset.v;cizYay();break;
+   case'onzTog':{S.onzAc=!S.onzAc;const e=$('#bl-onzsar',EL);if(e){e.classList.toggle('ac',S.onzAc);if(S.onzAc)e.scrollIntoView({block:'start'})}break}
+   case'alSec':{const a=alintiAday(y)[+t.dataset.i];if(a){y.alinti=a.s;kirli(true);cizYay()}break}
+   case'alKapat':y.alinti='';kirli(true);cizYay();break;
+   case'hEkle':{const d=htmlDom(y),p=duzP(d)[+t.dataset.i];if(p){const e=document.createElement('h2');e.textContent='[Ara başlık]';p.before(e);y.html=d.innerHTML;kirli(true);cizYay();bildir('Başlık eklendi — adını yaz')}break}
+   case'hSil':{const d=htmlDom(y),e=[...d.querySelectorAll('h2,h3')][+t.dataset.i];if(e){e.remove();y.html=d.innerHTML;kirli(true);cizYay()}break}
    case'ugSec':ugKoy(y,t.dataset.t,t.dataset.v);break;
-   case'ugZar':{const tr=t.dataset.t,L=tr==='giris'?GIRIS:KAPANIS,cur=tr==='giris'?y.giris:y.kapanis,u=L.filter(g=>g.kat.includes(y.kat)),A=(u.length>1?u:L).filter(g=>g.k!==cur);ugKoy(y,tr,A[Math.floor(Math.random()*A.length)].k);break}
+   case'ugZar':{const tr=t.dataset.t,L=ugListe(tr),cur=tr==='giris'?y.giris:y.kapanis,u=L.filter(g=>g.kat.includes(y.kat)),A=(u.length>1?u:L).filter(g=>g.k!==cur);ugKoy(y,tr,A[Math.floor(Math.random()*A.length)].k);break}
    case'yeni':kaydetSimdi();yeniYazi('bos');break;
    case'ilham':S.ilhamI++;ilhamYaz();break;
    case'ilhamla':kaydetSimdi();yeniYazi('bos',ILHAM[S.ilhamI%ILHAM.length]);break;
