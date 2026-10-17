@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.17 · 17.10.2026
+**Güncel sürüm:** 6.18 · 17.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.18** (17.10.2026) – Kabataş Haber › Logo · künye: haber kanalı tarzı **8 yeni logo**: Prizma, Dünya (dünyadaki hemşehriler), Manşet, Halka, Altıgen, Flaş, Canlı, Hemşehri (konum işareti). Hepsi seçili renge uyar; kartlarda, jenerikte, TV bandında ve profil fotoğrafı/şeffaf PNG dışa aktarımında kullanılır.
 - **6.17** (17.10.2026) – Hızlı haber: videodaki **siyah bantlı beyaz altyazı** artık tercihe bağlı. 6. adımda "Altyazı" kutusu var; Hızlı haber'de konu seçilince varsayılan **kapalı** gelir, istersen açarsın.
 - **6.16** (17.10.2026) – Kabataş Haber: **⚡ Hızlı haber** bölümü (stüdyo menüsünde ilk sekme). Alt alta 7 adım: 1 Konu (Duyuru, Spor, Hava, Gündem, Müjde, Uyarı, Fındık, Tebrik, Anma) · 2 Fotoğraf (1–3) · 3 Başlık/alt başlık · 4 Haber metni (+ "Konuya göre örnek yaz") · 5 Açılış ve kapanış cümleleri · 6 Ses ve müzik · 7 Sesli önizle / sesli video / görsel kaydet / paylaş / taslağa kaydet. Konu seçilince şablon görünümü, geçiş, alt bant ve **müzik** kendiliğinden gelir. Yeni telifsiz (cihazda üretilen) müzik türleri: **Duyuru · resmî, Spor · tempolu, Müjde · neşeli, Anma · hüzünlü**; mevcut Spor, Duyuru, Müjde şablonları da bunları kullanır.
 - **6.15** (17.10.2026) – Kabataş Haber: önizleme düğmelerine **🔍 İzle** eklendi. Kartı tam ekran açar, **çift dokunuşla o bölgeye 3× yakınlaşır**, iki parmakla 8×e kadar büyütülür, sürükleyerek gezilir; ＋ / － / 1× düğmeleri, ⛶ gerçek tam ekran, ▶ ile sesli önizleme tam ekranda izlenir. Masaüstünde fare tekerleği ve +/−/0/Esc tuşları çalışır. Kartın canlı kopyasıdır: fotoğraf kadrajı ve düzenleme etkilenmez.
