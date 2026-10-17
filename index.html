@@ -338,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.20 · 17.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.21 · 17.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6816,7 +6816,7 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-hz .hz-b h4{margin:3px 0 8px;font:700 15px system-ui}.kh-hz .hz-b h4 small{font:500 12px system-ui;color:var(--muted);margin-left:6px}
 .kh-hz .hz-b>div{min-width:0;display:grid;gap:8px;align-content:start}
 .kh-hz .hz-chips{display:flex;flex-wrap:wrap;gap:6px}
-.kh-hz .hz-b[hidden]{display:none}.kh-hz .hz-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.kh-hz .hz-g2 .kh-l input{width:100%;min-width:0;box-sizing:border-box}.kh-hz .hz-tbo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.kh-hz .hz-tbo .kh-c{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kh-hz .hz-b[hidden]{display:none}.kh-hz details summary{cursor:pointer;font:600 13px system-ui;color:var(--muted)}.kh-hz details textarea{width:100%;margin-top:6px;box-sizing:border-box}.kh-hz .hz-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.kh-hz .hz-g2 .kh-l input{width:100%;min-width:0;box-sizing:border-box}.kh-hz .hz-tbo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.kh-hz .hz-tbo .kh-c{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kh-hz .hz-th{display:flex;gap:8px;flex-wrap:wrap}.kh-hz .hz-th img{width:68px;height:68px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
 .kh-hz .hz-ch{display:flex;align-items:center;gap:8px;justify-content:flex-start}
 .kh-hz .hz-ch input{width:auto}
@@ -7023,7 +7023,7 @@ const ORAN = {'4:5':[1080,1350,'Instagram gönderi'], '1:1':[1080,1080,'Kare'], 
 const ETIKET = [['SON DAKİKA','#d7191f','#fff'],['SICAK GELİŞME','#ff5a00','#fff'],['FLAŞ','#ffd400','#111'],['ÖZEL HABER','#0b4f8a','#fff'],['GÜNDEM','#24303a','#fff'],
   ['MÜJDE','#1f8a4c','#fff'],['DUYURU','#5b3fa0','#fff'],['UYARI','#e3a000','#111'],['YEREL','#7a4e2d','#fff'],['HASAT','#8a6a1c','#fff'],['HAVA DURUMU','#1b74c9','#fff'],
   ['SPOR','#00897b','#fff'],['TEBRİK','#c2185b','#fff'],['ANMA','#2b2b2b','#fff'],['RÖPORTAJ','#37474f','#fff']];
-const SABLON = [['sondakika','Son dakika · TV'],['gazete','Klasik gazete'],['tabloid','Büyük manşet'],['modern','Modern kart'],['alinti','Söz · alıntı'],['ozet','Madde madde'],['flas','Flaş bant'],['tebrik','Tebrik · hayırlı olsun'],['dgkart','Düğün duyurusu']];
+const SABLON = [['sondakika','Son dakika · TV'],['gazete','Klasik gazete'],['tabloid','Büyük manşet'],['modern','Modern kart'],['alinti','Söz · alıntı'],['ozet','Madde madde'],['flas','Flaş bant'],['tebrik','Tebrik · hayırlı olsun'],['dgkart','Düğün duyurusu'],['reklam','Reklam kartı']];
 const etk = ad => ETIKET.find(x => x[0] === ad) || [ad || 'HABER', '#d7191f', '#fff'];
 const M = Object.assign({ad:'KABATAŞ HABER', slogan:'Sıradan değil, sıladan haberler', hesap:'@kabatashaber', sayi:1}, LSg('kh.marka', {}));
 const yeniD = () => ({id:Date.now().toString(36), oran:'4:5', sablon:'sondakika', etiket:'SON DAKİKA', manset:'', spot:'', yer:'Kabataş', metin:'', kisi:'', maddeler:'',
@@ -7417,9 +7417,9 @@ function izleAc(){ const src = $h('#khCv'); if (!src || document.querySelector('
     else if (i === 'tam'){ try { if (document.fullscreenElement) document.exitFullscreen(); else if (ov.requestFullscreen) ov.requestFullscreen().catch(() => {}); } catch (er) {} } });
   setTimeout(() => { ip.style.opacity = 0; }, 3500); uyg(); }
 /* 6.16 · Hızlı haber: konu → 1-3 fotoğraf → başlık → haber metni → açılış/kapanış → müzik, alt alta tek bölümde */
-const HZK = [['hayirli','🎊','Hayırlı olsun','hayirli','mujde'],['dugunduyuru','💍','Düğün duyurusu','dugunduyuru','mujde'],['duyuru','📣','Duyuru','duyuru','duyuru'],['spor','⚽','Spor','spor','spor'],['hava','⛅','Hava','hava','sakin'],['gundem','📰','Gündem','gundem','kurumsal'],['mujde','🎉','Müjde','mujde','mujde'],['uyari','⚠️','Uyarı','uyari','gergin'],['hasat','🌰','Fındık','hasat','sakin'],['tebrik','🏆','Tebrik','tebrik','mujde'],['anma','🕯️','Anma','anma','huzun']];
+const HZK = [['hayirli','🎊','Hayırlı olsun','hayirli','mujde'],['dugunduyuru','💍','Düğün duyurusu','dugunduyuru','mujde'],['reklam','📢','Reklam','reklam','mujde'],['duyuru','📣','Duyuru','duyuru','duyuru'],['spor','⚽','Spor','spor','spor'],['hava','⛅','Hava','hava','sakin'],['gundem','📰','Gündem','gundem','kurumsal'],['mujde','🎉','Müjde','mujde','mujde'],['uyari','⚠️','Uyarı','uyari','gergin'],['hasat','🌰','Fındık','hasat','sakin'],['tebrik','🏆','Tebrik','tebrik','mujde'],['anma','🕯️','Anma','anma','huzun']];
 const HZM = [['duyuru','Duyuru'],['spor','Spor'],['mujde','Müjde'],['huzun','Anma'],['kurumsal','Bülten'],['sakin','Sakin'],['gergin','Gergin'],['yok','Yok']];
-const HZA = {hz_manset:'manset', hz_spot:'spot', hz_metin:'metin', hz_acilisMetin:'acilisMetin', hz_kapanisMetin:'kapanisMetin', hz_maddeler:'maddeler'};
+const HZA = {hz_manset:'manset', hz_spot:'spot', hz_metin:'metin', hz_acilisMetin:'acilisMetin', hz_kapanisMetin:'kapanisMetin', hz_maddeler:'maddeler', hz_aciklama:'aciklama', hz_hashtag:'hashtag', hz_anahtar:'anahtar'};
 /* 6.19 · Hayırlı olsun: olay + ton + hazır metin. «a|b» = ayrıntı yazıldıysa a, yoksa b; {ad} ve {ay} yerine geçer */
 const TBO = [
  {k:'gorev', e:'💼', ad:'Yeni görev', h:'HAYIRLI OLSUN', lb:'YENİ GÖREV', ayl:'Görev / unvan (isteğe bağlı)', ayp:'Örn. Belediye Başkan Yardımcısı', rn:'#1e5aa8', hs:'#yenigörev',
@@ -7503,19 +7503,97 @@ function dugunUret(hafif){ D.dg = D.dg || {dav:true}; const G = D.dg, S = s => S
   const u = $h('#dg_uyari'); if (u){ const bug = new Date().toISOString().slice(0, 10), m = []; if (G.tar && G.tar < bug) m.push('⚠️ Düğün tarihi geçmişte görünüyor.'); if (G.yem === 'yemekli' && !G.ys) m.push('Yemek saatini yazarsan kartta görünür.'); if (!dm && !gl) m.push('Damat ve gelin adı boş.'); u.textContent = m.join(' '); u.hidden = !m.length; }
   kaydet(); if (hafif) hzYenile(); else formDoldur(); ciz(); }
 function dgTemizle(){ if (!D.dgDuzen){ ['manset', 'spot', 'metin', 'acilisMetin', 'kapanisMetin', 'aciklama'].forEach(k => { D[k] = ''; }); D.hashtag = '#kabataş #ordu #kabataşhaber'; D.ornek = false; } D.dgDuzen = 0; }
+/* 6.21 · Yapay zekâ ile hızlı doldurma + reklam bilgileri */
+const AI_ISTEM = `Sen Kabataş (Ordu) yerel haber ve duyuru sayfası "Kabataş Haber"in editörüsün. Aşağıdaki HAM BİLGİYİ (haber, duyuru, reklam, tebrik vb.) Instagram kartına ve kısa seslendirmeli videoya uygun, sade, doğru ve akıcı Türkçeyle düzenle.
+
+KURALLAR:
+- Bilgi uydurma. Metinde olmayan bilgiyi [köşeli parantez] içinde boş bırak.
+- Tarih, saat ve rakamları sesli okunacak biçimde yaz (örn. "12 Aralık Cumartesi", "saat 14.30").
+- Markdown, kalın yazı, numara, giriş ya da kapanış açıklaması ekleme.
+- Çıktıyı AŞAĞIDAKİ biçimde ver. Her başlık satır başında olsun ve iki nokta ile bitsin.
+
+KONU: (yalnızca biri: duyuru, gundem, reklam, spor, hava, hasat, mujde, uyari, anma, tebrik)
+BAŞLIK: (en çok 8 kelime, vurucu, sonunda nokta yok)
+ALT BAŞLIK: (tek cümle, en çok 18 kelime)
+HABER METNİ: (seslendirilecek 3-5 kısa cümle, 50-90 kelime, tek paragraf)
+MADDELER: (her satıra bir madde, en çok 5; "Tarih: ...", "Yer: ..." gibi; yoksa boş bırak)
+AÇILIŞ: (tek kısa cümle)
+KAPANIŞ: (tek kısa cümle)
+PAYLAŞIM YAZISI: (Instagram açıklaması, emojili, 2-4 satır)
+ANAHTAR KELİMELER: (virgülle ayrılmış 6-10 kelime)
+HASHTAG: (8-12 adet, # ile başlasın, #kabataş ve #ordu dahil)
+
+SADECE KONU "reklam" İSE şu satırları da ekle:
+İŞLETME: (işletme adı)
+KAMPANYA: (en çok 4 kelime, örn. "%20 indirim")
+TELEFON:
+ADRES:
+ÇALIŞMA SAATİ:
+Reklamda BAŞLIK ve MADDELER ürün ya da hizmeti anlatsın.
+
+HAM BİLGİ:
+`;
+const AI_ANAHTAR = [['konu', /^(konu|kategori|tür|tur)$/], ['manset', /^(başlık|baslik|manşet|manset|title)$/], ['spot', /^(alt başlık|alt baslik|altbaşlık|altbaslik|spot|özet|ozet|subtitle)$/], ['metin', /^(haber metni|haber|metin|seslendirme|seslendirme metni|içerik|icerik)$/], ['maddeler', /^(maddeler|madde madde|madde|bilgiler)$/],
+ ['acilisMetin', /^(açılış|acilis|açılış cümlesi|acilis cumlesi)$/], ['kapanisMetin', /^(kapanış|kapanis|kapanış cümlesi|kapanis cumlesi)$/], ['aciklama', /^(paylaşım yazısı|paylasim yazisi|paylaşım metni|paylasim metni|açıklama|aciklama|caption|instagram açıklaması|instagram aciklamasi)$/],
+ ['anahtar', /^(anahtar kelimeler|anahtar kelime|anahtar|keywords|seo)$/], ['hashtag', /^(hashtag|hashtagler|hashtags|hashtag'ler|etiketler)$/]];
+const AI_RK = [['isletme', /^(işletme|isletme|işletme adı|isletme adi|firma|firma adı)$/], ['kampanya', /^(kampanya|indirim|fırsat|firsat)$/], ['telefon', /^(telefon|tel|iletişim|iletisim)$/], ['adres', /^(adres|konum)$/], ['saat', /^(çalışma saati|çalışma saatleri|calisma saati|calisma saatleri|saat)$/]];
+const AI_KONU = [['duyuru', /duyuru/], ['hasat', /hasat|findik/], ['reklam', /reklam|tanitim|ilan/], ['spor', /spor/], ['hava', /hava/], ['mujde', /mujde/], ['uyari', /uyari/], ['anma', /anma|vefat/], ['tebrik', /tebrik|basari/], ['gundem', /gundem|haber|genel/]];
+const aiKonuBul = s => { const t = String(s || '').toLocaleLowerCase('tr').replace(/ı/g, 'i').replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ü/g, 'u'); const h = AI_KONU.find(z => z[1].test(t)); return h ? h[0] : ''; };
+function aiAyristir(raw){ let t = String(raw || '').replace(/\r/g, '').trim().replace(/^```[a-z]*\s*\n?/i, '').replace(/\n?```\s*$/, '');
+  const temiz = s => String(s || '').replace(/^\s*[*_"“”']+|[*_"“”']+\s*$/g, '').trim(), satir = t.split('\n'), RE = /^[\s>#*_\-•\d.)]*\**\s*([^:：\n]{2,40}?)\s*\**\s*[:：]\s*\**\s*(.*)$/;
+  const kn = ad => String(ad).toLocaleLowerCase('tr').replace(/\(.*?\)/g, '').replace(/[*_`#>]/g, '').replace(/\s+/g, ' ').trim();
+  let konu = ''; for (const l of satir){ const m = l.match(RE); if (m && AI_ANAHTAR[0][1].test(kn(m[1]))){ konu = aiKonuBul(m[2]); break; } }
+  const rk = konu === 'reklam', keyOf = ad => { for (const [k, re] of AI_ANAHTAR) if (re.test(ad)) return k; if (rk) for (const [k, re] of AI_RK) if (re.test(ad)) return k; return null; };
+  const out = {}; let cur = null;
+  satir.forEach(l => { const m = l.match(RE), k = m ? keyOf(kn(m[1])) : null;
+    if (k){ cur = k; out[cur] = []; const v = temiz(m[2]); if (v) out[cur].push(v); } else if (cur && l.trim()) out[cur].push(l.trim()); });
+  const A = {}, tek = a => temiz(a.join(' ').replace(/\s+/g, ' ')), lst = a => a.map(s => s.replace(/^[-•*\d.)\s]+/, '').trim()).filter(Boolean);
+  Object.keys(out).forEach(k => { const a = out[k]; if (!a.length || k === 'konu') return;
+    if (k === 'maddeler'){ const L = lst(a).slice(0, 6); if (L.length) A.maddeler = L.join('\n'); }
+    else if (k === 'aciklama'){ const v = a.map(s => s.trim()).join('\n').replace(/\n{3,}/g, '\n\n').trim(); if (v) A.aciklama = v; }
+    else if (k === 'anahtar'){ const L = [...new Set(a.join(',').split(/[,;•\n]+/).map(s => temiz(s.replace(/^#/, ''))).filter(Boolean))]; if (L.length) A.anahtar = L.join(', '); }
+    else if (k === 'hashtag'){ const L = [...new Set(a.join(' ').split(/[\s,;]+/).map(s => s.trim()).filter(s => s && s !== '#').map(s => s.startsWith('#') ? s : '#' + s))]; if (L.length) A.hashtag = L.join(' '); }
+    else { const v = tek(a); if (v) A[k] = v; } });
+  return {konu, alan:A}; }
+async function hzKopya(tx, msg){ try { await navigator.clipboard.writeText(tx); tst(msg); } catch (er){ const ta = document.createElement('textarea'); ta.value = tx; ta.style.position = 'fixed'; ta.style.opacity = 0; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); tst(msg); } catch (e2){ tst('Kopyalanamadı: metni elle seç'); } ta.remove(); } }
+function aiAktar(){ const e = $h('#hz_aiyanit'), so = $h('#hz_aisonuc'), raw = e ? e.value : ''; if (!raw.trim()){ tst('Önce yapay zekâ yanıtını yapıştır'); return; }
+  const R = aiAyristir(raw), A = R.alan; if (!A.manset && !A.metin){ if (so) so.textContent = 'Başlık ya da haber metni bulunamadı. Yanıt istemdeki biçimde mi?'; tst('Yanıt tanınmadı'); return; }
+  const konu = R.konu || D.hzk || 'gundem'; hzKonu(konu);
+  ['manset', 'spot', 'metin', 'aciklama', 'hashtag', 'anahtar'].forEach(a => { D[a] = A[a] || ''; }); D.maddeler = A.maddeler || '';
+  if (A.acilisMetin){ D.acilisMetin = A.acilisMetin; D.acilis = true; } if (A.kapanisMetin){ D.kapanisMetin = A.kapanisMetin; D.kapanis = true; }
+  if (konu === 'reklam'){ D.rk = D.rk || {}; if (A.isletme) D.rk.ad = A.isletme; if (A.kampanya) D.rk.kam = A.kampanya; if (A.telefon) D.rk.tel = A.telefon; if (A.adres) D.rk.adr = A.adres; if (A.saat) D.rk.saat = A.saat; D.rkDuzen = A.metin ? 1 : 0; }
+  D.ornek = /\[[^\]\n]{1,40}\]/.test([A.manset, A.spot, A.metin, A.maddeler, A.isletme].join(' '));
+  const ad = {manset:'başlık', spot:'alt başlık', metin:'haber metni', maddeler:'maddeler', acilisMetin:'açılış', kapanisMetin:'kapanış', aciklama:'paylaşım yazısı', anahtar:'anahtar kelimeler', hashtag:'hashtag', isletme:'işletme', kampanya:'kampanya', telefon:'telefon', adres:'adres', saat:'saat'};
+  const dolu = Object.keys(A).filter(k => ad[k]).map(k => ad[k]); if (e) e.value = ''; kaydet(); formDoldur(); ciz();
+  if (so) so.textContent = 'Aktarıldı (' + dolu.length + ' alan): ' + dolu.join(', ') + (D.ornek ? ' · köşeli [ ] yerleri doldur' : ''); tst('Yapay zekâ yanıtı alanlara aktarıldı'); }
+const rkDuz = s => { s = String(s || '').trim(); return s && !/[.!?…]$/.test(s) ? s + '.' : s; };
+function rkSes(R){ const S = s => String(s || '').trim(), P = ['Reklam.']; if (S(R.ad)) P.push(rkDuz(R.ad)); if (S(D.manset)) P.push(rkDuz(String(D.manset).replace(/\*/g, '').replace(/\n+/g, ' '))); if (S(D.spot)) P.push(rkDuz(D.spot)); if (S(R.kam)) P.push(rkDuz('Kampanya: ' + S(R.kam)));
+  String(D.maddeler || '').split('\n').map(s => s.replace(/^[-•*\d.)\s]+/, '').trim()).filter(Boolean).forEach(s => P.push(rkDuz(s.replace(/:\s*/, ', '))));
+  if (S(R.tel)) P.push(rkDuz('Telefon, ' + S(R.tel))); if (S(R.adr)) P.push(rkDuz('Adres, ' + S(R.adr))); if (S(R.saat)) P.push(rkDuz('Çalışma saatleri, ' + S(R.saat))); return P.join(' '); }
+function reklamUret(hafif){ D.rk = D.rk || {}; D.etiket = 'REKLAM'; if (!D.rkDuzen) D.metin = rkSes(D.rk); D.ornek = !(String(D.rk.ad || '').trim() || String(D.manset || '').trim()); kaydet(); if (hafif) hzYenile(); else formDoldur(); ciz(); }
+function rkTemizle(){ if (!D.rkDuzen){ ['manset', 'spot', 'metin', 'maddeler', 'acilisMetin', 'kapanisMetin', 'aciklama', 'anahtar'].forEach(k => { D[k] = ''; }); D.hashtag = '#kabataş #ordu #kabataşhaber'; D.ornek = false; } D.rkDuzen = 0; }
 function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
-  k.innerHTML = `<div class="hz-b"><b>1</b><div><h4>Konu <small>müzik ve görünüm kendiliğinden seçilir</small></h4><div class="hz-chips">${HZK.map(h => `<button class="kh-c" data-hzk="${h[0]}">${h[1]} ${h[2]}</button>`).join('')}</div></div></div>
+  k.innerHTML = `<div class="hz-b hz-ai"><b>🤖</b><div><h4>Yapay zekâdan hazır getir <small>haber · duyuru · reklam</small></h4><div class="kh-r"><button class="kh-b p" data-ai="kop">📋 İstemi kopyala</button></div>
+  <label class="kh-l">Yapay zekâ yanıtı <textarea id="hz_aiyanit" rows="3" placeholder="İstemi herhangi bir yapay zekâya yapıştır, altına ham haberi ekle; yanıtı buraya yapıştır. Başlık, metin, anahtar kelime ve hashtag'ler kendiliğinden yerine geçer."></textarea></label>
+  <div class="kh-r"><button class="kh-b" data-ai="aktar">⬇ Alanlara aktar</button></div><div class="kh-n" id="hz_aisonuc"></div><details><summary>İstemi göster</summary><textarea id="hz_aiistem" rows="10" readonly></textarea></details></div></div>
+  <div class="hz-b"><b>1</b><div><h4>Konu <small>müzik ve görünüm kendiliğinden seçilir</small></h4><div class="hz-chips">${HZK.map(h => `<button class="kh-c" data-hzk="${h[0]}">${h[1]} ${h[2]}</button>`).join('')}</div></div></div>
   <div class="hz-b hz-tb" id="hz_tb" hidden><b>✦</b><div><h4>Tebrik ayrıntıları <small>hazır metin kendiliğinden yazılır</small></h4><div class="hz-tbo">${TBO.map(o => `<button class="kh-c" data-tbo="${o.k}">${o.e} ${o.ad}</button>`).join('')}</div>
   <label class="kh-l">Tebrik edilen kişi<input id="hz_tbad" placeholder="Ad Soyad" autocomplete="off"></label><label class="kh-l"><span id="hz_tbayl">Ayrıntı (isteğe bağlı)</span><input id="hz_tbay" autocomplete="off"></label>
   <div class="hz-chips">${[['s', 'Samimi'], ['r', 'Resmî'], ['d', 'Duygulu']].map(a => `<button class="kh-c" data-tbt="${a[0]}">${a[1]}</button>`).join('')}</div><div class="kh-r"><button class="kh-b p" data-tbn="1">🔀 Başka metin yaz</button><span class="kh-n" id="hz_tbsay"></span></div></div></div>
   <div class="hz-b hz-dg" id="hz_dg" hidden><b>💍</b><div><h4>Düğün bilgileri <small>boş bıraktığın satır kartta ve seslendirmede yer almaz</small></h4><div class="hz-g2"><label class="kh-l">Damat<input id="dg_dm" data-dg="dm" type="text" autocomplete="off"></label><label class="kh-l">Gelin<input id="dg_gl" data-dg="gl" type="text" autocomplete="off"></label><label class="kh-l">Damadın babası<input id="dg_dmb" data-dg="dmb" type="text" autocomplete="off"></label><label class="kh-l">Gelinin babası<input id="dg_glb" data-dg="glb" type="text" autocomplete="off"></label><label class="kh-l">Damadın annesi<input id="dg_dma" data-dg="dma" type="text" autocomplete="off"></label><label class="kh-l">Gelinin annesi<input id="dg_gla" data-dg="gla" type="text" autocomplete="off"></label></div><div class="hz-g2"><label class="kh-l">Düğün tarihi<input id="dg_tar" data-dg="tar" type="date" autocomplete="off"></label><label class="kh-l">Düğün yeri<input id="dg_yer" data-dg="yer" type="text" autocomplete="off" placeholder="Salon / mahalle"></label><label class="kh-l">Gelin alma · konvoy saati<input id="dg_ks" data-dg="ks" type="time" autocomplete="off"></label><label class="kh-l">Düğün başlangıç saati<input id="dg_ds" data-dg="ds" type="time" autocomplete="off"></label></div><div class="hz-chips">${[['yemekli', '🍽️ Yemekli'], ['yemeksiz', 'Yemeksiz'], ['ikram', '☕ İkram var']].map(a => `<button class="kh-c" data-dgy="${a[0]}">${a[1]}</button>`).join('')}</div><div class="hz-g2"><label class="kh-l">Yemek saati<input id="dg_ys" data-dg="ys" type="time" autocomplete="off"></label><label class="kh-l">Kına gecesi (isteğe bağlı)<input id="dg_kn" data-dg="kn" type="datetime-local" autocomplete="off"></label></div><label class="kh-l">Ek not (isteğe bağlı)<input id="dg_nt" data-dg="nt" type="text" autocomplete="off" placeholder="Örn. Eşin dostun hepsi davetli"></label><label class="kh-b hz-ch"><input type="checkbox" id="dg_dav" checked> Tüm hemşehrilerimiz davetlidir</label><div class="kh-n" id="dg_uyari" hidden></div><div class="kh-r"><button class="kh-b" data-dgk="not">📋 Notu kopyala</button><button class="kh-b" data-dgk="yaz">↺ Metni yeniden yaz</button></div></div></div>
+  <div class="hz-b hz-rk" id="hz_rk" hidden><b>📢</b><div><h4>Reklam bilgileri <small>kartta "REKLAM" etiketi görünür</small></h4><label class="kh-l">İşletme adı<input data-rk="ad" autocomplete="off"></label><label class="kh-l">Kampanya (rozet)<input data-rk="kam" placeholder="Örn. %20 indirim" autocomplete="off"></label>
+  <div class="hz-g2"><label class="kh-l">Telefon<input data-rk="tel" type="tel" autocomplete="off"></label><label class="kh-l">Çalışma saati<input data-rk="saat" placeholder="09.00 - 19.00" autocomplete="off"></label></div><label class="kh-l">Adres<input data-rk="adr" autocomplete="off"></label>
+  <div class="hz-chips">${Object.entries(RK_TEMA).map(a => `<button class="kh-c" data-rkt="${a[0]}">${a[1].ad}</button>`).join('')}</div><div class="kh-n">Başlığı, alt başlığı ve ürün maddelerini aşağıdaki 3. ve 4. adımlara yaz.</div><div class="kh-r"><button class="kh-b" data-rkk="yaz">↺ Seslendirme metnini yeniden yaz</button></div></div></div>
   <div class="hz-b"><b>2</b><div><h4>Fotoğraf <small id="hz_fn">0/3</small></h4><div class="hz-th" id="hz_th"></div><div class="kh-r"><label class="kh-b">📷 Fotoğraf seç (en çok 3)<input type="file" id="hz_foto" accept="image/*,.heic,.heif" multiple hidden></label><button class="kh-b" data-hz="fsil">Temizle</button></div></div></div>
   <div class="hz-b"><b>3</b><div><h4>Başlık</h4><label class="kh-l"><textarea id="hz_manset" rows="2" placeholder="Haberin başlığı"></textarea></label><label class="kh-l">Alt başlık (isteğe bağlı)<input id="hz_spot" placeholder="Tek cümlelik özet"></label></div></div>
   <div class="hz-b"><b>4</b><div><h4>Haber metni <small>sesli okunacak metin</small></h4><label class="kh-l"><textarea id="hz_metin" rows="5" placeholder="Haberi kısaca yaz. Boş bırakırsan başlık ve alt başlık okunur."></textarea></label><label class="kh-l">Madde madde (isteğe bağlı, her satır bir madde)<textarea id="hz_maddeler" rows="3" placeholder="Tarih: …&#10;Yer: …"></textarea></label><div class="kh-r"><button class="kh-b" data-hz="ornek" id="hz_ornek">📄 Konuya göre örnek yaz</button></div></div></div>
   <div class="hz-b"><b>5</b><div><h4>Açılış ve kapanış</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_acilis"> Açılış (jenerik + cümle)</label><label class="kh-l"><input id="hz_acilisMetin" placeholder="Açılış cümlesi"></label><label class="kh-b hz-ch"><input type="checkbox" id="hz_kapanis"> Kapanış (takip et)</label><label class="kh-l"><input id="hz_kapanisMetin" placeholder="Kapanış cümlesi"></label></div></div>
   <div class="hz-b"><b>6</b><div><h4>Ses ve müzik</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_ses"> Haberi seslendir</label><label class="kh-b hz-ch"><input type="checkbox" id="hz_alty"> Altyazı (söylenen cümle ekranda, siyah bantta)</label><div class="hz-chips" style="margin-top:8px">${HZM.map(m => `<button class="kh-c" data-hzm="${m[0]}">♪ ${m[1]}</button>`).join('')}</div></div></div>
-  <div class="hz-b"><b>7</b><div><h4>Dinle, kaydet, yayınla</h4><div class="kh-r"><button class="kh-b p" data-hz="oyna">▶ Sesli önizle</button><button class="kh-b p" data-hz="vid">🎬 Sesli video yap</button></div><div class="kh-r"><button class="kh-b" data-hz="kay">🖼 Görseli kaydet</button><button class="kh-b" data-hz="pay">📤 Paylaş</button><button class="kh-b" data-hz="tsk">💾 Taslağa kaydet</button></div></div></div>`;
-  k.addEventListener('input', e => { const id = e.target.id; if (e.target.dataset.dg){ D.dg = D.dg || {dav:true}; D.dg[e.target.dataset.dg] = e.target.value; dugunUret(true); return; } if (id === 'hz_tbad' || id === 'hz_tbay'){ D.tb = D.tb || tbVar(); D.tb[id === 'hz_tbad' ? 'ad' : 'ay'] = e.target.value; tebrikUret(!!D.tbDuzen, true); return; } const a = HZA[id]; if (!a) return; if (D.hzk === 'hayirli') D.tbDuzen = 1; if (D.hzk === 'dugunduyuru' && a === 'metin') D.dgDuzen = 1; D[a] = e.target.value; if (a === 'manset') D.ornek = false; const o = $h('#kh_' + a); if (o) o.value = e.target.value; kaydet(); ciz(); });
+  <div class="hz-b"><b>7</b><div><h4>Paylaşım yazısı <small>Instagram açıklaması</small></h4><label class="kh-l"><textarea id="hz_aciklama" rows="4" placeholder="Paylaşırken altına yazılacak metin"></textarea></label><label class="kh-l">Anahtar kelimeler<input id="hz_anahtar" placeholder="virgülle ayır" autocomplete="off"></label><label class="kh-l">Hashtag'ler<textarea id="hz_hashtag" rows="2" placeholder="#kabataş #ordu"></textarea></label>
+  <div class="kh-r"><button class="kh-b" data-ai="ykop">📋 Yazı + hashtag'leri kopyala</button><button class="kh-b" data-ai="akop">📋 Anahtar kelimeleri kopyala</button></div></div></div>
+  <div class="hz-b"><b>8</b><div><h4>Dinle, kaydet, yayınla</h4><div class="kh-r"><button class="kh-b p" data-hz="oyna">▶ Sesli önizle</button><button class="kh-b p" data-hz="vid">🎬 Sesli video yap</button></div><div class="kh-r"><button class="kh-b" data-hz="kay">🖼 Görseli kaydet</button><button class="kh-b" data-hz="pay">📤 Paylaş</button><button class="kh-b" data-hz="tsk">💾 Taslağa kaydet</button></div></div></div>`;
+  k.addEventListener('input', e => { const id = e.target.id; if (e.target.dataset.rk){ D.rk = D.rk || {}; D.rk[e.target.dataset.rk] = e.target.value; reklamUret(true); return; } if (e.target.dataset.dg){ D.dg = D.dg || {dav:true}; D.dg[e.target.dataset.dg] = e.target.value; dugunUret(true); return; } if (id === 'hz_tbad' || id === 'hz_tbay'){ D.tb = D.tb || tbVar(); D.tb[id === 'hz_tbad' ? 'ad' : 'ay'] = e.target.value; tebrikUret(!!D.tbDuzen, true); return; } const a = HZA[id]; if (!a) return; if (D.hzk === 'hayirli') D.tbDuzen = 1; if (D.hzk === 'dugunduyuru' && a === 'metin') D.dgDuzen = 1; if (D.hzk === 'reklam' && a === 'metin') D.rkDuzen = 1; D[a] = e.target.value; if (D.hzk === 'reklam' && (a === 'manset' || a === 'spot' || a === 'maddeler')){ reklamUret(true); return; } if (a === 'manset') D.ornek = false; const o = $h('#kh_' + a); if (o) o.value = e.target.value; kaydet(); ciz(); });
+  k.addEventListener('paste', e => { if (e.target.id === 'hz_aiyanit') setTimeout(aiAktar, 40); });
   k.addEventListener('change', async e => { const t = e.target;
     if (t.id === 'hz_foto'){ const fs = [...t.files]; t.value = ''; if (fs.length) await hzFoto(fs); return; }
     const m = {hz_acilis:'acilis', hz_kapanis:'kapanis'}[t.id]; if (m){ D[m] = t.checked; kaydet(); formDoldur(); ciz(); }
@@ -7524,6 +7602,9 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
     if (t.id === 'hz_alty'){ D.altyazi = t.checked; D.hzAlty = 1; kaydet(); formDoldur(); ciz(); } });
   k.addEventListener('click', async e => { const b = e.target.closest('button'); if (!b) return;
     if (b.dataset.tbo || b.dataset.tbt || b.dataset.tbn){ D.tb = D.tb || tbVar(); if (b.dataset.tbo){ D.tb.olay = b.dataset.tbo; D.tb.no = 0; } else if (b.dataset.tbt){ D.tb.ton = b.dataset.tbt; D.tb.no = 0; } else D.tb.no++; D.tbDuzen = 0; tebrikUret(); return; }
+    if (b.dataset.ai){ const z = b.dataset.ai; if (z === 'kop') hzKopya(AI_ISTEM, 'İstem kopyalandı: yapay zekâya yapıştır'); else if (z === 'aktar') aiAktar(); else if (z === 'ykop') hzKopya([D.aciklama, D.hashtag].filter(Boolean).join('\n\n'), 'Yazı ve hashtag\'ler kopyalandı'); else if (z === 'akop') hzKopya(D.anahtar || '', 'Anahtar kelimeler kopyalandı'); return; }
+    if (b.dataset.rkk){ D.rkDuzen = 0; reklamUret(); tst('Seslendirme metni yeniden yazıldı'); return; }
+    if (b.dataset.rkt){ D.rk = D.rk || {}; D.rk.tema = b.dataset.rkt; kaydet(); formDoldur(); ciz(); return; }
     if (b.dataset.dgy){ D.dg = D.dg || {dav:true}; D.dg.yem = D.dg.yem === b.dataset.dgy ? '' : b.dataset.dgy; dugunUret(); return; }
     if (b.dataset.dgk === 'yaz'){ D.dgDuzen = 0; dugunUret(); tst('Metin yeniden yazıldı'); return; }
     if (b.dataset.dgk === 'not'){ const tx = D.aciklama || ''; try { await navigator.clipboard.writeText(tx); tst('Not kopyalandı'); } catch (er){ const ta = document.createElement('textarea'); ta.value = tx; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); tst('Not kopyalandı'); } catch (e2){ tst('Kopyalanamadı'); } ta.remove(); } return; }
@@ -7535,7 +7616,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
     else { const hd = {oyna:'#khOyna', vid:'#khVid', kay:'#khKay', pay:'#khPay', tsk:'#khTsKay'}[z], o = hd && $h(hd); if (o) o.click(); } }); }
 function hzKonu(k){ const H = HZK.find(x => x[0] === k), T = H && sbBul(H[3]); if (!T) return; const d = T.d || {};
   ['sablon', 'etiket', 'gecis', 'bantStil', 'sfx', 'altBant', 'acilis', 'kapanis', 'spiker'].forEach(a => { if (d[a] !== undefined) D[a] = d[a]; });
-  const onceki = D.hzk; D.muzik = H[4]; D.hzk = k; if (k === 'hayirli'){ D.tb = D.tb || tbVar(); D.tbDuzen = 0; tebrikUret(); } else if (onceki === 'hayirli') tbTemizle(); if (k === 'dugunduyuru'){ D.dg = D.dg || {dav:true}; D.dgDuzen = 0; dugunUret(); } else if (onceki === 'dugunduyuru') dgTemizle(); if (!D.hzAlty){ D.altyazi = false; D.hzAlty = 1; } kaydet(); formDoldur(); ciz(); tst(H[2] + ' · müzik: ' + (HZM.find(x => x[0] === D.muzik) || [0, D.muzik])[1]); }
+  const onceki = D.hzk; D.muzik = H[4]; D.hzk = k; if (k === 'hayirli'){ D.tb = D.tb || tbVar(); D.tbDuzen = 0; tebrikUret(); } else if (onceki === 'hayirli') tbTemizle(); if (k === 'dugunduyuru'){ D.dg = D.dg || {dav:true}; D.dgDuzen = 0; dugunUret(); } else if (onceki === 'dugunduyuru') dgTemizle(); if (k === 'reklam'){ D.rk = D.rk || {}; D.rkDuzen = 0; reklamUret(); } else if (onceki === 'reklam') rkTemizle(); if (!D.hzAlty){ D.altyazi = false; D.hzAlty = 1; } kaydet(); formDoldur(); ciz(); tst(H[2] + ' · müzik: ' + (HZM.find(x => x[0] === D.muzik) || [0, D.muzik])[1]); }
 function hzOrnek(b){ const H = HZK.find(x => x[0] === D.hzk), T = H && sbBul(H[3]); if (!T){ tst('Önce bir konu seç'); return; }
   if (D.hzk === 'dugunduyuru'){ if (D.dgDuzen && b.dataset.o !== '1'){ b.dataset.o = '1'; const eski = b.textContent; b.textContent = 'Yazdıkların silinsin mi? Tekrar dokun'; setTimeout(() => { b.dataset.o = ''; b.textContent = eski; }, 4000); return; } b.dataset.o = ''; D.dgDuzen = 0; dugunUret(); return; }
   if (D.hzk === 'hayirli'){ if (D.tbDuzen && b.dataset.o !== '1'){ b.dataset.o = '1'; const eski = b.textContent; b.textContent = 'Yazdıkların silinsin mi? Tekrar dokun'; setTimeout(() => { b.dataset.o = ''; b.textContent = eski; }, 4000); return; } b.dataset.o = ''; D.tb = D.tb || tbVar(); D.tb.no++; D.tbDuzen = 0; tebrikUret(); return; }
@@ -7556,6 +7637,8 @@ function hzYenile(){ const k = $h('#khHz'); if (!k || !k._k) return;
     const a = $h('#hz_tbad'), y = $h('#hz_tbay'); if (a && a !== document.activeElement) a.value = T.ad || ''; if (y && y !== document.activeElement){ y.value = T.ay || ''; y.placeholder = o.ayp; } $h('#hz_tbayl').textContent = o.ayl;
     const n = o.T[T.ton] || o.T.s; $h('#hz_tbsay').textContent = 'Metin ' + ((T.no % n.length) + 1) + '/' + n.length; } }
   const dg = $h('#hz_dg'); if (dg){ const ac = D.hzk === 'dugunduyuru'; dg.hidden = !ac; if (ac){ const G = D.dg || (D.dg = {dav:true}); dg.querySelectorAll('[data-dg]').forEach(e => { if (e !== document.activeElement) e.value = G[e.dataset.dg] || ''; }); const dv = $h('#dg_dav'); if (dv) dv.checked = G.dav !== false; dg.querySelectorAll('[data-dgy]').forEach(b => b.setAttribute('aria-pressed', b.dataset.dgy === G.yem)); } }
+  const rb = $h('#hz_rk'); if (rb){ const ac = D.hzk === 'reklam'; rb.hidden = !ac; if (ac){ const R = D.rk || (D.rk = {}); rb.querySelectorAll('[data-rk]').forEach(e => { if (e !== document.activeElement) e.value = R[e.dataset.rk] || ''; }); rb.querySelectorAll('[data-rkt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.rkt === (R.tema || 'altin'))); } }
+  const ai = $h('#hz_aiistem'); if (ai && !ai.value) ai.value = AI_ISTEM;
   hzTh(); }
 function ciz(){ const c = $h('#khCv'); if (c && !calis) kartCiz(c, Infinity, 8); }
 function formDoldur(){ if (!kok) return; ['manset', 'spot', 'metin', 'yer', 'kisi', 'maddeler', 'not', 'aciklama', 'hashtag'].forEach(k => { const e = $h('#kh_' + k); if (e && e !== document.activeElement) e.value = D[k] || ''; });
@@ -8325,7 +8408,7 @@ function aktifLogo(){ return D.konuLogo === false ? M.logo : (KONU_LOGO[D.etiket
 /* --- biçime göre TV görünümü: bant rengi konuya (etikete), müzik ve geçiş şablona göre --- */
 Object.defineProperty(BANT, 'konu', {enumerable:true, get(){ const [, c, i] = etk(D.etiket), acik = /^#f|^#e[0-9a-f]/i.test(c); return {ad:'Konu rengi', l:c, li:i, b:acik ? '#111111' : '#ffffff', bi:acik ? '#fff' : '#111', s:acik ? c : '#111', si:acik ? '#111' : '#fff'}; }});
 const TVSB = {sondakika:{muzik:'gergin', gecis:'serit'}, tv:{muzik:'kurumsal', gecis:'serit'}, gazete:{muzik:'kurumsal', gecis:'kaydir'}, tabloid:{muzik:'gergin', gecis:'flas'}, modern:{muzik:'kurumsal', gecis:'daire'},
-  alinti:{muzik:'sakin', gecis:'panjur'}, ozet:{muzik:'kurumsal', gecis:'kaydir'}, flas:{muzik:'gergin', gecis:'glitch'}, renkli:{muzik:'gergin', gecis:'serit'}, tebrik:{muzik:'mujde', gecis:'kaydir'}, dgkart:{muzik:'mujde', gecis:'kaydir'}};
+  alinti:{muzik:'sakin', gecis:'panjur'}, ozet:{muzik:'kurumsal', gecis:'kaydir'}, flas:{muzik:'gergin', gecis:'glitch'}, renkli:{muzik:'gergin', gecis:'serit'}, tebrik:{muzik:'mujde', gecis:'kaydir'}, dgkart:{muzik:'mujde', gecis:'kaydir'}, reklam:{muzik:'mujde', gecis:'kaydir'}};
 function tvOto(tur){ if (D.tvOto === false) return; if (tur === 'et'){ D.bantStil = 'konu'; return; } const m = TVSB[D.sablon]; if (!m) return; if (D.muzik !== 'dosya' && D.muzik !== 'yok') D.muzik = m.muzik; D.gecis = m.gecis; D.bantStil = 'konu'; }
 
 /* --- renkli (biçimli) manşet: her satır ayrı kutu; *kelime* vurgulu --- */
@@ -8462,6 +8545,51 @@ CIZ.dgkart = function(x, W, H, t, dur){
     let y = solBlok(yl); aileBlok(y + P.gap, colL.x, colL.w); y = sagBlok(yr, colR.x, colR.w); pilBlok(y + P.gap*1.4, colR.x, colR.w); }
   else { let y = yTop + Math.max(0, (avail - tot(P))/2*.7); y = solBlok(y) + P.gap*.2; y = sagBlok(y, colR.x, colR.w); if (FA.length){ y += P.gap*.6; y = aileBlok(y, colL.x, colL.w); } if (P.ph) pilBlok(y + P.gap*1.4, colL.x, colL.w); }
   altyazi(x, W, H, t, yBot - U*.02); };
+/* 6.21 · Reklam kartı: işletme adı, kampanya rozeti, maddeler, iletişim kutusu; 3 tema */
+const RK_TEMA = {altin:{ad:'Koyu · altın', b1:'#10203f', b2:'#070d1c', ac:'#f5c542', tx:'#ffffff', mu:'rgba(255,255,255,.76)', pn:'rgba(255,255,255,.08)', ink:'#1a1204'},
+  kirmizi:{ad:'Kırmızı', b1:'#d3122f', b2:'#7a0a1c', ac:'#ffd54a', tx:'#ffffff', mu:'rgba(255,255,255,.86)', pn:'rgba(0,0,0,.2)', ink:'#2b0a0a'},
+  temiz:{ad:'Açık · temiz', b1:'#f7f2e7', b2:'#ece3cf', ac:'#d9661f', tx:'#12301f', mu:'rgba(18,48,31,.72)', pn:'rgba(18,48,31,.07)', ink:'#ffffff'}};
+CIZ.reklam = function(x, W, H, t, dur){
+  const g = guvenli(W, H), yat = W > H, sbt = t === Infinity, R = D.rk || {}, C = RK_TEMA[R.tema] || RK_TEMA.altin, U = Math.min(W, H*.9), m = g.m, S = s => String(s || '').trim(), EM = '"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+  const bos = !S(R.ad) && !S(D.manset), ad = S(R.ad) || (bos ? '[İşletme adı]' : ''), kam = S(R.kam), bas = S(D.manset).replace(/\*/g, '').replace(/\n+/g, ' ') || (bos ? '[Başlık]' : ''), sp = S(D.spot), MD = String(D.maddeler || '').split('\n').map(s => s.trim()).filter(Boolean).slice(0, 5);
+  const iletisim = [['📞', S(R.tel) || (bos ? '[Telefon]' : '')], ['📍', S(R.adr) || (bos ? '[Adres]' : '')], ['🕒', S(R.saat)]].filter(r => r[1]);
+  const ph = yat ? {w:W*.42, h:H} : {w:W, h:H*.34}, bd = U*.2, ls = W*.065, tx0 = yat ? ph.w + m*.9 : m, tw = yat ? W - tx0 - m : W - 2*m, yTop = yat ? g.u : ph.h + U*.05, yBot = H - g.a;
+  const plan = k => { const Q = {k, gap:U*.022*k}; Q.tf = U*.026*k; Q.th = Q.tf*2.1; const nw = kam && !yat ? tw - bd*.62 : tw;
+    Q.nf = ad ? sigdir(x, TR(ad), s => `700 ${s}px Oswald`, nw, U*.2, 1.08, U*.085*k, U*.045*k, 2) : null; Q.nh = Q.nf ? Q.nf.L.length*Q.nf.s*1.08 : 0;
+    Q.hf = bas ? sigdir(x, bas, s => `800 ${s}px Montserrat`, tw, U*.22, 1.22, U*.052*k, U*.03*k, 3) : null; Q.hh = Q.hf ? Q.hf.L.length*Q.hf.s*1.22 : 0;
+    Q.sf = U*.03*k; x.font = `500 ${Q.sf}px Montserrat`; Q.sl = sp ? satirla(x, sp, tw).slice(0, 2) : []; Q.sh = Q.sl.length*Q.sf*1.35;
+    Q.bf = U*.034*k; Q.bh = MD.length*Q.bf*1.6; Q.cf = U*.032*k; x.font = `700 ${Q.cf}px Montserrat`; Q.pad = Q.cf*.8;
+    Q.rows = iletisim.map((r, i) => { x.font = `${i ? 600 : 700} ${Q.cf}px Montserrat`; return {ic:r[0], L:satirla(x, r[1], tw - Q.pad*2 - Q.cf*1.9).slice(0, 2)}; }); Q.fh = Q.rows.length ? Q.pad*2 + Q.rows.reduce((q, r) => q + r.L.length*Q.cf*1.3 + Q.cf*.35, 0) - Q.cf*.35 : 0;
+    Q.top = Q.th + Q.gap + Q.nh + Q.gap*.7 + Q.hh + (Q.sh ? Q.gap*.5 + Q.sh : 0) + (Q.bh ? Q.gap*.9 + Q.bh : 0); return Q; };
+  let k = 1, Q = plan(k); const avail = () => yBot - yTop - Q.fh - Q.gap*1.4; while (Q.top > avail() && k > .5){ k *= .94; Q = plan(k); }
+  /* zemin */
+  let gr = x.createLinearGradient(0, 0, W*.3, H); gr.addColorStop(0, C.b1); gr.addColorStop(1, C.b2); x.fillStyle = gr; x.fillRect(0, 0, W, H);
+  /* fotoğraf */
+  x.save(); x.beginPath(); x.rect(0, 0, ph.w, ph.h); x.clip(); const fv = !!FOTO || !!(typeof GAL !== 'undefined' && GAL && GAL.list && GAL.list.length);
+  if (fv) foto(x, 0, 0, ph.w, ph.h, sbt ? 1.02 : 1 + .06*kis(t/dur, 0, 1)); else { const pg = x.createLinearGradient(0, 0, ph.w, ph.h); pg.addColorStop(0, C.ac); pg.addColorStop(1, C.b1); x.fillStyle = pg; x.fillRect(0, 0, ph.w, ph.h); x.globalAlpha = .18; x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.font = `${Math.min(ph.w, ph.h)*.45}px ${EM}`; x.fillText('🛍️', ph.w/2, ph.h/2); x.globalAlpha = .7; x.font = `600 ${U*.026}px Montserrat`; x.fillText('Ürün / iş yeri fotoğrafı ekle', ph.w/2, ph.h*.82); x.globalAlpha = 1; x.textBaseline = 'alphabetic'; }
+  let fg = yat ? x.createLinearGradient(ph.w*.55, 0, ph.w, 0) : x.createLinearGradient(0, ph.h*.55, 0, ph.h); fg.addColorStop(0, 'rgba(0,0,0,0)'); fg.addColorStop(1, C.b1); x.fillStyle = fg; x.fillRect(0, 0, ph.w, ph.h);
+  fg = x.createLinearGradient(0, 0, 0, H*.18); fg.addColorStop(0, 'rgba(0,0,0,.55)'); fg.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = fg; x.fillRect(0, 0, ph.w, H*.18); x.restore();
+  logo(x, g.m, g.u, ls, C.ac);
+  { const tf = U*.026, tx = 'REKLAM'; x.font = `800 ${tf}px Montserrat`; const w = x.measureText(tx).width + tf*1.8, px = W - m - w; x.fillStyle = 'rgba(0,0,0,.55)'; rr(x, px, g.u + ls*.1, w, tf*2.1, tf*1.05); x.fill(); x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(tx, px + w/2, g.u + ls*.1 + tf*1.07); x.textBaseline = 'alphabetic'; }
+  const an = (a0, b0, fn) => { const p = pr(t, a0, b0); x.save(); x.globalAlpha = kis(p, 0, 1); x.translate(0, (1 - p)*H*.02); fn(p); x.restore(); };
+  /* kampanya rozeti */
+  if (kam) an(.4, 1, p => { const cx = yat ? ph.w - bd*.62 : W - m - bd*.55, cy = yat ? yBot - bd*.55 : ph.h - bd*.12, md = String(kam).match(/^(%?\s?\d+[.,]?\d*\s?(?:TL|₺)?)\s+(.+)$/i), b1 = md ? md[1] : kam, b2 = md ? md[2] : '';
+    x.save(); x.translate(cx, cy); x.rotate(-.17); x.scale(.8 + .2*p, .8 + .2*p); x.shadowColor = 'rgba(0,0,0,.45)'; x.shadowBlur = bd*.12; x.shadowOffsetY = bd*.04; x.fillStyle = C.ac; x.beginPath(); x.arc(0, 0, bd/2, 0, 7); x.fill(); x.shadowColor = 'transparent'; x.lineWidth = bd*.025; x.strokeStyle = C.ink; x.globalAlpha = .35; x.beginPath(); x.arc(0, 0, bd/2 - bd*.05, 0, 7); x.stroke(); x.globalAlpha = 1;
+    x.fillStyle = C.ink; x.textAlign = 'center'; x.textBaseline = 'middle'; const f1 = sigdir(x, TR(b1), s => `800 ${s}px Oswald`, bd*.74, bd*.4, 1, bd*.36, bd*.14, 2); x.font = `800 ${f1.s}px Oswald`; const lh1 = f1.s*1.02, y1 = b2 ? -bd*.07 - (f1.L.length - 1)*lh1/2 : -(f1.L.length - 1)*lh1/2; f1.L.forEach((l, i) => x.fillText(l, 0, y1 + i*lh1));
+    if (b2){ x.font = `800 ${bd*.12}px Montserrat`; const ly = y1 + (f1.L.length - 1)*lh1 + f1.s*.62 + bd*.04; let q = TR(b2); while (x.measureText(q).width > bd*.74 && q.length > 3) q = q.slice(0, -1); x.fillText(q, 0, ly); } x.textBaseline = 'alphabetic'; x.restore(); });
+  /* metinler */
+  let y = yTop + Math.max(0, (avail() - Q.top)*.25); const hz = 'left';
+  an(.3, .8, () => { const tx = 'TANITIM'; x.font = `700 ${Q.tf}px Montserrat`; const w = x.measureText(tx).width + Q.tf*1.8; x.strokeStyle = C.ac; x.lineWidth = 2; rr(x, tx0, y, w, Q.th, Q.th/2); x.stroke(); x.fillStyle = C.ac; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(tx, tx0 + w/2, y + Q.th*.54); x.textBaseline = 'alphabetic'; });
+  y += Q.th + Q.gap;
+  if (Q.nf){ const yy = y; an(.35, .9, () => { x.fillStyle = C.ac; x.font = `700 ${Q.nf.s}px Oswald`; x.textAlign = hz; Q.nf.L.forEach((l, i) => x.fillText(l, tx0, yy + Q.nf.s*(1.08*i + .88))); }); y += Q.nh; } y += Q.gap*.7;
+  if (Q.hf){ const yy = y; an(.45, 1, () => { x.fillStyle = C.tx; x.font = `800 ${Q.hf.s}px Montserrat`; x.textAlign = hz; Q.hf.L.forEach((l, i) => x.fillText(l, tx0, yy + Q.hf.s*(1.22*i + .92))); }); y += Q.hh; }
+  if (Q.sh){ y += Q.gap*.5; const yy = y; an(.55, 1.1, () => { x.fillStyle = C.mu; x.font = `500 ${Q.sf}px Montserrat`; x.textAlign = hz; Q.sl.forEach((l, i) => x.fillText(l, tx0, yy + Q.sf*(1.35*i + 1))); }); y += Q.sh; }
+  if (Q.bh){ y += Q.gap*.9; MD.forEach((l, i) => { const yy = y + i*Q.bf*1.6; an(.65 + i*.08, 1.2 + i*.08, () => { x.fillStyle = C.ac; x.beginPath(); x.arc(tx0 + Q.bf*.5, yy + Q.bf*.62, Q.bf*.5, 0, 7); x.fill(); x.fillStyle = C.ink; x.font = `800 ${Q.bf*.7}px Montserrat`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('✓', tx0 + Q.bf*.5, yy + Q.bf*.64); x.textBaseline = 'alphabetic';
+      x.fillStyle = C.tx; x.font = `700 ${Q.bf}px Montserrat`; x.textAlign = 'left'; let q = l.replace(/^[-•*\d.)\s]+/, ''); const mx = tw - Q.bf*1.6; while (x.measureText(q).width > mx && q.length > 3) q = q.slice(0, -1); x.fillText(q + (q.length < l.replace(/^[-•*\d.)\s]+/, '').length ? '…' : ''), tx0 + Q.bf*1.4, yy + Q.bf*.95); }); }); }
+  /* iletişim kutusu */
+  if (Q.fh) an(.9, 1.4, () => { const fy = yBot - Q.fh; x.fillStyle = C.pn; rr(x, tx0, fy, tw, Q.fh, U*.018); x.fill(); x.fillStyle = C.ac; rr(x, tx0, fy, U*.01, Q.fh, U*.005); x.fill(); let yy = fy + Q.pad;
+    Q.rows.forEach((r, i) => { x.textAlign = 'left'; x.fillStyle = C.tx; x.font = `${Q.cf*1.05}px ${EM}`; x.fillText(r.ic, tx0 + Q.pad + U*.01, yy + Q.cf*1.02); x.font = `${i ? 600 : 800} ${Q.cf}px Montserrat`; r.L.forEach((l, j) => x.fillText(l, tx0 + Q.pad + Q.cf*1.9, yy + Q.cf*(1.3*j + 1))); yy += r.L.length*Q.cf*1.3 + Q.cf*.35; }); });
+  altyazi(x, W, H, t, yBot - Q.fh - Q.gap); };
 const MS_ORNEK = [
   {ad:'Son dakika uyarı', et:'SON DAKİKA', m:"SON DAKİKA\nKabataş'ta *sağanak* uyarısı\nOkullar yarın tatil", sp:'Valilik açıklamasına göre yağış öğleden sonra kuvvetlenecek.', ms:[{bg:'#d7191f', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}, {bg:'#ffd400', ink:'#111', boy:'o'}]},
   {ad:'Hasat', et:'HASAT', m:"FINDIK HASADI\nRekolte *geçen yıldan yüksek*", sp:'Üreticiler hasadın yüzde 80\'inin tamamlandığını söyledi.', ms:[{bg:'#8a6a1c', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}]},
@@ -8748,6 +8876,12 @@ const SB = [
   d:{sablon:'dgkart', etiket:'DÜĞÜN DUYURUSU', muzik:'mujde', gecis:'kaydir', bantStil:'beyaz', sfx:true, altBant:false, acilis:true, kapanis:true,
    manset:'[Damat] & [Gelin]', spot:'[Tarih] · [Düğün yeri]', metin:'[Damat] ile [Gelin] dünya evine giriyor. Düğün tarihi, [tarih]. Düğün yeri, [yer]. Gelin alma ve konvoy, saat [saat]. Tüm hemşehrilerimiz davetlidir.',
    acilisMetin:'Kabataş\'ta düğün var.', kapanisMetin:'Mutluluklar dileriz. Kabataş Haber.', aciklama:'💍 DÜĞÜN DUYURUSU\n📅 [Tarih]\n📍 [Yer]', hashtag:'#düğün #hayırlıolsun #kabataş #ordu #kabataşhaber'},
+  sahneler:[]},
+ {k:'reklam', ad:'Reklam · tanıtım', ikon:'📢', kisa:'İşletme adı · kampanya rozeti · iletişim kutusu', r:'kutlama',
+  d:{sablon:'reklam', etiket:'REKLAM', muzik:'mujde', gecis:'kaydir', bantStil:'beyaz', sfx:true, altBant:false, acilis:true, kapanis:true,
+   manset:'Yeni sezon ürünlerimiz geldi', spot:'[İşletmenin kısa sloganı]', maddeler:'[Ürün ya da hizmet 1]\n[Ürün ya da hizmet 2]\n[Ürün ya da hizmet 3]',
+   metin:'Reklam. Yeni sezon ürünlerimiz geldi. [Ürün ya da hizmet] için bizi arayın. Telefon, [numara]. Adres, [adres].',
+   acilisMetin:'Kabataş Haber\'de bir tanıtım var.', kapanisMetin:'Detaylar için işletmeyi arayabilirsiniz. Kabataş Haber.', aciklama:'📢 REKLAM | [İşletme adı]\n[Kampanya ve ürün bilgisi]\n📞 [Telefon]\n📍 [Adres]', hashtag:'#reklam #kabataş #ordu #kabataşhaber'},
   sahneler:[]},
  {k:'tebrik', ad:'Tebrik · başarı', ikon:'🏆', kisa:'Büyük manşet · TEBRİKLER vurgusu', r:'kutlama',
   d:{sablon:'tabloid', etiket:'TEBRİK', muzik:'kurumsal', gecis:'flas', bantStil:'beyaz',
