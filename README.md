@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.19 · 17.10.2026
+**Güncel sürüm:** 6.20 · 17.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.20** (17.10.2026) – Kabataş Haber › **💍 Düğün duyurusu** (Hızlı haber'in 2. konusu). Ayrı alanlar: damat, gelin, her iki tarafın baba ve anne adı, düğün tarihi (gün adıyla), yer, gelin alma · konvoy saati, düğün başlangıç saati, yemekli / yemeksiz / ikram, yemek saati, kına gecesi, ek not, "Tüm hemşehrilerimiz davetlidir". Boş bırakılan alan kartta ve seslendirmede yer almaz. Yeni **Düğün duyurusu** kart biçimi (sade bordo-altın, bilgi satırları, aile kutuları, isteğe bağlı çift fotoğrafı; 4:5, 1:1, 9:16, 16:9). Kısa seslendirme metni, paylaşım notu (emojili, **📋 Notu kopyala** düğmesi) ve hashtag'ler alanlardan kendiliğinden yazılır; seslendirme metnini elle değiştirirsen sonraki alan değişiklikleri ona dokunmaz (**↺ Metni yeniden yaz** ile sıfırlanır). Geçmiş tarih, eksik isim ve yemek saati için uyarı verir.
 - **6.19** (17.10.2026) – Kabataş Haber › **🎊 Hayırlı olsun · tebrik kartı**: Hızlı haber'in ilk konusu. 12 olay (yeni görev, düğün · nişan, bebek, mezuniyet, iş yeri, hac · umre, doğum günü, emeklilik, başarı, yeni ev · araç, askerden dönüş, sünnet) × 3 ton (Samimi · Resmî · Duygulu) × 2 hazır metin = 72 metin; ad ve isteğe bağlı ayrıntı yazılınca metne yerleşir, *Başka metin yaz* diğerini getirir. Yeni **Tebrik · hayırlı olsun** kart biçimi: çerçeveli yuvarlak fotoğraf, olay rozeti, altın başlık, konfeti, **"Siz de tebrik edin · yorumlara bir dilek bırakın"** çağrısı; 4:5, 1:1, 9:16 ve 16:9. Seslendirme, açılış ve kapanış cümleleri (yorum çağrısı dahil), "Mujde" müziği ve paylaşım metni (hashtag'li) kendiliğinden hazırlanır; yazıyı elle değiştirirsen sonraki ad/ayrıntı değişikliği metne dokunmaz.
 - **6.18** (17.10.2026) – Kabataş Haber › Logo · künye: haber kanalı tarzı **8 yeni logo**: Prizma, Dünya (dünyadaki hemşehriler), Manşet, Halka, Altıgen, Flaş, Canlı, Hemşehri (konum işareti). Hepsi seçili renge uyar; kartlarda, jenerikte, TV bandında ve profil fotoğrafı/şeffaf PNG dışa aktarımında kullanılır.
 - **6.17** (17.10.2026) – Hızlı haber: videodaki **siyah bantlı beyaz altyazı** artık tercihe bağlı. 6. adımda "Altyazı" kutusu var; Hızlı haber'de konu seçilince varsayılan **kapalı** gelir, istersen açarsın.
