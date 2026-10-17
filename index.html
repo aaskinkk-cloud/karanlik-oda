@@ -338,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.18 · 17.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.19 · 17.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6816,6 +6816,7 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-hz .hz-b h4{margin:3px 0 8px;font:700 15px system-ui}.kh-hz .hz-b h4 small{font:500 12px system-ui;color:var(--muted);margin-left:6px}
 .kh-hz .hz-b>div{min-width:0;display:grid;gap:8px;align-content:start}
 .kh-hz .hz-chips{display:flex;flex-wrap:wrap;gap:6px}
+.kh-hz .hz-b[hidden]{display:none}.kh-hz .hz-tbo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.kh-hz .hz-tbo .kh-c{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kh-hz .hz-th{display:flex;gap:8px;flex-wrap:wrap}.kh-hz .hz-th img{width:68px;height:68px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
 .kh-hz .hz-ch{display:flex;align-items:center;gap:8px;justify-content:flex-start}
 .kh-hz .hz-ch input{width:auto}
@@ -7022,7 +7023,7 @@ const ORAN = {'4:5':[1080,1350,'Instagram gönderi'], '1:1':[1080,1080,'Kare'], 
 const ETIKET = [['SON DAKİKA','#d7191f','#fff'],['SICAK GELİŞME','#ff5a00','#fff'],['FLAŞ','#ffd400','#111'],['ÖZEL HABER','#0b4f8a','#fff'],['GÜNDEM','#24303a','#fff'],
   ['MÜJDE','#1f8a4c','#fff'],['DUYURU','#5b3fa0','#fff'],['UYARI','#e3a000','#111'],['YEREL','#7a4e2d','#fff'],['HASAT','#8a6a1c','#fff'],['HAVA DURUMU','#1b74c9','#fff'],
   ['SPOR','#00897b','#fff'],['TEBRİK','#c2185b','#fff'],['ANMA','#2b2b2b','#fff'],['RÖPORTAJ','#37474f','#fff']];
-const SABLON = [['sondakika','Son dakika · TV'],['gazete','Klasik gazete'],['tabloid','Büyük manşet'],['modern','Modern kart'],['alinti','Söz · alıntı'],['ozet','Madde madde'],['flas','Flaş bant']];
+const SABLON = [['sondakika','Son dakika · TV'],['gazete','Klasik gazete'],['tabloid','Büyük manşet'],['modern','Modern kart'],['alinti','Söz · alıntı'],['ozet','Madde madde'],['flas','Flaş bant'],['tebrik','Tebrik · hayırlı olsun']];
 const etk = ad => ETIKET.find(x => x[0] === ad) || [ad || 'HABER', '#d7191f', '#fff'];
 const M = Object.assign({ad:'KABATAŞ HABER', slogan:'Sıradan değil, sıladan haberler', hesap:'@kabatashaber', sayi:1}, LSg('kh.marka', {}));
 const yeniD = () => ({id:Date.now().toString(36), oran:'4:5', sablon:'sondakika', etiket:'SON DAKİKA', manset:'', spot:'', yer:'Kabataş', metin:'', kisi:'', maddeler:'',
@@ -7416,24 +7417,88 @@ function izleAc(){ const src = $h('#khCv'); if (!src || document.querySelector('
     else if (i === 'tam'){ try { if (document.fullscreenElement) document.exitFullscreen(); else if (ov.requestFullscreen) ov.requestFullscreen().catch(() => {}); } catch (er) {} } });
   setTimeout(() => { ip.style.opacity = 0; }, 3500); uyg(); }
 /* 6.16 · Hızlı haber: konu → 1-3 fotoğraf → başlık → haber metni → açılış/kapanış → müzik, alt alta tek bölümde */
-const HZK = [['duyuru','📣','Duyuru','duyuru','duyuru'],['spor','⚽','Spor','spor','spor'],['hava','⛅','Hava','hava','sakin'],['gundem','📰','Gündem','gundem','kurumsal'],['mujde','🎉','Müjde','mujde','mujde'],['uyari','⚠️','Uyarı','uyari','gergin'],['hasat','🌰','Fındık','hasat','sakin'],['tebrik','🏆','Tebrik','tebrik','mujde'],['anma','🕯️','Anma','anma','huzun']];
+const HZK = [['hayirli','🎊','Hayırlı olsun','hayirli','mujde'],['duyuru','📣','Duyuru','duyuru','duyuru'],['spor','⚽','Spor','spor','spor'],['hava','⛅','Hava','hava','sakin'],['gundem','📰','Gündem','gundem','kurumsal'],['mujde','🎉','Müjde','mujde','mujde'],['uyari','⚠️','Uyarı','uyari','gergin'],['hasat','🌰','Fındık','hasat','sakin'],['tebrik','🏆','Tebrik','tebrik','mujde'],['anma','🕯️','Anma','anma','huzun']];
 const HZM = [['duyuru','Duyuru'],['spor','Spor'],['mujde','Müjde'],['huzun','Anma'],['kurumsal','Bülten'],['sakin','Sakin'],['gergin','Gergin'],['yok','Yok']];
 const HZA = {hz_manset:'manset', hz_spot:'spot', hz_metin:'metin', hz_acilisMetin:'acilisMetin', hz_kapanisMetin:'kapanisMetin', hz_maddeler:'maddeler'};
+/* 6.19 · Hayırlı olsun: olay + ton + hazır metin. «a|b» = ayrıntı yazıldıysa a, yoksa b; {ad} ve {ay} yerine geçer */
+const TBO = [
+ {k:'gorev', e:'💼', ad:'Yeni görev', h:'HAYIRLI OLSUN', lb:'YENİ GÖREV', ayl:'Görev / unvan (isteğe bağlı)', ayp:'Örn. Belediye Başkan Yardımcısı', rn:'#1e5aa8', hs:'#yenigörev',
+  T:{s:[['Yeni görevinde başarılar dileriz!', 'Hemşehrimiz {ad}, «{ay} olarak »yeni görevine başladı. Hayırlı olsun, emeğine sağlık! Başarılarının devamını diliyoruz.'], ['Yeni görevi hayırlı uğurlu olsun!', 'Duyduk, sevindik: {ad}, «{ay} olarak »yeni göreve başladı. Kolay gelsin, işleri rast gitsin. Hepimiz yanındayız!']],
+   r:[['Yeni görevine başladı.', 'Hemşehrimiz {ad}, «{ay} olarak »yeni görevine başlamıştır. Kendisini tebrik eder, görevinde başarılar dileriz.'], ['Yeni görevinde başarılar dileriz.', 'Kabataş\'ın değerli ismi {ad}, «{ay} olarak »yeni görevine atanmıştır. Hayırlı olmasını diler, çalışmalarında başarılar temenni ederiz.']],
+   d:[['Emeğin karşılığı geldi, hayırlı olsun!', 'Yılların emeği, alın teri bugün karşılığını buldu. {ad}, «{ay} olarak »yeni görevinde Allah yardımcın olsun. Hayırlı olsun!'], ['Hak ettin, hayırlı olsun!', 'Bu yolda gösterdiğin gayret hepimize örnek oldu. «{ay} olarak »başladığın yeni görevin ilçemize, ailene ve sana hayırlı uğurlu olsun.']]}},
+ {k:'dugun', e:'💍', ad:'Düğün · nişan', h:'MUTLULUKLAR', lb:'EVLİLİK', ayl:'Eşinin adı (isteğe bağlı)', ayp:'Örn. Ayşe', rn:'#b83a6b', hs:'#düğün #nişan #mutluluklar',
+  T:{s:[['Bir yastığa baş koydular!', 'Hemşehrimiz {ad}, «{ay} ile »hayatını birleştirdi. Ömür boyu mutluluklar, yuvanız bereketli olsun!'], ['Yuvanız mutlulukla dolsun!', '{ad}, «{ay} ile »evlilik yolunda ilk adımı attı. Dünya evine girdiler, ellerinden tutup mutluluklar diliyoruz!']],
+   r:[['{ad}, dünya evine girdi.', 'Hemşehrimiz {ad}, «{ay} ile »dünya evine girmiştir. Çifti tebrik eder, hayat boyu mutluluklar dileriz.'], ['Yeni evlilerimize mutluluklar.', 'Kabataş\'ımızın mutlu günü: {ad}, «{ay} ile »hayatını birleştirdi. Yuvalarının kurulması hayırlı olsun, ömür boyu mutluluklar dileriz.']],
+   d:[['Yolunuz bir, yuvanız bereketli olsun.', 'İki gönül tek yastığa baş koydu. {ad}, «{ay} ile »kurduğu yuvada ömür boyu sevgi, sağlık ve huzur bulsun. Allah bir yastıkta kocatsın!'], ['Gönülden gönüle bir yolculuk.', 'Bugün iki hayat bir oldu. {ad}, «{ay} ile »yeni hayatına adım attı. Sevginiz hiç eksilmesin, hep birlikte mutlu olun.']]}},
+ {k:'bebek', e:'👶', ad:'Yeni bebek', h:'HOŞ GELDİN BEBEK', lb:'MİNİK MİSAFİR', ayl:'Bebeğin adı (isteğe bağlı)', ayp:'Örn. Elif', rn:'#2a9d8f', hs:'#hoşgeldinbebek #yenidoğan',
+  T:{s:[['Ailemize minik bir misafir geldi!', 'Ailesi büyüyen hemşehrimiz {ad}: minik bir misafir geldi! «Bebeğin adı {ay}. »Hoş geldin bebek, analı babalı büyü, ömrün uzun olsun!'], ['Kucak dolusu mutluluk!', '{ad} ailesinin neşesi ikiye katlandı. «Bebeğin adı {ay}. »Aileyi tebrik ediyor, sağlıkla büyümesini diliyoruz.']],
+   r:[['Ailede sevindirici gün.', '{ad} ailesine yeni bir üye katılmıştır. «Bebeğin adı {ay}. »Aileyi tebrik eder, bebeğe sağlıklı ve uzun bir ömür dileriz.'], ['Yeni bir hayat, yeni bir umut.', 'Kabataş\'ın nüfusu bir artı kazandı. {ad} ailesine katılan yeni üye hayırlı olsun. «Adı {ay}. »Sağlıkla büyümesini temenni ederiz.']],
+   d:[['Kapıya bir gül açtı.', 'Evlerine umut ve neşe doldu. {ad} ailesine gelen minik misafir hayırlı olsun. «Adı {ay}. »Allah analı babalı, sağlıklı bir ömür versin.'], ['Dünyaya hoş geldin minik yürek!', 'Bugün bir yuvanın en güzel günü. {ad} ailesinin bebeği sağlıkla büyüsün, hayırlı evlat olsun. «Adı {ay}. »Anne ve babasına binlerce mutluluk!']]}},
+ {k:'mezun', e:'🎓', ad:'Mezuniyet', h:'TEBRİKLER', lb:'MEZUNİYET', ayl:'Okul / bölüm (isteğe bağlı)', ayp:'Örn. Ordu Üniversitesi', rn:'#6a4cc4', hs:'#mezuniyet #başarı',
+  T:{s:[['Diplomasını aldı, tebrikler!', 'Hemşehrimiz {ad}, «{ay} »mezuniyetini tamamladı. Yıllarca süren emeğin karşılığını aldı. Tebrikler, yeni hayatında başarılar!'], ['Mezun oldun, gurur duyduk!', '{ad} bir sınıf geride bıraktı: «{ay} »mezuniyeti hayırlı olsun. Ailesi ve biz hemşehrileri onunla gurur duyuyoruz!']],
+   r:[['Mezun oldu, tebrikler.', 'Hemşehrimiz {ad}, «{ay} »eğitimini başarıyla tamamlayarak mezun olmuştur. Kendisini tebrik eder, hayatında başarılar dileriz.'], ['Mezuniyeti hayırlı olsun.', '{ad}, «{ay} »mezuniyetini başarıyla gerçekleştirmiştir. Genç hemşehrimizin yeni yolunda başarılar temenni ederiz.']],
+   d:[['Yılların emeği bir diplomada.', 'Uykusuz geceler, bitmeyen sınavlar geride kaldı. {ad}, «{ay} »mezuniyetini tamamladı. Ailesinin duası ve emeği boşa gitmedi, hayırlı olsun!'], ['Gözlerin gülsün, yolun açık olsun!', 'Bugün ailesinin en gururlu günü. {ad} diplomasını aldı. Hayallerinin peşinden gittiği bu yolda yolu açık, başarısı daim olsun.']]}},
+ {k:'isyeri', e:'🏪', ad:'Yeni iş yeri', h:'HAYIRLI OLSUN', lb:'YENİ İŞ YERİ', ayl:'İş yerinin adı (isteğe bağlı)', ayp:'Örn. Kabataş Market', rn:'#d9822b', hs:'#yeniişyeri #esnaf #hayırlıolsun',
+  T:{s:[['Yeni iş yeri hayırlı olsun!', 'Hemşehrimiz {ad}, «{ay} adıyla »yeni iş yerini açtı. Bereketli kazançlar, bol müşteri diliyoruz. Esnafımıza destek olalım!'], ['Kapılar açıldı, kazançlar bol olsun!', '{ad}, «{ay} »iş yerini hizmete açtı. Hayırlı olsun, işleri rast gitsin. Haydi Kabataş\'ta esnafımızı birlikte destekleyelim!']],
+   r:[['Yeni iş yerini açtı.', 'Hemşehrimiz {ad}, «{ay} adlı »iş yerini hizmete açmıştır. Hayırlı olmasını, bereketli kazançlar temenni ederiz.'], ['Yeni iş yerine bereketli kazançlar.', 'Kabataş esnafına yeni bir isim katıldı: {ad}, «{ay} ile |»hizmete başladı. Hayırlı olsun, çalışmalarında başarılar dileriz.']],
+   d:[['Emeğin bereketi bol olsun!', 'Bir hayalin gerçeğe dönüştüğü gün. {ad}, «{ay} ile |»esnaflığa adım attı. Allah rızkını bol, kazancını bereketli eylesin. Hayırlı olsun!'], ['Alın teri, helal kazanç.', 'Yılların birikimi ve emeği bugün kapı açtı. {ad}, «{ay} ile |»yeni yolculuğuna çıktı. Rızkın bol, kazancın bereketli olsun.']]}},
+ {k:'hac', e:'🕋', ad:'Hac · umre', h:'HOŞ GELDİNİZ', lb:'MÜBAREK YOLCULUK', ayl:'Hac mı, umre mi? (isteğe bağlı)', ayp:'Hac veya Umre', rn:'#1d7a52', hs:'#hacı #umre #hoşgeldiniz',
+  T:{s:[['Mübarek yolculuktan döndü, hoş geldi!', 'Hemşehrimiz {ad}, mübarek yolculuğundan «{ay} ibadetini tamamlayarak |»memleketimize döndü. Hoş geldiniz, ibadetleriniz kabul olsun!'], ['Allah kabul etsin!', '{ad}, «{ay} ibadetini başarıyla tamamladı|mübarek yolculuğunu başarıyla tamamladı». Allah kabul etsin, ibadetleriniz makbul, duanız müstecap olsun. Hoş geldiniz!']],
+   r:[['Mübarek yolculuktan döndü.', 'Hemşehrimiz {ad}, «{ay} ibadetini tamamlayarak |»ilçemize dönmüştür. Kendisine hoş geldiniz der, ibadetlerinin kabulünü dileriz.'], ['İbadetleriniz kabul olsun.', '{ad}, mübarek topraklardan sağ salim dönmüştür. Yolculuğunun hayırlı olmasını, ibadetlerinin makbul olmasını dileriz.']],
+   d:[['Gönüller Kâbe\'de kaldı.', 'Mübarek topraklardan gönüllerine huzur taşıyan {ad}, memleketine döndü. Dualar kabul, ibadetler makbul olsun. Hoş geldiniz!'], ['Dualar kabul olsun!', 'Gözyaşlarıyla yapılan dualar, kalplerde kalan huzur… {ad}, «{ay} ibadetini tamamlayıp|mübarek yolculuğu tamamlayıp» yuvasına döndü. Allah yaptığı ibadetleri kabul etsin, hayırlı olsun.']]}},
+ {k:'dogumgunu', e:'🎂', ad:'Doğum günü', h:'NİCE MUTLU YILLARA', lb:'DOĞUM GÜNÜ', ayl:'Kaçıncı yaş? (isteğe bağlı)', ayp:'Örn. 40', rn:'#e0485c', hs:'#doğumgünü #nicemutluyıllara',
+  T:{s:[['Nice mutlu, sağlıklı yıllara!', 'Hemşehrimiz {ad} bugün «{ay}. yaş|doğum» gününü kutluyor. Nice sağlıklı, huzurlu ve mutlu yıllara! Doğum günün kutlu olsun!'], ['Bugün onun günü!', 'Bugün {ad} için çok özel bir gün! «{ay}. yaş|Doğum» günü kutlu olsun. Tatlı ve sağlıklı nice yıllar dileriz!']],
+   r:[['Yeni yaşına girdi.', 'Hemşehrimiz {ad}, bugün «{ay}. yaşını doldurmuştur|yeni yaşına girmiştir». Kendisine sağlıklı ve başarılı nice yıllar dileriz.'], ['Doğum günü kutlu olsun.', 'Kabataş\'ımızın değerli ismi {ad}, bugün doğum gününü kutluyor. Sağlık, mutluluk ve başarı dolu nice yıllar temenni ederiz.']],
+   d:[['Yeni yaşın hayırlı olsun!', 'Bir yıl daha geride kaldı, güzel anılar çoğaldı. {ad}, bugün doğum gününü kutluyor. Ömrün bereketli, yolun açık, kalbin huzurlu olsun.'], ['Güzel insanlar çok yaşasın.', 'Sevenleriyle güzel, dostlarıyla zengin {ad}, bugün yeni yaşına giriyor. Nice yıllara, sağlık, huzur ve mutluluk dolu günlere!']]}},
+ {k:'emekli', e:'🌅', ad:'Emeklilik', h:'HAYIRLI OLSUN', lb:'EMEKLİLİK', ayl:'Meslek / kurum (isteğe bağlı)', ayp:'Örn. Öğretmenlik', rn:'#3a6ea5', hs:'#emeklilik #hayırlıolsun',
+  T:{s:[['Emeklilik hayırlı olsun!', 'Hemşehrimiz {ad}, «{ay} görevinden »emekli oldu. Yıllarca verdiği emeğe teşekkürler, bundan sonrası dinlenme ve keyif zamanı olsun!'], ['Şimdi keyif zamanı!', 'Yılların koşuşturması bitti: {ad} emekliliğe ayrıldı. «{ay} görevindeki hizmetleri|Hizmetleri» için teşekkür ediyor, hayırlı olsun diyoruz!']],
+   r:[['Emekliye ayrıldı.', 'Hemşehrimiz {ad}, «{ay} görevinden »emekliye ayrılmıştır. Uzun yıllar boyunca verdiği hizmetlerden dolayı teşekkür eder, sağlıklı ve mutlu bir emeklilik dileriz.'], ['Hizmetleri için teşekkür ederiz.', 'Yıllarca ilçemize ve ülkemize hizmet eden {ad}, emekli olmuştur. Emekliliğinin hayırlı olmasını, huzurlu ve sağlıklı günler geçirmesini dileriz.']],
+   d:[['Emeğiniz için binlerce teşekkür.', 'Bir ömür alın teri döktü, emek verdi. {ad}, bugün emekliliğe adım atıyor. Bundan sonrası huzur, sağlık ve torunlarla geçen güzel günler olsun.'], ['Güzel bir veda, güzel bir başlangıç.', 'Yılların yorgunluğu bugün huzura dönüştü. {ad}, emeklilikle yeni bir sayfa açtı. Dinlenmek en çok bu emeğe yakışır. Hayırlı olsun!']]}},
+ {k:'basari', e:'🏆', ad:'Başarı · derece', h:'TEBRİKLER', lb:'BAŞARI', ayl:'Başarı (isteğe bağlı)', ayp:'Örn. il birinciliği', rn:'#c9971c', hs:'#tebrikler #başarı',
+  T:{s:[['Gurur duyduk, tebrikler!', 'Hemşehrimiz {ad}, «{ay} elde ederek »ilçemizin adını duyurdu. Gurur duyduk, tebrik ediyor, başarılarının devamını diliyoruz!'], ['Başarı Kabataş\'tan geldi!', '{ad}, «{ay} elde ederek »hepimizi gururlandırdı. Emeğine, azmine sağlık. Tebrikler, yeni başarılara!']],
+   r:[['Büyük bir başarıya imza attı.', 'Hemşehrimiz {ad}, «{ay} elde ederek »ilçemizi başarıyla temsil etmiştir. Kendisini kutlar, başarılarının devamını dileriz.'], ['Başarılı hemşehrimizi kutluyoruz.', 'Kabataş\'ın başarılı ismi {ad}, «{ay} elde ederek »gurur kaynağımız olmuştur. Tebrik eder, yeni başarılar dileriz.']],
+   d:[['Emek, azim ve gurur!', 'Gece gündüz çalışmanın, vazgeçmemenin karşılığı geldi. {ad}, «{ay} elde ederek »hepimizi gururlandırdı. Ailesi, öğretmenleri ve hemşehrileriyle birlikte kutluyoruz.'], ['Kabataş seninle gurur duyuyor!', 'Küçük bir ilçeden büyük başarılar çıkıyor. {ad}, «{ay} elde ederek »bunu bir kez daha gösterdi. Alnının akıyla, daha nice zaferlere!']]}},
+ {k:'yeniev', e:'🏡', ad:'Yeni ev · araç', h:'HAYIRLI OLSUN', lb:'YENİ YUVA', ayl:'Ne aldı? (isteğe bağlı)', ayp:'Örn. yeni ev, araç, bahçe', rn:'#2e8b7a', hs:'#hayırlıolsun #yeniev',
+  T:{s:[['Yeni yuvanız hayırlı olsun!', 'Hemşehrimiz {ad}, «{ay} sahibi oldu|yeni bir yuvaya kavuştu». Hayırlı olsun, bereketle kullansın, nice güzel günler geçirsin!'], ['Güle güle kullansın!', '{ad} için güzel bir gün: «{ay} sahibi oldu|yeni bir müjdeyi paylaştı». Hayırlı uğurlu olsun, daha nicelerine!']],
+   r:[['Yeni bir mutluluğa kavuştu.', 'Hemşehrimiz {ad}, «{ay} sahibi olmuştur|hayırlı bir müjdeyi duyurmuştur». Kendisini tebrik eder, hayırlı olmasını dileriz.'], ['Hayırlı olsun dileklerimizle.', 'Kabataş\'ımızdan sevindirici haber: {ad}, «{ay} sahibi olmuştur|yeni bir mutluluğa kavuşmuştur». Hayırlı olsun, güle güle kullansın.']],
+   d:[['Emeğiniz bereketlensin!', 'Kuruş kuruş biriktirilen hayaller gerçek oldu. {ad}, «{ay} sahibi oldu|yeni bir yuvaya kavuştu». Rızkınız bereketli, yuvanız huzurlu olsun.'], ['Helal olsun, hayırlı olsun!', 'Alın teriyle gelen her şey bereketlidir. {ad}, «{ay} sahibi oldu|güzel bir müjdeyi paylaştı». Kapısından sevinç, sofrasından bereket eksik olmasın.']]}},
+ {k:'terhis', e:'🎖️', ad:'Askerden dönüş', h:'HOŞ GELDİN', lb:'TERHİS', ayl:'Görev yeri (isteğe bağlı)', ayp:'Örn. Hakkâri', rn:'#b01e2f', hs:'#terhis #askerdönüşü #hoşgeldin',
+  T:{s:[['Tezkere hayırlı olsun!', 'Hemşehrimiz {ad}, vatani görevini tamamlayıp memleketine döndü. «Görev yeri: {ay}. »Hoş geldin, ailene ve ilçemize sağ salim döndün, tezkeren hayırlı olsun!'], ['Vatani görev tamamlandı!', '{ad} askerliğini tamamladı, yeniden aramızda! «Görev yeri: {ay}. »Ailesinin gözü aydın, hoş geldin. Memleket hasreti bitti!']],
+   r:[['Askerliğini tamamladı.', 'Hemşehrimiz {ad}, vatani görevini başarıyla tamamlayarak ilçemize dönmüştür. «Görev yeri: {ay}. »Kendisine hoş geldin der, hayırlı olsun dileriz.'], ['Vatani görevini tamamladı.', 'Kabataşlı genç {ad}, askerlik görevini bitirmiş ve ailesine kavuşmuştur. «Görev yeri: {ay}. »Tebrik eder, yeni hayatında başarılar dileriz.']],
+   d:[['Hasret bitti, hoş geldin!', 'Aylar süren hasret sona erdi. {ad}, vatani görevini tamamlayıp ailesine kavuştu. «Görev yeri: {ay}. »Anne babasının gözyaşı sevince döndü. Hoş geldin!'], ['Yolun açık, kapın hep açık.', 'Anne dualarıyla çıkılan yol, aynı dualarla sona erdi. {ad}, askerliğini tamamladı. «Görev yeri: {ay}. »Hoş geldin, tezkeren hayırlı olsun!']]}},
+ {k:'sunnet', e:'🎈', ad:'Sünnet düğünü', h:'HAYIRLI OLSUN', lb:'SÜNNET', ayl:'Çocuğun adı (isteğe bağlı)', ayp:'Örn. Efe', rn:'#2979c0', hs:'#sünnet #hayırlıolsun',
+  T:{s:[['Küçük prens sünnet oldu!', '{ad} ailesinin en mutlu günü: «Küçük prens {ay}|Küçük prens» sünnet oldu. Allah analı babalı büyütsün, hayırlı olsun!'], ['Maşallah, hayırlı olsun!', '{ad} ailesi sünnet sevincini yaşıyor. «Küçük {ay}|Yavrumuz» sağlıkla büyüsün, nice mutlu günlere erişsin. Hayırlı olsun!']],
+   r:[['Ailesinin sünnet sevinci.', '{ad} ailesinin sünnet sevincini paylaşıyoruz. «Küçük {ay}|Yavrumuz» sağlıkla büyüsün. Aileyi tebrik eder, hayırlı olmasını dileriz.'], ['Sünnet düğünü hayırlı olsun.', 'Kabataş\'ımızdan mutlu haber: {ad} ailesi, «{ay} için |»sünnet düğünü yaptı. Hayırlı olsun, nice mutlu günlere.']],
+   d:[['Maşallah, nazar değmesin!', 'Küçük yüreğin büyük günü: «{ay}|Yavrumuz» sünnet oldu. {ad} ailesinin sevincine ortak oluyor, nazarlardan uzak, sağlıkla büyümesini diliyoruz.'], ['Yürekler bayram yeri.', '{ad} ailesi için bugün bayram var. «{ay}|Minik yavrumuz» sağlıkla büyüsün, Allah analı babalı etsin. Hayırlı olsun!']]}}];
+const TBA = ['Kabataş Haber\'den güzel bir haber var.', 'Kabataş\'ta mutlu bir gün.', 'Hemşehrilerimize güzel bir haber.', 'Bugün gönüller bir arada kutluyor.'];
+const TBC = ['Siz de tebriklerinizi yorumlara yazın.', 'Tebrik mesajlarınızı yorumlarda bekliyoruz.', 'Siz de güzel bir dilek bırakın, kendisine ulaştıralım.', 'Gönlünüzden geçeni yorumlara yazın, birlikte kutlayalım.'];
+const tbVar = () => ({olay:'gorev', ton:'s', ad:'', ay:'', no:0});
+const tbYaz = (s, ad, ay) => String(s).replace(/«([^»|]*)\|?([^»]*)»/g, (m, a, b) => (ay ? a : b).replace(/\{ay\}/g, ay)).replace(/\{ad\}/g, ad);
+function tebrikUret(sadeceAd, hafif){ D.tb = D.tb || tbVar(); const T = D.tb, o = TBO.find(z => z.k === T.olay) || TBO[0], L = o.T[T.ton] || o.T.s, v = L[T.no % L.length], ad = String(T.ad).trim() || '[Ad Soyad]', ay = String(T.ay).trim();
+  D.tbEt = o.lb; D.tbEm = o.e; D.tbAc = o.rn; D.etiket = o.h; D.manset = ad;
+  if (!sadeceAd){ const sp = tbYaz(v[0], ad, ay); D.spot = sp; D.metin = tbYaz(v[1], ad, ay); D.acilisMetin = TBA[T.no % TBA.length]; D.kapanisMetin = TBC[T.no % TBC.length] + ' Kabataş Haber.';
+    D.aciklama = `${o.e} ${o.h} | ${ad}${ay ? ' · ' + ay : ''} — ${sp} Siz de tebriklerinizi yorumlara yazın 👇`; D.hashtag = `#hayırlıolsun #tebrikler ${o.hs} #kabataş #ordu #kabataşhaber`; }
+  D.ornek = !String(T.ad).trim(); kaydet(); if (hafif) hzYenile(); else formDoldur(); ciz(); }
+function tbTemizle(){ if (!D.tbDuzen){ ['manset', 'spot', 'metin', 'acilisMetin', 'kapanisMetin', 'aciklama'].forEach(k => { D[k] = ''; }); D.hashtag = '#kabataş #ordu #kabataşhaber'; D.ornek = false; } D.tbEt = D.tbEm = D.tbAc = undefined; D.tbDuzen = 0; }
 function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
   k.innerHTML = `<div class="hz-b"><b>1</b><div><h4>Konu <small>müzik ve görünüm kendiliğinden seçilir</small></h4><div class="hz-chips">${HZK.map(h => `<button class="kh-c" data-hzk="${h[0]}">${h[1]} ${h[2]}</button>`).join('')}</div></div></div>
+  <div class="hz-b hz-tb" id="hz_tb" hidden><b>✦</b><div><h4>Tebrik ayrıntıları <small>hazır metin kendiliğinden yazılır</small></h4><div class="hz-tbo">${TBO.map(o => `<button class="kh-c" data-tbo="${o.k}">${o.e} ${o.ad}</button>`).join('')}</div>
+  <label class="kh-l">Tebrik edilen kişi<input id="hz_tbad" placeholder="Ad Soyad" autocomplete="off"></label><label class="kh-l"><span id="hz_tbayl">Ayrıntı (isteğe bağlı)</span><input id="hz_tbay" autocomplete="off"></label>
+  <div class="hz-chips">${[['s', 'Samimi'], ['r', 'Resmî'], ['d', 'Duygulu']].map(a => `<button class="kh-c" data-tbt="${a[0]}">${a[1]}</button>`).join('')}</div><div class="kh-r"><button class="kh-b p" data-tbn="1">🔀 Başka metin yaz</button><span class="kh-n" id="hz_tbsay"></span></div></div></div>
   <div class="hz-b"><b>2</b><div><h4>Fotoğraf <small id="hz_fn">0/3</small></h4><div class="hz-th" id="hz_th"></div><div class="kh-r"><label class="kh-b">📷 Fotoğraf seç (en çok 3)<input type="file" id="hz_foto" accept="image/*,.heic,.heif" multiple hidden></label><button class="kh-b" data-hz="fsil">Temizle</button></div></div></div>
   <div class="hz-b"><b>3</b><div><h4>Başlık</h4><label class="kh-l"><textarea id="hz_manset" rows="2" placeholder="Haberin başlığı"></textarea></label><label class="kh-l">Alt başlık (isteğe bağlı)<input id="hz_spot" placeholder="Tek cümlelik özet"></label></div></div>
   <div class="hz-b"><b>4</b><div><h4>Haber metni <small>sesli okunacak metin</small></h4><label class="kh-l"><textarea id="hz_metin" rows="5" placeholder="Haberi kısaca yaz. Boş bırakırsan başlık ve alt başlık okunur."></textarea></label><label class="kh-l">Madde madde (isteğe bağlı, her satır bir madde)<textarea id="hz_maddeler" rows="3" placeholder="Tarih: …&#10;Yer: …"></textarea></label><div class="kh-r"><button class="kh-b" data-hz="ornek" id="hz_ornek">📄 Konuya göre örnek yaz</button></div></div></div>
   <div class="hz-b"><b>5</b><div><h4>Açılış ve kapanış</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_acilis"> Açılış (jenerik + cümle)</label><label class="kh-l"><input id="hz_acilisMetin" placeholder="Açılış cümlesi"></label><label class="kh-b hz-ch"><input type="checkbox" id="hz_kapanis"> Kapanış (takip et)</label><label class="kh-l"><input id="hz_kapanisMetin" placeholder="Kapanış cümlesi"></label></div></div>
   <div class="hz-b"><b>6</b><div><h4>Ses ve müzik</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_ses"> Haberi seslendir</label><label class="kh-b hz-ch"><input type="checkbox" id="hz_alty"> Altyazı (söylenen cümle ekranda, siyah bantta)</label><div class="hz-chips" style="margin-top:8px">${HZM.map(m => `<button class="kh-c" data-hzm="${m[0]}">♪ ${m[1]}</button>`).join('')}</div></div></div>
   <div class="hz-b"><b>7</b><div><h4>Dinle, kaydet, yayınla</h4><div class="kh-r"><button class="kh-b p" data-hz="oyna">▶ Sesli önizle</button><button class="kh-b p" data-hz="vid">🎬 Sesli video yap</button></div><div class="kh-r"><button class="kh-b" data-hz="kay">🖼 Görseli kaydet</button><button class="kh-b" data-hz="pay">📤 Paylaş</button><button class="kh-b" data-hz="tsk">💾 Taslağa kaydet</button></div></div></div>`;
-  k.addEventListener('input', e => { const a = HZA[e.target.id]; if (!a) return; D[a] = e.target.value; if (a === 'manset') D.ornek = false; const o = $h('#kh_' + a); if (o) o.value = e.target.value; kaydet(); ciz(); });
+  k.addEventListener('input', e => { const id = e.target.id; if (id === 'hz_tbad' || id === 'hz_tbay'){ D.tb = D.tb || tbVar(); D.tb[id === 'hz_tbad' ? 'ad' : 'ay'] = e.target.value; tebrikUret(!!D.tbDuzen, true); return; } const a = HZA[id]; if (!a) return; if (D.hzk === 'hayirli') D.tbDuzen = 1; D[a] = e.target.value; if (a === 'manset') D.ornek = false; const o = $h('#kh_' + a); if (o) o.value = e.target.value; kaydet(); ciz(); });
   k.addEventListener('change', async e => { const t = e.target;
     if (t.id === 'hz_foto'){ const fs = [...t.files]; t.value = ''; if (fs.length) await hzFoto(fs); return; }
     const m = {hz_acilis:'acilis', hz_kapanis:'kapanis'}[t.id]; if (m){ D[m] = t.checked; kaydet(); formDoldur(); ciz(); }
     if (t.id === 'hz_ses'){ D.gizSes = !t.checked; kaydet(); formDoldur(); }
     if (t.id === 'hz_alty'){ D.altyazi = t.checked; D.hzAlty = 1; kaydet(); formDoldur(); ciz(); } });
   k.addEventListener('click', async e => { const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.tbo || b.dataset.tbt || b.dataset.tbn){ D.tb = D.tb || tbVar(); if (b.dataset.tbo){ D.tb.olay = b.dataset.tbo; D.tb.no = 0; } else if (b.dataset.tbt){ D.tb.ton = b.dataset.tbt; D.tb.no = 0; } else D.tb.no++; D.tbDuzen = 0; tebrikUret(); return; }
     if (b.dataset.hzk){ hzKonu(b.dataset.hzk); return; }
     if (b.dataset.hzm){ D.muzik = b.dataset.hzm; kaydet(); formDoldur(); tst('Müzik: ' + (HZM.find(x => x[0] === D.muzik) || [0, D.muzik])[1]); return; }
     const z = b.dataset.hz; if (!z) return;
@@ -7442,8 +7507,9 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
     else { const hd = {oyna:'#khOyna', vid:'#khVid', kay:'#khKay', pay:'#khPay', tsk:'#khTsKay'}[z], o = hd && $h(hd); if (o) o.click(); } }); }
 function hzKonu(k){ const H = HZK.find(x => x[0] === k), T = H && sbBul(H[3]); if (!T) return; const d = T.d || {};
   ['sablon', 'etiket', 'gecis', 'bantStil', 'sfx', 'altBant', 'acilis', 'kapanis', 'spiker'].forEach(a => { if (d[a] !== undefined) D[a] = d[a]; });
-  D.muzik = H[4]; D.hzk = k; if (!D.hzAlty){ D.altyazi = false; D.hzAlty = 1; } kaydet(); formDoldur(); ciz(); tst(H[2] + ' · müzik: ' + (HZM.find(x => x[0] === D.muzik) || [0, D.muzik])[1]); }
+  const onceki = D.hzk; D.muzik = H[4]; D.hzk = k; if (k === 'hayirli'){ D.tb = D.tb || tbVar(); D.tbDuzen = 0; tebrikUret(); } else if (onceki === 'hayirli') tbTemizle(); if (!D.hzAlty){ D.altyazi = false; D.hzAlty = 1; } kaydet(); formDoldur(); ciz(); tst(H[2] + ' · müzik: ' + (HZM.find(x => x[0] === D.muzik) || [0, D.muzik])[1]); }
 function hzOrnek(b){ const H = HZK.find(x => x[0] === D.hzk), T = H && sbBul(H[3]); if (!T){ tst('Önce bir konu seç'); return; }
+  if (D.hzk === 'hayirli'){ if (D.tbDuzen && b.dataset.o !== '1'){ b.dataset.o = '1'; const eski = b.textContent; b.textContent = 'Yazdıkların silinsin mi? Tekrar dokun'; setTimeout(() => { b.dataset.o = ''; b.textContent = eski; }, 4000); return; } b.dataset.o = ''; D.tb = D.tb || tbVar(); D.tb.no++; D.tbDuzen = 0; tebrikUret(); return; }
   if (String(D.manset || D.metin || '').trim() && !D.ornek && b.dataset.o !== '1'){ b.dataset.o = '1'; const eski = b.textContent; b.textContent = 'Yazdıkların silinsin mi? Tekrar dokun'; setTimeout(() => { b.dataset.o = ''; b.textContent = eski; }, 4000); return; }
   b.dataset.o = ''; const d = T.d || {}; ['manset', 'spot', 'metin', 'maddeler', 'aciklama', 'hashtag'].forEach(a => { if (d[a] !== undefined) D[a] = d[a]; }); D.ornek = true; kaydet(); formDoldur(); ciz(); tst('Örnek yazıldı: köşeli [ ] yerleri kendi bilginle değiştir'); }
 async function hzFoto(fs){ fs = fs.slice(0, 3); (D.ekFoto || []).forEach(id => IDB.del('sf_' + id)); D.ekFoto = []; await fotoYukle(fs[0]);
@@ -7456,7 +7522,11 @@ async function hzTh(){ const e = $h('#hz_th'); if (!e) return; const sig = (FOTO
 function hzYenile(){ const k = $h('#khHz'); if (!k || !k._k) return;
   Object.entries(HZA).forEach(([id, a]) => { const e = $h('#' + id); if (e && e !== document.activeElement) e.value = D[a] || ''; });
   [['hz_acilis', !!D.acilis], ['hz_kapanis', !!D.kapanis], ['hz_ses', !D.gizSes], ['hz_alty', !!D.altyazi]].forEach(([id, v]) => { const e = $h('#' + id); if (e) e.checked = v; });
-  k.querySelectorAll('[data-hzk]').forEach(b => b.setAttribute('aria-pressed', b.dataset.hzk === D.hzk)); k.querySelectorAll('[data-hzm]').forEach(b => b.setAttribute('aria-pressed', b.dataset.hzm === D.muzik)); hzTh(); }
+  k.querySelectorAll('[data-hzk]').forEach(b => b.setAttribute('aria-pressed', b.dataset.hzk === D.hzk)); k.querySelectorAll('[data-hzm]').forEach(b => b.setAttribute('aria-pressed', b.dataset.hzm === D.muzik)); const tb = $h('#hz_tb'); if (tb){ const ac = D.hzk === 'hayirli'; tb.hidden = !ac; if (ac){ const T = D.tb || (D.tb = tbVar()), o = TBO.find(z => z.k === T.olay) || TBO[0];
+    k.querySelectorAll('[data-tbo]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tbo === o.k)); k.querySelectorAll('[data-tbt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tbt === T.ton));
+    const a = $h('#hz_tbad'), y = $h('#hz_tbay'); if (a && a !== document.activeElement) a.value = T.ad || ''; if (y && y !== document.activeElement){ y.value = T.ay || ''; y.placeholder = o.ayp; } $h('#hz_tbayl').textContent = o.ayl;
+    const n = o.T[T.ton] || o.T.s; $h('#hz_tbsay').textContent = 'Metin ' + ((T.no % n.length) + 1) + '/' + n.length; } }
+  hzTh(); }
 function ciz(){ const c = $h('#khCv'); if (c && !calis) kartCiz(c, Infinity, 8); }
 function formDoldur(){ if (!kok) return; ['manset', 'spot', 'metin', 'yer', 'kisi', 'maddeler', 'not', 'aciklama', 'hashtag'].forEach(k => { const e = $h('#kh_' + k); if (e && e !== document.activeElement) e.value = D[k] || ''; });
   kok.querySelectorAll('[data-oran]').forEach(b => b.setAttribute('aria-pressed', b.dataset.oran === D.oran)); kok.querySelectorAll('[data-sb]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sb === D.sablon));
@@ -8225,7 +8295,7 @@ function aktifLogo(){ return D.konuLogo === false ? M.logo : (KONU_LOGO[D.etiket
 /* --- biçime göre TV görünümü: bant rengi konuya (etikete), müzik ve geçiş şablona göre --- */
 Object.defineProperty(BANT, 'konu', {enumerable:true, get(){ const [, c, i] = etk(D.etiket), acik = /^#f|^#e[0-9a-f]/i.test(c); return {ad:'Konu rengi', l:c, li:i, b:acik ? '#111111' : '#ffffff', bi:acik ? '#fff' : '#111', s:acik ? c : '#111', si:acik ? '#111' : '#fff'}; }});
 const TVSB = {sondakika:{muzik:'gergin', gecis:'serit'}, tv:{muzik:'kurumsal', gecis:'serit'}, gazete:{muzik:'kurumsal', gecis:'kaydir'}, tabloid:{muzik:'gergin', gecis:'flas'}, modern:{muzik:'kurumsal', gecis:'daire'},
-  alinti:{muzik:'sakin', gecis:'panjur'}, ozet:{muzik:'kurumsal', gecis:'kaydir'}, flas:{muzik:'gergin', gecis:'glitch'}, renkli:{muzik:'gergin', gecis:'serit'}};
+  alinti:{muzik:'sakin', gecis:'panjur'}, ozet:{muzik:'kurumsal', gecis:'kaydir'}, flas:{muzik:'gergin', gecis:'glitch'}, renkli:{muzik:'gergin', gecis:'serit'}, tebrik:{muzik:'mujde', gecis:'kaydir'}};
 function tvOto(tur){ if (D.tvOto === false) return; if (tur === 'et'){ D.bantStil = 'konu'; return; } const m = TVSB[D.sablon]; if (!m) return; if (D.muzik !== 'dosya' && D.muzik !== 'yok') D.muzik = m.muzik; D.gecis = m.gecis; D.bantStil = 'konu'; }
 
 /* --- renkli (biçimli) manşet: her satır ayrı kutu; *kelime* vurgulu --- */
@@ -8252,6 +8322,61 @@ CIZ.renkli = function(x, W, H, t, dur){ const g = guvenli(W, H), [, ac] = etk(D.
     x.restore(); y += h + q.fs*.12; }); x.textBaseline = 'alphabetic';
   if (sp.length){ const sy = alt + W*.02; x.globalAlpha = pr(t, .7, 1.2); x.fillStyle = 'rgba(10,12,14,.78)'; x.fillRect(g.m, sy, maxW, spH); x.fillStyle = '#fff'; x.font = `500 ${sf}px Montserrat`; yaz(x, sp, g.m + sf*.7, sy + sf*1.25, sf, 1.32, 'left'); x.globalAlpha = 1; }
   altyazi(x, W, H, t, y0 - W*.03); };
+/* 6.19 · Tebrik kartı: çerçeveli fotoğraf, altın vurgu, "siz de tebrik edin" çağrısı */
+function tbKaris(h1, h2, k){ const a = parseInt(h1.slice(1), 16), b = parseInt(h2.slice(1), 16), c = s => Math.round(((a >> s) & 255)*(1 - k) + ((b >> s) & 255)*k); return `rgb(${c(16)},${c(8)},${c(0)})`; }
+function tbYildiz(x, cx, cy, r, ic){ x.beginPath(); for (let i = 0; i < 8; i++){ const a = i*Math.PI/4 - Math.PI/2, q = i % 2 ? r*ic : r; x.lineTo(cx + Math.cos(a)*q, cy + Math.sin(a)*q); } x.closePath(); x.fill(); }
+CIZ.tebrik = function(x, W, H, t, dur){
+  const g = guvenli(W, H), yat = W > H, sbt = t === Infinity, ALT = '#f5c542', AC = /^#[0-9a-f]{6}$/i.test(D.tbAc || '') ? D.tbAc : '#1e5aa8';
+  const ad = TR(String(D.manset || '').replace(/\*/g, '').split('\n')[0].trim() || 'Ad Soyad'), bas = TR(D.etiket || 'HAYIRLI OLSUN'), lb = TR(D.tbEt || 'KABATAŞ HABER'), em = D.tbEm || '🎉', spot = String(D.spot || '').trim();
+  const U = Math.min(W, H*.9), ls = W*.07, labelFs = U*.03, spFs = U*.032, ctaH = U*.112, gap = U*.022, m = g.m;
+  const x0 = yat ? W*.47 : m, maxW = yat ? W - x0 - m : W - 2*m, ax = yat ? x0 : W/2, hz = yat ? 'left' : 'center';
+  x.font = `700 ${labelFs}px Montserrat`; const lw = x.measureText(lb).width + labelFs*2.6, lh = labelFs*2.2;
+  const hf = sigdir(x, bas, s => `700 ${s}px Oswald`, maxW, U*.22, 1.08, U*.12, U*.05, 2); let hH = hf.L.length*hf.s*1.08;
+  const nf = sigdir(x, ad, s => `800 ${s}px Montserrat`, maxW, U*.17, 1.12, U*.07, U*.036, 2); let nH = nf.L.length*nf.s*1.12;
+  x.font = `500 ${spFs}px Montserrat`; const SP = spot ? satirla(x, spot, maxW).slice(0, 3) : [];
+  const yTop = g.u + ls*1.25 + W*.015, yBot = H - g.a, orn = gap*1.7;
+  const blok = () => lh + gap + hH + orn + nH + (SP.length ? gap + SP.length*spFs*1.38 : 0);
+  let d, cx, cy, yy;
+  if (yat){ d = Math.min(H*.56, x0 - m*2.4); cx = (x0 - m*.4)/2 + m*.2; cy = H*.56; yy = Math.max(g.u + ls*1.3, (H - (blok() + gap*1.4 + ctaH))/2); }
+  else { const mevcut = () => yBot - ctaH - gap*1.3 - yTop - blok() - gap; while (mevcut()/1.16 < W*.36){ if (SP.length && hf.s <= U*.085) SP.pop(); else if (hf.s > U*.065){ hf.s *= .93; nf.s *= .93; hH = hf.L.length*hf.s*1.08; nH = nf.L.length*nf.s*1.12; } else if (SP.length) SP.pop(); else break; } d = kis(mevcut()/1.16, W*.3, W*.64); cx = W/2; cy = yTop + d*.58; yy = cy + d*.58 + gap; }
+  const r = d/2;
+  /* zemin */
+  let gr = x.createLinearGradient(0, 0, W*.3, H); gr.addColorStop(0, tbKaris('#0a1020', AC, .4)); gr.addColorStop(.55, tbKaris('#0a1020', AC, .15)); gr.addColorStop(1, '#070b16'); x.fillStyle = gr; x.fillRect(0, 0, W, H);
+  gr = x.createRadialGradient(cx, cy, r*.4, cx, cy, Math.max(W, H)*.6); gr.addColorStop(0, tbKaris('#0a1020', AC, .85)); gr.addColorStop(.35, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); x.globalAlpha = .55; x.fillStyle = gr; x.fillRect(0, 0, W, H); x.globalAlpha = 1;
+  { const n = 18, rot = sbt ? 0 : (t || 0)*.05; x.save(); x.translate(cx, cy); x.fillStyle = '#fff'; x.globalAlpha = .045; const R = Math.hypot(W, H);
+    for (let i = 0; i < n; i++){ const a = rot + i*2*Math.PI/n; x.beginPath(); x.moveTo(0, 0); x.lineTo(Math.cos(a)*R, Math.sin(a)*R); x.lineTo(Math.cos(a + Math.PI/n*.55)*R, Math.sin(a + Math.PI/n*.55)*R); x.closePath(); x.fill(); } x.restore(); x.globalAlpha = 1; }
+  { let s = 11; const rnd = () => (s = (s*16807) % 2147483647)/2147483647, renk = [ALT, '#ffffff', tbKaris('#ffffff', AC, .35), '#ff7a8c', '#ffe8a3'], k0 = W/1080;
+    for (let i = 0; i < 64; i++){ const px = rnd()*W, py0 = rnd()*H, sz = (7 + rnd()*14)*k0, vy = (40 + rnd()*80)*k0, dn = (rnd() - .5)*3, sh = Math.floor(rnd()*3), cl = renk[Math.floor(rnd()*renk.length)], al = .3 + rnd()*.45, ro = rnd()*6;
+      const py = ((py0 + (sbt ? 0 : (t || 0)*vy)) % H + H) % H; x.save(); x.translate(px, py); x.rotate(ro + (sbt ? 0 : (t || 0)*dn)); x.globalAlpha = al; x.fillStyle = cl;
+      if (sh === 0) x.fillRect(-sz/2, -sz/4, sz, sz/2); else if (sh === 1){ x.beginPath(); x.arc(0, 0, sz/2.4, 0, 7); x.fill(); } else tbYildiz(x, 0, 0, sz*.75, .42); x.restore(); } x.globalAlpha = 1; }
+  const an = (a, b, fn) => { const p = pr(t, a, b); x.save(); x.globalAlpha = kis(p, 0, 1); x.translate(0, (1 - p)*H*.025); fn(p); x.restore(); };
+  logo(x, g.m, g.u, ls, AC);
+  /* fotoğraf */
+  { const p = pr(t, 0, .9); x.save(); x.globalAlpha = kis(p, 0, 1); x.translate(cx, cy); x.scale(.86 + .14*p, .86 + .14*p); x.translate(-cx, -cy);
+    x.save(); x.shadowColor = 'rgba(245,197,66,.55)'; x.shadowBlur = d*.09; const rg = x.createLinearGradient(cx - r, cy - r, cx + r, cy + r); rg.addColorStop(0, '#fff3c4'); rg.addColorStop(.5, ALT); rg.addColorStop(1, '#b9822b'); x.lineWidth = d*.03; x.strokeStyle = rg; x.beginPath(); x.arc(cx, cy, r + d*.02, 0, 7); x.stroke(); x.restore();
+    x.lineWidth = d*.006; x.strokeStyle = 'rgba(255,255,255,.5)'; x.beginPath(); x.arc(cx, cy, r + d*.075, 0, 7); x.stroke();
+    x.save(); x.beginPath(); x.arc(cx, cy, r, 0, 7); x.clip(); foto(x, cx - r, cy - r, d, d, sbt ? 1.02 : 1 + .05*kis(t/dur, 0, 1));
+    const bos = !FOTO && !(typeof GAL !== 'undefined' && GAL && GAL.list && GAL.list.length); if (bos){ x.fillStyle = 'rgba(255,255,255,.55)'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.font = `${d*.2}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`; x.fillText('📷', cx, cy - d*.05); x.font = `600 ${d*.06}px Montserrat`; x.fillText('Fotoğraf ekle', cx, cy + d*.13); x.textBaseline = 'alphabetic'; } x.restore();
+    const ba = .8, bx = cx + Math.cos(ba)*(r + d*.03), by = cy + Math.sin(ba)*(r + d*.03), br = d*.115*(.6 + .4*pr(t, .6, 1.1));
+    x.save(); x.shadowColor = 'rgba(0,0,0,.5)'; x.shadowBlur = br*.4; x.fillStyle = '#0a1020'; x.beginPath(); x.arc(bx, by, br, 0, 7); x.fill(); x.restore(); x.lineWidth = br*.12; x.strokeStyle = ALT; x.beginPath(); x.arc(bx, by, br, 0, 7); x.stroke();
+    x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.font = `${br*1.1}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`; x.fillText(em, bx, by + br*.06); x.textBaseline = 'alphabetic';
+    x.fillStyle = ALT; [[-.98, -.62, .075], [.96, -.7, .055], [-1.04, .35, .045]].forEach(([qx, qy, qs], i) => { const tw = sbt ? 1 : .65 + .35*Math.sin((t || 0)*4 + i*2); tbYildiz(x, cx + qx*r, cy + qy*r, d*qs*tw, .38); });
+    x.restore(); }
+  /* metinler */
+  an(.3, .9, () => { const px = yat ? ax : ax - lw/2; x.fillStyle = 'rgba(255,255,255,.09)'; rr(x, px, yy, lw, lh, lh/2); x.fill(); x.lineWidth = 2.2; x.strokeStyle = ALT; x.stroke(); x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.font = `700 ${labelFs}px Montserrat`; x.fillText(lb, px + lw/2, yy + lh*.54); x.textBaseline = 'alphabetic'; });
+  let y = yy + lh + gap;
+  an(.4, 1, () => { x.save(); x.shadowColor = 'rgba(245,197,66,.4)'; x.shadowBlur = hf.s*.25; const gg = x.createLinearGradient(0, y, 0, y + hH); gg.addColorStop(0, '#fff6cf'); gg.addColorStop(.5, ALT); gg.addColorStop(1, '#c48a2c'); x.fillStyle = gg; x.font = `700 ${hf.s}px Oswald`; x.textAlign = hz; hf.L.forEach((l, i) => x.fillText(l, ax, y + hf.s*(1.08*i + .88))); x.restore(); });
+  y += hH;
+  an(.5, 1.05, () => { const oy = y + orn*.5, ow = Math.min(maxW*.5, W*.3), cxo = yat ? ax + ow/2 : ax; x.strokeStyle = 'rgba(245,197,66,.75)'; x.lineWidth = Math.max(2, U*.003); x.beginPath(); x.moveTo(cxo - ow/2, oy); x.lineTo(cxo - U*.02, oy); x.moveTo(cxo + U*.02, oy); x.lineTo(cxo + ow/2, oy); x.stroke(); x.fillStyle = ALT; x.save(); x.translate(cxo, oy); x.rotate(Math.PI/4); x.fillRect(-U*.009, -U*.009, U*.018, U*.018); x.restore(); });
+  y += orn;
+  an(.6, 1.15, () => { x.save(); x.shadowColor = 'rgba(0,0,0,.55)'; x.shadowBlur = nf.s*.18; x.fillStyle = '#fff'; x.font = `800 ${nf.s}px Montserrat`; x.textAlign = hz; nf.L.forEach((l, i) => x.fillText(l, ax, y + nf.s*(1.12*i + .86))); x.restore(); });
+  y += nH;
+  if (SP.length){ y += gap; const ys = y; an(.75, 1.3, () => { x.fillStyle = 'rgba(255,255,255,.9)'; x.font = `500 ${spFs}px Montserrat`; x.textAlign = hz; SP.forEach((l, i) => x.fillText(l, ax, ys + spFs*(1.38*i + 1))); }); y += SP.length*spFs*1.38; }
+  /* "siz de tebrik edin" */
+  { const pw = yat ? maxW : Math.min(maxW, U*.86), py = yat ? Math.min(y + gap*1.4, yBot - ctaH) : yBot - ctaH, px = yat ? ax : ax - pw/2, pu = sbt ? 1 : 1 + .018*Math.sin((t || 0)*5);
+    an(.9, 1.4, () => { x.save(); x.translate(px + pw/2, py + ctaH/2); x.scale(pu, pu); x.translate(-(px + pw/2), -(py + ctaH/2)); x.shadowColor = 'rgba(245,197,66,.45)'; x.shadowBlur = ctaH*.3; const pg = x.createLinearGradient(px, py, px + pw, py + ctaH); pg.addColorStop(0, '#ffe08a'); pg.addColorStop(1, '#e3a52b'); x.fillStyle = pg; rr(x, px, py, pw, ctaH, ctaH*.5); x.fill(); x.shadowBlur = 0;
+      x.fillStyle = '#1a1204'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.font = `800 ${ctaH*.3}px Montserrat`; x.fillText('👏 SİZ DE TEBRİK EDİN', px + pw/2, py + ctaH*.37); x.font = `600 ${ctaH*.17}px Montserrat`; x.fillText('Yorumlara bir dilek bırakın · ' + M.hesap, px + pw/2, py + ctaH*.7); x.textBaseline = 'alphabetic'; x.restore(); }); }
+  altyazi(x, W, H, t, yBot - ctaH - gap); };
 const MS_ORNEK = [
   {ad:'Son dakika uyarı', et:'SON DAKİKA', m:"SON DAKİKA\nKabataş'ta *sağanak* uyarısı\nOkullar yarın tatil", sp:'Valilik açıklamasına göre yağış öğleden sonra kuvvetlenecek.', ms:[{bg:'#d7191f', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}, {bg:'#ffd400', ink:'#111', boy:'o'}]},
   {ad:'Hasat', et:'HASAT', m:"FINDIK HASADI\nRekolte *geçen yıldan yüksek*", sp:'Üreticiler hasadın yüzde 80\'inin tamamlandığını söyledi.', ms:[{bg:'#8a6a1c', ink:'#fff', boy:'k'}, {bg:'#ffffff', ink:'#111', boy:'b'}]},
@@ -8529,6 +8654,11 @@ const SB = [
    aciklama:'🌰 FINDIK | [Hasat / fiyat gelişmesi]. Güncel fiyatlar videomuzda.', hashtag:'#fındık #hasat #kabataş #ordu #karadeniz'},
   sahneler:[{etiket:'HASAT', sablon:'ozet', manset:'Güncel fındık fiyatları', maddeler:'Levant kalite: [fiyat] TL\nGiresun kalite: [fiyat] TL\nTMO alım fiyatı: [fiyat] TL\nTarih: [gün]', metin:'Güncel fiyatlara göre Levant kalite fındık [fiyat] lira, Giresun kalite [fiyat] lira.', r:'findik'},
    {etiket:'HASAT', sablon:'alinti', manset:'Üretici ne diyor?', spot:'"[Üreticinin görüşü]"', kisi:'[Üretici adı] · [Köy]', metin:'[Köy] köyünden üretici [ad], [görüşün özeti] dedi.', r:'bahce'}]},
+ {k:'hayirli', ad:'Hayırlı olsun · tebrik', ikon:'🎊', kisa:'Fotoğraflı tebrik kartı · hazır metinler · seslendirme', r:'kutlama',
+  d:{sablon:'tebrik', etiket:'HAYIRLI OLSUN', muzik:'mujde', gecis:'kaydir', bantStil:'beyaz', sfx:true, altBant:false, acilis:true, kapanis:true,
+   manset:'[Ad Soyad]', spot:'Yeni görevinde başarılar dileriz!', metin:'Hemşehrimiz [Ad Soyad], yeni görevine başladı. Hayırlı olsun, emeğine sağlık! Başarılarının devamını diliyoruz.',
+   acilisMetin:'Kabataş Haber\'den güzel bir haber var.', kapanisMetin:'Siz de tebriklerinizi yorumlara yazın. Kabataş Haber.', aciklama:'🎊 HAYIRLI OLSUN | [Ad Soyad] — Siz de tebriklerinizi yorumlara yazın 👇', hashtag:'#hayırlıolsun #tebrikler #kabataş #ordu #kabataşhaber'},
+  sahneler:[]},
  {k:'tebrik', ad:'Tebrik · başarı', ikon:'🏆', kisa:'Büyük manşet · TEBRİKLER vurgusu', r:'kutlama',
   d:{sablon:'tabloid', etiket:'TEBRİK', muzik:'kurumsal', gecis:'flas', bantStil:'beyaz',
    manset:'[Ad Soyad] [başarı]', spot:'[Okul / kulüp] adına katıldığı [yarışma]da [derece] elde etti. Kendisini tebrik ediyoruz.',

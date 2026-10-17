@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.18 · 17.10.2026
+**Güncel sürüm:** 6.19 · 17.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.19** (17.10.2026) – Kabataş Haber › **🎊 Hayırlı olsun · tebrik kartı**: Hızlı haber'in ilk konusu. 12 olay (yeni görev, düğün · nişan, bebek, mezuniyet, iş yeri, hac · umre, doğum günü, emeklilik, başarı, yeni ev · araç, askerden dönüş, sünnet) × 3 ton (Samimi · Resmî · Duygulu) × 2 hazır metin = 72 metin; ad ve isteğe bağlı ayrıntı yazılınca metne yerleşir, *Başka metin yaz* diğerini getirir. Yeni **Tebrik · hayırlı olsun** kart biçimi: çerçeveli yuvarlak fotoğraf, olay rozeti, altın başlık, konfeti, **"Siz de tebrik edin · yorumlara bir dilek bırakın"** çağrısı; 4:5, 1:1, 9:16 ve 16:9. Seslendirme, açılış ve kapanış cümleleri (yorum çağrısı dahil), "Mujde" müziği ve paylaşım metni (hashtag'li) kendiliğinden hazırlanır; yazıyı elle değiştirirsen sonraki ad/ayrıntı değişikliği metne dokunmaz.
 - **6.18** (17.10.2026) – Kabataş Haber › Logo · künye: haber kanalı tarzı **8 yeni logo**: Prizma, Dünya (dünyadaki hemşehriler), Manşet, Halka, Altıgen, Flaş, Canlı, Hemşehri (konum işareti). Hepsi seçili renge uyar; kartlarda, jenerikte, TV bandında ve profil fotoğrafı/şeffaf PNG dışa aktarımında kullanılır.
 - **6.17** (17.10.2026) – Hızlı haber: videodaki **siyah bantlı beyaz altyazı** artık tercihe bağlı. 6. adımda "Altyazı" kutusu var; Hızlı haber'de konu seçilince varsayılan **kapalı** gelir, istersen açarsın.
 - **6.16** (17.10.2026) – Kabataş Haber: **⚡ Hızlı haber** bölümü (stüdyo menüsünde ilk sekme). Alt alta 7 adım: 1 Konu (Duyuru, Spor, Hava, Gündem, Müjde, Uyarı, Fındık, Tebrik, Anma) · 2 Fotoğraf (1–3) · 3 Başlık/alt başlık · 4 Haber metni (+ "Konuya göre örnek yaz") · 5 Açılış ve kapanış cümleleri · 6 Ses ve müzik · 7 Sesli önizle / sesli video / görsel kaydet / paylaş / taslağa kaydet. Konu seçilince şablon görünümü, geçiş, alt bant ve **müzik** kendiliğinden gelir. Yeni telifsiz (cihazda üretilen) müzik türleri: **Duyuru · resmî, Spor · tempolu, Müjde · neşeli, Anma · hüzünlü**; mevcut Spor, Duyuru, Müjde şablonları da bunları kullanır.
