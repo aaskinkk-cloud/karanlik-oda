@@ -7490,13 +7490,13 @@ function dgSes(G){ const S = s => String(s || '').trim(), dm = S(G.dm), gl = S(G
   if (dgKonus(G.ks)) P.push(`Gelin alma ve konvoy, ${dgKonus(G.ks)}.`); if (dgKonus(G.ds)) P.push(`Düğün başlangıcı, ${dgKonus(G.ds)}.`);
   if (G.yem === 'yemekli') P.push('Yemekli düğündür' + (dgKonus(G.ys) ? `, yemek ${dgKonus(G.ys)}` : '') + '.'); else if (G.yem === 'yemeksiz') P.push('Yemeksiz düğündür.'); else if (G.yem === 'ikram') P.push('Düğünde ikram yapılacaktır.');
   const kn = dgKinaYaz(G.kn); if (kn) { const sa = dgKonus(String(G.kn).split('T')[1]); P.push(`Kına gecesi, ${dgTarih(String(G.kn).split('T')[0])}${sa ? ', ' + sa : ''}.`); }
-  if (S(G.nt)) P.push(S(G.nt).replace(/[.!?]*$/, '.')); if (G.dav !== false) P.push('Tüm hemşehrilerimiz davetlidir.'); return P.join(' '); }
+  if (S(G.nt) && !/hemşehrilerimiz davetlidir/i.test(G.nt)) P.push(S(G.nt).replace(/[.!?]*$/, '.')); if (G.dav !== false) P.push('Tüm hemşehrilerimiz davetlidir.'); return P.join(' '); }
 function dgNot(G){ const S = s => String(s || '').trim(), L = ['💍 DÜĞÜN DUYURUSU'], ai = (p, q) => [S(p) && 'Baba: ' + S(p), S(q) && 'Anne: ' + S(q)].filter(Boolean).join(' · ');
   if (S(G.dm)) L.push('🤵 Damat: ' + S(G.dm) + (ai(G.dmb, G.dma) ? ' (' + ai(G.dmb, G.dma) + ')' : '')); if (S(G.gl)) L.push('👰 Gelin: ' + S(G.gl) + (ai(G.glb, G.gla) ? ' (' + ai(G.glb, G.gla) + ')' : ''));
   if (!S(G.dm) && ai(G.dmb, G.dma)) L.push('🤵 Damat ailesi: ' + ai(G.dmb, G.dma)); if (!S(G.gl) && ai(G.glb, G.gla)) L.push('👰 Gelin ailesi: ' + ai(G.glb, G.gla));
   if (G.tar) L.push('📅 ' + dgTarih(G.tar)); if (S(G.yer)) L.push('📍 ' + S(G.yer)); if (S(G.ks)) L.push('🚗 Gelin alma · konvoy: ' + S(G.ks)); if (S(G.ds)) L.push('🎶 Düğün: ' + S(G.ds));
   if (G.yem === 'yemekli') L.push('🍽️ Yemekli düğün' + (S(G.ys) ? ' · yemek ' + S(G.ys) : '')); else if (G.yem === 'yemeksiz') L.push('🍽️ Yemeksiz düğün'); else if (G.yem === 'ikram') L.push('☕ Düğünde ikram var');
-  if (G.kn) L.push('🌿 Kına: ' + dgKinaYaz(G.kn)); if (S(G.nt)) L.push('📝 ' + S(G.nt)); if (G.dav !== false) L.push('Tüm hemşehrilerimiz davetlidir.'); L.push('Mutluluklar dileriz 🤍'); return L.join('\n'); }
+  if (G.kn) L.push('🌿 Kına: ' + dgKinaYaz(G.kn)); if (S(G.nt) && !/hemşehrilerimiz davetlidir/i.test(G.nt)) L.push('📝 ' + S(G.nt)); if (G.dav !== false) L.push('Tüm hemşehrilerimiz davetlidir.'); L.push('Mutluluklar dileriz 🤍'); return L.join('\n'); }
 function dugunUret(hafif){ D.dg = D.dg || {dav:true}; const G = D.dg, S = s => String(s || '').trim(), dm = S(G.dm), gl = S(G.gl);
   D.etiket = 'DÜĞÜN DUYURUSU'; D.manset = dm && gl ? dm + ' & ' + gl : dm || gl || '[Damat] & [Gelin]'; D.spot = [dgTarih(G.tar), S(G.yer)].filter(Boolean).join(' · '); D.ornek = !(dm || gl || G.tar);
   if (!D.dgDuzen) D.metin = dgSes(G); D.acilisMetin = 'Kabataş\'ta düğün var.'; D.kapanisMetin = 'Mutluluklar dileriz. Kabataş Haber.'; D.aciklama = dgNot(G); D.hashtag = '#düğün #hayırlıolsun #kabataş #ordu #kabataşhaber';
@@ -7512,7 +7512,7 @@ KURALLAR:
 - Markdown, kalın yazı, numara, giriş ya da kapanış açıklaması ekleme.
 - Çıktıyı AŞAĞIDAKİ biçimde ver. Her başlık satır başında olsun ve iki nokta ile bitsin.
 
-KONU: (yalnızca biri: duyuru, gundem, reklam, spor, hava, hasat, mujde, uyari, anma, tebrik)
+KONU: (yalnızca biri: duyuru, gundem, reklam, dugun, spor, hava, hasat, mujde, uyari, anma, tebrik)
 BAŞLIK: (en çok 8 kelime, vurucu, sonunda nokta yok)
 ALT BAŞLIK: (tek cümle, en çok 18 kelime)
 HABER METNİ: (seslendirilecek 3-5 kısa cümle, 50-90 kelime, tek paragraf)
@@ -7531,25 +7531,50 @@ ADRES:
 ÇALIŞMA SAATİ:
 Reklamda BAŞLIK ve MADDELER ürün ya da hizmeti anlatsın.
 
+SADECE KONU "dugun" İSE şu satırları da ekle (bilinmeyeni boş bırak; tarih ve saatleri 12 Aralık 2026, 14.30 biçiminde yaz):
+DAMAT:
+GELİN:
+DAMADIN BABASI:
+DAMADIN ANNESİ:
+GELİNİN BABASI:
+GELİNİN ANNESİ:
+DÜĞÜN TARİHİ:
+DÜĞÜN YERİ:
+KONVOY SAATİ:
+DÜĞÜN SAATİ:
+YEMEK: (yemekli, yemeksiz ya da ikram)
+YEMEK SAATİ:
+KINA GECESİ:
+NOT:
+
 HAM BİLGİ:
 `;
 const AI_ANAHTAR = [['konu', /^(konu|kategori|tür|tur)$/], ['manset', /^(başlık|baslik|manşet|manset|title)$/], ['spot', /^(alt başlık|alt baslik|altbaşlık|altbaslik|spot|özet|ozet|subtitle)$/], ['metin', /^(haber metni|haber|metin|seslendirme|seslendirme metni|içerik|icerik)$/], ['maddeler', /^(maddeler|madde madde|madde|bilgiler)$/],
  ['acilisMetin', /^(açılış|acilis|açılış cümlesi|acilis cumlesi)$/], ['kapanisMetin', /^(kapanış|kapanis|kapanış cümlesi|kapanis cumlesi)$/], ['aciklama', /^(paylaşım yazısı|paylasim yazisi|paylaşım metni|paylasim metni|açıklama|aciklama|caption|instagram açıklaması|instagram aciklamasi)$/],
  ['anahtar', /^(anahtar kelimeler|anahtar kelime|anahtar|keywords|seo)$/], ['hashtag', /^(hashtag|hashtagler|hashtags|hashtag'ler|etiketler)$/]];
+const AI_DG = [['dm', /^(damat|damat adı|damat adi)$/], ['gl', /^(gelin|gelin adı|gelin adi)$/], ['dmb', /^(damadın babası|damadin babasi|damat babası|damat babasi)$/], ['dma', /^(damadın annesi|damadin annesi|damat annesi)$/], ['glb', /^(gelinin babası|gelinin babasi|gelin babası|gelin babasi)$/], ['gla', /^(gelinin annesi|gelin annesi)$/],
+ ['tar', /^(düğün tarihi|dugun tarihi|tarih|tarihi)$/], ['yer', /^(düğün yeri|dugun yeri|yer|mekan|mekân)$/], ['ks', /^(konvoy|konvoy saati|gelin alma|gelin alma saati|gelin alma ve konvoy saati)$/], ['ds', /^(düğün saati|dugun saati|düğün başlangıç saati|başlangıç saati|saat)$/], ['yem', /^(yemek|yemek durumu)$/], ['ys', /^(yemek saati)$/], ['kn', /^(kına gecesi|kina gecesi|kına|kina)$/], ['nt', /^(not|ek not)$/]];
+const AI_AY = {ocak:1, subat:2, şubat:2, mart:3, nisan:4, mayis:5, mayıs:5, haziran:6, temmuz:7, agustos:8, ağustos:8, eylul:9, eylül:9, ekim:10, kasim:11, kasım:11, aralik:12, aralık:12};
+const aiSaat = v => { const m = String(v || '').match(/(\d{1,2})\s*[.:]\s*(\d{2})/) || String(v || '').match(/saat\s*(\d{1,2})\b/i); return m ? String(m[1]).padStart(2, '0') + ':' + (m[2] || '00') : ''; };
+function aiTarih(v){ v = String(v || '').toLocaleLowerCase('tr'); let g, a, y, m = v.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+  if (m){ y = +m[1]; a = +m[2]; g = +m[3]; } else if ((m = v.match(/(\d{1,2})\s*[./]\s*(\d{1,2})\s*[./]\s*(\d{4})/))){ g = +m[1]; a = +m[2]; y = +m[3]; }
+  else if ((m = v.match(/(\d{1,2})\s+([a-zçğıöşü]+)(?:\s+(\d{4}))?/)) && AI_AY[m[2]]){ g = +m[1]; a = AI_AY[m[2]]; y = m[3] ? +m[3] : 0; } else return '';
+  if (!y){ const n = new Date(); y = n.getFullYear(); if (new Date(y, a - 1, g, 23, 59) < n) y++; } return y + '-' + String(a).padStart(2, '0') + '-' + String(g).padStart(2, '0'); }
 const AI_RK = [['isletme', /^(işletme|isletme|işletme adı|isletme adi|firma|firma adı)$/], ['kampanya', /^(kampanya|indirim|fırsat|firsat)$/], ['telefon', /^(telefon|tel|iletişim|iletisim)$/], ['adres', /^(adres|konum)$/], ['saat', /^(çalışma saati|çalışma saatleri|calisma saati|calisma saatleri|saat)$/]];
-const AI_KONU = [['duyuru', /duyuru/], ['hasat', /hasat|findik/], ['reklam', /reklam|tanitim|ilan/], ['spor', /spor/], ['hava', /hava/], ['mujde', /mujde/], ['uyari', /uyari/], ['anma', /anma|vefat/], ['tebrik', /tebrik|basari/], ['gundem', /gundem|haber|genel/]];
+const AI_KONU = [['dugun', /dugun|nikah|nisan/], ['duyuru', /duyuru/], ['hasat', /hasat|findik/], ['reklam', /reklam|tanitim|ilan/], ['spor', /spor/], ['hava', /hava/], ['mujde', /mujde/], ['uyari', /uyari/], ['anma', /anma|vefat/], ['tebrik', /tebrik|basari/], ['gundem', /gundem|haber|genel/]];
 const aiKonuBul = s => { const t = String(s || '').toLocaleLowerCase('tr').replace(/ı/g, 'i').replace(/ç/g, 'c').replace(/ğ/g, 'g').replace(/ö/g, 'o').replace(/ş/g, 's').replace(/ü/g, 'u'); const h = AI_KONU.find(z => z[1].test(t)); return h ? h[0] : ''; };
 function aiAyristir(raw){ let t = String(raw || '').replace(/\r/g, '').trim().replace(/^```[a-z]*\s*\n?/i, '').replace(/\n?```\s*$/, '');
   const temiz = s => String(s || '').replace(/^\s*[*_"“”']+|[*_"“”']+\s*$/g, '').trim(), satir = t.split('\n'), RE = /^[\s>#*_\-•\d.)]*\**\s*([^:：\n]{2,40}?)\s*\**\s*[:：]\s*\**\s*(.*)$/;
   const kn = ad => String(ad).toLocaleLowerCase('tr').replace(/\(.*?\)/g, '').replace(/[*_`#>]/g, '').replace(/\s+/g, ' ').trim();
   let konu = ''; for (const l of satir){ const m = l.match(RE); if (m && AI_ANAHTAR[0][1].test(kn(m[1]))){ konu = aiKonuBul(m[2]); break; } }
-  const rk = konu === 'reklam', keyOf = ad => { for (const [k, re] of AI_ANAHTAR) if (re.test(ad)) return k; if (rk) for (const [k, re] of AI_RK) if (re.test(ad)) return k; return null; };
+  const rk = konu === 'reklam', dg = konu === 'dugun', keyOf = ad => { if (dg) for (const [k, re] of AI_DG) if (re.test(ad)) return 'dg_' + k; for (const [k, re] of AI_ANAHTAR) if (re.test(ad)) return k; if (rk) for (const [k, re] of AI_RK) if (re.test(ad)) return k; return null; };
   const out = {}; let cur = null;
   satir.forEach(l => { const m = l.match(RE), k = m ? keyOf(kn(m[1])) : null;
     if (k){ cur = k; out[cur] = []; const v = temiz(m[2]); if (v) out[cur].push(v); } else if (cur && l.trim()) out[cur].push(l.trim()); });
   const A = {}, tek = a => temiz(a.join(' ').replace(/\s+/g, ' ')), lst = a => a.map(s => s.replace(/^[-•*\d.)\s]+/, '').trim()).filter(Boolean);
   Object.keys(out).forEach(k => { const a = out[k]; if (!a.length || k === 'konu') return;
     if (k === 'maddeler'){ const L = lst(a).slice(0, 6); if (L.length) A.maddeler = L.join('\n'); }
+    else if (k.startsWith('dg_')){ const v = tek(a); if (v) A[k] = v; }
     else if (k === 'aciklama'){ const v = a.map(s => s.trim()).join('\n').replace(/\n{3,}/g, '\n\n').trim(); if (v) A.aciklama = v; }
     else if (k === 'anahtar'){ const L = [...new Set(a.join(',').split(/[,;•\n]+/).map(s => temiz(s.replace(/^#/, ''))).filter(Boolean))]; if (L.length) A.anahtar = L.join(', '); }
     else if (k === 'hashtag'){ const L = [...new Set(a.join(' ').split(/[\s,;]+/).map(s => s.trim()).filter(s => s && s !== '#').map(s => s.startsWith('#') ? s : '#' + s))]; if (L.length) A.hashtag = L.join(' '); }
@@ -7557,7 +7582,13 @@ function aiAyristir(raw){ let t = String(raw || '').replace(/\r/g, '').trim().re
   return {konu, alan:A}; }
 async function hzKopya(tx, msg){ try { await navigator.clipboard.writeText(tx); tst(msg); } catch (er){ const ta = document.createElement('textarea'); ta.value = tx; ta.style.position = 'fixed'; ta.style.opacity = 0; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); tst(msg); } catch (e2){ tst('Kopyalanamadı: metni elle seç'); } ta.remove(); } }
 function aiAktar(){ const e = $h('#hz_aiyanit'), so = $h('#hz_aisonuc'), raw = e ? e.value : ''; if (!raw.trim()){ tst('Önce yapay zekâ yanıtını yapıştır'); return; }
-  const R = aiAyristir(raw), A = R.alan; if (!A.manset && !A.metin){ if (so) so.textContent = 'Başlık ya da haber metni bulunamadı. Yanıt istemdeki biçimde mi?'; tst('Yanıt tanınmadı'); return; }
+  const R = aiAyristir(raw), A = R.alan; if (!A.manset && !A.metin && !A.dg_dm && !A.dg_gl && !A.dg_tar){ if (so) so.textContent = 'Başlık ya da haber metni bulunamadı. Yanıt istemdeki biçimde mi?'; tst('Yanıt tanınmadı'); return; }
+  if (R.konu === 'dugun'){ hzKonu('dugunduyuru'); const G = {dav:true}, gv = k => A['dg_' + k] || ''; ['dm', 'gl', 'dmb', 'dma', 'glb', 'gla', 'yer', 'nt'].forEach(k => { if (gv(k)) G[k] = gv(k); });
+    if (gv('tar')) G.tar = aiTarih(gv('tar')); if (gv('ks')) G.ks = aiSaat(gv('ks')); if (gv('ds')) G.ds = aiSaat(gv('ds')); if (gv('ys')) G.ys = aiSaat(gv('ys'));
+    if (gv('yem')){ const q = gv('yem').toLocaleLowerCase('tr'); G.yem = /yemeksiz/.test(q) ? 'yemeksiz' : /yemekli/.test(q) ? 'yemekli' : /ikram/.test(q) ? 'ikram' : ''; }
+    if (gv('kn')){ const d = aiTarih(gv('kn')), h = aiSaat(gv('kn')); if (d) G.kn = d + 'T' + (h || '20:00'); }
+    D.dg = G; D.dgDuzen = 0; dugunUret(); ['aciklama', 'hashtag', 'anahtar'].forEach(a => { if (A[a]) D[a] = A[a]; }); if (A.acilisMetin) D.acilisMetin = A.acilisMetin; if (A.kapanisMetin) D.kapanisMetin = A.kapanisMetin;
+    const say = Object.keys(A).filter(k => k.startsWith('dg_')).length; if (e) e.value = ''; kaydet(); formDoldur(); ciz(); if (so) so.textContent = 'Düğün bilgileri aktarıldı (' + say + ' alan). Kartı ve seslendirmeyi kontrol et.'; tst('Düğün alanları dolduruldu'); return; }
   const konu = R.konu || D.hzk || 'gundem'; hzKonu(konu);
   ['manset', 'spot', 'metin', 'aciklama', 'hashtag', 'anahtar'].forEach(a => { D[a] = A[a] || ''; }); D.maddeler = A.maddeler || '';
   if (A.acilisMetin){ D.acilisMetin = A.acilisMetin; D.acilis = true; } if (A.kapanisMetin){ D.kapanisMetin = A.kapanisMetin; D.kapanis = true; }
