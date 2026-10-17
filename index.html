@@ -338,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.14 · 16.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.15 · 17.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6810,6 +6810,12 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-ik{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface-2);color:var(--text);font-size:17px;flex:none}
 .kh-ic{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column}
 .kh-onz{position:sticky;top:0;z-index:2;background:var(--bg);padding:10px 12px 8px;border-bottom:1px solid var(--line)}
+.kh-izle{position:fixed;inset:0;z-index:99999;background:#000;overflow:hidden;touch-action:none}
+.kh-izle canvas{position:absolute;left:0;top:0;transform-origin:0 0;touch-action:none;max-width:none;max-height:none;box-shadow:0 0 40px #000a}
+.kh-iz-ust{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top,0px) + 8px) calc(env(safe-area-inset-right,0px) + 10px) 8px calc(env(safe-area-inset-left,0px) + 10px);background:linear-gradient(#000c,transparent);z-index:2}
+.kh-iz-ust button{min-width:42px;height:42px;border-radius:50%;border:1px solid #fff3;background:#000a;color:#fff;font:600 16px system-ui;backdrop-filter:blur(6px)}
+.kh-iz-say{color:#fff;font:600 14px system-ui;background:#000a;border:1px solid #fff3;border-radius:99px;padding:8px 12px}
+.kh-iz-ip{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:translateX(-50%);max-width:92vw;text-align:center;color:#fff;font:13px system-ui;background:#000b;border-radius:99px;padding:9px 16px;transition:opacity .5s;pointer-events:none}
 .kh-onz canvas{display:block;margin:0 auto;max-width:100%;max-height:46vh;width:auto;height:auto;border-radius:10px;box-shadow:var(--shadow);touch-action:none;background:#111}
 .kh-onz-alt{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px;flex-wrap:wrap}
 .kh-ipucu{text-align:center;margin-top:4px}
@@ -7367,6 +7373,38 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;', '<':'&lt;', '>
 
 /* ---------- arayüz ---------- */
 const $h = s => kok && kok.querySelector(s);
+/* 6.15 · Haber kartı: büyütme ve tam ekran izleme (kartın canlı kopyası; oynatırken de izlenir) */
+function izleAc(){ const src = $h('#khCv'); if (!src || document.querySelector('.kh-izle')) return; ciz();
+  const ov = document.createElement('div'); ov.className = 'kh-izle';
+  ov.innerHTML = '<canvas></canvas><div class="kh-iz-ust"><button data-i="kapat" aria-label="Kapat" title="Kapat">✕</button><button data-i="oyna" title="Sesli önizle">▶</button><span class="kh-iz-say">1×</span><span style="flex:1"></span><button data-i="eksi" title="Uzaklaş">－</button><button data-i="bir" title="Sığdır">1×</button><button data-i="arti" title="Yakınlaş">＋</button><button data-i="tam" title="Tam ekran">⛶</button></div><div class="kh-iz-ip">Çift dokun: o bölgeye yakınlaş · iki parmakla büyüt · sürükleyerek gez</div>';
+  document.body.appendChild(ov);
+  const cv = ov.querySelector('canvas'), x = cv.getContext('2d'), say = ov.querySelector('.kh-iz-say'), ip = ov.querySelector('.kh-iz-ip');
+  let z = 1, tx = 0, ty = 0, raf = 0; const fit = () => Math.min(innerWidth/src.width, innerHeight/src.height);
+  const uyg = () => { const s = fit()*z, w = src.width*s, hh = src.height*s;
+    tx = w <= innerWidth ? (innerWidth - w)/2 : Math.min(0, Math.max(innerWidth - w, tx)); ty = hh <= innerHeight ? (innerHeight - hh)/2 : Math.min(0, Math.max(innerHeight - hh, ty));
+    cv.style.transform = `translate(${tx}px,${ty}px) scale(${s})`; say.textContent = (Math.round(z*10)/10) + '×'; };
+  const yak = (cx, cy, nz) => { nz = Math.min(8, Math.max(1, nz)); const f = fit(), px = (cx - tx)/(f*z), py = (cy - ty)/(f*z); z = nz; tx = cx - px*f*z; ty = cy - py*f*z; uyg(); };
+  const don = () => { if (cv.width !== src.width || cv.height !== src.height){ cv.width = src.width; cv.height = src.height; uyg(); } x.drawImage(src, 0, 0); raf = requestAnimationFrame(don); }; don();
+  const P = new Map(); let ref = null, son = {t:0, x:0, y:0}, hareket = false;
+  cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); P.set(e.pointerId, [e.clientX, e.clientY]); hareket = false;
+    const ps = [...P.values()]; ref = {z, tx, ty, d:ps.length > 1 ? Math.hypot(ps[0][0] - ps[1][0], ps[0][1] - ps[1][1]) : 0, cx:ps.reduce((a, p) => a + p[0], 0)/ps.length, cy:ps.reduce((a, p) => a + p[1], 0)/ps.length}; ip.style.opacity = 0; });
+  cv.addEventListener('pointermove', e => { if (!P.has(e.pointerId) || !ref) return; const o = P.get(e.pointerId); if (Math.hypot(e.clientX - o[0], e.clientY - o[1]) > 0) hareket = hareket || Math.hypot(e.clientX - o[0], e.clientY - o[1]) > 3; P.set(e.pointerId, [e.clientX, e.clientY]);
+    const ps = [...P.values()], cx = ps.reduce((a, p) => a + p[0], 0)/ps.length, cy = ps.reduce((a, p) => a + p[1], 0)/ps.length;
+    if (ps.length >= 2 && ref.d){ const d = Math.hypot(ps[0][0] - ps[1][0], ps[0][1] - ps[1][1]); z = ref.z; tx = ref.tx; ty = ref.ty; yak(ref.cx, ref.cy, ref.z*d/ref.d); tx += cx - ref.cx; ty += cy - ref.cy; uyg(); }
+    else { tx = ref.tx + (cx - ref.cx); ty = ref.ty + (cy - ref.cy); uyg(); } });
+  const bit = e => { if (!P.has(e.pointerId)) return; P.delete(e.pointerId);
+    if (P.size === 0){ const n = Date.now(); if (!hareket){ if (n - son.t < 320 && Math.hypot(e.clientX - son.x, e.clientY - son.y) < 40){ yak(e.clientX, e.clientY, z > 1.5 ? 1 : 3); son.t = 0; } else son = {t:n, x:e.clientX, y:e.clientY}; } ref = null; }
+    else { const ps = [...P.values()]; ref = {z, tx, ty, d:ps.length > 1 ? Math.hypot(ps[0][0] - ps[1][0], ps[0][1] - ps[1][1]) : 0, cx:ps[0][0], cy:ps[0][1]}; } };
+  cv.addEventListener('pointerup', bit); cv.addEventListener('pointercancel', bit);
+  cv.addEventListener('wheel', e => { e.preventDefault(); yak(e.clientX, e.clientY, z*(e.deltaY < 0 ? 1.2 : 1/1.2)); }, {passive:false});
+  const kapat = () => { cancelAnimationFrame(raf); removeEventListener('keydown', tus); removeEventListener('resize', uyg); try { if (document.fullscreenElement) document.exitFullscreen(); } catch (er) {} ov.remove(); };
+  const tus = e => { if (e.key === 'Escape') kapat(); else if (e.key === '+' || e.key === '=') yak(innerWidth/2, innerHeight/2, z*1.3); else if (e.key === '-') yak(innerWidth/2, innerHeight/2, z/1.3); else if (e.key === '0') yak(innerWidth/2, innerHeight/2, 1); };
+  addEventListener('keydown', tus); addEventListener('resize', uyg);
+  ov.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (!b) return; const i = b.dataset.i, cx = innerWidth/2, cy = innerHeight/2;
+    if (i === 'kapat') kapat(); else if (i === 'arti') yak(cx, cy, z*1.5); else if (i === 'eksi') yak(cx, cy, z/1.5); else if (i === 'bir') yak(cx, cy, 1);
+    else if (i === 'oyna'){ const o = $h('#khOyna'); if (o) o.click(); }
+    else if (i === 'tam'){ try { if (document.fullscreenElement) document.exitFullscreen(); else if (ov.requestFullscreen) ov.requestFullscreen().catch(() => {}); } catch (er) {} } });
+  setTimeout(() => { ip.style.opacity = 0; }, 3500); uyg(); }
 function ciz(){ const c = $h('#khCv'); if (c && !calis) kartCiz(c, Infinity, 8); }
 function formDoldur(){ if (!kok) return; ['manset', 'spot', 'metin', 'yer', 'kisi', 'maddeler', 'not', 'aciklama', 'hashtag'].forEach(k => { const e = $h('#kh_' + k); if (e && e !== document.activeElement) e.value = D[k] || ''; });
   kok.querySelectorAll('[data-oran]').forEach(b => b.setAttribute('aria-pressed', b.dataset.oran === D.oran)); kok.querySelectorAll('[data-sb]').forEach(b => b.setAttribute('aria-pressed', b.dataset.sb === D.sablon));
@@ -7387,7 +7425,7 @@ function kapat(){ if (!ACIK) return; ACIK = false; durdur(); kok.hidden = true; 
 addEventListener('popstate', () => { if (ACIK) kapat(); });
 function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k, v]) => [k, [v.ad, v.l, v.b, v.s]])); kok = document.createElement('section'); kok.id = 'khaber'; kok.className = 'kh'; kok.hidden = true;
   kok.innerHTML = `<header class="kh-ust"><button class="kh-ik" id="khKapat" aria-label="Kapat">✕</button><div class="kh-bas"><b id="khBaslik">${esc(M.ad)}</b><small>${esc(M.slogan)}</small></div><button class="kh-b p kh-yeniB" id="khYeniH" title="Yeni haber başlat (şu anki taslaklara kaydedilir)">＋ Yeni</button><button class="kh-b" id="khTsBtn">Taslaklar</button></header>
-  <div class="kh-ic"><div class="kh-onz"><canvas id="khCv" aria-label="Haber kartı önizlemesi"></canvas><div class="kh-onz-alt"><button class="kh-b p" id="khOyna">▶ Sesli önizle</button><button class="kh-b" id="khTlAc" aria-pressed="true">▾ Katmanlar</button><span class="kh-boy" role="group" aria-label="Önizleme boyu"><button class="kh-c" data-onz="buyuk" title="Büyük önizleme">Büyük</button><button class="kh-c" data-onz="kucuk" title="Küçük önizleme">Küçük</button><button class="kh-c" data-onz="gizli" title="Önizlemeyi gizle, ayarlara yer aç">Gizle</button></span><span class="kh-n" id="khSesNot"></span></div><div class="kh-n kh-ipucu">Fotoğrafı önizlemede sürükleyerek kaydır; iki parmakla büyüt.</div><div id="khTl" class="kh-tl"></div></div>
+  <div class="kh-ic"><div class="kh-onz"><canvas id="khCv" aria-label="Haber kartı önizlemesi"></canvas><div class="kh-onz-alt"><button class="kh-b p" id="khOyna">▶ Sesli önizle</button><button class="kh-b" id="khIzle" title="Büyüt, bölgeye yakınlaş, tam ekran izle">🔍 İzle</button><button class="kh-b" id="khTlAc" aria-pressed="true">▾ Katmanlar</button><span class="kh-boy" role="group" aria-label="Önizleme boyu"><button class="kh-c" data-onz="buyuk" title="Büyük önizleme">Büyük</button><button class="kh-c" data-onz="kucuk" title="Küçük önizleme">Küçük</button><button class="kh-c" data-onz="gizli" title="Önizlemeyi gizle, ayarlara yer aç">Gizle</button></span><span class="kh-n" id="khSesNot"></span></div><div class="kh-n kh-ipucu">Fotoğrafı önizlemede sürükleyerek kaydır; iki parmakla büyüt.</div><div id="khTl" class="kh-tl"></div></div>
   <div class="kh-pan"><div id="khTaslak" class="kh-tsl" hidden></div>
    <section class="kh-s kh-sbl"><h3>Bölüm şablonları</h3><div id="khSbl"></div></section>
    <section class="kh-s kh-kat"><div class="kh-kb"><h3>Katmanlar · seçili öğe</h3><span class="kh-n" id="khTlSure"></span></div>
@@ -7571,6 +7609,7 @@ function kur(){ const BANT_UI = Object.fromEntries(Object.entries(BANT).map(([k,
   const mk = () => { M.ad = $h('#khM_ad').value.trim() || 'KABATAŞ HABER'; M.slogan = $h('#khM_sl').value.trim(); M.hesap = $h('#khM_hs').value.trim(); LSs('kh.marka', M); $h('#khBaslik').textContent = M.ad; ciz(); };
   ['#khM_ad', '#khM_sl', '#khM_hs'].forEach(id => on(id, mk, 'input'));
   /* önizlemede sürükle / iki parmakla büyüt */
+  $h('#khIzle').onclick = izleAc;
   const cv = $h('#khCv'), P = new Map(); let bas = null;
   cv.addEventListener('pointerdown', e => { if (!FOTO) return; cv.setPointerCapture(e.pointerId); P.set(e.pointerId, [e.clientX, e.clientY]); bas = {fx:D.fx, fy:D.fy, fz:D.fz, P:new Map(P)}; });
   cv.addEventListener('pointermove', e => { if (!P.has(e.pointerId) || !bas) return; P.set(e.pointerId, [e.clientX, e.clientY]); const r = cv.getBoundingClientRect(), ps = [...P.values()], ps0 = [...bas.P.values()];

@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.14 · 16.10.2026
+**Güncel sürüm:** 6.15 · 17.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.15** (17.10.2026) – Kabataş Haber: önizleme düğmelerine **🔍 İzle** eklendi. Kartı tam ekran açar, **çift dokunuşla o bölgeye 3× yakınlaşır**, iki parmakla 8×e kadar büyütülür, sürükleyerek gezilir; ＋ / － / 1× düğmeleri, ⛶ gerçek tam ekran, ▶ ile sesli önizleme tam ekranda izlenir. Masaüstünde fare tekerleği ve +/−/0/Esc tuşları çalışır. Kartın canlı kopyasıdır: fotoğraf kadrajı ve düzenleme etkilenmez.
 - **6.14** (16.10.2026) – Bloğum telefon görünümü: üst çubuk tek satır ve **etiketli** (🏠 Masa · ✍️ Yaz · 🚀 Yayınla; eskiden yalnız simgeydi, logo/başlık yer yiyordu). Önizleme başlığı tek satıra indi (🖥/📱 yalnız simge, ✕ ile kapanır). Kenar boşlukları ve kart iç boşlukları daraltıldı.
 - **6.13** (16.10.2026) – Bloğum: yazı kartlarının köşesine **🗑** silme düğmesi eklendi (yazı listesinden doğrudan silinir). Silme artık tarayıcı onay penceresine bağlı değil: ilk dokunuş düğmeyi kırmızı yapar ("Silinsin mi?"), 4 sn içinde ikinci dokunuş siler. Yayına hazırla › Çıktı içindeki Sil düğmesi de aynı şekilde çalışır.
 - **6.12** (16.10.2026) – **Bloğum: kendi metinlerim, klavye, yeni "Yayına hazırla"**
