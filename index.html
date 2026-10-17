@@ -338,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.16 · 17.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.17 · 17.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -7425,13 +7425,14 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
   <div class="hz-b"><b>3</b><div><h4>Başlık</h4><label class="kh-l"><textarea id="hz_manset" rows="2" placeholder="Haberin başlığı"></textarea></label><label class="kh-l">Alt başlık (isteğe bağlı)<input id="hz_spot" placeholder="Tek cümlelik özet"></label></div></div>
   <div class="hz-b"><b>4</b><div><h4>Haber metni <small>sesli okunacak metin</small></h4><label class="kh-l"><textarea id="hz_metin" rows="5" placeholder="Haberi kısaca yaz. Boş bırakırsan başlık ve alt başlık okunur."></textarea></label><label class="kh-l">Madde madde (isteğe bağlı, her satır bir madde)<textarea id="hz_maddeler" rows="3" placeholder="Tarih: …&#10;Yer: …"></textarea></label><div class="kh-r"><button class="kh-b" data-hz="ornek" id="hz_ornek">📄 Konuya göre örnek yaz</button></div></div></div>
   <div class="hz-b"><b>5</b><div><h4>Açılış ve kapanış</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_acilis"> Açılış (jenerik + cümle)</label><label class="kh-l"><input id="hz_acilisMetin" placeholder="Açılış cümlesi"></label><label class="kh-b hz-ch"><input type="checkbox" id="hz_kapanis"> Kapanış (takip et)</label><label class="kh-l"><input id="hz_kapanisMetin" placeholder="Kapanış cümlesi"></label></div></div>
-  <div class="hz-b"><b>6</b><div><h4>Ses ve müzik</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_ses"> Haberi seslendir</label><div class="hz-chips" style="margin-top:8px">${HZM.map(m => `<button class="kh-c" data-hzm="${m[0]}">♪ ${m[1]}</button>`).join('')}</div></div></div>
+  <div class="hz-b"><b>6</b><div><h4>Ses ve müzik</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_ses"> Haberi seslendir</label><label class="kh-b hz-ch"><input type="checkbox" id="hz_alty"> Altyazı (söylenen cümle ekranda, siyah bantta)</label><div class="hz-chips" style="margin-top:8px">${HZM.map(m => `<button class="kh-c" data-hzm="${m[0]}">♪ ${m[1]}</button>`).join('')}</div></div></div>
   <div class="hz-b"><b>7</b><div><h4>Dinle, kaydet, yayınla</h4><div class="kh-r"><button class="kh-b p" data-hz="oyna">▶ Sesli önizle</button><button class="kh-b p" data-hz="vid">🎬 Sesli video yap</button></div><div class="kh-r"><button class="kh-b" data-hz="kay">🖼 Görseli kaydet</button><button class="kh-b" data-hz="pay">📤 Paylaş</button><button class="kh-b" data-hz="tsk">💾 Taslağa kaydet</button></div></div></div>`;
   k.addEventListener('input', e => { const a = HZA[e.target.id]; if (!a) return; D[a] = e.target.value; if (a === 'manset') D.ornek = false; const o = $h('#kh_' + a); if (o) o.value = e.target.value; kaydet(); ciz(); });
   k.addEventListener('change', async e => { const t = e.target;
     if (t.id === 'hz_foto'){ const fs = [...t.files]; t.value = ''; if (fs.length) await hzFoto(fs); return; }
     const m = {hz_acilis:'acilis', hz_kapanis:'kapanis'}[t.id]; if (m){ D[m] = t.checked; kaydet(); formDoldur(); ciz(); }
-    if (t.id === 'hz_ses'){ D.gizSes = !t.checked; kaydet(); formDoldur(); } });
+    if (t.id === 'hz_ses'){ D.gizSes = !t.checked; kaydet(); formDoldur(); }
+    if (t.id === 'hz_alty'){ D.altyazi = t.checked; D.hzAlty = 1; kaydet(); formDoldur(); ciz(); } });
   k.addEventListener('click', async e => { const b = e.target.closest('button'); if (!b) return;
     if (b.dataset.hzk){ hzKonu(b.dataset.hzk); return; }
     if (b.dataset.hzm){ D.muzik = b.dataset.hzm; kaydet(); formDoldur(); tst('Müzik: ' + (HZM.find(x => x[0] === D.muzik) || [0, D.muzik])[1]); return; }
@@ -7441,7 +7442,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
     else { const hd = {oyna:'#khOyna', vid:'#khVid', kay:'#khKay', pay:'#khPay', tsk:'#khTsKay'}[z], o = hd && $h(hd); if (o) o.click(); } }); }
 function hzKonu(k){ const H = HZK.find(x => x[0] === k), T = H && sbBul(H[3]); if (!T) return; const d = T.d || {};
   ['sablon', 'etiket', 'gecis', 'bantStil', 'sfx', 'altBant', 'acilis', 'kapanis', 'spiker'].forEach(a => { if (d[a] !== undefined) D[a] = d[a]; });
-  D.muzik = H[4]; D.hzk = k; kaydet(); formDoldur(); ciz(); tst(H[2] + ' · müzik: ' + (HZM.find(x => x[0] === D.muzik) || [0, D.muzik])[1]); }
+  D.muzik = H[4]; D.hzk = k; if (!D.hzAlty){ D.altyazi = false; D.hzAlty = 1; } kaydet(); formDoldur(); ciz(); tst(H[2] + ' · müzik: ' + (HZM.find(x => x[0] === D.muzik) || [0, D.muzik])[1]); }
 function hzOrnek(b){ const H = HZK.find(x => x[0] === D.hzk), T = H && sbBul(H[3]); if (!T){ tst('Önce bir konu seç'); return; }
   if (String(D.manset || D.metin || '').trim() && !D.ornek && b.dataset.o !== '1'){ b.dataset.o = '1'; const eski = b.textContent; b.textContent = 'Yazdıkların silinsin mi? Tekrar dokun'; setTimeout(() => { b.dataset.o = ''; b.textContent = eski; }, 4000); return; }
   b.dataset.o = ''; const d = T.d || {}; ['manset', 'spot', 'metin', 'maddeler', 'aciklama', 'hashtag'].forEach(a => { if (d[a] !== undefined) D[a] = d[a]; }); D.ornek = true; kaydet(); formDoldur(); ciz(); tst('Örnek yazıldı: köşeli [ ] yerleri kendi bilginle değiştir'); }
@@ -7454,7 +7455,7 @@ async function hzTh(){ const e = $h('#hz_th'); if (!e) return; const sig = (FOTO
   const n = $h('#hz_fn'); if (n) n.textContent = L.length + '/3'; }
 function hzYenile(){ const k = $h('#khHz'); if (!k || !k._k) return;
   Object.entries(HZA).forEach(([id, a]) => { const e = $h('#' + id); if (e && e !== document.activeElement) e.value = D[a] || ''; });
-  [['hz_acilis', !!D.acilis], ['hz_kapanis', !!D.kapanis], ['hz_ses', !D.gizSes]].forEach(([id, v]) => { const e = $h('#' + id); if (e) e.checked = v; });
+  [['hz_acilis', !!D.acilis], ['hz_kapanis', !!D.kapanis], ['hz_ses', !D.gizSes], ['hz_alty', !!D.altyazi]].forEach(([id, v]) => { const e = $h('#' + id); if (e) e.checked = v; });
   k.querySelectorAll('[data-hzk]').forEach(b => b.setAttribute('aria-pressed', b.dataset.hzk === D.hzk)); k.querySelectorAll('[data-hzm]').forEach(b => b.setAttribute('aria-pressed', b.dataset.hzm === D.muzik)); hzTh(); }
 function ciz(){ const c = $h('#khCv'); if (c && !calis) kartCiz(c, Infinity, 8); }
 function formDoldur(){ if (!kok) return; ['manset', 'spot', 'metin', 'yer', 'kisi', 'maddeler', 'not', 'aciklama', 'hashtag'].forEach(k => { const e = $h('#kh_' + k); if (e && e !== document.activeElement) e.value = D[k] || ''; });
