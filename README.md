@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.23 · 17.10.2026
+**Güncel sürüm:** 6.24 · 17.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.24** (17.10.2026) – Ana sayfadaki ⚡ *Hızlı haber* kartı artık Kabataş Haber'in tamamını değil, yalnız **Hızlı haber panelini** açar (alt araç çubuğu, Taslaklar, Katmanlar ve diğer bölümler gizli; başlık "⚡ Hızlı haber"). 📰 Kabataş Haber kartı eskisi gibi tam stüdyoyu açar.
 - **6.23** (17.10.2026) – **Ana sayfa:** ⚡ *Hızlı haber* kartı (doğrudan Hızlı haber paneli açılır) ve 🖼️ *Logolar* kartı. **Logolar:** 12 Kabataş Haber logosu (D Ticker ve varyasyonları, A·B·C·E) 1080×1080 PNG; *İndir*, telefonda *Galeriye / Paylaş*; *Kendi logomu ekle* (cihazda saklanır, silinebilir). **Konuya özel müzik:** her konu artık ayrı müzik çalıyor — Düğün·halay (9/8, davul + zurna benzeri, hicaz), Hayırlı olsun·sıcak (arp + çan), Tebrik·fanfar (pirinç + timpani), Reklam·canlı (4/4 pop), Fındık·türkü (saz benzeri, uşşak), Uyarı·alarm; Duyuru, Spor, Hava, Gündem, Müjde, Anma eskisi gibi ayrı. Konu seçilince müzik kendiliğinden gelir; Hızlı haber 6. adımda *▶ Seçili müziği dinle (9 sn)* düğmesi.
 - **6.22** (17.10.2026) – Kabataş Haber › **Düğün kartında hazır görsel**. Fotoğraf eklenmemişse düğün kartı dairenin içine kendiliğinden özgün bir çizim koyar: 🌇 Gün batımı, 💐 Çiçek kemeri, 💍 Yüzükler, 🌙 Gece (gelin-damat siluetli; videoda hafif ışıltı/animasyon). Düğün bilgileri bölümündeki yeni satırdan seçilir; *Görselsiz* seçilirse eski yalın görünüm. Fotoğraf eklenirse her zaman fotoğraf kullanılır.
 - **6.21** (17.10.2026) – Kabataş Haber › **📢 Reklam kartı** ve **🤖 yapay zekâdan hazır getir**. Hızlı haber'e *Reklam* konusu: işletme adı, kampanya rozeti (örn. %20 indirim), ürün maddeleri, telefon · adres · çalışma saati kutusu, kartta "REKLAM" etiketi; 3 tema (koyu-altın, kırmızı, açık-temiz); 4:5, 1:1, 9:16, 16:9. En üstte **tek bir yapay zekâ istemi**: *İstemi kopyala* → herhangi bir yapay zekâya yapıştır, altına ham haberi ekle → yanıtı *yapay zekâ yanıtı* kutusuna yapıştır; konu, başlık, alt başlık, haber metni, maddeler, açılış, kapanış, paylaşım yazısı, anahtar kelimeler, hashtag (reklamda işletme, kampanya, telefon, adres, saat) ilgili kutulara kendiliğinden dolar, konuya göre müzik ve kart biçimi seçilir. Yeni 7. adım **Paylaşım yazısı**: açıklama, anahtar kelimeler, hashtag'ler ve kopyalama düğmeleri. Yapay zekâ yanıtında `KONU: dugun` ise damat, gelin, aileler, tarih, yer, konvoy · düğün · yemek saati, yemek durumu ve kına doğrudan **Düğün bilgileri** alanlarına yazılır.

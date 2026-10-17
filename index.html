@@ -338,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.23 · 17.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.24 · 17.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -7689,7 +7689,7 @@ function formDoldur(){ if (!kok) return; ['manset', 'spot', 'metin', 'yer', 'kis
   const sel = $h('#khSes'); if (sel && HSes){ sel.innerHTML = HSes.SESLER.map(([v, ad]) => `<option value="${v}"${HKS.ses === v ? ' selected' : ''}>${ad}</option>`).join(''); } $h('#khHiz').value = HKS.hiz; $h('#khHizO').textContent = '×' + (+HKS.hiz).toFixed(2);
   try { hzYenile(); } catch (e){}
   $h('#khClaude').textContent = smp ? '✨ Claude bağlı: not ve fotoğraftan manşet, spot, seslendirme ve paylaşım metni yazar.' : 'Bu sürümde Claude bağlı değil: nottan kurallarla hazırlar. Daha iyi metin için "Claude için kopyala".'; }
-function ac(){ if (ACIK) return; ACIK = true; if (!kok) kur(); kok.hidden = false; document.documentElement.classList.add('kh-acik'); formDoldur();
+function ac(){ if (ACIK) return; ACIK = true; if (!kok) kur(); kok.classList.remove('kh-hizlimod'); { const bs = kok.querySelector('#khBaslik'); if (bs) bs.textContent = M.ad; } kok.hidden = false; document.documentElement.classList.add('kh-acik'); formDoldur();
   (async () => { if (!FOTO){ const b = await IDB.get('foto'); if (b) await fotoYukle(b); } ciz(); })(); try { history.pushState({kh:1}, ''); } catch(e){} }
 function kapat(){ if (!ACIK) return; ACIK = false; durdur(); kok.hidden = true; document.documentElement.classList.remove('kh-acik'); kaydet(); }
 addEventListener('popstate', () => { if (ACIK) kapat(); });
@@ -9127,7 +9127,9 @@ function sbCiz(){ const k = $h('#khSbl'); if (!k) return; const K = sbKendi();
     yerGuncelle(); }; }
 { const _ty = taslakAc; taslakAc = async function(){ const r = await _ty.apply(this, arguments); yerGuncelle(); return r; }; }
 window.KabatasHaber.sablonlar = SB; window.KabatasHaber.sablonUygula = sbUygula;
-window.KabatasHaber.hizli = () => { ac(); setTimeout(() => { if (!kok) return; const b = kok.querySelector('[data-nav="hizli"]'); if (b && b.offsetParent){ if (b.getAttribute('aria-pressed') !== 'true') b.click(); } else { const x = kok.querySelector('[data-arac="hizli"]'); if (x) x.scrollIntoView({block:'start'}); } }, 160); };
+window.KabatasHaber.hizli = () => { ac(); if (!document.getElementById('kh-hz-css')){ const c = document.createElement('style'); c.id = 'kh-hz-css'; c.textContent = '.kh-hizlimod .kh-nav,.kh-hizlimod #khTsBtn,.kh-hizlimod #khTlAc,.kh-hizlimod .kh-panb #khPanKapa,.kh-hizlimod section.kh-s[data-arac]:not([data-arac="hizli"]),.kh-hizlimod .kh-kat{display:none!important}'; document.head.appendChild(c); }
+  if (!kok) return; kok.classList.add('kh-hizlimod'); const bs = kok.querySelector('#khBaslik'); if (bs) bs.textContent = '⚡ Hızlı haber';
+  setTimeout(() => { const b = kok.querySelector('[data-nav="hizli"]'); if (b && kok.classList.contains('kh-studyo')){ if (b.getAttribute('aria-pressed') !== 'true') b.click(); } else { const x = kok.querySelector('section[data-arac="hizli"]'); if (x) x.scrollIntoView({block:'start'}); } }, 160); };
 
 
 /* ---------- uygulamaya bağla: ana ekran kartı + düzenleyicide "Haber" sekmesi ---------- */
