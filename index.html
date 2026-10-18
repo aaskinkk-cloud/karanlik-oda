@@ -37,7 +37,7 @@
   --ok:#7fd3a1; --shadow:0 10px 30px rgba(0,0,0,.5); color-scheme: dark;
 }
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{height:100%;overflow-x:clip;max-width:100vw}
 body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 var(--f-ui);overflow:hidden;-webkit-tap-highlight-color:transparent}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -338,7 +338,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.24 · 17.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.25 · 18.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -3019,10 +3019,11 @@ function chips(items,cur,fn){ return el("div",{class:"chips"},items.map(([v,l])=
 function renderPanel(){ const pn=$("#panel"), P_=$("#panelIn"); const ayni=ED._pTab===ED.tab&&ED._pSel===ED.yzSel; const top=pn.scrollTop; const sl=[...P_.querySelectorAll(".presets")].map(n=>n.scrollLeft);
   renderPanel0(); ED._pTab=ED.tab; ED._pSel=ED.yzSel;
   if(ayni){ pn.scrollTop=top; P_.querySelectorAll(".presets").forEach((n,i)=>{ if(sl[i]!=null) n.scrollLeft=sl[i]; }); } else pn.scrollTop=0;
-  const nz=ED._nudge; ED._nudge=null;
-  if(ayni&&nz){ const st=P_.querySelectorAll(".presets")[nz.s]; const it=st&&st.children[nz.i]; if(it){ const sr=st.getBoundingClientRect(), ir=it.getBoundingClientRect(), w=ir.width+10;
+  const nz=ED._nudge; ED._nudge=null; const an=ED._anch; ED._anch=null;
+  if(ayni&&!nz&&an){ const bt=[...P_.querySelectorAll("button")].find(x=>x.textContent.trim().slice(0,40)===an.t); if(bt){ const d=bt.getBoundingClientRect().top-an.y; if(Math.abs(d)>1) pn.scrollTop+=d; } }
+  if(ayni&&nz){ const st=P_.querySelectorAll(".presets")[nz.s]; const it=st&&st.children[nz.i]; if(st&&nz.y!=null){ const d=st.getBoundingClientRect().top-nz.y; if(Math.abs(d)>1) pn.scrollTop+=d; } if(it){ const sr=st.getBoundingClientRect(), ir=it.getBoundingClientRect(), w=ir.width+10;
       if(ir.right>sr.right-w*.9) st.scrollBy({left:w,behavior:"smooth"}); else if(ir.left<sr.left+w*.9) st.scrollBy({left:-w,behavior:"smooth"}); } } }
-document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest(".presets>*"); if(!b) return; const st=b.parentElement; ED._nudge={s:[...$("#panelIn").querySelectorAll(".presets")].indexOf(st),i:[...st.children].indexOf(b)}; },true);
+document.addEventListener("click",e=>{ const ab=e.target.closest&&e.target.closest("#panelIn button"); ED._anch=ab&&ab.textContent.trim()?{t:ab.textContent.trim().slice(0,40),y:ab.getBoundingClientRect().top}:null; const b=e.target.closest&&e.target.closest(".presets>*"); if(!b) return; const st=b.parentElement; ED._nudge={s:[...$("#panelIn").querySelectorAll(".presets")].indexOf(st),i:[...st.children].indexOf(b),y:st.getBoundingClientRect().top}; },true);
 function renderPanel0(){
   const P_=$("#panelIn"); P_.innerHTML=""; const s=ED.state; const add=(...n)=>P_.append(...n);
   switch(ED.tab){
@@ -9903,6 +9904,10 @@ function basitSec(v){ try{ localStorage.setItem("ko.basit",v?"1":"0"); }catch(e)
   const hb=$("#homeBmod"); if(hb&&!$("#basitHome")){ hb.after(el("div",{class:"bmod home-bmod",id:"basitHome"},el("span",null,"Basit mod:"),
       el("button",{type:"button","data-v":"1",onclick:()=>basitSec(true)},"Açık"),el("button",{type:"button","data-v":"0",onclick:()=>basitSec(false)},"Kapalı"))); }
   basitDugmeTazele(); })();
+
+/* yatay kayma koruması: sayfa hiçbir koşulda sağa kaymasın */
+addEventListener('scroll',()=>{ if(scrollX) scrollTo(0,scrollY); const se=document.scrollingElement; if(se&&se.scrollLeft) se.scrollLeft=0; if(document.body.scrollLeft) document.body.scrollLeft=0; },{passive:true});
+document.addEventListener('focusin',()=>{ requestAnimationFrame(()=>{ if(scrollX) scrollTo(0,scrollY); }); },true);
 
 /* ---------- Selfi: durum ---------- */
 const selfiVars=()=>({arka:{tip:"yok",renk:"#f2efe9",g:["#fbe3c9","#c9d8f2"],resim:null,parlak:0,doygun:0},kisi:{parlak:0,sicak:0},
