@@ -38,6 +38,12 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%;overflow-x:clip;max-width:100vw}
+/* üst çubuk dar ekranda taşmasın: düğmeler sıkışır, Kaydet hep görünür */
+#editor .topbar{min-width:0;max-width:100%;overflow:hidden}
+#editor .topbar .icon-btn{flex:0 1 40px;min-width:26px}
+#editor .topbar .save-btn,#editor .topbar .basit-btn{flex:none}
+@media(max-width:420px){#editor .topbar{gap:0;padding:6px 4px}#editor .topbar .icon-btn{flex-basis:34px}#editor .topbar .basit-btn{padding:6px 8px;font-size:12px;margin-left:2px}#editor .topbar .save-btn{padding-left:12px;padding-right:12px}}
+@media(max-width:350px){#editor .topbar .icon-btn{flex-basis:28px}#editor .topbar .save-btn{padding-left:9px;padding-right:9px;font-size:13px}#editor .topbar .basit-btn{padding:6px 6px;font-size:11px}}
 body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 var(--f-ui);overflow:hidden;-webkit-tap-highlight-color:transparent}
 button,input,select{font:inherit;color:inherit}
 button{cursor:pointer}
@@ -338,7 +344,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.25 · 18.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.26 · 18.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>

@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.25 · 18.10.2026
+**Güncel sürüm:** 6.26 · 18.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.26** (18.10.2026) – Düzenleyici üst çubuğu dar telefonlarda taşıyordu (Kaydet düğmesi ekranın sağına çıkıp tıklayınca sayfayı sağa kaydırıyordu). Düğmeler artık dar ekranda sıkışır (320–420 px denendi), çubuk taşmaz, **Kaydet hep ekranda kalır**.
 - **6.25** (18.10.2026) – Düzenleyici › Filtreler: bir hazır ayar/filtreye dokununca üste *Yoğunluk* çubuğu eklendiği için liste ekranın altına kayıyordu; artık dokunulan satır ekranda **yerinde sabit kalır** (bir sonraki öğeye kayma korunur). Aynı düzeltme panelde dokunulan düğmeler için de geçerli. Ekranın **sağa kayması** engellendi (sayfa yatay kaydırılamaz, odaklanmada sıfırlanır).
 - **6.24** (17.10.2026) – Ana sayfadaki ⚡ *Hızlı haber* kartı artık Kabataş Haber'in tamamını değil, yalnız **Hızlı haber panelini** açar (alt araç çubuğu, Taslaklar, Katmanlar ve diğer bölümler gizli; başlık "⚡ Hızlı haber"). 📰 Kabataş Haber kartı eskisi gibi tam stüdyoyu açar.
 - **6.23** (17.10.2026) – **Ana sayfa:** ⚡ *Hızlı haber* kartı (doğrudan Hızlı haber paneli açılır) ve 🖼️ *Logolar* kartı. **Logolar:** 12 Kabataş Haber logosu (D Ticker ve varyasyonları, A·B·C·E) 1080×1080 PNG; *İndir*, telefonda *Galeriye / Paylaş*; *Kendi logomu ekle* (cihazda saklanır, silinebilir). **Konuya özel müzik:** her konu artık ayrı müzik çalıyor — Düğün·halay (9/8, davul + zurna benzeri, hicaz), Hayırlı olsun·sıcak (arp + çan), Tebrik·fanfar (pirinç + timpani), Reklam·canlı (4/4 pop), Fındık·türkü (saz benzeri, uşşak), Uyarı·alarm; Duyuru, Spor, Hava, Gündem, Müjde, Anma eskisi gibi ayrı. Konu seçilince müzik kendiliğinden gelir; Hızlı haber 6. adımda *▶ Seçili müziği dinle (9 sn)* düğmesi.
