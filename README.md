@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.26 · 18.10.2026
+**Güncel sürüm:** 6.27 · 19.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.27** (19.10.2026) – Filtreler › **Lightroom tarzı**: 7 yeni filtre, gönderilen referans fotoğraflardan ölçüldü (ışık dağılımı + renk karakteri, uygulamanın stil kopyalama motoruyla) ve üzerine elle **HSL** ayarı eklendi: *Buket · yumuşak mat*, *Sisli göl · soluk pastel*, *Bahçe · gri takım*, *Beton · koyu denim*, *Şehir · sıcak sokak*, *Aqua & turuncu*, *Turuncu elbise · şeftali*. Yoğunluk çubuğuyla azaltılıp artırılabilir.
 - **6.26** (18.10.2026) – Düzenleyici üst çubuğu dar telefonlarda taşıyordu (Kaydet düğmesi ekranın sağına çıkıp tıklayınca sayfayı sağa kaydırıyordu). Düğmeler artık dar ekranda sıkışır (320–420 px denendi), çubuk taşmaz, **Kaydet hep ekranda kalır**.
 - **6.25** (18.10.2026) – Düzenleyici › Filtreler: bir hazır ayar/filtreye dokununca üste *Yoğunluk* çubuğu eklendiği için liste ekranın altına kayıyordu; artık dokunulan satır ekranda **yerinde sabit kalır** (bir sonraki öğeye kayma korunur). Aynı düzeltme panelde dokunulan düğmeler için de geçerli. Ekranın **sağa kayması** engellendi (sayfa yatay kaydırılamaz, odaklanmada sıfırlanır).
 - **6.24** (17.10.2026) – Ana sayfadaki ⚡ *Hızlı haber* kartı artık Kabataş Haber'in tamamını değil, yalnız **Hızlı haber panelini** açar (alt araç çubuğu, Taslaklar, Katmanlar ve diğer bölümler gizli; başlık "⚡ Hızlı haber"). 📰 Kabataş Haber kartı eskisi gibi tam stüdyoyu açar.
