@@ -1,5 +1,10 @@
 # Karanlık Oda
 
+## 6.43 (23.10.2026) — Hızlı haber bölümleri açılır-kapanır
+- Bölüm başlığına dokununca bölüm kapanır/açılır (ok işareti); başlığa dokunmak artık düzenleme/seçim menüsü açmaz.
+- "Ekran tasarımları" varsayılan kapalı gelir.
+- Önizleme altındaki düğmeler tek satırda, eşit aralıklı.
+
 ## 6.42 (23.10.2026) — Tam ekran düğmesi geri
 - Kurulu uygulamada gizlenen tam ekran düğmesi yeniden görünür ve çalışır. Düğmeye basınca Chrome kendi "Tam ekrandan çıkmak için…" uyarısını bir kez gösterir (tarayıcı kuralı). Dokununca kendiliğinden tam ekran isteği gönderilmez.
 
@@ -25,7 +30,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.41 · 22.10.2026
+**Güncel sürüm:** 6.43 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.

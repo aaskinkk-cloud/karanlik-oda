@@ -374,7 +374,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.41 · 22.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.43 · 22.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6876,7 +6876,7 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-hz .hz-th{display:flex;gap:8px;flex-wrap:wrap}.kh-hz .hz-th img{width:68px;height:68px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
 .kh-hz .hz-ch{display:flex;align-items:center;gap:8px;justify-content:flex-start}
 .kh-hz .hz-ch input{width:auto}
-/* 6.41 · boşluk kalmaz: düğmeler satırı doldurur, son tek düğme tüm satırı kaplar; numara başlık satırına alındı */
+/* 6.42 · boşluk kalmaz: düğmeler satırı doldurur, son tek düğme tüm satırı kaplar; numara başlık satırına alındı */
 .kh-hz .hz-b{display:block;position:relative;padding:14px 12px}
 .kh-hz .hz-b>b{position:absolute;left:12px;top:12px}
 .kh-hz .hz-b>div>h4{min-height:28px;display:flex;align-items:center;flex-wrap:wrap;gap:2px 6px;padding-left:38px;margin:0 0 12px}
@@ -6885,6 +6885,17 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-hz .hz-chips>button,.kh-hz .hz-tbo>button,.kh-hz .kh-r>button,.kh-hz .kh-r>label.kh-b{flex:1 1 calc(50% - 8px);min-width:130px;width:auto;min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;box-sizing:border-box;margin:0}
 .kh-hz .kh-r>:only-child{flex-basis:100%}
 .kh-hz .kh-r>label.kh-l{flex:1 1 160px;min-width:0}.kh-hz .kh-r>#hz_bugun{flex:0 0 auto;min-width:110px}
+/* 6.42 açılır-kapanır bölümler */
+.kh-hz .hz-b>div>h4{cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;position:relative;padding-right:30px}
+.kh-hz .hz-b>div>h4::after{content:"";position:absolute;right:6px;top:50%;width:9px;height:9px;margin-top:-7px;border:solid var(--muted);border-width:0 2.5px 2.5px 0;transform:rotate(45deg);transition:transform .2s}
+.kh-hz .hz-b.kapali>div>h4::after{transform:rotate(-45deg);margin-top:-5px}
+.kh-hz .hz-b.kapali>div>h4{margin-bottom:0}
+.kh-hz .hz-b.kapali>div>*:not(h4){display:none!important}
+/* 6.42 önizleme altı düğmeleri tek satır */
+.kh .kh-onz .kh-onz-alt{display:flex;flex-wrap:nowrap!important;align-items:center;justify-content:center;gap:5px;overflow:hidden}
+.kh .kh-onz .kh-onz-alt>.kh-b{flex:1 1 auto!important;min-width:0;padding:6px 8px!important;min-height:36px;font-size:13px;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center}
+.kh .kh-onz-alt .kh-boy{flex:0 0 auto;display:inline-flex;gap:4px}
+.kh .kh-onz .kh-onz-alt .kh-boy .kh-c{padding:6px 7px!important;min-height:36px;font-size:12px;white-space:nowrap;margin:0}
 .kh-hz .hz-g2{display:flex;flex-wrap:wrap;gap:8px}.kh-hz .hz-g2>*{flex:1 1 calc(50% - 8px);min-width:130px}
 .kh-hz textarea,.kh-hz input:not([type=checkbox]):not([type=file]){width:100%}
 .kh-izle{position:fixed;inset:0;z-index:99999;background:#000;overflow:hidden;touch-action:none}
@@ -7670,6 +7681,14 @@ function rkSes(R){ const S = s => String(s || '').trim(), P = ['Reklam.']; if (S
 function reklamUret(hafif){ D.rk = D.rk || {}; D.etiket = 'REKLAM'; if (!D.rkDuzen) D.metin = rkSes(D.rk); D.ornek = !(String(D.rk.ad || '').trim() || String(D.manset || '').trim()); kaydet(); if (hafif) hzYenile(); else formDoldur(); ciz(); }
 function rkTemizle(){ if (!D.rkDuzen){ ['manset', 'spot', 'metin', 'maddeler', 'acilisMetin', 'kapanisMetin', 'aciklama', 'anahtar'].forEach(k => { D[k] = ''; }); D.hashtag = '#kabataş #ordu #kabataşhaber'; D.ornek = false; } D.rkDuzen = 0; }
 function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
+  /*6.42 bölüm başlıkları açılır-kapanır*/
+  const hzAcKapa = (bl, kapat) => { bl.classList.toggle('kapali', kapat); const h = bl.querySelector(':scope>div>h4'); if (h) h.setAttribute('aria-expanded', kapat ? 'false' : 'true'); };
+  const hzBaslik = () => k.querySelectorAll('.hz-b').forEach(bl => { const h = bl.querySelector(':scope>div>h4'); if (h && !h._ak) { h._ak = 1; h.setAttribute('role', 'button'); h.tabIndex = 0; h.setAttribute('aria-expanded', 'true'); } });
+  hzBaslik();
+  k.addEventListener('click', e => { const h = e.target.closest('.hz-b>div>h4'); if (!h || !k.contains(h)) return; const bl = h.closest('.hz-b'); hzAcKapa(bl, !bl.classList.contains('kapali')); });
+  k.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('.hz-b>div>h4')) { e.preventDefault(); e.target.click(); } });
+  k.addEventListener('contextmenu', e => { if (e.target.closest('.hz-b>div>h4')) e.preventDefault(); });
+
   k.innerHTML = `<div class="hz-b hz-ai"><b>🤖</b><div><h4>Yapay zekâdan hazır getir <small>haber · duyuru · reklam</small></h4><div class="kh-r"><button class="kh-b p" data-ai="kop">📋 İstemi kopyala</button></div>
   <label class="kh-l">Yapay zekâ yanıtı <textarea id="hz_aiyanit" rows="3" placeholder="İstemi herhangi bir yapay zekâya yapıştır, altına ham haberi ekle; yanıtı buraya yapıştır. Başlık, metin, anahtar kelime ve hashtag'ler kendiliğinden yerine geçer."></textarea></label>
   <div class="kh-r"><button class="kh-b" data-ai="aktar">⬇ Alanlara aktar</button></div><div class="kh-n" id="hz_aisonuc"></div><details><summary>İstemi göster</summary><textarea id="hz_aiistem" rows="10" readonly></textarea></details></div></div>
@@ -7691,6 +7710,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
   <div class="hz-b"><b>7</b><div><h4>Paylaşım yazısı <small>Instagram açıklaması · haber metni videoda okunur, bu yazı paylaşırken altına gider</small></h4><label class="kh-l"><textarea id="hz_aciklama" rows="4" placeholder="Paylaşırken altına yazılacak metin"></textarea></label><button class="kh-b" id="hz_aciklaYap" type="button">↺ Haber metninden oluştur</button><label class="kh-l">Anahtar kelimeler<input id="hz_anahtar" placeholder="virgülle ayır" autocomplete="off"></label><label class="kh-l">Hashtag'ler<textarea id="hz_hashtag" rows="2" placeholder="#kabataş #ordu"></textarea></label>
   <div class="kh-r"><button class="kh-b" data-ai="ykop">📋 Yazı + hashtag'leri kopyala</button><button class="kh-b" data-ai="akop">📋 Anahtar kelimeleri kopyala</button></div></div></div>
   <div class="hz-b"><b>8</b><div><h4>Dinle, kaydet, yayınla</h4><div class="kh-r"><button class="kh-b p" data-hz="oyna">▶ Sesli önizle</button><button class="kh-b p" data-hz="vid">🎬 Sesli video yap</button></div><div class="kh-r"><button class="kh-b" data-hz="kay">🖼 Görseli kaydet</button><button class="kh-b" data-hz="pay">📤 Paylaş</button><button class="kh-b" data-hz="tsk">💾 Taslağa kaydet</button></div><p class="kh-n" id="hz_vidnot" aria-live="polite"></p><div id="hz_vidson" hidden><video id="hz_vidon" controls playsinline style="display:block;max-width:100%;max-height:36vh;background:#000;border-radius:10px;margin-bottom:8px"></video><div class="kh-r"><button class="kh-b p" data-hz="vpay">📤 Videoyu paylaş</button><button class="kh-b" data-hz="vkay">💾 Videoyu kaydet</button></div></div></div></div>`;
+  hzBaslik(); { const ek0 = k.querySelector('#hz_ekran'); if (ek0) hzAcKapa(ek0, true); }
   k.addEventListener('input', e => { const id = e.target.id; if (id === 'hz_fsv'){ D.fotoSesSev = +e.target.value; const o = $h('#hz_fsvo'); if (o) o.textContent = '%' + D.fotoSesSev; kaydet(); return; } if (e.target.dataset.rk){ D.rk = D.rk || {}; D.rk[e.target.dataset.rk] = e.target.value; reklamUret(true); return; } if (e.target.dataset.dg){ D.dg = D.dg || {dav:true}; D.dg[e.target.dataset.dg] = e.target.value; dugunUret(true); return; } if (id === 'hz_tbad' || id === 'hz_tbay'){ D.tb = D.tb || tbVar(); D.tb[id === 'hz_tbad' ? 'ad' : 'ay'] = e.target.value; tebrikUret(!!D.tbDuzen, true); return; } const a = HZA[id]; if (!a) return; if (D.hzk === 'hayirli') D.tbDuzen = 1; if (D.hzk === 'dugunduyuru' && a === 'metin') D.dgDuzen = 1; if (D.hzk === 'reklam' && a === 'metin') D.rkDuzen = 1; D[a] = e.target.value; if (D.hzk === 'reklam' && (a === 'manset' || a === 'spot' || a === 'maddeler')){ reklamUret(true); return; } if (a === 'manset') D.ornek = false; const o = $h('#kh_' + a); if (o) o.value = e.target.value; kaydet(); ciz(); });
   k.addEventListener('paste', e => { if (e.target.id === 'hz_aiyanit') setTimeout(aiAktar, 40); });
   k.addEventListener('change', async e => { const t = e.target;
