@@ -1,5 +1,8 @@
 # Karanlık Oda
 
+## 6.42 (23.10.2026) — Tam ekran düğmesi geri
+- Kurulu uygulamada gizlenen tam ekran düğmesi yeniden görünür ve çalışır. Düğmeye basınca Chrome kendi "Tam ekrandan çıkmak için…" uyarısını bir kez gösterir (tarayıcı kuralı). Dokununca kendiliğinden tam ekran isteği gönderilmez.
+
 ## 6.41 (22.10.2026) — Hızlı haber düzeni
 - Düğmeler satırı tamamen doldurur, altta boş hücre kalmaz; son tek düğme tüm satırı kaplar.
 - Bölüm numarası başlık satırına alındı, içerik tam genişlikte.
