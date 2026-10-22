@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.31 · 22.10.2026
+**Güncel sürüm:** 6.32 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.32** (22.10.2026) – Hızlı haber 7. adım: *Paylaşım yazısı* başlığına açıklama (haber metni videoda okunur, paylaşım yazısı Instagram altına gider) ve **↺ Haber metninden oluştur** düğmesi.
 - **6.31** (22.10.2026) – Çok fotoğraflı haberde fotoğraf geçişlerindeki "vınlama" sesi artık **varsayılan kapalı** (dikkat dağıtıyordu). Hızlı haber 6. adımda iki işaret kutusu: *Açılış ve sahne efekt sesleri* ve *Fotoğraf geçişlerinde ses*.
 - **6.30** (22.10.2026) – Kartın tarihi taslak oluşturulduğu günü gösteriyordu (eski taslakta 17 Ekim). Hızlı haber 1. adıma **Haber tarihi** seçici ve **📅 Bugün** düğmesi eklendi; elle seçilmemiş eski tarih Kabataş Haber açılırken kendiliğinden bugüne güncellenir.
 - **6.29** (22.10.2026) – Hızlı haber: *Sesli video yap* düğmesi çalışıyordu ama ilerleme çubuğu ve sonuç (önizleme, *Videoyu paylaş / kaydet*) görünmeyen Paylaş bölümünde kalıyordu. Artık 8. adımın altında ilerleme yüzdesi, video önizlemesi, **📤 Videoyu paylaş** ve **💾 Videoyu kaydet** çıkar. 15 fotoğraflı haberle uçtan uca denendi.
