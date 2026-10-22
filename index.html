@@ -344,7 +344,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.30 · 22.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.31 · 22.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -7635,7 +7635,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
   <div class="hz-b"><b>3</b><div><h4>Başlık</h4><label class="kh-l"><textarea id="hz_manset" rows="2" placeholder="Haberin başlığı"></textarea></label><label class="kh-l">Alt başlık (isteğe bağlı)<input id="hz_spot" placeholder="Tek cümlelik özet"></label></div></div>
   <div class="hz-b"><b>4</b><div><h4>Haber metni <small>sesli okunacak metin</small></h4><label class="kh-l"><textarea id="hz_metin" rows="5" placeholder="Haberi kısaca yaz. Boş bırakırsan başlık ve alt başlık okunur."></textarea></label><label class="kh-l">Madde madde (isteğe bağlı, her satır bir madde)<textarea id="hz_maddeler" rows="3" placeholder="Tarih: …&#10;Yer: …"></textarea></label><div class="kh-r"><button class="kh-b" data-hz="ornek" id="hz_ornek">📄 Konuya göre örnek yaz</button></div></div></div>
   <div class="hz-b"><b>5</b><div><h4>Açılış ve kapanış</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_acilis"> Açılış (jenerik + cümle)</label><label class="kh-l"><input id="hz_acilisMetin" placeholder="Açılış cümlesi"></label><label class="kh-b hz-ch"><input type="checkbox" id="hz_kapanis"> Kapanış (takip et)</label><label class="kh-l"><input id="hz_kapanisMetin" placeholder="Kapanış cümlesi"></label></div></div>
-  <div class="hz-b"><b>6</b><div><h4>Ses ve müzik</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_ses"> Haberi seslendir</label><label class="kh-b hz-ch"><input type="checkbox" id="hz_alty"> Altyazı (söylenen cümle ekranda, siyah bantta)</label><div class="hz-chips" style="margin-top:8px">${HZM.map(m => `<button class="kh-c" data-hzm="${m[0]}">♪ ${m[1]}</button>`).join('')}</div><button class="kh-b p" id="hz_din" type="button" style="margin-top:8px">▶ Seçili müziği dinle (9 sn)</button></div></div>
+  <div class="hz-b"><b>6</b><div><h4>Ses ve müzik</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_ses"> Haberi seslendir</label><label class="kh-b hz-ch"><input type="checkbox" id="hz_alty"> Altyazı (söylenen cümle ekranda, siyah bantta)</label><label class="kh-b hz-ch"><input type="checkbox" id="hz_sfx"> Açılış ve sahne efekt sesleri (vınlama, vuruş)</label><label class="kh-b hz-ch"><input type="checkbox" id="hz_fses"> Fotoğraf geçişlerinde ses (kapalı: fotoğraflar sessiz geçer)</label><div class="hz-chips" style="margin-top:8px">${HZM.map(m => `<button class="kh-c" data-hzm="${m[0]}">♪ ${m[1]}</button>`).join('')}</div><button class="kh-b p" id="hz_din" type="button" style="margin-top:8px">▶ Seçili müziği dinle (9 sn)</button></div></div>
   <div class="hz-b"><b>7</b><div><h4>Paylaşım yazısı <small>Instagram açıklaması</small></h4><label class="kh-l"><textarea id="hz_aciklama" rows="4" placeholder="Paylaşırken altına yazılacak metin"></textarea></label><label class="kh-l">Anahtar kelimeler<input id="hz_anahtar" placeholder="virgülle ayır" autocomplete="off"></label><label class="kh-l">Hashtag'ler<textarea id="hz_hashtag" rows="2" placeholder="#kabataş #ordu"></textarea></label>
   <div class="kh-r"><button class="kh-b" data-ai="ykop">📋 Yazı + hashtag'leri kopyala</button><button class="kh-b" data-ai="akop">📋 Anahtar kelimeleri kopyala</button></div></div></div>
   <div class="hz-b"><b>8</b><div><h4>Dinle, kaydet, yayınla</h4><div class="kh-r"><button class="kh-b p" data-hz="oyna">▶ Sesli önizle</button><button class="kh-b p" data-hz="vid">🎬 Sesli video yap</button></div><div class="kh-r"><button class="kh-b" data-hz="kay">🖼 Görseli kaydet</button><button class="kh-b" data-hz="pay">📤 Paylaş</button><button class="kh-b" data-hz="tsk">💾 Taslağa kaydet</button></div><p class="kh-n" id="hz_vidnot" aria-live="polite"></p><div id="hz_vidson" hidden><video id="hz_vidon" controls playsinline style="display:block;max-width:100%;max-height:36vh;background:#000;border-radius:10px;margin-bottom:8px"></video><div class="kh-r"><button class="kh-b p" data-hz="vpay">📤 Videoyu paylaş</button><button class="kh-b" data-hz="vkay">💾 Videoyu kaydet</button></div></div></div></div>`;
@@ -7646,6 +7646,8 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
     if (t.id === 'hz_foto'){ const fs = [...t.files]; t.value = ''; if (fs.length) await hzFoto(fs); return; }
     const m = {hz_acilis:'acilis', hz_kapanis:'kapanis'}[t.id]; if (m){ D[m] = t.checked; kaydet(); formDoldur(); ciz(); }
     if (t.id === 'dg_dav'){ D.dg = D.dg || {}; D.dg.dav = t.checked; dugunUret(true); return; }
+    if (t.id === 'hz_sfx'){ D.sfx = t.checked; kaydet(); ciz(); return; }
+    if (t.id === 'hz_fses'){ D.fotoSes = t.checked; kaydet(); return; }
     if (t.id === 'hz_ses'){ D.gizSes = !t.checked; kaydet(); formDoldur(); }
     if (t.id === 'hz_alty'){ D.altyazi = t.checked; D.hzAlty = 1; kaydet(); formDoldur(); ciz(); } });
   k.addEventListener('click', async e => { const b = e.target.closest('button'); if (!b) return;
@@ -7682,7 +7684,7 @@ async function hzTh(){ const e = $h('#hz_th'); if (!e) return; const sig = (FOTO
   const n = $h('#hz_fn'); if (n) n.textContent = L.length + '/20'; }
 function hzYenile(){ const k = $h('#khHz'); if (!k || !k._k) return; { const ti = $h('#hz_tarih'); if (ti && ti !== document.activeElement){ const d = new Date(D.tarih || Date.now()), p = n => String(n).padStart(2, '0'); ti.value = d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()); } }
   Object.entries(HZA).forEach(([id, a]) => { const e = $h('#' + id); if (e && e !== document.activeElement) e.value = D[a] || ''; });
-  [['hz_acilis', !!D.acilis], ['hz_kapanis', !!D.kapanis], ['hz_ses', !D.gizSes], ['hz_alty', !!D.altyazi]].forEach(([id, v]) => { const e = $h('#' + id); if (e) e.checked = v; });
+  [['hz_acilis', !!D.acilis], ['hz_kapanis', !!D.kapanis], ['hz_ses', !D.gizSes], ['hz_alty', !!D.altyazi], ['hz_sfx', !!D.sfx], ['hz_fses', !!D.fotoSes]].forEach(([id, v]) => { const e = $h('#' + id); if (e) e.checked = v; });
   k.querySelectorAll('[data-hzk]').forEach(b => b.setAttribute('aria-pressed', b.dataset.hzk === D.hzk)); k.querySelectorAll('[data-hzm]').forEach(b => b.setAttribute('aria-pressed', b.dataset.hzm === D.muzik)); const tb = $h('#hz_tb'); if (tb){ const ac = D.hzk === 'hayirli'; tb.hidden = !ac; if (ac){ const T = D.tb || (D.tb = tbVar()), o = TBO.find(z => z.k === T.olay) || TBO[0];
     k.querySelectorAll('[data-tbo]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tbo === o.k)); k.querySelectorAll('[data-tbt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tbt === T.ton));
     const a = $h('#hz_tbad'), y = $h('#hz_tbay'); if (a && a !== document.activeElement) a.value = T.ad || ''; if (y && y !== document.activeElement){ y.value = T.ay || ''; y.placeholder = o.ayp; } $h('#hz_tbayl').textContent = o.ayl;
@@ -8084,7 +8086,7 @@ async function karisim(P, bildir){ const SR = 48000, N = Math.ceil((P.top + .3)*
     let r0 = 7; function rndOff(){ r0 = (r0*16807) % 2147483647; return r0/2147483647*.25; }
     P.parca.forEach((p, i) => { if (p.tip === 'acilis'){ fis(p.a + .05); vurus(p.a + .62); }
       else if (p.tip === 'sahne'){ if (i > 0){ fis(p.a - GECIS*.6); if (gecisStil(i - 1) === 'flas' || gecisStil(i - 1) === 'glitch') vurus(p.a - GECIS*.5); } vurus(p.a + .08);
-        if ((p.s.liste || []).length > 1){ const T = galeriZaman({list:p.s.liste, a:p.a, b:p.b}); T.slice(1, -1).forEach(tt => fisH(tt - .05)); } const et = (p.s.d.etiket || D.etiket); if (/SON DAKİKA|FLAŞ|SICAK/.test(et)) bip(p.a + .3); }
+        if ((p.s.liste || []).length > 1){ const T = galeriZaman({list:p.s.liste, a:p.a, b:p.b}); if (D.fotoSes) T.slice(1, -1).forEach(tt => fisH(tt - .05)); } const et = (p.s.d.etiket || D.etiket); if (/SON DAKİKA|FLAŞ|SICAK/.test(et)) bip(p.a + .3); }
       else if (p.tip === 'kapanis'){ fis(p.a - GECIS*.6); vurus(p.a + .25); } });
     if (D.muzik === 'yok'){ const j = jenerik(SR); const b = oc.createBuffer(1, j.length, SR); b.copyToChannel(j, 0); const s = oc.createBufferSource(); s.buffer = b; s.connect(ana); s.start(D.acilis ? .9 : 0); } }
   bildir && bildir('Ses karıştırılıyor…'); return await oc.startRendering(); }
