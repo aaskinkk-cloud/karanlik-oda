@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.32 · 22.10.2026
+**Güncel sürüm:** 6.33 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.33** (22.10.2026) – Hızlı haber › **🎞️ Ekran tasarımları** (6. adımdan önce), küçük önizlemeli seçenekler: **Kapak** (kartın üstündeki logo şeridi, tüm şablonlarda): Klasik · Kapsül · Çizgili · Sade; **Açılış ekranı**: Klasik · Sade · Manşet (büyük konu yazısı) · Perde; **Kapanış ekranı**: Klasik · Teşekkür · Kart · Şerit. Seçim yeni haberde korunur.
 - **6.32** (22.10.2026) – Hızlı haber 7. adım: *Paylaşım yazısı* başlığına açıklama (haber metni videoda okunur, paylaşım yazısı Instagram altına gider) ve **↺ Haber metninden oluştur** düğmesi.
 - **6.31** (22.10.2026) – Çok fotoğraflı haberde fotoğraf geçişlerindeki "vınlama" sesi artık **varsayılan kapalı** (dikkat dağıtıyordu). Hızlı haber 6. adımda iki işaret kutusu: *Açılış ve sahne efekt sesleri* ve *Fotoğraf geçişlerinde ses*.
 - **6.30** (22.10.2026) – Kartın tarihi taslak oluşturulduğu günü gösteriyordu (eski taslakta 17 Ekim). Hızlı haber 1. adıma **Haber tarihi** seçici ve **📅 Bugün** düğmesi eklendi; elle seçilmemiş eski tarih Kabataş Haber açılırken kendiliğinden bugüne güncellenir.

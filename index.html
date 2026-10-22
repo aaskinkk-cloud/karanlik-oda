@@ -344,7 +344,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.32 · 22.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.33 · 22.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6831,7 +6831,7 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-hz .hz-b h4{margin:3px 0 8px;font:700 15px system-ui}.kh-hz .hz-b h4 small{font:500 12px system-ui;color:var(--muted);margin-left:6px}
 .kh-hz .hz-b>div{min-width:0;display:grid;gap:8px;align-content:start}
 .kh-hz .hz-chips{display:flex;flex-wrap:wrap;gap:6px}
-.kh-hz .hz-b[hidden]{display:none}.kh-hz details summary{cursor:pointer;font:600 13px system-ui;color:var(--muted)}.kh-hz details textarea{width:100%;margin-top:6px;box-sizing:border-box}.kh-hz .hz-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.kh-hz .hz-g2 .kh-l input{width:100%;min-width:0;box-sizing:border-box}.kh-hz .hz-tbo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.kh-hz .hz-tbo .kh-c{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kh-hz .hz-ekg{margin-top:8px}.kh-hz .hz-ekr{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}.kh-hz .hz-ekb{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:inherit;font:600 11.5px system-ui;cursor:pointer}.kh-hz .hz-ekb canvas{display:block;border-radius:6px;background:#111}.kh-hz .hz-ekb[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}.kh-hz .hz-b[hidden]{display:none}.kh-hz details summary{cursor:pointer;font:600 13px system-ui;color:var(--muted)}.kh-hz details textarea{width:100%;margin-top:6px;box-sizing:border-box}.kh-hz .hz-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.kh-hz .hz-g2 .kh-l input{width:100%;min-width:0;box-sizing:border-box}.kh-hz .hz-tbo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.kh-hz .hz-tbo .kh-c{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kh-hz .hz-th{display:flex;gap:8px;flex-wrap:wrap}.kh-hz .hz-th img{width:68px;height:68px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
 .kh-hz .hz-ch{display:flex;align-items:center;gap:8px;justify-content:flex-start}
 .kh-hz .hz-ch input{width:auto}
@@ -7173,7 +7173,7 @@ function foto(x, X, Y, w, h, kb){ if (D.gizFoto){ const g = x.createLinearGradie
 const tarihYaz = (ts, kisa) => new Date(ts || Date.now()).toLocaleDateString('tr-TR', kisa ? {day:'numeric', month:'long', year:'numeric'} : {weekday:'long', day:'numeric', month:'long', year:'numeric'});
 function kagit(x, W, H, renk){ x.fillStyle = renk || '#f3eee2'; x.fillRect(0, 0, W, H); let s = 7; const r = () => (s = (s*16807) % 2147483647)/2147483647;
   x.globalAlpha = .05; for (let i = 0; i < W*H/900; i++){ x.fillStyle = r() < .5 ? '#000' : '#7a5c2e'; x.fillRect(r()*W, r()*H, 1.6, 1.6); } x.globalAlpha = 1; }
-function logo(x, X, Y, s, ac, koyu){ /* kanal simgesi + gazete adı */ x.save(); ikonCiz(x, aktifLogo(), X, Y, s, markaRenk()); x.textBaseline = 'middle';
+function logo0(x, X, Y, s, ac, koyu){ /* kanal simgesi + gazete adı */ x.save(); ikonCiz(x, aktifLogo(), X, Y, s, markaRenk()); x.textBaseline = 'middle';
   x.textAlign = 'left'; x.fillStyle = koyu ? '#111' : '#fff'; x.font = `700 ${s*.42}px Oswald`; x.fillText(TR(M.ad), X + s*1.22, Y + s*.36); x.globalAlpha = .85; x.font = `italic 400 ${s*.26}px "Playfair Display"`; x.fillText(M.slogan, X + s*1.22, Y + s*.78); x.restore(); x.textBaseline = 'alphabetic'; }
 function guvenliTaban(W, H){ return H/W > 1.6 ? H*.17 : H*.035; }
 function guvenli(W, H){ const dik = H/W > 1.6; return {u:dik ? H*.11 : H*.035, a:guvenliTaban(W, H) + (D.altBant ? W*.072 + W*.014 : 0), m:W*.06}; }
@@ -7381,7 +7381,7 @@ let kayT = 0; function kaydet(){ clearTimeout(kayT); kayT = setTimeout(() => { L
 async function yeniHaber(){ const dolu = !D.ornek && !!(String(D.manset || '').trim() || FOTO || (D.sahneler || []).length);
   if (!confirm(dolu ? 'Yeni haber başlatılsın mı?\nŞu anki çalışma "Taslaklar"a kaydedilir.' : 'Yeni haber başlatılsın mı?')) return;
   durdur(); if (dolu){ try { await taslakSakla(); } catch(e){} }
-  const KORU = ['oran', 'sablon', 'altBant', 'bantStil', 'muzik', 'muzikSes', 'sfx', 'acilis', 'kapanis', 'spiker', 'acilisMetin', 'kapanisMetin', 'gecis', 'altyazi', 'jenerik'];
+  const KORU = ['oran', 'sablon', 'altBant', 'bantStil', 'muzik', 'muzikSes', 'sfx', 'acilis', 'kapanis', 'spiker', 'acilisMetin', 'kapanisMetin', 'gecis', 'altyazi', 'jenerik', 'acilisStil', 'kapanisStil', 'kapakStil'];
   const eski = {}; KORU.forEach(k => { if (D[k] !== undefined) eski[k] = D[k]; }); if (eski.muzik === 'dosya') eski.muzik = 'gergin';
   D = Object.assign(yeniD(), eski); ekDoldur(); ek2Doldur(); D.sahneler = []; D.ekFoto = []; D.yazilar = []; D.ornek = false; D.sayi = M.sayi;
   FOTO = null; FOTO_YUZ = null; try { IDB.del('foto'); } catch(e){} { const v = $h('#khVidSonuc'); if (v){ v.hidden = true; const o = $h('#khVidOn'); try { o.pause(); o.removeAttribute('src'); o.load(); } catch(e){} } }
@@ -7635,6 +7635,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
   <div class="hz-b"><b>3</b><div><h4>Başlık</h4><label class="kh-l"><textarea id="hz_manset" rows="2" placeholder="Haberin başlığı"></textarea></label><label class="kh-l">Alt başlık (isteğe bağlı)<input id="hz_spot" placeholder="Tek cümlelik özet"></label></div></div>
   <div class="hz-b"><b>4</b><div><h4>Haber metni <small>sesli okunacak metin</small></h4><label class="kh-l"><textarea id="hz_metin" rows="5" placeholder="Haberi kısaca yaz. Boş bırakırsan başlık ve alt başlık okunur."></textarea></label><label class="kh-l">Madde madde (isteğe bağlı, her satır bir madde)<textarea id="hz_maddeler" rows="3" placeholder="Tarih: …&#10;Yer: …"></textarea></label><div class="kh-r"><button class="kh-b" data-hz="ornek" id="hz_ornek">📄 Konuya göre örnek yaz</button></div></div></div>
   <div class="hz-b"><b>5</b><div><h4>Açılış ve kapanış</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_acilis"> Açılış (jenerik + cümle)</label><label class="kh-l"><input id="hz_acilisMetin" placeholder="Açılış cümlesi"></label><label class="kh-b hz-ch"><input type="checkbox" id="hz_kapanis"> Kapanış (takip et)</label><label class="kh-l"><input id="hz_kapanisMetin" placeholder="Kapanış cümlesi"></label></div></div>
+  <div class="hz-b" id="hz_ekran"><b>🎞️</b><div><h4>Ekran tasarımları <small>kapak (kart üstü) · açılış · kapanış</small></h4>${[['kapak', 'Kapak (kartın üst şeridi)', 160, 64], ['acilis', 'Açılış ekranı', 90, 160], ['kapanis', 'Kapanış ekranı', 90, 160]].map(([g, ad, w, h]) => `<div class="hz-ekg"><div class="kh-n">${ad}</div><div class="hz-ekr">${EK_SET[g].map((n, i) => `<button class="hz-ekb" type="button" data-ek="${g}:${i}"><canvas width="${w}" height="${h}"></canvas><span>${n}</span></button>`).join('')}</div></div>`).join('')}</div></div>
   <div class="hz-b"><b>6</b><div><h4>Ses ve müzik</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_ses"> Haberi seslendir</label><label class="kh-b hz-ch"><input type="checkbox" id="hz_alty"> Altyazı (söylenen cümle ekranda, siyah bantta)</label><label class="kh-b hz-ch"><input type="checkbox" id="hz_sfx"> Açılış ve sahne efekt sesleri (vınlama, vuruş)</label><label class="kh-b hz-ch"><input type="checkbox" id="hz_fses"> Fotoğraf geçişlerinde ses (kapalı: fotoğraflar sessiz geçer)</label><div class="hz-chips" style="margin-top:8px">${HZM.map(m => `<button class="kh-c" data-hzm="${m[0]}">♪ ${m[1]}</button>`).join('')}</div><button class="kh-b p" id="hz_din" type="button" style="margin-top:8px">▶ Seçili müziği dinle (9 sn)</button></div></div>
   <div class="hz-b"><b>7</b><div><h4>Paylaşım yazısı <small>Instagram açıklaması · haber metni videoda okunur, bu yazı paylaşırken altına gider</small></h4><label class="kh-l"><textarea id="hz_aciklama" rows="4" placeholder="Paylaşırken altına yazılacak metin"></textarea></label><button class="kh-b" id="hz_aciklaYap" type="button">↺ Haber metninden oluştur</button><label class="kh-l">Anahtar kelimeler<input id="hz_anahtar" placeholder="virgülle ayır" autocomplete="off"></label><label class="kh-l">Hashtag'ler<textarea id="hz_hashtag" rows="2" placeholder="#kabataş #ordu"></textarea></label>
   <div class="kh-r"><button class="kh-b" data-ai="ykop">📋 Yazı + hashtag'leri kopyala</button><button class="kh-b" data-ai="akop">📋 Anahtar kelimeleri kopyala</button></div></div></div>
@@ -7661,6 +7662,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
     if (b.dataset.dgk === 'not'){ const tx = D.aciklama || ''; try { await navigator.clipboard.writeText(tx); tst('Not kopyalandı'); } catch (er){ const ta = document.createElement('textarea'); ta.value = tx; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); tst('Not kopyalandı'); } catch (e2){ tst('Kopyalanamadı'); } ta.remove(); } return; }
     if (b.dataset.hzk){ hzKonu(b.dataset.hzk); return; }
     if (b.id === 'hz_aciklaYap'){ const ms = String(D.manset || '').trim(), mt = String(D.metin || D.spot || '').trim(); if (!ms && !mt){ tst('Önce haber metnini yaz'); return; } D.aciklama = (ms ? '📰 ' + ms.toLocaleUpperCase('tr') + '\n\n' : '') + mt; kaydet(); hzYenile(); tst('Paylaşım yazısı haber metninden oluşturuldu'); return; }
+    if (b.dataset.ek){ const [g, n] = b.dataset.ek.split(':'); D[g === 'kapak' ? 'kapakStil' : g === 'acilis' ? 'acilisStil' : 'kapanisStil'] = +n; kaydet(); hzYenile(); ciz(); try { sahneCiz(); } catch(e){} tst(EK_SET[g][+n] + ' seçildi'); return; }
     if (b.id === 'hz_bugun'){ D.tarih = Date.now(); D.tarihEl = 0; kaydet(); hzYenile(); ciz(); tst('Tarih bugüne ayarlandı'); return; }
     if (b.id === 'hz_din'){ const on = muzikDinle(D.muzik); b.textContent = on ? '■ Durdur' : '▶ Seçili müziği dinle (9 sn)'; return; }
     if (b.dataset.hzm){ D.muzik = b.dataset.hzm; kaydet(); formDoldur(); tst('Müzik: ' + (HZM.find(x => x[0] === D.muzik) || [0, D.muzik])[1]); return; }
@@ -7683,7 +7685,7 @@ async function hzTh(){ const e = $h('#hz_th'); if (!e) return; const sig = (FOTO
   const L = [FOTO].filter(Boolean).concat(await fotoListe(D.ekFoto)).slice(0, 3);
   e.innerHTML = L.length ? L.map(c => { const t = document.createElement('canvas'), r = 128/Math.max(c.width, c.height); t.width = Math.max(1, Math.round(c.width*r)); t.height = Math.max(1, Math.round(c.height*r)); t.getContext('2d').drawImage(c, 0, 0, t.width, t.height); return `<img alt="" src="${t.toDataURL('image/jpeg', .6)}">`; }).join('') : '<span class="kh-n">Henüz fotoğraf yok</span>';
   const n = $h('#hz_fn'); if (n) n.textContent = L.length + '/20'; }
-function hzYenile(){ const k = $h('#khHz'); if (!k || !k._k) return; { const ti = $h('#hz_tarih'); if (ti && ti !== document.activeElement){ const d = new Date(D.tarih || Date.now()), p = n => String(n).padStart(2, '0'); ti.value = d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()); } }
+function hzYenile(){ const k = $h('#khHz'); if (!k || !k._k) return; k.querySelectorAll('[data-ek]').forEach(b => { const [g, n] = b.dataset.ek.split(':'), v = +(D[g === 'kapak' ? 'kapakStil' : g === 'acilis' ? 'acilisStil' : 'kapanisStil'] || 0); b.setAttribute('aria-pressed', v === +n); }); ekThumbs(); { const ti = $h('#hz_tarih'); if (ti && ti !== document.activeElement){ const d = new Date(D.tarih || Date.now()), p = n => String(n).padStart(2, '0'); ti.value = d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()); } }
   Object.entries(HZA).forEach(([id, a]) => { const e = $h('#' + id); if (e && e !== document.activeElement) e.value = D[a] || ''; });
   [['hz_acilis', !!D.acilis], ['hz_kapanis', !!D.kapanis], ['hz_ses', !D.gizSes], ['hz_alty', !!D.altyazi], ['hz_sfx', !!D.sfx], ['hz_fses', !!D.fotoSes]].forEach(([id, v]) => { const e = $h('#' + id); if (e) e.checked = v; });
   k.querySelectorAll('[data-hzk]').forEach(b => b.setAttribute('aria-pressed', b.dataset.hzk === D.hzk)); k.querySelectorAll('[data-hzm]').forEach(b => b.setAttribute('aria-pressed', b.dataset.hzm === D.muzik)); const tb = $h('#hz_tb'); if (tb){ const ac = D.hzk === 'hayirli'; tb.hidden = !ac; if (ac){ const T = D.tb || (D.tb = tbVar()), o = TBO.find(z => z.k === T.olay) || TBO[0];
@@ -7953,7 +7955,7 @@ SABLON.splice(1, 0, ['tv', 'TV bülten bandı']);
 
 /* ---------- açılış ve kapanış (jenerik) ---------- */
 const ACILIS_SN = 3.2, KAPANIS_SN = 4;
-function acilisCiz(x, W, H, t){ const st = BANT[D.bantStil] || BANT.kirmizi, ac = st.l === '#ffffff' ? '#d7191f' : st.l;
+function acilis0(x, W, H, t){ const st = BANT[D.bantStil] || BANT.kirmizi, ac = st.l === '#ffffff' ? '#d7191f' : st.l;
   x.fillStyle = '#0c0d10'; x.fillRect(0, 0, W, H); if (FOTO){ x.globalAlpha = .28; foto(x, 0, 0, W, H, 1.15 - .1*kis(t/ACILIS_SN, 0, 1)); x.globalAlpha = 1; }
   [[ac, 0], [st.b === '#ffffff' ? '#ffffff' : st.b, .12], [st.s, .24]].forEach(([c, d], i) => { const p = pr(t, d, d + .55); x.save(); x.translate(W/2, H/2); x.rotate(-.18); x.fillStyle = c; x.globalAlpha = .92;
     x.fillRect(-W*1.2 + p*W*1.2*(i % 2 ? 1 : 1), -H*.06 + (i - 1)*H*.075, W*2.4*p, H*.06); x.restore(); });
@@ -7962,12 +7964,55 @@ function acilisCiz(x, W, H, t){ const st = BANT[D.bantStil] || BANT.kirmizi, ac 
   const mp = pr(t, 1.0, 1.7), mf = s => `700 ${s}px "Playfair Display"`, m = sigdir(x, TR(M.ad), mf, W*.86, W*.13, 1, W*.12, W*.05, 1); x.fillStyle = '#fff'; x.textAlign = 'center'; x.globalAlpha = mp; x.fillText(m.L[0], W/2, H*.42 + W*.2 + (1 - mp)*W*.04);
   x.globalAlpha = pr(t, 1.5, 2.2); x.font = `italic 400 ${W*.038}px "Playfair Display"`; x.fillStyle = '#e8e2d6'; x.fillText(M.slogan, W/2, H*.42 + W*.28);
   x.font = `500 ${W*.03}px Oswald`; x.fillStyle = ac; x.fillText(TR(tarihYaz(D.tarih)), W/2, H*.42 + W*.36); x.globalAlpha = 1; }
-function kapanisCiz(x, W, H, t){ const st = BANT[D.bantStil] || BANT.kirmizi, ac = st.l === '#ffffff' ? '#d7191f' : st.l;
+function kapanis0(x, W, H, t){ const st = BANT[D.bantStil] || BANT.kirmizi, ac = st.l === '#ffffff' ? '#d7191f' : st.l;
   x.fillStyle = '#0c0d10'; x.fillRect(0, 0, W, H); const p = pr(t, 0, .6); x.fillStyle = ac; x.fillRect(0, H*.5 - H*.004, W*p, H*.008);
   const s = W*.18; x.globalAlpha = pr(t, .2, .8); ikonCiz(x, M.logo, W/2 - s/2, H*.24, s, markaRenk()); x.fillStyle = '#fff'; x.textAlign = 'center';
   x.globalAlpha = pr(t, .5, 1.1); x.font = `700 ${W*.075}px "Playfair Display"`; x.fillText(TR(M.ad), W/2, H*.46); x.font = `italic 400 ${W*.04}px "Playfair Display"`; x.fillStyle = '#e8e2d6'; x.fillText(M.slogan, W/2, H*.58);
   x.globalAlpha = pr(t, 1.1, 1.7); const bh = W*.11, tx = 'TAKİP ET  ' + (M.hesap || ''); let fs = bh*.42; x.font = `700 ${fs}px Montserrat`; let tw = x.measureText(tx).width; if (tw > W*.78){ fs *= W*.78/tw; x.font = `700 ${fs}px Montserrat`; tw = x.measureText(tx).width; }
   const bw = tw + bh*.9; x.fillStyle = '#fff'; rr(x, W/2 - bw/2, H*.66, bw, bh, bh/2); x.fill(); x.fillStyle = '#111'; x.fillText(tx, W/2, H*.66 + bh*.5 + fs*.36); x.globalAlpha = pr(t, 1.6, 2.2); x.fillStyle = '#bfc3c8'; x.font = `500 ${W*.03}px Montserrat`; x.fillText('Haberiniz mi var? Mesaj atın.', W/2, H*.66 + bh + W*.07); x.globalAlpha = 1; }
+
+/*EKRAN*/
+/* 6.33 · Ekran çeşitleri: açılış (4), kapanış (4), kapak / kart üst şeridi (4) */
+function acilisCiz(x, W, H, t){ const a = +(D.acilisStil || 0); if (!a) return acilis0(x, W, H, t); const st = BANT[D.bantStil] || BANT.kirmizi, ac = st.l === '#ffffff' ? '#d7191f' : st.l, mk = markaRenk(); x.save(); x.textAlign = 'center'; x.textBaseline = 'alphabetic';
+  if (a === 1){ /* Sade: ışık halkası + logo */
+    x.fillStyle = '#0b0c0f'; x.fillRect(0, 0, W, H); const g = x.createRadialGradient(W/2, H*.42, 0, W/2, H*.42, W*.7); g.addColorStop(0, ac + '66'); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+    const lp = pr(t, .1, .8), s = W*.26; x.globalAlpha = lp; x.save(); x.translate(W/2, H*.42); x.scale(.85 + .15*lp, .85 + .15*lp); ikonCiz(x, aktifLogo(), -s/2, -s/2, s, mk); x.restore();
+    x.globalAlpha = pr(t, .7, 1.3); x.fillStyle = '#fff'; x.font = `700 ${W*.09}px "Playfair Display"`; x.fillText(TR(M.ad), W/2, H*.42 + s*.9); x.globalAlpha = pr(t, 1.1, 1.7); x.fillStyle = '#d9d4c7'; x.font = `italic 400 ${W*.036}px "Playfair Display"`; x.fillText(M.slogan, W/2, H*.42 + s*.9 + W*.075);
+    x.fillStyle = ac; x.fillRect(W/2 - W*.12*pr(t, 1.3, 1.9), H*.42 + s*.9 + W*.11, W*.24*pr(t, 1.3, 1.9), W*.006); }
+  else if (a === 2){ /* Manşet: büyük etiket yazısı */
+    x.fillStyle = '#0b0c0f'; x.fillRect(0, 0, W, H); if (FOTO){ x.globalAlpha = .4; foto(x, 0, 0, W, H, 1.12 - .08*kis(t/3, 0, 1)); x.globalAlpha = 1; } const gg = x.createLinearGradient(0, H*.3, 0, H); gg.addColorStop(0, 'rgba(0,0,0,0)'); gg.addColorStop(1, 'rgba(0,0,0,.85)'); x.fillStyle = gg; x.fillRect(0, 0, W, H);
+    const p = pr(t, .05, .6); x.fillStyle = ac; x.fillRect(0, H*.46, W*p, W*.016); const et = TR(D.etiket || 'HABER'); let fs = W*.2; x.font = `700 ${fs}px Oswald`; const tw = x.measureText(et).width; if (tw > W*.86){ fs *= W*.86/tw; x.font = `700 ${fs}px Oswald`; }
+    x.textAlign = 'left'; x.globalAlpha = pr(t, .3, .9); x.fillStyle = '#fff'; x.fillText(et, W*.07 - (1 - pr(t, .3, .9))*W*.1, H*.46 + fs*.95); logo(x, W*.07, guvenli(W, H).u, W*.1, ac);
+    x.globalAlpha = pr(t, 1, 1.6); x.fillStyle = ac; x.font = `500 ${W*.034}px Oswald`; x.fillText(TR(tarihYaz(D.tarih)) + (D.yer ? '  ·  ' + TR(D.yer) : ''), W*.07, H*.46 + fs*.95 + W*.08); }
+  else { /* Perde: iki panel açılır */
+    x.fillStyle = '#0b0c0f'; x.fillRect(0, 0, W, H); const s = W*.22, lp = pr(t, .5, 1.1); x.globalAlpha = lp; ikonCiz(x, aktifLogo(), W/2 - s/2, H*.4 - s/2, s, mk); x.fillStyle = '#fff'; x.font = `700 ${W*.1}px "Playfair Display"`; x.globalAlpha = pr(t, .8, 1.4); x.fillText(TR(M.ad), W/2, H*.4 + s*.85);
+    x.globalAlpha = pr(t, 1.2, 1.8); x.fillStyle = ac; x.font = `500 ${W*.032}px Oswald`; x.fillText(TR(tarihYaz(D.tarih)), W/2, H*.4 + s*.85 + W*.08); x.globalAlpha = 1; const k = pr(t, .35, 1.0); x.fillStyle = ac; x.fillRect(0, 0, W/2*(1 - k), H); x.fillStyle = '#1b1d22'; x.fillRect(W/2 + W/2*k, 0, W/2*(1 - k) + 1, H); }
+  x.restore(); x.globalAlpha = 1; x.textBaseline = 'alphabetic'; }
+function kapanisCiz(x, W, H, t){ const a = +(D.kapanisStil || 0); if (!a) return kapanis0(x, W, H, t); const st = BANT[D.bantStil] || BANT.kirmizi, ac = st.l === '#ffffff' ? '#d7191f' : st.l, mk = markaRenk(), hs = M.hesap || ''; x.save(); x.textAlign = 'center'; x.textBaseline = 'alphabetic';
+  if (a === 1){ /* Teşekkür */
+    x.fillStyle = '#0b0c0f'; x.fillRect(0, 0, W, H); const s = W*.2; x.globalAlpha = pr(t, 0, .6); ikonCiz(x, aktifLogo(), W/2 - s/2, H*.26, s, mk);
+    x.globalAlpha = pr(t, .4, 1); x.fillStyle = '#fff'; x.font = `700 ${W*.07}px Oswald`; x.fillText('İZLEDİĞİNİZ İÇİN', W/2, H*.26 + s + W*.1); x.fillStyle = ac; x.font = `700 ${W*.11}px Oswald`; x.fillText('TEŞEKKÜRLER', W/2, H*.26 + s + W*.23);
+    x.globalAlpha = pr(t, 1, 1.6); x.fillStyle = '#e8e2d6'; x.font = `500 ${W*.04}px Montserrat`; x.fillText(hs ? 'Takip et: ' + hs : TR(M.ad), W/2, H*.26 + s + W*.34); }
+  else if (a === 2){ /* Kart: renk geçişli, büyük takip düğmesi */
+    const g = x.createLinearGradient(0, 0, W, H); g.addColorStop(0, ac); g.addColorStop(1, '#14161a'); x.fillStyle = g; x.fillRect(0, 0, W, H); const s = W*.22; x.globalAlpha = pr(t, 0, .6); ikonCiz(x, aktifLogo(), W/2 - s/2, H*.22, s, mk);
+    x.globalAlpha = pr(t, .4, 1); x.fillStyle = '#fff'; x.font = `700 ${W*.085}px "Playfair Display"`; x.fillText(TR(M.ad), W/2, H*.22 + s + W*.1); x.font = `italic 400 ${W*.04}px "Playfair Display"`; x.fillStyle = 'rgba(255,255,255,.85)'; x.fillText(M.slogan, W/2, H*.22 + s + W*.17);
+    x.globalAlpha = pr(t, 1, 1.6); const bh = W*.15, tx = hs ? 'TAKİP ET  ' + hs : 'TAKİP ET'; let fs = bh*.4; x.font = `700 ${fs}px Montserrat`; let tw = x.measureText(tx).width; if (tw > W*.8){ fs *= W*.8/tw; x.font = `700 ${fs}px Montserrat`; tw = x.measureText(tx).width; } const bw = tw + bh; x.fillStyle = '#fff'; rr(x, W/2 - bw/2, H*.62, bw, bh, bh/2); x.fill(); x.fillStyle = '#111'; x.fillText(tx, W/2, H*.62 + bh*.5 + fs*.36); }
+  else { /* Şerit: alt bant */
+    x.fillStyle = '#0b0c0f'; x.fillRect(0, 0, W, H); const s = W*.2; x.globalAlpha = pr(t, 0, .6); ikonCiz(x, aktifLogo(), W/2 - s/2, H*.3, s, mk); x.globalAlpha = pr(t, .3, .9); x.fillStyle = '#fff'; x.font = `700 ${W*.075}px Oswald`; x.fillText(TR(M.ad), W/2, H*.3 + s + W*.1);
+    const p = pr(t, .5, 1.1), bh = W*.15, y = H*.62; x.globalAlpha = 1; x.fillStyle = ac; x.fillRect(0, y, W*p, bh); x.fillStyle = '#fff'; x.fillRect(0, y + bh, W*p, W*.008); x.globalAlpha = pr(t, 1, 1.5); x.font = `700 ${bh*.38}px Montserrat`; x.textAlign = 'center'; x.fillText(hs ? 'TAKİP ET  ' + hs : 'TAKİP ET', W/2, y + bh*.62);
+    x.globalAlpha = pr(t, 1.4, 2); x.fillStyle = '#bfc3c8'; x.font = `500 ${W*.032}px Montserrat`; x.fillText('Haberiniz mi var? Mesaj atın.', W/2, y + bh + W*.09); }
+  x.restore(); x.globalAlpha = 1; x.textBaseline = 'alphabetic'; }
+/* kapak: kartların üstündeki logo + ad şeridi (tüm şablonlarda ortak) */
+function logo(x, X, Y, s, ac, koyu){ const k = +(D.kapakStil || 0); if (!k) return logo0(x, X, Y, s, ac, koyu); x.save(); x.textBaseline = 'middle'; x.textAlign = 'left'; const ad = TR(M.ad), tx = koyu ? '#111' : '#fff';
+  if (k === 1){ x.font = `700 ${s*.42}px Oswald`; const w1 = x.measureText(ad).width; x.font = `italic 400 ${s*.26}px "Playfair Display"`; const w2 = x.measureText(M.slogan).width, pw = s*1.22 + Math.max(w1, w2) + s*.3, p = s*.16; x.fillStyle = koyu ? 'rgba(255,255,255,.82)' : 'rgba(0,0,0,.55)'; rr(x, X - p, Y - p, pw + p, s + 2*p, (s + 2*p)/2); x.fill(); x.restore(); return logo0(x, X, Y, s, ac, koyu); }
+  ikonCiz(x, aktifLogo(), X, Y, s, markaRenk()); x.fillStyle = tx;
+  if (k === 2){ x.font = `700 ${s*.4}px Oswald`; try { x.letterSpacing = (s*.06) + 'px'; } catch(e){} const w = x.measureText(ad.toUpperCase()).width; x.fillText(ad.toUpperCase(), X + s*1.22, Y + s*.3); try { x.letterSpacing = '0px'; } catch(e){} x.fillStyle = ac || markaRenk(); x.fillRect(X + s*1.22, Y + s*.56, Math.min(w, s*4), Math.max(2, s*.05)); x.fillStyle = tx; x.globalAlpha = .85; x.font = `italic 400 ${s*.26}px "Playfair Display"`; x.fillText(M.slogan, X + s*1.22, Y + s*.82); }
+  else { x.font = `700 ${s*.52}px Oswald`; x.fillText(ad, X + s*1.22, Y + s*.5); }
+  x.restore(); x.textBaseline = 'alphabetic'; }
+const EK_SET = {kapak:['Klasik', 'Kapsül', 'Çizgili', 'Sade'], acilis:['Klasik', 'Sade', 'Manşet', 'Perde'], kapanis:['Klasik', 'Teşekkür', 'Kart', 'Şerit']};
+let _ekT = 0; function ekThumbs(){ clearTimeout(_ekT); _ekT = setTimeout(() => { const k = $h('#hz_ekran'); if (!k || k.offsetParent === null) return; const eski = {acilis:D.acilisStil, kapanis:D.kapanisStil, kapak:D.kapakStil};
+  k.querySelectorAll('[data-ek]').forEach(b => { const [g, n] = b.dataset.ek.split(':'), cv = b.querySelector('canvas'), x = cv.getContext('2d'), W = cv.width, H = cv.height; const key = g === 'kapak' ? 'kapakStil' : g === 'acilis' ? 'acilisStil' : 'kapanisStil'; const sv = D[key]; D[key] = +n;
+    x.save(); x.clearRect(0, 0, W, H); try { if (g === 'kapak'){ const gr = x.createLinearGradient(0, 0, W, H); gr.addColorStop(0, '#2a2d34'); gr.addColorStop(1, '#14161a'); x.fillStyle = gr; x.fillRect(0, 0, W, H); logo(x, W*.07, H*.2, H*.5, '#d7191f'); } else if (g === 'acilis') acilisCiz(x, W, H, 2.4); else kapanisCiz(x, W, H, 2.6); } catch(e){} x.restore(); D[key] = sv; }); }, 120); }
 
 /* ---------- sahneler (bülten) ---------- */
 const SF = new Map();   /* sahne fotoğrafları: id → canvas */
