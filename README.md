@@ -1,5 +1,9 @@
 # Karanlık Oda
 
+## 6.41 (22.10.2026) — Hızlı haber düzeni
+- Düğmeler satırı tamamen doldurur, altta boş hücre kalmaz; son tek düğme tüm satırı kaplar.
+- Bölüm numarası başlık satırına alındı, içerik tam genişlikte.
+
 ## 6.40 (22.10.2026) — Kurulu uygulamada tam ekran düğmesi
 - Ana ekrandan yüklenen uygulama baştan tam ekran açıldığı için tam ekran düğmesi gizlendi ve basılsa da tam ekran isteği gönderilmez. Önceden düğmeye basınca uyarı çıkıyor, sayfa yeniden diziliyor, yazılar kayboluyor / sayfa değişiyordu.
 
@@ -18,7 +22,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.36 · 22.10.2026
+**Güncel sürüm:** 6.41 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -31,6 +35,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.41** (22.10.2026) – Hızlı haber: düğmeler satırı tamamen doldurur (boş hücre kalmaz), bölüm numarası başlık satırına alındı; içerik tam genişlikte.
 - **6.36** (22.10.2026) – Hızlı haber düğmeleri **düzenli ızgaraya** alındı: konu ve müzik düğmeleri eşit genişlikte 2 sütun (geniş ekranda 3), eylem düğmeleri eşit boyda ve yan yana, işaret kutuları tam genişlikte aynı yükseklikte satırlar; tek kalan düğme tam genişlik alır.
 - **6.35** (22.10.2026) – Hızlı haber: panel yana kayıyordu (Ekran tasarımları satırı paneli genişletiyordu); düzeltildi, panel artık yatay kaymaz. Bölümler **kart görünümüne** geçti: kalın çerçeve, yuvarlak köşe, gölge, açık/koyu zeminde ayrı iç arka plan ve üstte hafif renkli arka plan.
 - **6.34** (22.10.2026) – Hızlı haber 6. adım: **fotoğraf geçiş sesi** yeniden açıldı (varsayılan *Tık*, kısa). 6 tür: Tık · Pop · Zil · Kayma · Deklanşör · Vınlama (+ Kapalı); **Kısa** işaret kutusu, **seviye** çubuğu ve **▶ Dinle**. Açılış/sahne efekt sesleri ayrı kalır.
