@@ -5,7 +5,7 @@
  "description": "Fotoğraf düzenleyici",
  "start_url": "./?app=ko",
  "scope": "./",
- "display": "standalone",
+ "display": "fullscreen",
  "orientation": "any",
  "background_color": "#0f1213",
  "theme_color": "#0f1213",
@@ -35,5 +35,9 @@
    "type": "image/png",
    "purpose": "maskable"
   }
+ ],
+ "display_override": [
+  "fullscreen",
+  "standalone"
  ]
 }
