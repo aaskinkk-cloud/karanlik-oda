@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.34 · 22.10.2026
+**Güncel sürüm:** 6.35 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.35** (22.10.2026) – Hızlı haber: panel yana kayıyordu (Ekran tasarımları satırı paneli genişletiyordu); düzeltildi, panel artık yatay kaymaz. Bölümler **kart görünümüne** geçti: kalın çerçeve, yuvarlak köşe, gölge, açık/koyu zeminde ayrı iç arka plan ve üstte hafif renkli arka plan.
 - **6.34** (22.10.2026) – Hızlı haber 6. adım: **fotoğraf geçiş sesi** yeniden açıldı (varsayılan *Tık*, kısa). 6 tür: Tık · Pop · Zil · Kayma · Deklanşör · Vınlama (+ Kapalı); **Kısa** işaret kutusu, **seviye** çubuğu ve **▶ Dinle**. Açılış/sahne efekt sesleri ayrı kalır.
 - **6.33** (22.10.2026) – Hızlı haber › **🎞️ Ekran tasarımları** (6. adımdan önce), küçük önizlemeli seçenekler: **Kapak** (kartın üstündeki logo şeridi, tüm şablonlarda): Klasik · Kapsül · Çizgili · Sade; **Açılış ekranı**: Klasik · Sade · Manşet (büyük konu yazısı) · Perde; **Kapanış ekranı**: Klasik · Teşekkür · Kart · Şerit. Seçim yeni haberde korunur.
 - **6.32** (22.10.2026) – Hızlı haber 7. adım: *Paylaşım yazısı* başlığına açıklama (haber metni videoda okunur, paylaşım yazısı Instagram altına gider) ve **↺ Haber metninden oluştur** düğmesi.

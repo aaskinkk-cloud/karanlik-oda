@@ -344,7 +344,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.34 · 22.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.35 · 22.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6825,11 +6825,12 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-ik{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface-2);color:var(--text);font-size:17px;flex:none}
 .kh-ic{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column}
 .kh-onz{position:sticky;top:0;z-index:2;background:var(--bg);padding:10px 12px 8px;border-bottom:1px solid var(--line)}
-.kh-hz .hz-b{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
-.kh-hz .hz-b:first-child{border-top:0;padding-top:4px}
+.kh-hz{display:block;padding:10px 8px 6px;border-radius:18px;background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 9%,var(--bg)),var(--bg) 260px);overflow:hidden;max-width:100%;box-sizing:border-box}
+.kh-hz .hz-b{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;padding:14px 12px;margin:0 0 14px;background:var(--surface);border:1.5px solid color-mix(in srgb,var(--accent) 38%,var(--line));border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.16);min-width:0}
+.kh-hz .hz-b:last-child{margin-bottom:4px}
 .kh-hz .hz-b>b{width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:700 14px system-ui}
 .kh-hz .hz-b h4{margin:3px 0 8px;font:700 15px system-ui}.kh-hz .hz-b h4 small{font:500 12px system-ui;color:var(--muted);margin-left:6px}
-.kh-hz .hz-b>div{min-width:0;display:grid;gap:8px;align-content:start}
+.kh-hz .hz-b>div{min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-content:start}.kh-hz .hz-ekg,.kh-hz .hz-ekr{min-width:0;max-width:100%}
 .kh-hz .hz-chips{display:flex;flex-wrap:wrap;gap:6px}
 .kh-hz .hz-ekg{margin-top:8px}.kh-hz .hz-ekr{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}.kh-hz .hz-ekb{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:inherit;font:600 11.5px system-ui;cursor:pointer}.kh-hz .hz-ekb canvas{display:block;border-radius:6px;background:#111}.kh-hz .hz-ekb[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}.kh-hz .hz-b[hidden]{display:none}.kh-hz details summary{cursor:pointer;font:600 13px system-ui;color:var(--muted)}.kh-hz details textarea{width:100%;margin-top:6px;box-sizing:border-box}.kh-hz .hz-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.kh-hz .hz-g2 .kh-l input{width:100%;min-width:0;box-sizing:border-box}.kh-hz .hz-tbo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.kh-hz .hz-tbo .kh-c{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kh-hz .hz-th{display:flex;gap:8px;flex-wrap:wrap}.kh-hz .hz-th img{width:68px;height:68px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
@@ -6845,7 +6846,7 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-onz canvas{display:block;margin:0 auto;max-width:100%;max-height:46vh;width:auto;height:auto;border-radius:10px;box-shadow:var(--shadow);touch-action:none;background:#111}
 .kh-onz-alt{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:8px;flex-wrap:wrap}
 .kh-ipucu{text-align:center;margin-top:4px}
-.kh-pan{padding:10px 12px calc(28px + env(safe-area-inset-bottom,0px));display:grid;gap:12px;max-width:760px;width:100%;margin:0 auto;box-sizing:border-box}
+.kh-pan{padding:10px 12px calc(28px + env(safe-area-inset-bottom,0px));display:grid;gap:12px;max-width:760px;width:100%;margin:0 auto;box-sizing:border-box;overflow-x:hidden}
 .tl-b{touch-action:manipulation}
 @keyframes khVurgu{0%,60%{box-shadow:0 0 0 3px var(--accent)}100%{box-shadow:0 0 0 0 transparent}}
 .kh-vurgu{animation:khVurgu 1.6s ease-out;border-radius:10px}
