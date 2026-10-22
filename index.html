@@ -344,7 +344,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.35 · 22.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.36 · 22.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6831,7 +6831,17 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-hz .hz-b>b{width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:700 14px system-ui}
 .kh-hz .hz-b h4{margin:3px 0 8px;font:700 15px system-ui}.kh-hz .hz-b h4 small{font:500 12px system-ui;color:var(--muted);margin-left:6px}
 .kh-hz .hz-b>div{min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-content:start}.kh-hz .hz-ekg,.kh-hz .hz-ekr{min-width:0;max-width:100%}
-.kh-hz .hz-chips{display:flex;flex-wrap:wrap;gap:6px}
+/* 6.36 · düzenli ızgara: konu ve müzik düğmeleri eşit sütunlarda, eylem düğmeleri eşit boyda */
+.kh-hz .hz-chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media(min-width:560px){.kh-hz .hz-chips{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.kh-hz .hz-chips>button{width:100%;min-height:42px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px 8px;border-radius:12px;box-sizing:border-box;font-size:13.5px;line-height:1.15;margin:0}
+.kh-hz .hz-chips>button:last-child:nth-child(odd){grid-column:1/-1}
+.kh-hz .kh-r{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:stretch}
+.kh-hz .kh-r>button,.kh-hz .kh-r>label.kh-b{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;box-sizing:border-box;border-radius:12px;margin:0;line-height:1.2}
+.kh-hz .kh-r>:only-child,.kh-hz .kh-r>button:last-child:nth-child(odd){grid-column:1/-1}
+.kh-hz label.hz-ch{display:flex;align-items:center;gap:10px;justify-content:flex-start;min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);width:100%;box-sizing:border-box;margin:0;text-align:left}
+.kh-hz label.hz-ch input{flex:none;width:20px;height:20px;margin:0}
+.kh-hz .hz-b h4{margin:3px 0 10px}
 .kh-hz .hz-ekg{margin-top:8px}.kh-hz .hz-ekr{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}.kh-hz .hz-ekb{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:inherit;font:600 11.5px system-ui;cursor:pointer}.kh-hz .hz-ekb canvas{display:block;border-radius:6px;background:#111}.kh-hz .hz-ekb[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}.kh-hz .hz-b[hidden]{display:none}.kh-hz details summary{cursor:pointer;font:600 13px system-ui;color:var(--muted)}.kh-hz details textarea{width:100%;margin-top:6px;box-sizing:border-box}.kh-hz .hz-g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.kh-hz .hz-g2 .kh-l input{width:100%;min-width:0;box-sizing:border-box}.kh-hz .hz-tbo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.kh-hz .hz-tbo .kh-c{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .kh-hz .hz-th{display:flex;gap:8px;flex-wrap:wrap}.kh-hz .hz-th img{width:68px;height:68px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
 .kh-hz .hz-ch{display:flex;align-items:center;gap:8px;justify-content:flex-start}
@@ -7623,7 +7633,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
   k.innerHTML = `<div class="hz-b hz-ai"><b>🤖</b><div><h4>Yapay zekâdan hazır getir <small>haber · duyuru · reklam</small></h4><div class="kh-r"><button class="kh-b p" data-ai="kop">📋 İstemi kopyala</button></div>
   <label class="kh-l">Yapay zekâ yanıtı <textarea id="hz_aiyanit" rows="3" placeholder="İstemi herhangi bir yapay zekâya yapıştır, altına ham haberi ekle; yanıtı buraya yapıştır. Başlık, metin, anahtar kelime ve hashtag'ler kendiliğinden yerine geçer."></textarea></label>
   <div class="kh-r"><button class="kh-b" data-ai="aktar">⬇ Alanlara aktar</button></div><div class="kh-n" id="hz_aisonuc"></div><details><summary>İstemi göster</summary><textarea id="hz_aiistem" rows="10" readonly></textarea></details></div></div>
-  <div class="hz-b"><b>1</b><div><h4>Konu <small>müzik ve görünüm kendiliğinden seçilir</small></h4><div class="hz-chips">${HZK.map(h => `<button class="kh-c" data-hzk="${h[0]}">${h[1]} ${h[2]}</button>`).join('')}</div><div class="kh-r" style="margin-top:10px;align-items:flex-end"><label class="kh-l" style="flex:1">Haber tarihi <small>(kartta görünür)</small><input type="date" id="hz_tarih"></label><button class="kh-b" id="hz_bugun" type="button">📅 Bugün</button></div></div></div>
+  <div class="hz-b"><b>1</b><div><h4>Konu <small>müzik ve görünüm kendiliğinden seçilir</small></h4><div class="hz-chips">${HZK.map(h => `<button class="kh-c" data-hzk="${h[0]}">${h[1]} ${h[2]}</button>`).join('')}</div><div class="kh-r" style="margin-top:10px;align-items:end;grid-template-columns:minmax(0,1fr) auto"><label class="kh-l" style="flex:1">Haber tarihi <small>(kartta görünür)</small><input type="date" id="hz_tarih"></label><button class="kh-b" id="hz_bugun" type="button">📅 Bugün</button></div></div></div>
   <div class="hz-b hz-tb" id="hz_tb" hidden><b>✦</b><div><h4>Tebrik ayrıntıları <small>hazır metin kendiliğinden yazılır</small></h4><div class="hz-tbo">${TBO.map(o => `<button class="kh-c" data-tbo="${o.k}">${o.e} ${o.ad}</button>`).join('')}</div>
   <label class="kh-l">Tebrik edilen kişi<input id="hz_tbad" placeholder="Ad Soyad" autocomplete="off"></label><label class="kh-l"><span id="hz_tbayl">Ayrıntı (isteğe bağlı)</span><input id="hz_tbay" autocomplete="off"></label>
   <div class="hz-chips">${[['s', 'Samimi'], ['r', 'Resmî'], ['d', 'Duygulu']].map(a => `<button class="kh-c" data-tbt="${a[0]}">${a[1]}</button>`).join('')}</div><div class="kh-r"><button class="kh-b p" data-tbn="1">🔀 Başka metin yaz</button><span class="kh-n" id="hz_tbsay"></span></div></div></div>
