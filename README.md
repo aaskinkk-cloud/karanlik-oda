@@ -3,7 +3,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.29 · 22.10.2026
+**Güncel sürüm:** 6.30 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
@@ -16,6 +16,7 @@ Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek d
 - **Kabataş Haber** – "Sıradan değil, sıladan haberler": **bölüm şablonları** (son dakika, spor, hava durumu, röportaj, duyuru…), haber kartları, TV alt bantları, müzik/efekt, seslendirme, katmanlı zaman çizelgesi, video (MP4) çıktısı, kanal logoları, örnek bülten.
 
 ## Sürüm notları
+- **6.30** (22.10.2026) – Kartın tarihi taslak oluşturulduğu günü gösteriyordu (eski taslakta 17 Ekim). Hızlı haber 1. adıma **Haber tarihi** seçici ve **📅 Bugün** düğmesi eklendi; elle seçilmemiş eski tarih Kabataş Haber açılırken kendiliğinden bugüne güncellenir.
 - **6.29** (22.10.2026) – Hızlı haber: *Sesli video yap* düğmesi çalışıyordu ama ilerleme çubuğu ve sonuç (önizleme, *Videoyu paylaş / kaydet*) görünmeyen Paylaş bölümünde kalıyordu. Artık 8. adımın altında ilerleme yüzdesi, video önizlemesi, **📤 Videoyu paylaş** ve **💾 Videoyu kaydet** çıkar. 15 fotoğraflı haberle uçtan uca denendi.
 - **6.28** (22.10.2026) – Hızlı haber: fotoğraf sınırı 3'ten **20'ye** çıktı; birden çok fotoğraf videoda müzikle sırayla kayar.
 - **6.27** (19.10.2026) – Filtreler › **Lightroom tarzı**: 7 yeni filtre, gönderilen referans fotoğraflardan ölçüldü (ışık dağılımı + renk karakteri, uygulamanın stil kopyalama motoruyla) ve üzerine elle **HSL** ayarı eklendi: *Buket · yumuşak mat*, *Sisli göl · soluk pastel*, *Bahçe · gri takım*, *Beton · koyu denim*, *Şehir · sıcak sokak*, *Aqua & turuncu*, *Turuncu elbise · şeftali*. Yoğunluk çubuğuyla azaltılıp artırılabilir.
