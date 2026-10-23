@@ -1,5 +1,9 @@
 # Karanlık Oda
 
+## 6.49 (23.10.2026) — Ses tonu ve geniş hız
+- Hızlı haber › Ses ve müzik: **Ses tonu** çubuğu (−6 … +4 yarım ton; kalın ses için eksi). Fahrettin · Fettah · DFKI için; videoya da işler (ses örnekleme hızı ton oranında ayarlanır, süre korunur).
+- **Hız** aralığı 0,7–1,6 yapıldı (Google ve cihaz sesinde de çalışır).
+
 ## 6.48 (23.10.2026) — Google sesi ile canlı önizleme
 - Okuyucu listesine **Google sesi (YouTube'daki)** eklendi: **Sesli önizle** cümleleri Google sesiyle çalar (internet gerekir). Telefonda doğrudan çalıştığı `ses-deneme.html` ile doğrulandı.
 - Cihaz sesi gibi videoya kaydedilmez (tarayıcı Google sesini veri olarak vermez); önizleme ekran kaydıyla alınır. Videoya gömmek için Apps Script aracısı gerekir (bilgisayardan kurulacak).
@@ -53,7 +57,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.48 · 22.10.2026
+**Güncel sürüm:** 6.49 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
