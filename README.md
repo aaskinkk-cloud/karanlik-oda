@@ -1,5 +1,8 @@
 # Karanlık Oda
 
+## Ses denemesi (23.10.2026)
+- `ses-deneme.html`: Google sesi (Translate TTS), cihaz sesleri ve Cloud demo bağlantısı; uygulamaya eklemeden önce dinleme sayfası.
+
 ## 6.45 (23.10.2026) — Hızlı haber: adım adım video düğmeleri, kapalı bölümler
 - Önizleme altında: **Sesli önizle** → basınca **Sesli video** belirir → video bitince **Kaydet** belirir. İlerleme/durum notu düğmelerin altında görünür. Büyük/Küçük/Gizle grubu Hızlı haber'de gizlendi (tek satır için).
 - Tüm bölümler kapalı gelir; üstteki **Bölümler** kutusunda Hepsini aç / Hepsini kapat ve "Açılışta kapalı gelsin" ayarı var (saklanır). Gizli bir bölüm (düğün, reklam…) konuyla görününce kendiliğinden açılır.
