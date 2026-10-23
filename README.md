@@ -1,5 +1,9 @@
 # Karanlık Oda
 
+## 6.54 (23.10.2026) — CapCut tarzı düz şerit, İzle hemen çalar
+- Düğme şeridi CapCut gibi sade: çerçevesiz, küçük (54 px) simge + tek kelime; seçili olan renkli. Kaydırılabilir.
+- **İzle**: tam ekran izleyici açılınca sesli önizleme kendiliğinden başlar (ikinci kez ▶ gerekmez).
+
 ## 6.53 (23.10.2026) — Video durum mesajı geri
 - Video kaydedilirken ilerleme/durum yazısı 6.52 şeridinin altında kırpılıyordu; artık önizlemenin üstünde koyu bir kapsül olarak görünür ("Kare yazılıyor…"). Video bitince "✓ Video hazır · Kaydet ile telefona al" yazar.
 
@@ -75,7 +79,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.53 · 22.10.2026
+**Güncel sürüm:** 6.54 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
