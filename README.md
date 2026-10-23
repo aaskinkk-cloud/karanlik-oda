@@ -1,5 +1,10 @@
 # Karanlık Oda
 
+## 6.45 (23.10.2026) — Hızlı haber: adım adım video düğmeleri, kapalı bölümler
+- Önizleme altında: **Sesli önizle** → basınca **Sesli video** belirir → video bitince **Kaydet** belirir. İlerleme/durum notu düğmelerin altında görünür. Büyük/Küçük/Gizle grubu Hızlı haber'de gizlendi (tek satır için).
+- Tüm bölümler kapalı gelir; üstteki **Bölümler** kutusunda Hepsini aç / Hepsini kapat ve "Açılışta kapalı gelsin" ayarı var (saklanır). Gizli bir bölüm (düğün, reklam…) konuyla görününce kendiliğinden açılır.
+- Paylaşım yazısı bölümünde tek **Tümünü kopyala** düğmesi (yazı + hashtag); anahtar kelimeler ayrı.
+
 ## 6.44 (23.10.2026) — Hızlı haber: okuyucu (ses) seçimi
 - "Ses ve müzik" bölümüne **Okuyucu** (Fahrettin · Fettah · DFKI) ve **Hız** seçimi eklendi; seçim saklanır, tam stüdyodaki seçimle aynıdır.
 
@@ -33,7 +38,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.44 · 22.10.2026
+**Güncel sürüm:** 6.45 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
