@@ -1,5 +1,8 @@
 # Karanlık Oda
 
+## 6.53 (23.10.2026) — Video durum mesajı geri
+- Video kaydedilirken ilerleme/durum yazısı 6.52 şeridinin altında kırpılıyordu; artık önizlemenin üstünde koyu bir kapsül olarak görünür ("Kare yazılıyor…"). Video bitince "✓ Video hazır · Kaydet ile telefona al" yazar.
+
 ## 6.52 (23.10.2026) — Düğme şeridi kayar, boyut düğmeleri geri
 - Önizleme altındaki şerit sıkışmaz: sabit boyutlu karolar, sağa-sola kaydırılır. Daha ferah, hafif gölgeli ve yuvarlak karolar.
 - **Büyük · Küçük · Gizle** düğmeleri şeride geri geldi (6.45'te sıkışıklık için gizlemiştim). Gizle önizlemeyi saklar, şerit kalır.
@@ -72,7 +75,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.52 · 22.10.2026
+**Güncel sürüm:** 6.53 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.

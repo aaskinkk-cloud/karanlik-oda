@@ -375,7 +375,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.52 · 22.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.53 · 22.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6919,7 +6919,7 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh-hizlimod .hz-sep{flex:0 0 1px;width:1px;align-self:stretch;background:var(--line);margin:6px 2px}
 .kh-hizlimod .hz-u[hidden]{display:none!important}
 .kh-hizlimod .iz-t{display:none}.kh-hizlimod #khSesNot{display:none!important}
-.kh-hizlimod .hz-unot{text-align:center;font-size:12px;margin-top:4px}.kh-hizlimod .hz-unot:empty{display:none}
+.kh-hizlimod .hz-unot{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:3;max-width:92%;box-sizing:border-box;background:rgba(0,0,0,.76);color:#fff;border-radius:999px;padding:6px 14px;font:600 12px/1.25 system-ui;text-align:center;pointer-events:none;margin:0}.kh-hizlimod .hz-unot:empty{display:none}
 .kh-hz .hz-g2{display:flex;flex-wrap:wrap;gap:8px}.kh-hz .hz-g2>*{flex:1 1 calc(50% - 8px);min-width:130px}
 .kh-hz textarea,.kh-hz input:not([type=checkbox]):not([type=file]){width:100%}
 .kh-izle{position:fixed;inset:0;z-index:99999;background:#000;overflow:hidden;touch-action:none}
@@ -7761,7 +7761,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
       vb.addEventListener('click', () => { kb.hidden = true; const o = $h('#khVid'); if (o) o.click(); });
       kb.addEventListener('click', () => { const o = $h('#khVidKay'); if (o) o.click(); });
       const kv = $h('#khVid'); if (kv) new MutationObserver(() => { vb.disabled = kv.disabled; }).observe(kv, {attributes:true, attributeFilter:['disabled']});
-      const vs = $h('#hz_vidson'); if (vs) new MutationObserver(() => { kb.hidden = vs.hidden; }).observe(vs, {attributes:true, attributeFilter:['hidden']});
+      const vs = $h('#hz_vidson'); if (vs) new MutationObserver(() => { kb.hidden = vs.hidden; const u = $h('#hz_ustnot'); if (u && !vs.hidden) u.textContent = '✓ Video hazır · Kaydet ile telefona al'; }).observe(vs, {attributes:true, attributeFilter:['hidden']});
       const sn = $h('#khSesNot'); if (sn) new MutationObserver(() => { const u = $h('#hz_ustnot'); if (u) u.textContent = sn.textContent; }).observe(sn, {childList:true, characterData:true, subtree:true});
       const vn = $h('#khVidNot'); if (vn) new MutationObserver(() => { const u = $h('#hz_ustnot'); if (u) u.textContent = vn.textContent; }).observe(vn, {childList:true, characterData:true, subtree:true}); } }
   k.addEventListener('input', e => { const id = e.target.id; if (id === 'hz_fsv'){ D.fotoSesSev = +e.target.value; const o = $h('#hz_fsvo'); if (o) o.textContent = '%' + D.fotoSesSev; kaydet(); return; } if (e.target.dataset.rk){ D.rk = D.rk || {}; D.rk[e.target.dataset.rk] = e.target.value; reklamUret(true); return; } if (e.target.dataset.dg){ D.dg = D.dg || {dav:true}; D.dg[e.target.dataset.dg] = e.target.value; dugunUret(true); return; } if (id === 'hz_tbad' || id === 'hz_tbay'){ D.tb = D.tb || tbVar(); D.tb[id === 'hz_tbad' ? 'ad' : 'ay'] = e.target.value; tebrikUret(!!D.tbDuzen, true); return; } const a = HZA[id]; if (!a) return; if (D.hzk === 'hayirli') D.tbDuzen = 1; if (D.hzk === 'dugunduyuru' && a === 'metin') D.dgDuzen = 1; if (D.hzk === 'reklam' && a === 'metin') D.rkDuzen = 1; D[a] = e.target.value; if (D.hzk === 'reklam' && (a === 'manset' || a === 'spot' || a === 'maddeler')){ reklamUret(true); return; } if (a === 'manset') D.ornek = false; const o = $h('#kh_' + a); if (o) o.value = e.target.value; kaydet(); ciz(); });
