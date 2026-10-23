@@ -1,5 +1,9 @@
 # Karanlık Oda
 
+## 6.50 (23.10.2026) — Google sesi uygulama içinde çalışıyor
+- Sayfaya `referrer: no-referrer` eklendi: Google, başka siteden gelen ses isteğini reddediyordu (demo sayfada vardı, uygulamada yoktu).
+- Servis çalışanı Google ses isteklerine karışmaz (ses önbelleğe doldurulmaz).
+
 ## 6.49 (23.10.2026) — Ses tonu ve geniş hız
 - Hızlı haber › Ses ve müzik: **Ses tonu** çubuğu (−6 … +4 yarım ton; kalın ses için eksi). Fahrettin · Fettah · DFKI için; videoya da işler (ses örnekleme hızı ton oranında ayarlanır, süre korunur).
 - **Hız** aralığı 0,7–1,6 yapıldı (Google ve cihaz sesinde de çalışır).
@@ -57,7 +61,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.49 · 22.10.2026
+**Güncel sürüm:** 6.50 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
