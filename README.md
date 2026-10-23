@@ -1,5 +1,10 @@
 # Karanlık Oda
 
+## 6.47 (23.10.2026) — Cihaz sesi (Samsung vb.) ile önizleme
+- Okuyucu listesine telefonun Türkçe sesleri eklendi ("Cihaz sesleri"). Seçilince **Sesli önizle** cümleleri cihaz sesiyle okur (müzik ve efektler çalmaya devam eder).
+- Cihaz sesi ses dosyası olmadığı için videoya kaydedilemez: **Sesli video** düğmesi bunu açıklar; önizleme telefonun ekran kaydıyla (medya sesi açık) kaydedilir.
+- Cümle süreleri tahmini (≈14 harf/sn × hız); cümleler sırayla kuyruğa girer, uzarsa sonrakini keser değil bekletir.
+
 ## 6.46 (23.10.2026) — Ses denemesi bağlantısı
 - Hızlı haber › Ses ve müzik bölümüne "Ses denemesi" düğmesi eklendi (uygulama içinden açılır).
 
@@ -44,7 +49,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.46 · 22.10.2026
+**Güncel sürüm:** 6.47 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
