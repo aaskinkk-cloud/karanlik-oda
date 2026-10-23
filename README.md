@@ -1,5 +1,8 @@
 # Karanlık Oda
 
+## 6.46 (23.10.2026) — Ses denemesi bağlantısı
+- Hızlı haber › Ses ve müzik bölümüne "Ses denemesi" düğmesi eklendi (uygulama içinden açılır).
+
 ## Ses denemesi (23.10.2026)
 - `ses-deneme.html`: Google sesi (Translate TTS), cihaz sesleri ve Cloud demo bağlantısı; uygulamaya eklemeden önce dinleme sayfası.
 
@@ -41,7 +44,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.45 · 22.10.2026
+**Güncel sürüm:** 6.46 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
