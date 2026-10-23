@@ -1,5 +1,14 @@
 # Karanlık Oda
 
+## Android uygulaması (APK) — 23.10.2026
+**İndir:** https://github.com/aaskinkk-cloud/karanlik-oda/releases/download/android/karanlik-oda.apk
+
+- Kalıcı tam ekran (Android'in kendi yöntemi): alttaki tuşlar kaydırılınca sayfanın **üstüne biner**, sayfa kaymaz; Chrome'un tam ekran uyarısı ve "Dokunarak ara" paneli yoktur. Ön kamera bölgesi sayfanın renginde, içerik kameranın altından başlar. Ekran açık kalır.
+- Sayfa GitHub'daki Karanlık Oda'dir; buraya gönderilen her güncelleme uygulamaya kendiliğinden gelir.
+- Dosya indirmeleri **İndirilenler** klasörüne kaydedilir; dosya seçimi telefonun dosya seçicisiyle yapılır.
+- Verisi Chrome'dakinden **ayrıdır**: ilk açılışta Chrome'daki sürümden **Yedek indir**, uygulamada **Yedekten geri yükle**.
+- Kaynak `android/`; APK'yı GitHub Actions derler. İmza anahtarı (`android/okur.jks`) sabittir: yeni sürüm eskisinin üzerine kurulur, veriler silinmez.
+
 ## 6.55 (23.10.2026) — Renkli satırlı manşet varsayılan
 - Hızlı haber: Gündem · Müjde · Uyarı · Fındık · Duyuru · Anma kartlarında manşet kendiliğinden **ayrı satırlar, ayrı renkli arka planlar** olur (satır 1 konu rengi, 2 beyaz, 3 siyah). Önemli kelime (rakam, yoksa son kelime) sarı vurgulanır. Satırlar dengeli bölünür.
 - Başlık bölümünde **🎨 Renkli satırlar / ▭ Sade** seçimi. Elle satır/renk verdiysen (Enter, *vurgu*, renk düğmeleri) onlar geçerli kalır.
