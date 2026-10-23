@@ -1,5 +1,9 @@
 # Karanlık Oda
 
+## 6.51 (23.10.2026) — Hızlı haber: tek düğme şeridi
+- Oynatıcı altındaki düğmeler ile bölüm düğmeleri tek şeritte birleşti: üstte simge, altta kısa ad, eşit küçük karolar. Önizle · Video · Kaydet · İzle | Aç · Kapat · Başlangıç (açılışta bölümler kapalı/açık).
+- "Bölümler" kutusu kaldırıldı (işlevi şeritte).
+
 ## Ses denemesi — kayıt deneyi (23.10.2026)
 - `ses-deneme.html`: "1d" deneyi Google sesinin tarayıcıdan kaydedilip kaydedilemeyeceğini ölçer (fetch/CORS, crossOrigin, captureStream).
 
@@ -64,7 +68,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.50 · 22.10.2026
+**Güncel sürüm:** 6.51 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
