@@ -1,5 +1,9 @@
 # Karanlık Oda
 
+## 6.55 (23.10.2026) — Renkli satırlı manşet varsayılan
+- Hızlı haber: Gündem · Müjde · Uyarı · Fındık · Duyuru · Anma kartlarında manşet kendiliğinden **ayrı satırlar, ayrı renkli arka planlar** olur (satır 1 konu rengi, 2 beyaz, 3 siyah). Önemli kelime (rakam, yoksa son kelime) sarı vurgulanır. Satırlar dengeli bölünür.
+- Başlık bölümünde **🎨 Renkli satırlar / ▭ Sade** seçimi. Elle satır/renk verdiysen (Enter, *vurgu*, renk düğmeleri) onlar geçerli kalır.
+
 ## 6.54 (23.10.2026) — CapCut tarzı düz şerit, İzle hemen çalar
 - Düğme şeridi CapCut gibi sade: çerçevesiz, küçük (54 px) simge + tek kelime; seçili olan renkli. Kaydırılabilir.
 - **İzle**: tam ekran izleyici açılınca sesli önizleme kendiliğinden başlar (ikinci kez ▶ gerekmez).
@@ -79,7 +83,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.54 · 22.10.2026
+**Güncel sürüm:** 6.55 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.

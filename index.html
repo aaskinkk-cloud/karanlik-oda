@@ -375,7 +375,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.54 · 22.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.55 · 22.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -7519,6 +7519,7 @@ function izleAc(){ const src = $h('#khCv'); if (!src || document.querySelector('
     else if (i === 'tam'){ try { if (document.fullscreenElement) document.exitFullscreen(); else if (ov.requestFullscreen) ov.requestFullscreen().catch(() => {}); } catch (er) {} } });
   setTimeout(() => { ip.style.opacity = 0; }, 3500); uyg(); }
 /* 6.16 · Hızlı haber: konu → 1-20 fotoğraf → başlık → haber metni → açılış/kapanış → müzik, alt alta tek bölümde */
+const HZ_RENKLI = new Set(['gundem', 'mujde', 'uyari', 'hasat', 'duyuru', 'anma']);
 const HZK = [['hayirli','🎊','Hayırlı olsun','hayirli','sicak'],['dugunduyuru','💍','Düğün duyurusu','dugunduyuru','dugun'],['reklam','📢','Reklam','reklam','reklam'],['duyuru','📣','Duyuru','duyuru','duyuru'],['spor','⚽','Spor','spor','spor'],['hava','⛅','Hava','hava','sakin'],['gundem','📰','Gündem','gundem','kurumsal'],['mujde','🎉','Müjde','mujde','mujde'],['uyari','⚠️','Uyarı','uyari','alarm'],['hasat','🌰','Fındık','hasat','turku'],['tebrik','🏆','Tebrik','tebrik','fanfar'],['anma','🕯️','Anma','anma','huzun']];
 const HZM = [['duyuru','Duyuru'],['spor','Spor'],['mujde','Müjde'],['huzun','Anma'],['kurumsal','Bülten'],['sakin','Sakin'],['gergin','Gergin'],['dugun','Düğün · halay'],['sicak','Hayırlı olsun'],['fanfar','Fanfar'],['reklam','Reklam'],['turku','Fındık · türkü'],['alarm','Uyarı · alarm'],['yok','Yok']];
 const HZA = {hz_manset:'manset', hz_spot:'spot', hz_metin:'metin', hz_acilisMetin:'acilisMetin', hz_kapanisMetin:'kapanisMetin', hz_maddeler:'maddeler', hz_aciklama:'aciklama', hz_hashtag:'hashtag', hz_anahtar:'anahtar'};
@@ -7727,7 +7728,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
   <div class="hz-g2"><label class="kh-l">Telefon<input data-rk="tel" type="tel" autocomplete="off"></label><label class="kh-l">Çalışma saati<input data-rk="saat" placeholder="09.00 - 19.00" autocomplete="off"></label></div><label class="kh-l">Adres<input data-rk="adr" autocomplete="off"></label>
   <div class="hz-chips">${Object.entries(RK_TEMA).map(a => `<button class="kh-c" data-rkt="${a[0]}">${a[1].ad}</button>`).join('')}</div><div class="kh-n">Başlığı, alt başlığı ve ürün maddelerini aşağıdaki 3. ve 4. adımlara yaz.</div><div class="kh-r"><button class="kh-b" data-rkk="yaz">↺ Seslendirme metnini yeniden yaz</button></div></div></div>
   <div class="hz-b"><b>2</b><div><h4>Fotoğraf <small id="hz_fn">0/20</small></h4><div class="hz-th" id="hz_th"></div><div class="kh-r"><label class="kh-b">📷 Fotoğraf seç (en çok 20)<input type="file" id="hz_foto" accept="image/*,.heic,.heif" multiple hidden></label><button class="kh-b" data-hz="fsil">Temizle</button></div></div></div>
-  <div class="hz-b"><b>3</b><div><h4>Başlık</h4><label class="kh-l"><textarea id="hz_manset" rows="2" placeholder="Haberin başlığı"></textarea></label><label class="kh-l">Alt başlık (isteğe bağlı)<input id="hz_spot" placeholder="Tek cümlelik özet"></label></div></div>
+  <div class="hz-b"><b>3</b><div><h4>Başlık <small>renkli satırlar kendiliğinden</small></h4><div class="hz-chips"><button class="kh-c" type="button" data-hzms="renkli">🎨 Renkli satırlar</button><button class="kh-c" type="button" data-hzms="sade">▭ Sade</button></div><label class="kh-l"><textarea id="hz_manset" rows="2" placeholder="Haberin başlığı"></textarea></label><label class="kh-l">Alt başlık (isteğe bağlı)<input id="hz_spot" placeholder="Tek cümlelik özet"></label></div></div>
   <div class="hz-b"><b>4</b><div><h4>Haber metni <small>sesli okunacak metin</small></h4><label class="kh-l"><textarea id="hz_metin" rows="5" placeholder="Haberi kısaca yaz. Boş bırakırsan başlık ve alt başlık okunur."></textarea></label><label class="kh-l">Madde madde (isteğe bağlı, her satır bir madde)<textarea id="hz_maddeler" rows="3" placeholder="Tarih: …&#10;Yer: …"></textarea></label><div class="kh-r"><button class="kh-b" data-hz="ornek" id="hz_ornek">📄 Konuya göre örnek yaz</button></div></div></div>
   <div class="hz-b"><b>5</b><div><h4>Açılış ve kapanış</h4><label class="kh-b hz-ch"><input type="checkbox" id="hz_acilis"> Açılış (jenerik + cümle)</label><label class="kh-l"><input id="hz_acilisMetin" placeholder="Açılış cümlesi"></label><label class="kh-b hz-ch"><input type="checkbox" id="hz_kapanis"> Kapanış (takip et)</label><label class="kh-l"><input id="hz_kapanisMetin" placeholder="Kapanış cümlesi"></label></div></div>
   <div class="hz-b" id="hz_ekran"><b>🎞️</b><div><h4>Ekran tasarımları <small>kapak (kart üstü) · açılış · kapanış</small></h4>${[['kapak', 'Kapak (kartın üst şeridi)', 160, 64], ['acilis', 'Açılış ekranı', 90, 160], ['kapanis', 'Kapanış ekranı', 90, 160]].map(([g, ad, w, h]) => `<div class="hz-ekg"><div class="kh-n">${ad}</div><div class="hz-ekr">${EK_SET[g].map((n, i) => `<button class="hz-ekb" type="button" data-ek="${g}:${i}"><canvas width="${w}" height="${h}"></canvas><span>${n}</span></button>`).join('')}</div></div>`).join('')}</div></div>
@@ -7740,7 +7741,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
     const sh = k.querySelector('#hz_hiz'); if (sh){ sh.value = HKS.hiz; k.querySelector('#hz_hizo').textContent = '×' + (+HKS.hiz).toFixed(2); }
     k.addEventListener('change', e => { if (e.target.id !== 'hz_oku') return; HKS.ses = e.target.value; LSs('kh.ses', HKS); try { HSes.kapat(); } catch (x){} const o = $h('#khSes'); if (o) o.value = HKS.ses; sesNotGuncelle(); });
     k.addEventListener('input', e => { if (e.target.id === 'hz_ton'){ HKS.ton = +e.target.value; LSs('kh.ses', HKS); k.querySelector('#hz_tono').textContent = (HKS.ton > 0 ? '+' : '') + HKS.ton; return; } if (e.target.id !== 'hz_hiz') return; HKS.hiz = +e.target.value; LSs('kh.ses', HKS); k.querySelector('#hz_hizo').textContent = '×' + HKS.hiz.toFixed(2); const o = $h('#khHiz'); if (o) o.value = HKS.hiz; }); }
-  hzBaslik();
+  hzBaslik(); if (HZ_RENKLI.has(D.hzk) && !D.hzSade && D.sablon !== 'renkli'){ D.sablon = 'renkli'; kaydet(); try { ciz(); } catch (x){} }
   /*6.52 önizleme boyu karoları: Büyük · Küçük · Gizle*/
   { const boy = $h('.kh-boy'); if (boy && !boy._k){ boy._k = 1; const M = {buyuk:['⤢', 'Büyük'], kucuk:['⤡', 'Küçük'], gizli:['🙈', 'Gizle']}; boy.querySelectorAll('[data-onz]').forEach(b => { const m = M[b.dataset.onz]; if (m){ b.dataset.ic = m[0]; b.dataset.lb = m[1]; } }); boy.insertAdjacentHTML('beforebegin', '<span class="hz-sep"></span>'); } }
   /*6.51 bölüm ayarı: oynatıcı altındaki düğme şeridinde (Aç · Kapat · Başlangıç)*/
@@ -7776,6 +7777,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
     if (t.id === 'hz_ses'){ D.gizSes = !t.checked; kaydet(); formDoldur(); }
     if (t.id === 'hz_alty'){ D.altyazi = t.checked; D.hzAlty = 1; kaydet(); formDoldur(); ciz(); } });
   k.addEventListener('click', async e => { const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.hzms){ D.hzSade = b.dataset.hzms === 'sade'; if (HZ_RENKLI.has(D.hzk)){ const H = HZK.find(x => x[0] === D.hzk), T = H && sbBul(H[3]); D.sablon = D.hzSade ? ((T && T.d && T.d.sablon) || 'sondakika') : 'renkli'; } kaydet(); ciz(); tst(D.hzSade ? 'Sade manşet' : 'Renkli satırlı manşet'); return; }
     if (b.dataset.tbo || b.dataset.tbt || b.dataset.tbn){ D.tb = D.tb || tbVar(); if (b.dataset.tbo){ D.tb.olay = b.dataset.tbo; D.tb.no = 0; } else if (b.dataset.tbt){ D.tb.ton = b.dataset.tbt; D.tb.no = 0; } else D.tb.no++; D.tbDuzen = 0; tebrikUret(); return; }
     if (b.dataset.ai){ const z = b.dataset.ai; if (z === 'kop') hzKopya(AI_ISTEM, 'İstem kopyalandı: yapay zekâya yapıştır'); else if (z === 'aktar') aiAktar(); else if (z === 'ykop') hzKopya([D.aciklama, D.hashtag].filter(Boolean).join('\n\n'), 'Yazı ve hashtag\'ler kopyalandı'); else if (z === 'akop') hzKopya(D.anahtar || '', 'Anahtar kelimeler kopyalandı'); return; }
     if (b.dataset.rkk){ D.rkDuzen = 0; reklamUret(); tst('Seslendirme metni yeniden yazıldı'); return; }
@@ -7798,6 +7800,7 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
     else { const hd = {oyna:'#khOyna', vid:'#khVid', kay:'#khKay', pay:'#khPay', tsk:'#khTsKay', vpay:'#khVidPay', vkay:'#khVidKay'}[z], o = hd && $h(hd); if (o) o.click(); } }); }
 function hzKonu(k){ const H = HZK.find(x => x[0] === k), T = H && sbBul(H[3]); if (!T) return; const d = T.d || {};
   ['sablon', 'etiket', 'gecis', 'bantStil', 'sfx', 'altBant', 'acilis', 'kapanis', 'spiker'].forEach(a => { if (d[a] !== undefined) D[a] = d[a]; });
+  if (HZ_RENKLI.has(k) && !D.hzSade) D.sablon = 'renkli';
   const onceki = D.hzk; D.muzik = H[4]; D.hzk = k; if (k === 'hayirli'){ D.tb = D.tb || tbVar(); D.tbDuzen = 0; tebrikUret(); } else if (onceki === 'hayirli') tbTemizle(); if (k === 'dugunduyuru'){ D.dg = D.dg || {dav:true}; D.dgDuzen = 0; dugunUret(); } else if (onceki === 'dugunduyuru') dgTemizle(); if (k === 'reklam'){ D.rk = D.rk || {}; D.rkDuzen = 0; reklamUret(); } else if (onceki === 'reklam') rkTemizle(); if (!D.hzAlty){ D.altyazi = false; D.hzAlty = 1; } kaydet(); formDoldur(); ciz(); tst(H[2] + ' · müzik: ' + (HZM.find(x => x[0] === D.muzik) || [0, D.muzik])[1]); }
 function hzOrnek(b){ const H = HZK.find(x => x[0] === D.hzk), T = H && sbBul(H[3]); if (!T){ tst('Önce bir konu seç'); return; }
   if (D.hzk === 'dugunduyuru'){ if (D.dgDuzen && b.dataset.o !== '1'){ b.dataset.o = '1'; const eski = b.textContent; b.textContent = 'Yazdıkların silinsin mi? Tekrar dokun'; setTimeout(() => { b.dataset.o = ''; b.textContent = eski; }, 4000); return; } b.dataset.o = ''; D.dgDuzen = 0; dugunUret(); return; }
@@ -8708,8 +8711,14 @@ function tvOto(tur){ if (D.tvOto === false) return; if (tur === 'et'){ D.bantSti
 
 /* --- renkli (biçimli) manşet: her satır ayrı kutu; *kelime* vurgulu --- */
 const MS_RENK = [['#d7191f','#fff'],['#ffd400','#111'],['#ffffff','#111'],['#111111','#fff'],['#0b4f8a','#fff'],['#1f8a4c','#fff'],['#ff5a00','#fff'],['#5b3fa0','#fff']];
-const msSatirlar = () => String(D.manset || '').split('\n').map(s => s.trim()).filter(Boolean).slice(0, 6);
+let MS_OTO = false;
+function msOtoBol(t){ const w = String(t).trim().split(/\s+/).filter(Boolean), n = w.length <= 2 ? 1 : w.length <= 4 ? 2 : 3; let L = [w.join(' ')];
+  if (n === 2){ let en = 1e9; for (let a = 1; a < w.length; a++){ const l1 = w.slice(0, a).join(' '), l2 = w.slice(a).join(' '), m = Math.max(l1.length, l2.length); if (m < en){ en = m; L = [l1, l2]; } } }
+  else if (n === 3){ let en = 1e9; for (let a = 1; a < w.length - 1; a++) for (let b2 = a + 1; b2 < w.length; b2++){ const q = [w.slice(0, a).join(' '), w.slice(a, b2).join(' '), w.slice(b2).join(' ')], m = Math.max(...q.map(z => z.length)) + (q[2].length < 6 ? 4 : 0); if (m < en){ en = m; L = q; } } }
+  if (!L.some(l => l.includes('*'))){ let bul = false; for (let a = 0; a < L.length && !bul; a++){ const ks = L[a].split(' '); const j = ks.findIndex(k => /\d/.test(k)); if (j >= 0){ ks[j] = '*' + ks[j] + '*'; L[a] = ks.join(' '); bul = true; } } if (!bul){ const ks = L[L.length - 1].split(' '); ks[ks.length - 1] = '*' + ks[ks.length - 1] + '*'; L[L.length - 1] = ks.join(' '); } } return L; }
+const msSatirlar = () => { const raw = String(D.manset || '').split('\n').map(s => s.trim()).filter(Boolean).slice(0, 6); MS_OTO = false; if (raw.length === 1 && D.msOto !== false){ MS_OTO = true; return msOtoBol(raw[0]); } return raw; };
 function msStil(i, n){ const S = (D.ms || [])[i]; if (S && S.bg) return S; const [, ac, ink] = etk(D.etiket);
+  if (MS_OTO){ const P = [{bg:ac, ink, boy:'b'}, {bg:'#ffffff', ink:'#111111', boy:'b'}, {bg:'#111111', ink:'#ffffff', boy:'b'}]; return n === 1 ? P[2] : n === 2 ? (i ? P[2] : P[0]) : (P[i] || P[2]); }
   if (i === 0 && n > 1) return {bg:ac, ink, boy:'k'}; return i % 2 ? {bg:'#111111', ink:'#fff', boy:'o'} : {bg:'#ffffff', ink:'#111', boy:'b'}; }
 SABLON.push(['renkli', 'Renkli manşet']);
 CIZ.renkli = function(x, W, H, t, dur){ const g = guvenli(W, H), [, ac] = etk(D.etiket);
