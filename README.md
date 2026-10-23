@@ -1,5 +1,8 @@
 # Karanlık Oda
 
+## 6.44 (23.10.2026) — Hızlı haber: okuyucu (ses) seçimi
+- "Ses ve müzik" bölümüne **Okuyucu** (Fahrettin · Fettah · DFKI) ve **Hız** seçimi eklendi; seçim saklanır, tam stüdyodaki seçimle aynıdır.
+
 ## 6.43 (23.10.2026) — Hızlı haber bölümleri açılır-kapanır
 - Bölüm başlığına dokununca bölüm kapanır/açılır (ok işareti); başlığa dokunmak artık düzenleme/seçim menüsü açmaz.
 - "Ekran tasarımları" varsayılan kapalı gelir.
@@ -30,7 +33,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.43 · 22.10.2026
+**Güncel sürüm:** 6.44 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.
