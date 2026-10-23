@@ -4,6 +4,8 @@
 <textarea id="m">Ferrero fındık alımına başlıyor. Alımların yılbaşına kadar kırk beş bin ton kabuklu fındığı kapsaması bekleniyor. Kilogram başına iki yüz elli lira fiyat belirlendi.</textarea>
 <button class="p" id="g">▶ 1 · Google sesi (YouTube'daki)</button>
 <input id="px" placeholder="1b · Apps Script aracı adresi (https://script.google.com/macros/s/…/exec)" style="width:100%;box-sizing:border-box;min-height:44px;border-radius:12px;padding:0 10px;background:#1c1c1c;color:#eee;border:1px solid #444"><p id="gn">İnternet gerekir. Ses gelmezse Google bu adresi engelliyor demektir.</p>
+<button id="kk">📋 Apps Script kodunu kopyala</button>
+<button id="g2">▶ 1c · Genel aracıyla dene (kurulumsuz, güvenilmez)</button>
 <select id="v"></select><button id="c">▶ 3 · Cihazın kendi sesi</button>
 <button id="d" onclick="location.href='https://cloud.google.com/text-to-speech'">2 · Google Cloud sesleri (resmî demo sayfası)</button>
 <p>Cloud demo sayfasında Dil: Türkçe seç, metni yapıştırıp Dinle. Standard ve Wavenet seslerini karşılaştır.</p>
@@ -15,4 +17,8 @@ $('#g').onclick=async()=>{const ps=parcala($('#m').value);const px=$('#px').valu
 function doldur(){const l=speechSynthesis.getVoices().filter(v=>/^tr/i.test(v.lang));$('#v').innerHTML=l.map(v=>`<option value="${v.name}">${v.name}</option>`).join('')||'<option>Türkçe cihaz sesi yok</option>'}
 speechSynthesis.onvoiceschanged=doldur;doldur();
 $('#c').onclick=()=>{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance($('#m').value);u.lang='tr-TR';const v=speechSynthesis.getVoices().find(x=>x.name===$('#v').value);if(v)u.voice=v;speechSynthesis.speak(u)};
+
+const GS="function doGet(e){\n  var q=(e.parameter.q||'').slice(0,200);\n  var u='https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=tr&q='+encodeURIComponent(q);\n  var r=UrlFetchApp.fetch(u,{muteHttpExceptions:true,headers:{'User-Agent':'Mozilla/5.0'}});\n  var o=r.getResponseCode()!=200?{hata:r.getResponseCode()}:{b64:Utilities.base64Encode(r.getContent())};\n  return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON);\n}";
+$('#kk').onclick=async()=>{try{await navigator.clipboard.writeText(GS);$('#gn').textContent='Kod kopyalandı. script.google.com/create → içindekileri sil → yapıştır.'}catch(e){$('#gn').textContent='Kopyalanamadı: '+e.message}};
+$('#g2').onclick=async()=>{const p=parcala($('#m').value)[0];$('#gn').textContent='Deniyor…';try{const u='https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=tr&q='+encodeURIComponent(p);const r=await fetch('https://corsproxy.io/?url='+encodeURIComponent(u));if(!r.ok)throw new Error('HTTP '+r.status);const b=await r.blob();if(!/audio/.test(b.type)&&b.size<2000)throw new Error('ses değil');a=new Audio(URL.createObjectURL(b));await a.play();$('#gn').textContent='1c çalıyor (yalnız ilk cümle).'}catch(e){$('#gn').textContent='1c olmadı: '+e.message}};
 </script></body></html>
