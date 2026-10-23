@@ -1,5 +1,9 @@
 # Karanlık Oda
 
+## 6.52 (23.10.2026) — Düğme şeridi kayar, boyut düğmeleri geri
+- Önizleme altındaki şerit sıkışmaz: sabit boyutlu karolar, sağa-sola kaydırılır. Daha ferah, hafif gölgeli ve yuvarlak karolar.
+- **Büyük · Küçük · Gizle** düğmeleri şeride geri geldi (6.45'te sıkışıklık için gizlemiştim). Gizle önizlemeyi saklar, şerit kalır.
+
 ## 6.51 (23.10.2026) — Hızlı haber: tek düğme şeridi
 - Oynatıcı altındaki düğmeler ile bölüm düğmeleri tek şeritte birleşti: üstte simge, altta kısa ad, eşit küçük karolar. Önizle · Video · Kaydet · İzle | Aç · Kapat · Başlangıç (açılışta bölümler kapalı/açık).
 - "Bölümler" kutusu kaldırıldı (işlevi şeritte).
@@ -68,7 +72,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.51 · 22.10.2026
+**Güncel sürüm:** 6.52 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.

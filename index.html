@@ -375,7 +375,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.51 · 22.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.52 · 22.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -6903,14 +6903,21 @@ html.kh-acik,html.kh-acik body{overflow:hidden}
 .kh:not(.kh-hizlimod) .hz-u,.kh:not(.kh-hizlimod) .hz-unot,.kh:not(.kh-hizlimod) .hz-t,.kh:not(.kh-hizlimod) .hz-sep,.kh:not(.kh-hizlimod) .kt{display:none!important}
 .kh-onz-alt i{font-style:normal}
 /* 6.51 oynatıcı altı: tek şerit, eşit küçük karolar (üstte simge, altta kısa ad) */
-.kh.kh-hizlimod .kh-onz .kh-onz-alt{gap:4px;padding:6px;border:1.5px solid color-mix(in srgb,var(--accent) 38%,var(--line));border-radius:14px;background:var(--surface);justify-content:center}
-.kh.kh-hizlimod .kh-onz .kh-onz-alt>button{flex:1 1 0!important;max-width:62px;min-width:0;min-height:48px!important;padding:4px 1px!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10.5px!important;line-height:1.1;border-radius:10px;white-space:nowrap}
-.kh.kh-hizlimod .kh-onz .kh-onz-alt>button i{font-size:19px;line-height:1}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt{display:flex;flex-wrap:nowrap!important;justify-content:flex-start;gap:6px;padding:8px 10px;border:1.5px solid color-mix(in srgb,var(--accent) 38%,var(--line));border-radius:16px;background:var(--surface);box-shadow:0 2px 10px rgba(0,0,0,.06);overflow-x:auto!important;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-snap-type:x proximity;overscroll-behavior-x:contain}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt::-webkit-scrollbar{display:none}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt .kh-boy{display:contents}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt>button,.kh.kh-hizlimod .kh-onz .kh-onz-alt .kh-boy .kh-c{flex:0 0 66px!important;width:66px;min-width:66px;min-height:58px!important;padding:6px 2px!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11px!important;font-weight:600;line-height:1.1;border-radius:14px!important;border:1px solid var(--line)!important;background:linear-gradient(var(--surface),color-mix(in srgb,var(--text) 5%,var(--surface)))!important;color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.08);white-space:nowrap;scroll-snap-align:start;margin:0;transition:transform .08s}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt>button:active,.kh.kh-hizlimod .kh-onz .kh-onz-alt .kh-boy .kh-c:active{transform:scale(.94)}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt>button.p{background:var(--accent)!important;color:var(--accent-ink)!important;border-color:var(--accent)!important}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt .kh-boy .kh-c.on{background:color-mix(in srgb,var(--accent) 16%,var(--surface))!important;border-color:var(--accent)!important}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt>button i{font-size:21px;line-height:1}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt .kh-boy .kh-c{font-size:0!important}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt .kh-boy .kh-c::before{content:attr(data-ic);font-size:21px;line-height:1}
+.kh.kh-hizlimod .kh-onz .kh-onz-alt .kh-boy .kh-c::after{content:attr(data-lb);font-size:11px;font-weight:600}
 .kh.kh-hizlimod .kh-onz .kh-onz-alt>button[hidden]{display:none!important}
 .kh-hizlimod .lb{display:none}
-.kh-hizlimod .hz-sep{flex:0 0 1px;width:1px;align-self:stretch;background:var(--line);margin:4px 2px}
+.kh-hizlimod .hz-sep{flex:0 0 1px;width:1px;align-self:stretch;background:var(--line);margin:6px 2px}
 .kh-hizlimod .hz-u[hidden]{display:none!important}
-.kh-hizlimod .kh-onz-alt .kh-boy{display:none!important}
 .kh-hizlimod .iz-t{display:none}.kh-hizlimod #khSesNot{display:none!important}
 .kh-hizlimod .hz-unot{text-align:center;font-size:12px;margin-top:4px}.kh-hizlimod .hz-unot:empty{display:none}
 .kh-hz .hz-g2{display:flex;flex-wrap:wrap;gap:8px}.kh-hz .hz-g2>*{flex:1 1 calc(50% - 8px);min-width:130px}
@@ -7734,6 +7741,8 @@ function hzKur(){ const k = $h('#khHz'); if (!k || k._k) return; k._k = 1;
     k.addEventListener('change', e => { if (e.target.id !== 'hz_oku') return; HKS.ses = e.target.value; LSs('kh.ses', HKS); try { HSes.kapat(); } catch (x){} const o = $h('#khSes'); if (o) o.value = HKS.ses; sesNotGuncelle(); });
     k.addEventListener('input', e => { if (e.target.id === 'hz_ton'){ HKS.ton = +e.target.value; LSs('kh.ses', HKS); k.querySelector('#hz_tono').textContent = (HKS.ton > 0 ? '+' : '') + HKS.ton; return; } if (e.target.id !== 'hz_hiz') return; HKS.hiz = +e.target.value; LSs('kh.ses', HKS); k.querySelector('#hz_hizo').textContent = '×' + HKS.hiz.toFixed(2); const o = $h('#khHiz'); if (o) o.value = HKS.hiz; }); }
   hzBaslik();
+  /*6.52 önizleme boyu karoları: Büyük · Küçük · Gizle*/
+  { const boy = $h('.kh-boy'); if (boy && !boy._k){ boy._k = 1; const M = {buyuk:['⤢', 'Büyük'], kucuk:['⤡', 'Küçük'], gizli:['🙈', 'Gizle']}; boy.querySelectorAll('[data-onz]').forEach(b => { const m = M[b.dataset.onz]; if (m){ b.dataset.ic = m[0]; b.dataset.lb = m[1]; } }); boy.insertAdjacentHTML('beforebegin', '<span class="hz-sep"></span>'); } }
   /*6.51 bölüm ayarı: oynatıcı altındaki düğme şeridinde (Aç · Kapat · Başlangıç)*/
   { let vk = 'kapali'; try { vk = localStorage.getItem('kh.hzAc') || 'kapali'; } catch (x){}
     const hepsi = kapat => k.querySelectorAll('.hz-b').forEach(bl => hzAcKapa(bl, kapat));
