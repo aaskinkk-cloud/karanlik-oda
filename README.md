@@ -1,5 +1,8 @@
 # Karanlık Oda
 
+## Ses denemesi — kayıt deneyi (23.10.2026)
+- `ses-deneme.html`: "1d" deneyi Google sesinin tarayıcıdan kaydedilip kaydedilemeyeceğini ölçer (fetch/CORS, crossOrigin, captureStream).
+
 ## 6.50 (23.10.2026) — Google sesi uygulama içinde çalışıyor
 - Sayfaya `referrer: no-referrer` eklendi: Google, başka siteden gelen ses isteğini reddediyordu (demo sayfada vardı, uygulamada yoktu).
 - Servis çalışanı Google ses isteklerine karışmaz (ses önbelleğe doldurulmaz).
