@@ -1,5 +1,9 @@
 # Karanlık Oda
 
+## 6.48 (23.10.2026) — Google sesi ile canlı önizleme
+- Okuyucu listesine **Google sesi (YouTube'daki)** eklendi: **Sesli önizle** cümleleri Google sesiyle çalar (internet gerekir). Telefonda doğrudan çalıştığı `ses-deneme.html` ile doğrulandı.
+- Cihaz sesi gibi videoya kaydedilmez (tarayıcı Google sesini veri olarak vermez); önizleme ekran kaydıyla alınır. Videoya gömmek için Apps Script aracısı gerekir (bilgisayardan kurulacak).
+
 ## 6.47 (23.10.2026) — Cihaz sesi (Samsung vb.) ile önizleme
 - Okuyucu listesine telefonun Türkçe sesleri eklendi ("Cihaz sesleri"). Seçilince **Sesli önizle** cümleleri cihaz sesiyle okur (müzik ve efektler çalmaya devam eder).
 - Cihaz sesi ses dosyası olmadığı için videoya kaydedilemez: **Sesli video** düğmesi bunu açıklar; önizleme telefonun ekran kaydıyla (medya sesi açık) kaydedilir.
@@ -49,7 +53,7 @@
 Telefonda çalışan, internet gerektirmeyen fotoğraf düzenleyici (PWA). Tek dosya: `index.html`; çevrimdışı önbellek `sw.js`.
 
 **Adres:** https://aaskinkk-cloud.github.io/karanlik-oda/  
-**Güncel sürüm:** 6.47 · 22.10.2026
+**Güncel sürüm:** 6.48 · 22.10.2026
 
 ## Bölümler
 - **Otomatik · Işık · Renk · HSL · Eğriler · Detay · HDR · Efektler** – temel ve bölgesel düzenleme.

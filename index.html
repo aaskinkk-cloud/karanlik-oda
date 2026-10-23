@@ -374,7 +374,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.47 · 22.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.48 · 22.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -7359,12 +7359,12 @@ function wavBlob(f, sr){ const n = f.length, v = new DataView(new ArrayBuffer(44
   for (let i = 0; i < n; i++){ const s = Math.max(-1, Math.min(1, f[i])); v.setInt16(44 + i*2, s < 0 ? s*32768 : s*32767, true); } return new Blob([v.buffer], {type:'audio/wav'}); }
 
 /* ---------- önizleme oynatma ---------- */
-function durdur(){ try { if (cihazMi()) speechSynthesis.cancel(); } catch(e){} if (calis){ calis.dur = true; try { calis.a && calis.a.pause(); } catch(e){} cancelAnimationFrame(calis.raf); calis = null; } const b = $h('#khOyna'); if (b) b.textContent = '▶ Sesli önizle'; ciz(); }
+function durdur(){ try { if (cihazMi()){ speechSynthesis.cancel(); googleDur(); } } catch(e){} if (calis){ calis.dur = true; try { calis.a && calis.a.pause(); } catch(e){} cancelAnimationFrame(calis.raf); calis = null; } const b = $h('#khOyna'); if (b) b.textContent = '▶ Sesli önizle'; ciz(); }
 async function oynat(){ if (calis){ durdur(); return; } const b = $h('#khOyna'), not = $h('#khSesNot'); b.textContent = '■ Durdur'; const C = calis = {dur:false, raf:0};
   let P = null, ab = null; try { P = await planKur(m => not.textContent = m); if (C.dur) return; ab = await karisim(P, m => not.textContent = m); not.textContent = ''; } catch(e){ not.textContent = 'Önizleme: ' + (e.message || e); }
   if (C.dur) return; if (!P){ durdur(); return; } const c = $h('#khCv');
   if (ab){ C.a = new Audio(URL.createObjectURL(stereoWav(ab))); try { await C.a.play(); } catch(e){ C.a = null; } }
-  if (cihazMi() && !D.gizSes){ const kon = []; P.parca.forEach(p => { if (p.ses && p.ses.cihaz) p.ses.segs.forEach(q => kon.push({t:p.sesA + q.a, x:q.t})); }); kon.sort((a, b) => a.t - b.t); C.kon = kon; C.ki = 0; try { speechSynthesis.cancel(); } catch(e){} }
+  if (cihazMi() && !D.gizSes){ const kon = []; P.parca.forEach(p => { if (p.ses && p.ses.cihaz) p.ses.segs.forEach(q => kon.push({t:p.sesA + q.a, x:q.t})); }); kon.sort((a, b) => a.t - b.t); C.kon = kon; C.ki = 0; googleDur(); try { speechSynthesis.cancel(); } catch(e){} }
   const t0 = performance.now(); const ad = () => { if (C.dur) return; const t = C.a ? C.a.currentTime : (performance.now() - t0)/1000; if (C.kon) while (C.ki < C.kon.length && t >= C.kon[C.ki].t) cihazKonus(C.kon[C.ki++].x); zamanCiz(c, P, Math.min(t, P.top - .01)); if (t >= P.top || (C.a && C.a.ended)){ durdur(); return; } C.raf = requestAnimationFrame(ad); }; ad(); }
 
 /* ---------- video (MP4: H.264 + AAC) ---------- */
@@ -7372,7 +7372,7 @@ async function kodek(W, H){ if (!('VideoEncoder' in window)) return null; const 
   for (const codec of ['avc1.640028', 'avc1.4d0028', 'avc1.42e028', 'avc1.640032']){ const cfg = {codec, width:W, height:H, bitrate:br, framerate:30, avc:{format:'avc'}, bitrateMode:'variable'};
     try { if ((await VideoEncoder.isConfigSupported(cfg)).supported) return {cfg, mux:'avc'}; } catch(e){} }
   for (const codec of ['vp09.00.41.08', 'vp09.00.40.08']){ const cfg = {codec, width:W, height:H, bitrate:br, framerate:30, bitrateMode:'variable'}; try { if ((await VideoEncoder.isConfigSupported(cfg)).supported) return {cfg, mux:'vp9', not:'H.264 yok; VP9 ile kodlandı (Instagram kabul etmeyebilir)'}; } catch(e){} } return null; }
-async function videoYap(){ const not = $h('#khVidNot'), btn = $h('#khVid'); if (btn.disabled) return; if (cihazMi()){ not.textContent = 'Cihaz sesi videoya kaydedilmez. Sesli önizlemeyi telefonun ekran kaydıyla kaydet ya da okuyucuyu Fahrettin / Fettah / DFKI yap.'; return; } durdur(); { const hs = $h('#hz_vidson'); if (hs){ hs.hidden = true; try { $h('#hz_vidon').pause(); } catch(e){} } } if (!not._ayna){ not._ayna = 1; new MutationObserver(() => { const h = $h('#hz_vidnot'); if (h) h.textContent = not.textContent; }).observe(not, {childList:true, characterData:true, subtree:true}); }
+async function videoYap(){ const not = $h('#khVidNot'), btn = $h('#khVid'); if (btn.disabled) return; if (cihazMi()){ not.textContent = 'Bu ses (Google / cihaz) videoya kaydedilmez. Sesli önizlemeyi telefonun ekran kaydıyla kaydet ya da okuyucuyu Fahrettin / Fettah / DFKI yap.'; return; } durdur(); { const hs = $h('#hz_vidson'); if (hs){ hs.hidden = true; try { $h('#hz_vidon').pause(); } catch(e){} } } if (!not._ayna){ not._ayna = 1; new MutationObserver(() => { const h = $h('#hz_vidnot'); if (h) h.textContent = not.textContent; }).observe(not, {childList:true, characterData:true, subtree:true}); }
   const [W, H] = ORAN[D.oran]; const vk = await kodek(W, H); if (!vk || typeof Mp4Muxer === 'undefined'){ not.textContent = 'Bu tarayıcı video oluşturamıyor. Telefonda güncel Chrome ile dene; görseli kaydedebilirsin.'; return; }
   btn.disabled = true; let wl = null; try { wl = await navigator.wakeLock.request('screen'); } catch(e){}
   try { const P = await planKur(m => not.textContent = m), ab = await karisim(P, m => not.textContent = m), dur = P.top, fps = 30, nF = Math.ceil(dur*fps);
@@ -8149,15 +8149,18 @@ const yeniSahne = () => ({id:Date.now().toString(36) + Math.random().toString(36
 /* ---------- ses: metin → konuşma (önbellekli) ---------- */
 const SES_ON = new Map();
 /*6.47 cihaz sesi (Samsung vb.): yalnız canlı önizleme; ses dosyası olmadığı için videoya kaydedilmez*/
-const cihazMi = () => /^cihaz:/.test(HKS.ses || '');
+const cihazMi = () => /^(cihaz:|google$)/.test(HKS.ses || '');
+let GKUY = Promise.resolve(), GJET = 0, GAUD = null;
+function googleDur(){ GJET++; try { GAUD && GAUD.pause(); } catch(e){} GAUD = null; }
+function googleKonus(x){ const j = GJET; GKUY = GKUY.then(() => new Promise(ok => { if (j !== GJET) return ok(); let u = 'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=tr&q=' + encodeURIComponent(x.slice(0, 190)); const a = GAUD = new Audio(u); a.playbackRate = HKS.hiz || 1; a.onended = a.onerror = () => ok(); a.play().catch(() => ok()); })); }
 function cihazSes(metin){ const cs = cumleler(metin), sr = 22050, rate = HKS.hiz || 1, segs = []; let t = 0;
   cs.forEach((c, i) => { if (i) t += .3; const d = Math.max(1.2, c.length/(14*rate)) + .3; segs.push({a:t, b:t + d, t:c}); t += d; });
   return segs.length ? {pcm:new Float32Array(Math.round(t*sr)), sr, segs, sure:t, cihaz:true} : null; }
-function cihazKonus(x){ try { const u = new SpeechSynthesisUtterance(x); u.lang = 'tr-TR'; u.rate = HKS.hiz || 1; const v = speechSynthesis.getVoices().find(z => z.name === String(HKS.ses).slice(6)); if (v){ u.voice = v; u.lang = v.lang; } speechSynthesis.speak(u); } catch(e){} }
+function cihazKonus(x){ if (HKS.ses === 'google'){ googleKonus(x); return; } try { const u = new SpeechSynthesisUtterance(x); u.lang = 'tr-TR'; u.rate = HKS.hiz || 1; const v = speechSynthesis.getVoices().find(z => z.name === String(HKS.ses).slice(6)); if (v){ u.voice = v; u.lang = v.lang; } speechSynthesis.speak(u); } catch(e){} }
 function sesListeDoldur(sel){ if (!sel || !HSes) return; const cv = ('speechSynthesis' in window ? speechSynthesis.getVoices() : []).filter(v => /^tr/i.test(v.lang));
-  sel.innerHTML = HSes.SESLER.map(([v, ad]) => `<option value="${v}">${ad}</option>`).join('') + (cv.length ? '<optgroup label="Cihaz sesleri (yalnız önizleme)">' + cv.map(v => `<option value="cihaz:${v.name}">${v.name}</option>`).join('') + '</optgroup>' : '');
+  sel.innerHTML = HSes.SESLER.map(([v, ad]) => `<option value="${v}">${ad}</option>`).join('') + '<option value="google">Google sesi (YouTube\'daki · yalnız önizleme)</option>' + (cv.length ? '<optgroup label="Cihaz sesleri (yalnız önizleme)">' + cv.map(v => `<option value="cihaz:${v.name}">${v.name}</option>`).join('') + '</optgroup>' : '');
   sel.value = HKS.ses; if (sel.value !== HKS.ses) sel.value = HSes.SESLER[0][0]; }
-function sesNotGuncelle(){ const e = $h('#hz_okun'); if (e) e.textContent = cihazMi() ? 'Cihaz sesi: yalnız "Sesli önizle" çalışır. Videoya kaydedilmez; önizlemeyi telefonun ekran kaydıyla (medya sesi açık) kaydet.' : ''; }
+function sesNotGuncelle(){ const e = $h('#hz_okun'); if (e) e.textContent = cihazMi() ? (HKS.ses === 'google' ? 'Google sesi (internet gerekir)' : 'Cihaz sesi') + ': yalnız "Sesli önizle" çalışır. Videoya kaydedilmez; önizlemeyi telefonun ekran kaydıyla (medya sesi açık) kaydet.' : ''; }
 async function sesUret(metin, bildir){ metin = String(metin || '').trim(); if (!metin) return null; if (cihazMi()) return cihazSes(metin); if (!HSes) return null; const key = [HKS.ses, HKS.hiz, HKS.ton, metin].join('|'); if (SES_ON.has(key)) return SES_ON.get(key);
   await HSes.hazir((n, tt) => bildir && bildir('Ses indiriliyor… %' + (tt ? Math.round(n/tt*100) : 0) + ' (yalnız ilk sefer)'));
   const sr = (HSes.cfg && HSes.cfg.audio && HSes.cfg.audio.sample_rate) || 22050, cs = cumleler(metin), parca = [], segs = []; let t = 0;
