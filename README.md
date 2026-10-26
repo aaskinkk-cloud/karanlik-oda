@@ -9,6 +9,13 @@
 - Verisi Chrome'dakinden **ayrıdır**: ilk açılışta Chrome'daki sürümden **Yedek indir**, uygulamada **Yedekten geri yükle**.
 - Kaynak `android/`; APK'yı GitHub Actions derler. İmza anahtarı (`android/okur.jks`) sabittir: yeni sürüm eskisinin üzerine kurulur, veriler silinmez.
 
+## 6.56 (26.10.2026) — Yeni filtre: 🌲 Orman hüznü
+- **Filtreler** sekmesinin üstünde kendi simgesiyle (çay fotoğrafından) **Orman hüznü** kartı: tek dokunuşla uygulanır, yeniden dokununca kaldırılır. Ayrıca **🍂 Sonbahar koleksiyonu** şeridinin başında "Orman hüznü · koyu" olarak durur.
+- Ne yapar: koyu, Instagram tarzı sonbahar tonu — derin gölgeler, bastırılmış parlak alanlar, sönük sarı-yeşil, orta tonlarda bordo-sıcak renk, netlik (+18), doku (+8), vinyet (−28).
+- Işık ve renk, referans fotoğrafın dağılımından ölçüldü ve **her fotoğrafa uyarlanır** (sabit ayar değil): aydınlık fotoğraf daha çok, zaten koyu fotoğraf daha az karartılır.
+- **Yoğunluk** kaydırıcısı (0–150 %) ve **Nerede uygulansın** (maske) diğer filtrelerdeki gibi çalışır; toplu işlemde ve hazır ayarlarda da seçilebilir.
+- Kurulum: kurulu uygulama (Android APK ve ana ekrana eklenen sürüm) bir sonraki açılışta kendiliğinden güncellenir (önbellek ko-6.56).
+
 ## 6.55 (23.10.2026) — Renkli satırlı manşet varsayılan
 - Hızlı haber: Gündem · Müjde · Uyarı · Fındık · Duyuru · Anma kartlarında manşet kendiliğinden **ayrı satırlar, ayrı renkli arka planlar** olur (satır 1 konu rengi, 2 beyaz, 3 siyah). Önemli kelime (rakam, yoksa son kelime) sarı vurgulanır. Satırlar dengeli bölünür.
 - Başlık bölümünde **🎨 Renkli satırlar / ▭ Sade** seçimi. Elle satır/renk verdiysen (Enter, *vurgu*, renk düğmeleri) onlar geçerli kalır.
