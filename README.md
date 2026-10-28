@@ -17,6 +17,12 @@
 - Verisi Chrome'dakinden **ayrıdır**: ilk açılışta Chrome'daki sürümden **Yedek indir**, uygulamada **Yedekten geri yükle**.
 - Kaynak `android/`; APK'yı GitHub Actions derler. İmza anahtarı (`android/okur.jks`) sabittir: yeni sürüm eskisinin üzerine kurulur, veriler silinmez.
 
+## 6.60 (29.10.2026)
+- Asıl neden: Filtreler sekmesi her açılışta/filtre seçiminde 70+ filtre önizlemesini tek seferde grafik birimine çizdiriyordu; telefonda grafik birimi düşüyor, önizleme beyaz kalıyor ve Chrome o alan adında WebGL'i geçici kapatıyordu ("WebGL2 desteklenmiyor").
+- Önizlemeler artık önbellekli (filtre değiştirince yeniden çizilmez) ve küçük parçalar halinde çiziliyor; stil LUT'ları önbellekte.
+- Grafik birimi yine düşerse önizleme alanında açıklama + "Yeniden dene" düğmesi; düzenleme kaybolmaz.
+- Ana ekranda kaynak rozeti: GitHub / Cloudflare / Yerel dosya (renkli harflerle).
+
 ## 6.59 (29.10.2026)
 - Android uygulamasında filtre (ör. Orman hüznü) uygulanınca önizlemenin beyaz kalması: GL bağlamı düşerse önizleme tuvali kendiliğinden yenilenir, kaynak/maske/LUT yeniden yüklenir ("Önizleme yenilendi" bildirimi). GL hatası olursa kodu bildirimde gösterilir.
 

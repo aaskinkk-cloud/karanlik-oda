@@ -41,7 +41,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="6.59" data-ad="Karanlık Oda" data-tarih="29.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="6.60" data-ad="Karanlık Oda" data-tarih="29.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -378,7 +378,8 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.59 · 29.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.60 · 29.10.2026</span></p>
+    <p class="kaynak-et" id="kaynakEt"></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -2932,10 +2933,11 @@ function layoutView(){
   $("#zFit").textContent=ED.view.z<1.05?"1×":ED.view.z.toFixed(1)+"×";
   return {fw,fh,ow,oh};
 }
+const _stilLutC=new Map();
 function prepPipe(eff){ // 1B eğri tablosu ve 3B LUT'u güncel tutar; kullanılacak LUT yoğunluğunu döndürür
   const key=JSON.stringify([eff.curves,eff.curvesLook]); if(ED.lutKey!==key){ ED.lutKey=key; ED.pipe.setLut(buildLut(eff.curves,eff.curvesLook)); }
   if(eff.style){ const key="st|"+eff.style.key+"|"+eff.style.light+"|"+eff.style.color+"|"+(ED.rec&&ED.rec.id);
-    if(ED.lut3Id!==key){ if(!ED.srcStats) ED.srcStats=styleStats(ED.prevCanvas); ED.pipe.setLut3(styleLut(ED.srcStats,eff.style.ref,eff.style.light,eff.style.color),33); ED.lut3Id=key; }
+    if(ED.lut3Id!==key){ if(!ED.srcStats) ED.srcStats=styleStats(ED.prevCanvas); let d=_stilLutC.get(key); if(!d){ d=styleLut(ED.srcStats,eff.style.ref,eff.style.light,eff.style.color); _stilLutC.set(key,d); if(_stilLutC.size>16) _stilLutC.delete(_stilLutC.keys().next().value); } ED.pipe.setLut3(d,33); ED.lut3Id=key; }
     return eff.style.amt; }
   const want=eff.lut3&&eff.lut3.id; if(want&&ED.lut3Id!==want&&ED.lut3Loading!==want){ ED.lut3Loading=want;
     DB.lutGet(want).then(r=>{ ED.lut3Loading=null; if(r){ ED.pipe.setLut3(r.data,r.N); ED.lut3Id=want; requestRender(); } else toast("Bu hazır ayarın LUT verisi bu tarayıcıda yok. Hazır ayarı yeniden içe aktar."); }); }
@@ -2944,20 +2946,24 @@ function rebuildLM(){ const slots=lmSlots(ED.state);
   if(!slots.length){ ED.lm={slots:[],canv:{}}; } else { const r=buildLM(ED.state.lmask,slots,ED.prevCanvas,ED.pW,ED.pH,true); ED.lm={slots,...r}; ED.pipe.setLayerMask(r.rgba,r.w,r.h); }
   ED.lmBuilt=ED.lmVer; ED.lmSlotsKey=slots.join(","); }
 /* 6.59: Android WebView'de GL bağlamı düşerse (ağır filtre/LUT sonrası) önizleme beyaz kalmasın: tuvali yenile, kaynağı yeniden yükle */
-let _glYen=0;
+let _glYen=0, _glDustu=false;
+function glMesaj(on){ let m=$("#glMesaj"); if(!on){ if(m) m.remove(); return; } if(m) return; m=document.createElement("div"); m.id="glMesaj";
+  m.style.cssText="position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;background:var(--bg,#111);color:var(--text,#eee);z-index:5;font-size:15px;line-height:1.5";
+  m.innerHTML='<div><b>Telefonun grafik birimi önizlemeyi durdurdu</b><br><span style="opacity:.75">Düzenlemen kaybolmadı. Birkaç saniye içinde kendiliğinden dönmezse uygulamayı tamamen kapatıp yeniden aç.</span><br><button class="btn" style="margin-top:12px" type="button">Yeniden dene</button></div>';
+  m.querySelector("button").onclick=()=>{ _glYen=0; glYenile("el"); }; const st=$("#stage"); if(st) st.appendChild(m); }
 function glBagla(cv){ if(!cv||cv._glB) return; cv._glB=1;
-  cv.addEventListener("webglcontextlost",e=>{ e.preventDefault(); setTimeout(()=>{ if(ED.pipe&&ED.pipe.gl.isContextLost()) glYenile("kayıp"); },400); },false);
-  cv.addEventListener("webglcontextrestored",()=>glYenile("geri"),false); }
+  cv.addEventListener("webglcontextlost",e=>{ e.preventDefault(); _glDustu=true; _thumbGen++; glMesaj(true); setTimeout(()=>{ if(_glDustu) glYenile("kayıp"); },3000); },false);
+  cv.addEventListener("webglcontextrestored",()=>{ _glYen=0; glYenile("geri"); },false); }
 function glYenile(neden){ const now=Date.now(); if(now-_glYen<1500) return false; _glYen=now;
   try{ const eski=$("#gl"), yeni=document.createElement("canvas"); yeni.id="gl"; if(eski.className) yeni.className=eski.className; if(eski.style.cssText) yeni.style.cssText=eski.style.cssText;
-    eski.replaceWith(yeni); const p=new Pipeline(yeni); ED.pipe=p; glBagla(yeni);
+    const p=new Pipeline(yeni); eski.replaceWith(yeni); ED.pipe=p; glBagla(yeni); _glDustu=false; glMesaj(false);
     const src=ED._srcNow||ED.baseCanvas; if(src) p.setSource(src); if(ED.maskCanvas) p.setMask(ED.maskCanvas);
-    ED.lutKey=null; ED.lut3Id=null; ED.lut3Loading=null; ED.lmBuilt=-1; ED.thumbs=null;
-    toast("Önizleme yenilendi"); requestRender(); return true; }
-  catch(e){ toast("Önizleme açılamadı ("+(neden||"")+"): "+(e&&e.message||e)); return false; } }
+    ED.lutKey=null; ED.lut3Id=null; ED.lut3Loading=null; ED.lmBuilt=-1; _thumbC.clear(); _thumbC.anahtar=null;
+    requestRender(); return true; }
+  catch(e){ glMesaj(true); return false; } }
 function renderNow(){
   if(!ED.pipe||!ED.state) return; const L=layoutView(); if(!L) return;
-  if(ED.pipe.gl.isContextLost()){ glYenile("kayıp"); return; }
+  if(ED.pipe.gl.isContextLost()) return;
   if(ED.lmBuilt!==ED.lmVer||lmSlots(ED.state).join(",")!==ED.lmSlotsKey) rebuildLM();
   const dpr=Math.min(window.devicePixelRatio||1,3);
   let pw=L.fw*dpr*ED.view.z, ph=L.fh*dpr*ED.view.z; const cap=Math.min(1,L.ow/pw,4096/Math.max(pw,ph)); pw=Math.max(1,Math.round(pw*cap)); ph=Math.max(1,Math.round(ph*cap));
@@ -2965,7 +2971,7 @@ function renderNow(){
   const eff=effective(ED.state); const l3=prepPipe(eff);
   const showLM=ED.lmShow&&ED.lmOpen?eff.slots.indexOf(ED.lmOpen):-1;
   ED.pipe.render(eff,pw,ph,{lut3Amt:l3,showLM:showLM>=0?showLM:null,fullCrop:cropMode(),orig:ED.showOrig,split:ED.split,hasMask:ED.state.strokes.length>0,showMask:ED.showMask&&ED.tab==="brush"});
-  const ge=ED.pipe.gl.getError(); if(ge&&ge!==ED.pipe.gl.NO_ERROR){ if(ED.pipe.gl.isContextLost()||ge===ED.pipe.gl.OUT_OF_MEMORY) glYenile("hata "+ge); else if(!ED._glHataGos){ ED._glHataGos=1; toast("Önizleme GL hatası: "+ge); } }
+  const ge=ED.pipe.gl.getError(); if(ge&&ge!==ED.pipe.gl.NO_ERROR){ if(ED.pipe.gl.isContextLost()) {} else if(!ED._glHataGos){ ED._glHataGos=1; toast("Önizleme GL hatası: "+ge); } }
   yaziOnizle(pw,ph); drawOverlay();
 }
 
@@ -3425,19 +3431,24 @@ async function exportPresets(){ const pr=Presets.list(); const ids=[...new Set(p
   saveFile("karanlik-oda-hazir-ayarlar.json",new Blob([JSON.stringify({app:"Karanlık Oda",version:2,presets:pr,luts})],{type:"application/json"})); }
 
 /* ---------- filtre küçük resimleri ---------- */
+/* 6.60: önizlemeler tek karede 80+ GL çizimi yapıyordu → telefonda grafik birimi düşüyordu. Artık önbellekli ve parça parça çiziliyor */
+const _thumbC=new Map(); let _thumbGen=0;
+function thumbBoya(b,t){ const x=b._c.getContext("2d"), sc=Math.max(152/t.width,152/t.height); x.drawImage(t,(152-t.width*sc)/2,(152-t.height*sc)/2,t.width*sc,t.height*sc); }
+function thumbCiz(id,w,h){ const st=deep(ED.state); st.look={id,amt:100}; const ef=effective(st); ED.pipe.render(ef,w,h,{hasMask:st.strokes.length>0,lut3Amt:prepPipe(ef)});
+  const gl=ED.pipe.gl, rw=Math.min(w,gl.drawingBufferWidth), rh=Math.min(h,gl.drawingBufferHeight); const t=document.createElement("canvas"); t.width=rw; t.height=rh;
+  try{ const px=new Uint8Array(rw*rh*4); gl.readPixels(0,0,rw,rh,gl.RGBA,gl.UNSIGNED_BYTE,px);
+    const im=new ImageData(rw,rh), row=rw*4; for(let y=0;y<rh;y++) im.data.set(px.subarray((rh-1-y)*row,(rh-y)*row),y*row); for(let k=3;k<im.data.length;k+=4) im.data[k]=255;
+    t.getContext("2d").putImageData(im,0,0); }
+  catch(e){ t.getContext("2d").drawImage($("#gl"),0,0,rw,rh); } return t; }
 function drawLookThumbs(items){
-  if(!ED.pipe) return; const [ow,oh]=outDims(); const s=160/Math.max(ow,oh); const w=Math.round(ow*s), h=Math.round(oh*s);
-  for(const b of items){ const st=deep(ED.state); st.look={id:b._id,amt:100}; const ef=effective(st); ED.pipe.render(ef,w,h,{hasMask:st.strokes.length>0,lut3Amt:prepPipe(ef)});
-    const x=b._c.getContext("2d"); const sc=Math.max(152/w,152/h);
-    /* 6.58: Android uygulamasında (WebView) GL tuvalinden doğrudan kopya boş geliyordu → pikseller okunup çiziliyor */
-    try{ const gl=ED.pipe.gl, W=gl.drawingBufferWidth, H=gl.drawingBufferHeight, rw=Math.min(w,W), rh=Math.min(h,H);
-      const px=new Uint8Array(rw*rh*4); gl.readPixels(0,0,rw,rh,gl.RGBA,gl.UNSIGNED_BYTE,px);
-      const id=new ImageData(rw,rh), row=rw*4; for(let y=0;y<rh;y++) id.data.set(px.subarray((rh-1-y)*row,(rh-y)*row),y*row);
-      for(let i=3;i<id.data.length;i+=4) id.data[i]=255;
-      const t=document.createElement("canvas"); t.width=rw; t.height=rh; t.getContext("2d").putImageData(id,0,0);
-      x.drawImage(t,(152-rw*sc)/2,(152-rh*sc)/2,rw*sc,rh*sc); }
-    catch(e){ x.drawImage($("#gl"),(152-w*sc)/2,(152-h*sc)/2,w*sc,h*sc); } }
-  requestRender(); }
+  if(!ED.pipe||ED.pipe.gl.isContextLost()) return; const gen=++_thumbGen; const [ow,oh]=outDims(); const sc=160/Math.max(ow,oh); const w=Math.round(ow*sc), h=Math.round(oh*sc);
+  const st0=deep(ED.state); st0.look={id:null,amt:100}; const key=JSON.stringify(st0)+"|"+(ED.rec&&ED.rec.id)+"|"+w+"x"+h;
+  if(_thumbC.anahtar!==key){ _thumbC.clear(); _thumbC.anahtar=key; }
+  const todo=[]; for(const b of items){ const t=_thumbC.get(b._id); if(t) thumbBoya(b,t); else todo.push(b); }
+  let i=0; const adim=()=>{ if(gen!==_thumbGen||!ED.pipe||ED.pipe.gl.isContextLost()||!todo[i]||!todo[i]._c.isConnected) return; const t0=performance.now();
+    try{ while(i<todo.length&&performance.now()-t0<14){ const b=todo[i++]; const t=thumbCiz(b._id,w,h); _thumbC.set(b._id,t); thumbBoya(b,t); } } finally{ renderNow(); }
+    if(i<todo.length) setTimeout(adim,40); };
+  setTimeout(adim,60); }
 
 /* ---------- eğri editörü ---------- */
 function histogram(){ if(ED.hist256) return ED.hist256; const c=document.createElement("canvas"); const s=200/Math.max(ED.pW,ED.pH); c.width=Math.max(1,Math.round(ED.pW*s)); c.height=Math.max(1,Math.round(ED.pH*s));
@@ -10405,5 +10416,13 @@ async function odakNoktasi(p){ const b=busy("Odak alanı bulunuyor…"); await s
     if (!document.getElementById('lgAcBtn')){ const b = document.createElement('button'); b.type = 'button'; b.className = 'act kh-act'; b.id = 'lgAcBtn'; b.innerHTML = '<div><strong>🖼️ Logolar</strong><br><span>Kabataş Haber logoları: indir, paylaş, kendi logonu sakla</span></div>'; b.addEventListener('click', ac); a.appendChild(b); } } } catch(e){ console.warn('Logolar kartı', e); }
 })();
 </script>
+<style>.kaynak-et{margin:8px 0 0;display:inline-flex;align-items:center;gap:8px;padding:5px 12px 5px 8px;border-radius:999px;border:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.kaynak-et:empty{display:none}.kaynak-et i{font-style:normal;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff}
+.kaynak-et b{font-weight:700;letter-spacing:.06em;color:var(--text)}.kaynak-et b span{display:inline-block}</style>
+<script>/* 6.60: ana ekranda hangi kaynaktan çalıştığı */
+(function(){ const h=location.hostname, e=document.getElementById("kaynakEt"); if(!e) return;
+  const K=/github\.io$/.test(h)?["GitHub","G","#24292f","#6e40c9,#2f81f7,#3fb950,#d29922,#f85149,#db61a2"]:/pages\.dev$/.test(h)?["Cloudflare","C","#f38020","#f38020,#faae40,#f38020,#faae40,#f38020,#faae40,#f38020,#faae40,#f38020,#faae40"]:["Yerel dosya","Y","#666","#999"];
+  const renk=K[3].split(","); const harf=[...K[0]].map((c,i)=>'<span style="color:'+renk[i%renk.length]+'">'+c+'</span>').join("");
+  e.innerHTML='<i style="background:'+K[2]+'">'+K[1]+'</i>Kaynak: <b>'+harf+'</b>'; e.title=location.origin; })();</script>
 </body>
 </html>
