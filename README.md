@@ -17,6 +17,11 @@
 - Verisi Chrome'dakinden **ayrıdır**: ilk açılışta Chrome'daki sürümden **Yedek indir**, uygulamada **Yedekten geri yükle**.
 - Kaynak `android/`; APK'yı GitHub Actions derler. İmza anahtarı (`android/okur.jks`) sabittir: yeni sürüm eskisinin üzerine kurulur, veriler silinmez.
 
+## 6.61 (29.10.2026)
+- Grafik birimi bir kez düşerse cihaz "hafif mod"a geçer (localStorage ko:hafif=1): önizleme ≤1400 px, kaynak ≤1280 px. Kaydedilen fotoğrafın kalitesi değişmez.
+- Durma ekranında "Son işlem" teşhis satırı; yenileme başarısızsa "Yeniden dene" sayfayı yeniler.
+- Hazır ayar küçük resimleri de parça parça + önbellekli çizilir.
+
 ## 6.60 (29.10.2026)
 - Asıl neden: Filtreler sekmesi her açılışta/filtre seçiminde 70+ filtre önizlemesini tek seferde grafik birimine çizdiriyordu; telefonda grafik birimi düşüyor, önizleme beyaz kalıyor ve Chrome o alan adında WebGL'i geçici kapatıyordu ("WebGL2 desteklenmiyor").
 - Önizlemeler artık önbellekli (filtre değiştirince yeniden çizilmez) ve küçük parçalar halinde çiziliyor; stil LUT'ları önbellekte.
