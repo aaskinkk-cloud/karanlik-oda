@@ -1,5 +1,13 @@
 # Karanlık Oda
 
+## Android uygulaması (APK) — 1.1 (28.10.2026)
+**İndir:** https://github.com/aaskinkk-cloud/karanlik-oda/releases/download/android/karanlik-oda.apk
+
+- Okur ve Bütçe uygulamalarıyla aynı güncel kabuk: kalıcı tam ekran; GitHub açılmazsa kendiliğinden Cloudflare yedeğinden (ahmet-uygulamalar.pages.dev/karanlik-oda) açılır.
+- **Büyük dosyalar** (Hızlı haber videoları, yüksek çözünürlüklü fotoğraflar) 1 MB'lık parçalar hâlinde **İndirilenler**'e yazılır; uzun videolarda takılma olmaz.
+- Simge: koyu zemin üstünde beyaz fotoğraf makinesi, turuncu objektif.
+- Fotoğraf seçimi telefonun dosya/galeri seçicisiyle yapılır (uygulama içinden doğrudan kamera açma bu sürümde yok; fotoğrafı kamerayla çekip galeriden seç).
+
 ## Android uygulaması (APK) — 23.10.2026
 **İndir:** https://github.com/aaskinkk-cloud/karanlik-oda/releases/download/android/karanlik-oda.apk
 

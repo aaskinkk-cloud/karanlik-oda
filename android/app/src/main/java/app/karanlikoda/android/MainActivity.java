@@ -27,13 +27,16 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 /**
- * Karanlık Oda — Android kabuğu (Okur kabuğunun aynısı).
+ * Karanlık Oda — Android kabuğu (Okur kabuğunun aynısı + büyük dosya kaydı).
  * Sayfa: https://aaskinkk-cloud.github.io/karanlik-oda/ (GitHub'a gönderilen her güncelleme kendiliğinden gelir, çevrimdışı da açılır).
  * Ekran: kalıcı tam ekran (immersive). Alttaki tuşlar kaydırılınca sayfanın ÜSTÜNE biner, sayfa yeniden boyutlanmaz,
  * birkaç saniye sonra kendiliğinden gizlenir. Chrome'un "Tam ekrandan çıkmak için…" uyarısı ve "Dokunarak ara" paneli bu uygulamada yoktur.
  */
 public class MainActivity extends Activity {
     private static final String ADRES = "https://aaskinkk-cloud.github.io/karanlik-oda/";
+    /** GitHub açılmazsa (404, sunucu hatası, bağlantı yok) sayfa buradan açılır. */
+    private static final String YEDEK = "https://ahmet-uygulamalar.pages.dev/karanlik-oda/";
+    private boolean yedekte = false;
     private static final int DOSYA_SEC = 41;
     private WebView web;
     private ValueCallback<Uri[]> dosyaCb;
@@ -91,6 +94,12 @@ public class MainActivity extends Activity {
 
         web.setWebViewClient(new WebViewClient() {
             @Override public void onPageFinished(WebView v, String url) { v.evaluateJavascript(INDIR_JS, null); kameraYaz(); tamEkran(); }
+            @Override public void onReceivedHttpError(WebView v, android.webkit.WebResourceRequest r, android.webkit.WebResourceResponse res) {
+                if (r.isForMainFrame() && res != null && (res.getStatusCode() == 404 || res.getStatusCode() >= 500)) yedegeGec(v);
+            }
+            @Override public void onReceivedError(WebView v, android.webkit.WebResourceRequest r, android.webkit.WebResourceError e) {
+                if (r.isForMainFrame()) yedegeGec(v);
+            }
         });
         web.setWebChromeClient(new WebChromeClient() {
             @Override public boolean onShowFileChooser(WebView v, ValueCallback<Uri[]> cb, FileChooserParams p) {
@@ -156,6 +165,20 @@ public class MainActivity extends Activity {
         super.onActivityResult(req, res, d);
     }
 
+    /** GitHub sayfası açılmazsa bir kez Cloudflare kopyasına geçer; o da açılmazsa yeniden deneme ekranı gösterir. */
+    private void yedegeGec(WebView v) {
+        if (!yedekte) {
+            yedekte = true;
+            runOnUiThread(() -> { Toast.makeText(MainActivity.this, "GitHub açılmadı — yedek adresten (Cloudflare) açılıyor", Toast.LENGTH_LONG).show(); v.loadUrl(YEDEK); });
+        } else {
+            runOnUiThread(() -> v.loadDataWithBaseURL(null,
+                "<html><body style='font:18px sans-serif;background:#0f1213;color:#e8e8e8;padding:40px 24px;text-align:center'>"
+                + "<p>Karanlık Oda şu an açılamıyor.<br>İnternet bağlantını kontrol et.</p>"
+                + "<p><a href='" + ADRES + "' style='display:inline-block;margin-top:16px;padding:14px 22px;border-radius:12px;background:#c2410c;color:#fff;text-decoration:none'>Yeniden dene</a></p></body></html>",
+                "text/html", "utf-8", null));
+        }
+    }
+
     private void renkUygula(String c) {
         try {
             int r = android.graphics.Color.parseColor(c.trim());
@@ -164,12 +187,45 @@ public class MainActivity extends Activity {
     }
 
     /** Sayfadan gelen dosyaları (yedek, dışa aktarım) İndirilenler klasörüne yazar. */
+    /* Büyük dosyalar (video) için parça parça yazma: sayfa 1 MB'lık parçalar gönderir, sonda tek dosya olarak İndirilenler'e kaydedilir. */
+    private final java.util.HashMap<String, File> parcalar = new java.util.HashMap<>();
     class Kopru {
+        @JavascriptInterface public void parcaBasla(String id) {
+            try { File f = File.createTempFile("ko-", ".part", getCacheDir()); parcalar.put(id, f); } catch (Exception e) { }
+        }
+        @JavascriptInterface public void parca(String id, String b64) {
+            File f = parcalar.get(id); if (f == null) return;
+            try (FileOutputStream o = new FileOutputStream(f, true)) { o.write(Base64.decode(b64, Base64.DEFAULT)); } catch (Exception e) { }
+        }
+        @JavascriptInterface public void parcaBitir(String id, String ad, String tur) {
+            File f = parcalar.remove(id); if (f == null) return;
+            try {
+                if (ad == null || ad.trim().isEmpty()) ad = "karanlik-oda";
+                if (Build.VERSION.SDK_INT >= 29) {
+                    ContentValues cv = new ContentValues();
+                    cv.put(MediaStore.Downloads.DISPLAY_NAME, ad);
+                    cv.put(MediaStore.Downloads.MIME_TYPE, (tur == null || tur.isEmpty()) ? "application/octet-stream" : tur);
+                    Uri u = getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, cv);
+                    try (OutputStream o = getContentResolver().openOutputStream(u); java.io.FileInputStream in = new java.io.FileInputStream(f)) {
+                        byte[] buf = new byte[65536]; int n; while ((n = in.read(buf)) > 0) o.write(buf, 0, n);
+                    }
+                } else {
+                    File hedef = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), ad);
+                    try (FileOutputStream o = new FileOutputStream(hedef); java.io.FileInputStream in = new java.io.FileInputStream(f)) {
+                        byte[] buf = new byte[65536]; int n; while ((n = in.read(buf)) > 0) o.write(buf, 0, n);
+                    }
+                }
+                final String m = ad;
+                runOnUiThread(() -> Toast.makeText(MainActivity.this, "İndirilenler'e kaydedildi: " + m, Toast.LENGTH_LONG).show());
+            } catch (Exception e) {
+                runOnUiThread(() -> Toast.makeText(MainActivity.this, "Kaydedilemedi: " + e.getMessage(), Toast.LENGTH_LONG).show());
+            } finally { f.delete(); }
+        }
         @JavascriptInterface public void renk(String c) { runOnUiThread(() -> renkUygula(c)); }
         @JavascriptInterface public void kaydet(String ad, String tur, String b64) {
             try {
                 byte[] veri = Base64.decode(b64, Base64.DEFAULT);
-                if (ad == null || ad.trim().isEmpty()) ad = "dosya";
+                if (ad == null || ad.trim().isEmpty()) ad = "karanlik-oda";
                 if (Build.VERSION.SDK_INT >= 29) {
                     ContentValues cv = new ContentValues();
                     cv.put(MediaStore.Downloads.DISPLAY_NAME, ad);
@@ -195,6 +251,8 @@ public class MainActivity extends Activity {
         "(function(){if(window.__okurIndir)return;window.__okurIndir=1;var o=HTMLAnchorElement.prototype.click;" +
         "HTMLAnchorElement.prototype.click=function(){var h=this.href||'',ad=this.getAttribute('download');" +
         "if(ad!==null&&/^(blob:|data:)/.test(h)&&window.OkurAndroid){fetch(h).then(function(r){return r.blob()}).then(function(b){" +
-        "var f=new FileReader();f.onload=function(){var s=String(f.result),i=s.indexOf(',');OkurAndroid.kaydet(ad||'dosya',b.type||'',s.slice(i+1))};f.readAsDataURL(b)});return}" +
+        "var id=Date.now()+''+Math.random(),P=1048576,ofs=0;OkurAndroid.parcaBasla(id);" +
+        "var git=function(){if(ofs>=b.size){OkurAndroid.parcaBitir(id,ad||'karanlik-oda',b.type||'');return}var fr=new FileReader();" +
+        "fr.onload=function(){var s=String(fr.result);OkurAndroid.parca(id,s.slice(s.indexOf(',')+1));ofs+=P;setTimeout(git,0)};fr.readAsDataURL(b.slice(ofs,ofs+P))};git()});return}" +
         "return o.apply(this,arguments)}})();";
 }
