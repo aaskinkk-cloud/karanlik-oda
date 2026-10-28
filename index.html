@@ -41,7 +41,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="6.58" data-ad="Karanlık Oda" data-tarih="29.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="6.59" data-ad="Karanlık Oda" data-tarih="29.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -378,7 +378,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.58 · 26.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.59 · 29.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -2943,8 +2943,21 @@ function prepPipe(eff){ // 1B eğri tablosu ve 3B LUT'u güncel tutar; kullanıl
 function rebuildLM(){ const slots=lmSlots(ED.state);
   if(!slots.length){ ED.lm={slots:[],canv:{}}; } else { const r=buildLM(ED.state.lmask,slots,ED.prevCanvas,ED.pW,ED.pH,true); ED.lm={slots,...r}; ED.pipe.setLayerMask(r.rgba,r.w,r.h); }
   ED.lmBuilt=ED.lmVer; ED.lmSlotsKey=slots.join(","); }
+/* 6.59: Android WebView'de GL bağlamı düşerse (ağır filtre/LUT sonrası) önizleme beyaz kalmasın: tuvali yenile, kaynağı yeniden yükle */
+let _glYen=0;
+function glBagla(cv){ if(!cv||cv._glB) return; cv._glB=1;
+  cv.addEventListener("webglcontextlost",e=>{ e.preventDefault(); setTimeout(()=>{ if(ED.pipe&&ED.pipe.gl.isContextLost()) glYenile("kayıp"); },400); },false);
+  cv.addEventListener("webglcontextrestored",()=>glYenile("geri"),false); }
+function glYenile(neden){ const now=Date.now(); if(now-_glYen<1500) return false; _glYen=now;
+  try{ const eski=$("#gl"), yeni=document.createElement("canvas"); yeni.id="gl"; if(eski.className) yeni.className=eski.className; if(eski.style.cssText) yeni.style.cssText=eski.style.cssText;
+    eski.replaceWith(yeni); const p=new Pipeline(yeni); ED.pipe=p; glBagla(yeni);
+    const src=ED._srcNow||ED.baseCanvas; if(src) p.setSource(src); if(ED.maskCanvas) p.setMask(ED.maskCanvas);
+    ED.lutKey=null; ED.lut3Id=null; ED.lut3Loading=null; ED.lmBuilt=-1; ED.thumbs=null;
+    toast("Önizleme yenilendi"); requestRender(); return true; }
+  catch(e){ toast("Önizleme açılamadı ("+(neden||"")+"): "+(e&&e.message||e)); return false; } }
 function renderNow(){
   if(!ED.pipe||!ED.state) return; const L=layoutView(); if(!L) return;
+  if(ED.pipe.gl.isContextLost()){ glYenile("kayıp"); return; }
   if(ED.lmBuilt!==ED.lmVer||lmSlots(ED.state).join(",")!==ED.lmSlotsKey) rebuildLM();
   const dpr=Math.min(window.devicePixelRatio||1,3);
   let pw=L.fw*dpr*ED.view.z, ph=L.fh*dpr*ED.view.z; const cap=Math.min(1,L.ow/pw,4096/Math.max(pw,ph)); pw=Math.max(1,Math.round(pw*cap)); ph=Math.max(1,Math.round(ph*cap));
@@ -2952,6 +2965,7 @@ function renderNow(){
   const eff=effective(ED.state); const l3=prepPipe(eff);
   const showLM=ED.lmShow&&ED.lmOpen?eff.slots.indexOf(ED.lmOpen):-1;
   ED.pipe.render(eff,pw,ph,{lut3Amt:l3,showLM:showLM>=0?showLM:null,fullCrop:cropMode(),orig:ED.showOrig,split:ED.split,hasMask:ED.state.strokes.length>0,showMask:ED.showMask&&ED.tab==="brush"});
+  const ge=ED.pipe.gl.getError(); if(ge&&ge!==ED.pipe.gl.NO_ERROR){ if(ED.pipe.gl.isContextLost()||ge===ED.pipe.gl.OUT_OF_MEMORY) glYenile("hata "+ge); else if(!ED._glHataGos){ ED._glHataGos=1; toast("Önizleme GL hatası: "+ge); } }
   yaziOnizle(pw,ph); drawOverlay();
 }
 
@@ -3005,7 +3019,7 @@ async function openRecord(rec){
   try{
     const bmp=await createImageBitmap(rec.blob,{imageOrientation:"from-image"});
     ED.rec=rec; ED.W=bmp.width; ED.H=bmp.height;
-    if(!ED.pipe) ED.pipe=new Pipeline($("#gl"));
+    if(!ED.pipe){ ED.pipe=new Pipeline($("#gl")); glBagla($("#gl")); }
     const maxL=Math.min(2048,ED.pipe.maxTex); const s=Math.min(1,maxL/Math.max(bmp.width,bmp.height));
     ED.pW=Math.round(bmp.width*s); ED.pH=Math.round(bmp.height*s);
     // kaliteli küçültme: yarıya adımlarla
