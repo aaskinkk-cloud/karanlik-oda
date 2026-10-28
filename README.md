@@ -17,6 +17,11 @@
 - Verisi Chrome'dakinden **ayrıdır**: ilk açılışta Chrome'daki sürümden **Yedek indir**, uygulamada **Yedekten geri yükle**.
 - Kaynak `android/`; APK'yı GitHub Actions derler. İmza anahtarı (`android/okur.jks`) sabittir: yeni sürüm eskisinin üzerine kurulur, veriler silinmez.
 
+## 6.62 (29.10.2026)
+- Ana ekranda kaynak rozetinin yanında geçiş düğmesi: GitHub'da "Cloudflare'e geç", Cloudflare'de "GitHub'a geç".
+- GitHub'da Cloudflare seçilirse tercih saklanır (localStorage ko:tercih=cf); APK veya GitHub adresi açılınca otomatik Cloudflare'e yönlenir. "GitHub'a geç" (?tercih=gh) tercihi siler.
+- Not: kütüphane ve hazır ayarlar her adreste ayrı tutulur; geçiş hiçbir şey silmez.
+
 ## 6.61 (29.10.2026)
 - Grafik birimi bir kez düşerse cihaz "hafif mod"a geçer (localStorage ko:hafif=1): önizleme ≤1400 px, kaynak ≤1280 px. Kaydedilen fotoğrafın kalitesi değişmez.
 - Durma ekranında "Son işlem" teşhis satırı; yenileme başarısızsa "Yeniden dene" sayfayı yeniler.
