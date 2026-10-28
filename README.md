@@ -17,6 +17,10 @@
 - Verisi Chrome'dakinden **ayrıdır**: ilk açılışta Chrome'daki sürümden **Yedek indir**, uygulamada **Yedekten geri yükle**.
 - Kaynak `android/`; APK'yı GitHub Actions derler. İmza anahtarı (`android/okur.jks`) sabittir: yeni sürüm eskisinin üzerine kurulur, veriler silinmez.
 
+## 6.58 (29.10.2026)
+- **Filtre önizlemeleri** Android uygulamasında boş görünüyordu: küçük resimler artık GL tuvalinden piksel okunarak çiziliyor (her yerde görünür).
+- Android 1.2: GitHub ilk denemede açılmazsa önce bir kez daha denenir; yine açılmazsa Cloudflare'e geçilir ve sebebi (hata kodu) kısa bildirimde yazar.
+
 ## 6.57 (28.10.2026) — Yeni koleksiyon: 🏕️ Kamp · çay & kahve
 - **Filtreler** sekmesinin en üstünde yeni şerit (Ahmet'in örnek fotoğraflarından):
   - **Kamp · orman sofrası** — referans kamp sofrasının ışık ve renk dağılımı (fotoğrafa uyarlanır) + netlik, doku, vinyet; yeşil/mavi sönük, turuncu-kırmızı canlı.

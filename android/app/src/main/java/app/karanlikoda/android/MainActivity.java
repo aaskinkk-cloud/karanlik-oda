@@ -95,10 +95,10 @@ public class MainActivity extends Activity {
         web.setWebViewClient(new WebViewClient() {
             @Override public void onPageFinished(WebView v, String url) { v.evaluateJavascript(INDIR_JS, null); kameraYaz(); tamEkran(); }
             @Override public void onReceivedHttpError(WebView v, android.webkit.WebResourceRequest r, android.webkit.WebResourceResponse res) {
-                if (r.isForMainFrame() && res != null && (res.getStatusCode() == 404 || res.getStatusCode() >= 500)) yedegeGec(v);
+                if (r.isForMainFrame() && res != null && (res.getStatusCode() == 404 || res.getStatusCode() >= 500)) yedegeGec(v, "HTTP " + res.getStatusCode());
             }
             @Override public void onReceivedError(WebView v, android.webkit.WebResourceRequest r, android.webkit.WebResourceError e) {
-                if (r.isForMainFrame()) yedegeGec(v);
+                if (r.isForMainFrame()) yedegeGec(v, e.getErrorCode() + " " + e.getDescription());
             }
         });
         web.setWebChromeClient(new WebChromeClient() {
@@ -166,10 +166,13 @@ public class MainActivity extends Activity {
     }
 
     /** GitHub sayfası açılmazsa bir kez Cloudflare kopyasına geçer; o da açılmazsa yeniden deneme ekranı gösterir. */
-    private void yedegeGec(WebView v) {
+    private int deneme = 0;
+    private void yedegeGec(WebView v, String neden) {
+        /* geçici aksaklıkta önce GitHub bir kez daha denenir */
+        if (!yedekte && deneme == 0) { deneme = 1; v.postDelayed(() -> v.loadUrl(ADRES), 1500); return; }
         if (!yedekte) {
             yedekte = true;
-            runOnUiThread(() -> { Toast.makeText(MainActivity.this, "GitHub açılmadı — yedek adresten (Cloudflare) açılıyor", Toast.LENGTH_LONG).show(); v.loadUrl(YEDEK); });
+            runOnUiThread(() -> { Toast.makeText(MainActivity.this, "GitHub açılmadı (" + neden + ") — yedek adresten (Cloudflare) açılıyor", Toast.LENGTH_LONG).show(); v.loadUrl(YEDEK); });
         } else {
             runOnUiThread(() -> v.loadDataWithBaseURL(null,
                 "<html><body style='font:18px sans-serif;background:#0f1213;color:#e8e8e8;padding:40px 24px;text-align:center'>"
