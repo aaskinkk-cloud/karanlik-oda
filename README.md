@@ -9,6 +9,14 @@
 - Verisi Chrome'dakinden **ayrıdır**: ilk açılışta Chrome'daki sürümden **Yedek indir**, uygulamada **Yedekten geri yükle**.
 - Kaynak `android/`; APK'yı GitHub Actions derler. İmza anahtarı (`android/okur.jks`) sabittir: yeni sürüm eskisinin üzerine kurulur, veriler silinmez.
 
+## 6.57 (28.10.2026) — Yeni koleksiyon: 🏕️ Kamp · çay & kahve
+- **Filtreler** sekmesinin en üstünde yeni şerit (Ahmet'in örnek fotoğraflarından):
+  - **Kamp · orman sofrası** — referans kamp sofrasının ışık ve renk dağılımı (fotoğrafa uyarlanır) + netlik, doku, vinyet; yeşil/mavi sönük, turuncu-kırmızı canlı.
+  - **Çay & kahve · kehribar** — çay/kahve kehribar-kırmızı parlar; arka plandaki yeşil, sarı ve mavi (ör. mavi kapak) güçlü biçimde söner ve koyulaşır; vinyet.
+  - **Sonbahar · altın ağaç** — referans fotoğraftan; sarı-turuncu yapraklar altına döner, diğer renkler sakinleşir.
+  - **Yosun · derin yeşil**, **Ateş başı** (sıcak, koyu, akşam), **Sisli kamp sabahı** (soluk, serin, pastel).
+- Eskiden zayıf kalan renk (HSL) değerleri bu filtrelerde gerçek karşılık verecek güçte ayarlandı; Yoğunluk %100 belirgin, %150 çok güçlü etki verir.
+
 ## 6.56 (26.10.2026) — Yeni filtre: 🌲 Orman hüznü
 - **Filtreler** sekmesinin üstünde kendi simgesiyle (çay fotoğrafından) **Orman hüznü** kartı: tek dokunuşla uygulanır, yeniden dokununca kaldırılır. Ayrıca **🍂 Sonbahar koleksiyonu** şeridinin başında "Orman hüznü · koyu" olarak durur.
 - Ne yapar: koyu, Instagram tarzı sonbahar tonu — derin gölgeler, bastırılmış parlak alanlar, sönük sarı-yeşil, orta tonlarda bordo-sıcak renk, netlik (+18), doku (+8), vinyet (−28).

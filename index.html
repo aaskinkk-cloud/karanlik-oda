@@ -41,7 +41,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>Karanlık Oda</title><meta name="surum" content="6.8" data-ad="Karanlık Oda" data-tarih="16.10.2026">
+<title>Karanlık Oda</title><meta name="surum" content="6.57" data-ad="Karanlık Oda" data-tarih="28.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -378,7 +378,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.56 · 26.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.57 · 26.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
@@ -2794,6 +2794,13 @@ const LOOKS=[
  {id:"lr_sehir",cat:"lr",n:"Şehir · sıcak sokak",style:{ref:{"q":[0.2501,0.2989,0.3229,0.3452,0.3636,0.3801,0.3985,0.4142,0.4351,0.4563,0.4794,0.5063,0.5342,0.5633,0.5891,0.6075,0.6218,0.6343,0.6482,0.6595,0.6716,0.6863,0.7016,0.7176,0.7323,0.7468,0.7689,0.7938,0.821,0.8505,0.8885,0.9761,1],"bands":[{"w":0.133,"ma":0.0216,"mb":0.0178,"sa":0.0219,"sb":0.0204},{"w":0.502,"ma":0.0216,"mb":0.0212,"sa":0.0262,"sb":0.0247},{"w":0.387,"ma":0.0129,"mb":0.016,"sa":0.0224,"sb":0.019}],"noise":1.01},light:65,color:85,grainAmt:35,fadeAmt:80},p:{"vibrance":6},h:{0:[0,6,0],1:[0,8,2]}},
  {id:"lr_aqua",cat:"lr",n:"Aqua & turuncu",style:{ref:{"q":[0.1946,0.2783,0.3188,0.3734,0.4312,0.4941,0.5429,0.5731,0.5991,0.6265,0.6489,0.664,0.6829,0.7019,0.7194,0.7369,0.7546,0.7702,0.7824,0.7947,0.8076,0.8179,0.8303,0.8397,0.8502,0.8598,0.8676,0.8761,0.8844,0.8946,0.9103,0.9269,0.9578],"bands":[{"w":0.078,"ma":0.0215,"mb":0.0202,"sa":0.0157,"sb":0.0142},{"w":0.308,"ma":0.0178,"mb":0.028,"sa":0.0555,"sb":0.0364},{"w":0.599,"ma":-0.0117,"mb":0.0091,"sa":0.0484,"sb":0.0317}],"noise":1.45},light:70,color:90,grainAmt:40,fadeAmt:80},p:{"vibrance":8,"clarity":6},h:{1:[0,14,4],4:[6,16,-6],0:[0,6,0]}},
  {id:"lr_elbise",cat:"lr",n:"Turuncu elbise · şeftali",style:{ref:{"q":[0.1502,0.4018,0.4923,0.554,0.5963,0.6272,0.6531,0.6763,0.6936,0.7097,0.7253,0.7407,0.7589,0.7813,0.8064,0.8285,0.8473,0.8612,0.8745,0.8876,0.9001,0.9112,0.9198,0.928,0.9363,0.9455,0.9544,0.9626,0.9711,0.9822,0.997,1,1],"bands":[{"w":0.026,"ma":0.0018,"mb":0.0176,"sa":0.0265,"sb":0.019},{"w":0.218,"ma":0.0415,"mb":0.0468,"sa":0.0481,"sb":0.0413},{"w":0.613,"ma":0.0177,"mb":0.0224,"sa":0.0404,"sb":0.0373}],"noise":3.34},light:65,color:88,grainAmt:50,fadeAmt:80},p:{"vibrance":4},h:{1:[0,12,2],0:[0,6,0],4:[0,-10,4]}},
+ /* 6.57: 🏕️ Kamp · çay & kahve koleksiyonu — Ahmet'in örneklerinden (kamp sofrası, altın ağaç, çay bardağı) */
+ {id:"kp_kamp",cat:"kamp",n:"Kamp · orman sofrası",style:{ref:{"q":[0,0.1433,0.1688,0.1867,0.202,0.216,0.2301,0.243,0.2565,0.2699,0.2838,0.2974,0.3105,0.3245,0.3376,0.3516,0.3654,0.3813,0.3969,0.4123,0.4286,0.4451,0.4629,0.481,0.5003,0.5223,0.5453,0.5705,0.5987,0.6315,0.6709,0.724,0.9814],"bands":[{"w":0.441,"ma":0.0077,"mb":0.0142,"sa":0.0239,"sb":0.0127},{"w":0.504,"ma":0.0219,"mb":0.0251,"sa":0.0317,"sb":0.0214},{"w":0.098,"ma":0.0223,"mb":0.0354,"sa":0.0332,"sb":0.0289}],"noise":8.13},light:85,color:90,grainAmt:25,fadeAmt:45},p:{clarity:22,texture:12,contrast:6,dehaze:6,vignette:-26},h:{0:[0,12,-4],1:[0,18,0],2:[-6,-20,-6],3:[-25,-40,-18],4:[0,-40,-15],5:[0,-45,-20]}},
+ {id:"kp_cay",cat:"kamp",n:"Çay & kahve · kehribar",p:{temp:16,tint:4,exposure:-4,contrast:18,clarity:16,texture:8,highlights:-18,shadows:-6,blacks:-14,vibrance:6,vignette:-40},h:{0:[4,25,-8],1:[-6,35,-6],2:[-20,-80,-30],3:[-20,-85,-35],4:[0,-90,-30],5:[0,-95,-40],6:[0,-60,-20]}},
+ {id:"kp_altin",cat:"kamp",n:"Sonbahar · altın ağaç",style:{ref:{"q":[0.0782,0.267,0.3206,0.3594,0.3925,0.4214,0.4411,0.4592,0.4759,0.4903,0.503,0.5143,0.5253,0.5361,0.5483,0.5608,0.5741,0.5879,0.6005,0.614,0.6244,0.6328,0.6399,0.6461,0.6527,0.6579,0.6642,0.6725,0.6866,0.7233,0.8233,0.8711,0.9227],"bands":[{"w":0.114,"ma":0.0059,"mb":0.0227,"sa":0.0178,"sb":0.0306},{"w":0.631,"ma":0.0085,"mb":0.0335,"sa":0.0166,"sb":0.0327},{"w":0.304,"ma":-0.0006,"mb":0.0089,"sa":0.0107,"sb":0.0312}],"noise":4.11},light:60,color:80,grainAmt:0,fadeAmt:40},p:{clarity:14,texture:10,vibrance:14},h:{1:[-4,40,6],2:[-12,45,4],3:[-40,-60,-10],4:[0,-50,0],5:[0,-45,-6]}},
+ {id:"kp_yosun",cat:"kamp",n:"Yosun · derin yeşil",p:{temp:-6,contrast:16,clarity:20,texture:12,highlights:-24,shadows:-10,blacks:-16,saturation:-6,vignette:-30},h:{1:[0,10,-4],2:[25,-30,-25],3:[10,20,-35],4:[-10,-40,-25],5:[0,-50,-20]}},
+ {id:"kp_ates",cat:"kamp",n:"Ateş başı",p:{temp:32,tint:6,exposure:-10,contrast:22,highlights:-32,shadows:-12,blacks:-18,clarity:12,vignette:-45,cbSr:14,cbSb:-10,cbHr:10,cbHb:-12},h:{0:[6,30,0],1:[0,40,8],2:[-15,-30,-15],3:[-40,-80,-35],4:[0,-80,-30],5:[0,-90,-40]}},
+ {id:"kp_sis",cat:"kamp",n:"Sisli kamp sabahı",p:{temp:-8,exposure:4,contrast:-22,fade:35,dehaze:-25,highlights:-10,shadows:18,saturation:-35,cbSb:12,cbHb:6},h:{1:[0,-10,6],3:[-10,-40,10],5:[0,-30,10]}},
  /* 5.7: Sonbahar koleksiyonu */
  /* 6.56: Orman hüznü — koyu sonbahar: referans ışık+renk dağılımı (fotoğrafa uyarlanır) + netlik, vinyet, sarı-yeşil kısma */
  {id:"au_huzun",cat:"son",n:"Orman hüznü · koyu",style:{ref:{"q":[0,0.1495,0.1747,0.1937,0.2094,0.2237,0.2379,0.2523,0.266,0.2802,0.2938,0.3077,0.3213,0.3347,0.3489,0.3631,0.3781,0.3927,0.4084,0.4242,0.4396,0.4563,0.4732,0.4919,0.5106,0.5315,0.5539,0.5791,0.6063,0.6388,0.6764,0.7305,0.9709],"bands":[{"w":0.422,"ma":0.0062,"mb":0.013,"sa":0.0202,"sb":0.0116},{"w":0.519,"ma":0.0173,"mb":0.0225,"sa":0.0262,"sb":0.0191},{"w":0.105,"ma":0.0167,"mb":0.0311,"sa":0.0265,"sb":0.0254}],"noise":4.18},light:90,color:90,grainAmt:30,fadeAmt:60},p:{clarity:18,texture:8,contrast:4,vignette:-28},h:{0:[0,6,0],1:[0,6,0],2:[-8,-45,-10],3:[-10,-45,-20],4:[0,-30,-10]}},
@@ -3111,6 +3118,8 @@ function renderPanel0(){
     const items=[mk(null,"Yok"),...LOOKS.filter(l=>!l.cat).map(l=>mk(l.id,l.n))]; strip.append(...items);
     if(s.look.id){ add(slider({id:"lookamt",label:"Yoğunluk",min:0,max:150,get:()=>s.look.amt,set:v=>{s.look.amt=v;},def:100,fmt:v=>v+"%"})); }
     if(s.look.id){ const lk=resolveLook(s.look); add(el("div",{class:"eff-list"},effectRow("look","Nerede uygulansın ("+(lk?lk.n:"filtre")+")"))); }
+    const stripK=el("div",{class:"presets"}); const itemsK=LOOKS.filter(l=>l.cat==="kamp").map(l=>mk(l.id,l.n)); stripK.append(...itemsK);
+    add(el("div",{class:"subhead"},"🏕️ Kamp · çay & kahve")); add(stripK);
     add(el("div",{class:"subhead"},"Mevsim ve hava")); add(strip);
     const stripS=el("div",{class:"presets"}); const itemsS=LOOKS.filter(l=>l.cat==="son").map(l=>mk(l.id,l.n)); stripS.append(...itemsS);
     add(el("div",{class:"subhead"},"🍂 Sonbahar koleksiyonu")); add(stripS);
@@ -3118,7 +3127,7 @@ function renderPanel0(){
     add(el("div",{class:"subhead"},"🌹 Çiçek · gül · meyve")); add(stripC);
     const strip2=el("div",{class:"presets"}); const items2=LOOKS.filter(l=>l.cat==="lr").map(l=>mk(l.id,l.n)); strip2.append(...items2);
     add(el("div",{class:"subhead"},"Lightroom tarzı")); add(strip2);
-    requestAnimationFrame(()=>drawLookThumbs([...items,...itemsS,...itemsC,...items2]));
+    requestAnimationFrame(()=>drawLookThumbs([...itemsK,...items,...itemsS,...itemsC,...items2]));
     add(el("div",{class:"subhead"},"Hazır ayarlarım"));
     add(presetList(true));
     add(el("div",{class:"btn-row"},
