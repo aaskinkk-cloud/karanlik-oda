@@ -80,6 +80,7 @@ public class MainActivity extends Activity {
             return ins;
         });
 
+        WebView.setWebContentsDebuggingEnabled(true); // 1.3: hata kaydı (bilgisayarda chrome://inspect)
         WebSettings s = web.getSettings();
         s.setJavaScriptEnabled(true);
         s.setDomStorageEnabled(true);
@@ -96,6 +97,11 @@ public class MainActivity extends Activity {
             @Override public void onPageFinished(WebView v, String url) { v.evaluateJavascript(INDIR_JS, null); kameraYaz(); tamEkran(); }
             @Override public void onReceivedHttpError(WebView v, android.webkit.WebResourceRequest r, android.webkit.WebResourceResponse res) {
                 if (r.isForMainFrame() && res != null && (res.getStatusCode() == 404 || res.getStatusCode() >= 500)) yedegeGec(v, "HTTP " + res.getStatusCode());
+            }
+            /* 1.3: sayfa işlemi çökerse uygulama kapanmasın, sayfa yeniden yüklensin */
+            @Override public boolean onRenderProcessGone(WebView v, android.webkit.RenderProcessGoneDetail d) {
+                runOnUiThread(() -> { Toast.makeText(MainActivity.this, "Sayfa çöktü, yeniden açılıyor", Toast.LENGTH_LONG).show(); recreate(); });
+                return true;
             }
             @Override public void onReceivedError(WebView v, android.webkit.WebResourceRequest r, android.webkit.WebResourceError e) {
                 if (r.isForMainFrame()) yedegeGec(v, e.getErrorCode() + " " + e.getDescription());
@@ -223,6 +229,14 @@ public class MainActivity extends Activity {
             } catch (Exception e) {
                 runOnUiThread(() -> Toast.makeText(MainActivity.this, "Kaydedilemedi: " + e.getMessage(), Toast.LENGTH_LONG).show());
             } finally { f.delete(); }
+        }
+        /** 1.3: aynı sayfayı Chrome'da açar (önizleme bu uygulamada çökerse kaçış yolu). */
+        @JavascriptInterface public void disAc(String url) {
+            runOnUiThread(() -> {
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url)); i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                try { i.setPackage("com.android.chrome"); startActivity(i); }
+                catch (Exception e) { try { i.setPackage(null); startActivity(i); } catch (Exception e2) { Toast.makeText(MainActivity.this, "Tarayıcı açılamadı", Toast.LENGTH_LONG).show(); } }
+            });
         }
         @JavascriptInterface public void renk(String c) { runOnUiThread(() -> renkUygula(c)); }
         @JavascriptInterface public void kaydet(String ad, String tur, String b64) {

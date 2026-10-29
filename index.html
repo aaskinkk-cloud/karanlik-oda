@@ -45,7 +45,7 @@
 (function(){ try{ var q=location.search;
   if(/[?&]tercih=gh/.test(q)){ localStorage.removeItem("ko:tercih"); history.replaceState(null,"",location.pathname+location.hash); return; }
   if(/github\.io$/.test(location.hostname)&&localStorage.getItem("ko:tercih")==="cf") location.replace("https://ahmet-uygulamalar.pages.dev/karanlik-oda/?kaynak=gh"+location.hash);
-}catch(e){} })();</script><meta name="surum" content="6.62" data-ad="Karanlık Oda" data-tarih="29.10.2026">
+}catch(e){} })();</script><meta name="surum" content="6.63" data-ad="Karanlık Oda" data-tarih="29.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -382,7 +382,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.62 · 29.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.63 · 29.10.2026</span></p>
     <p class="kaynak-et" id="kaynakEt"></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
@@ -2957,7 +2957,10 @@ function kucukKaynak(src,M){ if(!src||Math.max(src.width,src.height)<=M) return 
 function glMesaj(on){ let m=$("#glMesaj"); if(!on){ if(m) m.remove(); return; } if(m) return; m=document.createElement("div"); m.id="glMesaj";
   m.style.cssText="position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;background:var(--bg,#111);color:var(--text,#eee);z-index:5;font-size:15px;line-height:1.5";
   m.innerHTML='<div><b>Telefonun grafik birimi önizlemeyi durdurdu</b><br><span style="opacity:.75">Düzenlemen kaybolmadı · hafif moda geçildi.</span><br><small style="opacity:.55">Son işlem: '+(_glAdim||"?")+'</small><br><button class="btn" style="margin-top:12px" type="button">Yeniden dene</button></div>';
-  m.querySelector("button").onclick=()=>{ _glYen=0; if(!glYenile("el")) location.reload(); }; const st=$("#stage"); if(st) st.appendChild(m); }
+  m.querySelector("button").onclick=()=>{ _glYen=0; if(!glYenile("el")) location.reload(); };
+  if(window.OkurAndroid&&OkurAndroid.disAc){ const c=document.createElement("button"); c.className="btn"; c.type="button"; c.style.cssText="margin:12px 0 0 8px;background:var(--accent,#f0973a);color:#111"; c.textContent="Chrome'da aç";
+    c.onclick=()=>{ try{ commit("Chrome'a geçmeden önce"); }catch(e){} OkurAndroid.disAc(location.origin+location.pathname); }; m.querySelector("button").after(c);
+    const n=document.createElement("small"); n.style.cssText="display:block;opacity:.55;margin-top:8px"; n.textContent="Not: Chrome'da kütüphane ayrı tutulur; fotoğrafı orada yeniden seçmen gerekir."; m.firstChild.appendChild(n); } const st=$("#stage"); if(st) st.appendChild(m); }
 function glBagla(cv){ if(!cv||cv._glB) return; cv._glB=1;
   cv.addEventListener("webglcontextlost",e=>{ e.preventDefault(); _glDustu=true; try{ localStorage.setItem("ko:hafif","1"); localStorage.setItem("ko:glSon",_glAdim+" · "+new Date().toLocaleString("tr-TR")); }catch(_){} _thumbGen++; glMesaj(true); setTimeout(()=>{ if(_glDustu) glYenile("kayıp"); },3000); },false);
   cv.addEventListener("webglcontextrestored",()=>{ _glYen=0; glYenile("geri"); },false); }

@@ -1,5 +1,13 @@
 # Karanlık Oda
 
+## Android uygulaması (APK) — 1.3 (29.10.2026)
+- Önizleme uygulama içinde çökerse durma ekranında **"Chrome'da aç"** düğmesi (aynı sayfa Chrome'da açılır; kütüphane orada ayrı).
+- Sayfa işlemi çökerse uygulama kapanmaz, kendini yeniden açar. Hata kaydı açık (bilgisayarda chrome://inspect ile görülebilir). largeHeap açık.
+- Tespit: grafik çökmesi GitHub/Cloudflare farkı değil; aynı sürüm Chrome'da çalışıyor, uygulama içi tarayıcıda (WebView) çöküyor.
+
+## 6.63 (29.10.2026)
+- Durma ekranına (yalnız Android uygulamasında) "Chrome'da aç" düğmesi.
+
 ## Android uygulaması (APK) — 1.1 (28.10.2026)
 **İndir:** https://github.com/aaskinkk-cloud/karanlik-oda/releases/download/android/karanlik-oda.apk
 

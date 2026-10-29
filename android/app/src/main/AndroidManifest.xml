@@ -7,7 +7,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Karanlık Oda"
         android:theme="@style/Okur"
-        android:hardwareAccelerated="true">
+        android:hardwareAccelerated="true"
+        android:largeHeap="true">
         <activity
             android:name=".MainActivity"
             android:exported="true"
