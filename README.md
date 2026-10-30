@@ -5,6 +5,9 @@
 - Sayfa işlemi çökerse uygulama kapanmaz, kendini yeniden açar. Hata kaydı açık (bilgisayarda chrome://inspect ile görülebilir). largeHeap açık.
 - Tespit: grafik çökmesi GitHub/Cloudflare farkı değil; aynı sürüm Chrome'da çalışıyor, uygulama içi tarayıcıda (WebView) çöküyor.
 
+## 6.64 (31.10.2026)
+- Yeni Lightroom tarzı filtre: **Mistik oda · amber sinema** (Filtreler › Lightroom tarzı). Referans fotoğrafın ışık dağılımı, sıcak amber/pembe tonları ve loş atmosferi stil aktarımı + HSL ile ayarlandı (yeşil/mavi soluk, turuncu-kırmızı derin, kenar kararması, hafif tanecik). Yaklaşık bir taklittir; kare başına yoğunluğu "Stil gücü"yle ayarla.
+
 ## 6.63 (29.10.2026)
 - Durma ekranına (yalnız Android uygulamasında) "Chrome'da aç" düğmesi.
 
