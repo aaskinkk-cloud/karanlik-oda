@@ -44,8 +44,11 @@
 <title>Karanlık Oda</title><script>/* 6.62: GitHub'da "Cloudflare'e geç" seçildiyse açılışta oraya yönlen (GitHub'a geç ile kalkar) */
 (function(){ try{ var q=location.search;
   if(/[?&]tercih=gh/.test(q)){ localStorage.removeItem("ko:tercih"); history.replaceState(null,"",location.pathname+location.hash); return; }
-  if(/github\.io$/.test(location.hostname)&&localStorage.getItem("ko:tercih")==="cf") location.replace("https://ahmet-uygulamalar.pages.dev/karanlik-oda/?kaynak=gh"+location.hash);
-}catch(e){} })();</script><meta name="surum" content="6.64" data-ad="Karanlık Oda" data-tarih="29.10.2026">
+  /* 6.65: Cloudflare'e yalnız ulaşılabiliyorsa yönlen; ulaşılamıyorsa tercih silinir, GitHub'da kalınır (hata sayfasında takılma yok) */
+  if(/github\.io$/.test(location.hostname)&&localStorage.getItem("ko:tercih")==="cf"){ var CF="https://ahmet-uygulamalar.pages.dev/karanlik-oda/", bitti=0;
+    var zt=setTimeout(function(){ if(!bitti){ bitti=1; try{localStorage.removeItem("ko:tercih")}catch(_){} } },3500);
+    fetch(CF+"manifest.webmanifest",{mode:"no-cors",cache:"no-store"}).then(function(){ if(!bitti){ bitti=1; clearTimeout(zt); location.replace(CF+"?kaynak=gh"+location.hash); } }).catch(function(){ if(!bitti){ bitti=1; clearTimeout(zt); try{localStorage.removeItem("ko:tercih")}catch(_){} } }); }
+}catch(e){} })();</script><meta name="surum" content="6.65" data-ad="Karanlık Oda" data-tarih="29.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -382,7 +385,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.64 · 29.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.65 · 29.10.2026</span></p>
     <p class="kaynak-et" id="kaynakEt"></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
@@ -10435,8 +10438,10 @@ async function odakNoktasi(p){ const b=busy("Odak alanı bulunuyor…"); await s
   e.innerHTML='<i style="background:'+K[2]+'">'+K[1]+'</i>Kaynak: <b>'+harf+'</b>'; e.title=location.origin;
   const gh=/github\.io$/.test(h), cf=/pages\.dev$/.test(h); if(!gh&&!cf) return;
   const d=document.createElement("button"); d.type="button"; d.className="kaynak-gec"; d.textContent=gh?"Cloudflare'e geç ›":"GitHub'a geç ›";
-  d.onclick=()=>{ if(!confirm("Diğer adrese geçilsin mi?\n\nNot: Fotoğraf kütüphanesi ve hazır ayarların her adreste ayrı tutulur; geçince orada kendi kayıtların görünür. Hiçbir şey silinmez.")) return;
-    try{ if(gh) localStorage.setItem("ko:tercih","cf"); }catch(_){}
+  d.onclick=async()=>{ if(!confirm("Diğer adrese geçilsin mi?\n\nNot: Fotoğraf kütüphanesi ve hazır ayarların her adreste ayrı tutulur; geçince orada kendi kayıtların görünür. Hiçbir şey silinmez.")) return;
+    if(gh){ d.disabled=true; const eski=d.textContent; d.textContent="Deneniyor…"; let var_=false; try{ await Promise.race([fetch("https://ahmet-uygulamalar.pages.dev/karanlik-oda/manifest.webmanifest",{mode:"no-cors",cache:"no-store"}).then(()=>{var_=true}), new Promise(r=>setTimeout(r,4000))]); }catch(_){}
+      d.disabled=false; d.textContent=eski; if(!var_){ alert("Cloudflare adresine bu cihazdan ulaşılamıyor; GitHub'da kalındı."); return; }
+      try{ localStorage.setItem("ko:tercih","cf"); }catch(_){} }
     location.href=gh?"https://ahmet-uygulamalar.pages.dev/karanlik-oda/?kaynak=gh":"https://aaskinkk-cloud.github.io/karanlik-oda/?tercih=gh"; };
   e.after(d); })();</script>
 </body>

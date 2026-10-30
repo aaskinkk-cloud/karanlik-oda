@@ -5,6 +5,9 @@
 - Sayfa işlemi çökerse uygulama kapanmaz, kendini yeniden açar. Hata kaydı açık (bilgisayarda chrome://inspect ile görülebilir). largeHeap açık.
 - Tespit: grafik çökmesi GitHub/Cloudflare farkı değil; aynı sürüm Chrome'da çalışıyor, uygulama içi tarayıcıda (WebView) çöküyor.
 
+## 6.65 (31.10.2026)
+- **GitHub ↔ Cloudflare geçişi güvenli:** GitHub adresi, Cloudflare'e yönlenmeden önce oraya ulaşılabildiğini yoklar; ulaşılamıyorsa kayıtlı "Cloudflare" tercihini siler ve GitHub'da kalır (Android uygulamada "Web sayfası mevcut değil · ERR_FAILED" ekranında takılma biter). "Cloudflare'e geç" düğmesi de önce yoklar; ulaşılamıyorsa geçmez ve uyarır.
+
 ## 6.64 (31.10.2026)
 - Yeni Lightroom tarzı filtre: **Mistik oda · amber sinema** (Filtreler › Lightroom tarzı). Referans fotoğrafın ışık dağılımı, sıcak amber/pembe tonları ve loş atmosferi stil aktarımı + HSL ile ayarlandı (yeşil/mavi soluk, turuncu-kırmızı derin, kenar kararması, hafif tanecik). Yaklaşık bir taklittir; kare başına yoğunluğu "Stil gücü"yle ayarla.
 
