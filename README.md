@@ -5,6 +5,12 @@
 - Sayfa işlemi çökerse uygulama kapanmaz, kendini yeniden açar. Hata kaydı açık (bilgisayarda chrome://inspect ile görülebilir). largeHeap açık.
 - Tespit: grafik çökmesi GitHub/Cloudflare farkı değil; aynı sürüm Chrome'da çalışıyor, uygulama içi tarayıcıda (WebView) çöküyor.
 
+## 6.66 (31.10.2026)
+- **Arayüz yenileme, 1. aşama (yalnız görünüm):** editörün alt çubuğundaki 17 sekme 5 kategoriye ayrıldı: **Temel** (Otomatik, Işık, Detay, Kırp) · **Renk** (Renk, HSL, Eğriler) · **Filtre** (Filtreler, Selfi, Efektler) · **Pro** (Rötuş, Fırça, Katman, HDR, Yazı, Haber) · **Kaydet** (Geçmiş, Kaydet). Bir kategoriye dokununca ilk aracı açılır; düzenlenmiş araçlarda nokta göstergesi korunur.
+- Yuvarlak kartlar, yumuşak gölgeler, hap biçimli düğmeler, yuvarlak alt panel (açık/koyu tema ikisinde).
+- Hiçbir kimlik, işlev, algoritma veya veri yapısı değişmedi; sekmeler gizlenip gösterilir, taşınmaz. Geri al/ileri al/orijinal/karşılaştırma/dışa aktarma aynen çalışır.
+- Henüz yok (sonraki aşamalar): ana ekranda büyük önizlemeli kartlar, filtre küçük önizlemeleri kategorilere göre, "Favori filtre" listesi. Uygulamada olmayan özellikler (nesne silme, çok katmanlı maske) gösterilmiyor.
+
 ## 6.65 (31.10.2026)
 - **GitHub ↔ Cloudflare geçişi güvenli:** GitHub adresi, Cloudflare'e yönlenmeden önce oraya ulaşılabildiğini yoklar; ulaşılamıyorsa kayıtlı "Cloudflare" tercihini siler ve GitHub'da kalır (Android uygulamada "Web sayfası mevcut değil · ERR_FAILED" ekranında takılma biter). "Cloudflare'e geç" düğmesi de önce yoklar; ulaşılamıyorsa geçmez ve uyarır.
 

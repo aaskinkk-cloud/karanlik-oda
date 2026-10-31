@@ -48,7 +48,7 @@
   if(/github\.io$/.test(location.hostname)&&localStorage.getItem("ko:tercih")==="cf"){ var CF="https://ahmet-uygulamalar.pages.dev/karanlik-oda/", bitti=0;
     var zt=setTimeout(function(){ if(!bitti){ bitti=1; try{localStorage.removeItem("ko:tercih")}catch(_){} } },3500);
     fetch(CF+"manifest.webmanifest",{mode:"no-cors",cache:"no-store"}).then(function(){ if(!bitti){ bitti=1; clearTimeout(zt); location.replace(CF+"?kaynak=gh"+location.hash); } }).catch(function(){ if(!bitti){ bitti=1; clearTimeout(zt); try{localStorage.removeItem("ko:tercih")}catch(_){} } }); }
-}catch(e){} })();</script><meta name="surum" content="6.65" data-ad="Karanlık Oda" data-tarih="29.10.2026">
+}catch(e){} })();</script><meta name="surum" content="6.66" data-ad="Karanlık Oda" data-tarih="29.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -385,7 +385,7 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.65 · 29.10.2026</span></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.66 · 31.10.2026</span></p>
     <p class="kaynak-et" id="kaynakEt"></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
@@ -10444,5 +10444,69 @@ async function odakNoktasi(p){ const b=busy("Odak alanı bulunuyor…"); await s
       try{ localStorage.setItem("ko:tercih","cf"); }catch(_){} }
     location.href=gh?"https://ahmet-uygulamalar.pages.dev/karanlik-oda/?kaynak=gh":"https://aaskinkk-cloud.github.io/karanlik-oda/?tercih=gh"; };
   e.after(d); })();</script>
+<style id="ko66">
+/* 6.66 · ARAYÜZ YENİLEME (yalnız görünüm): tasarım değişkenleri, kategorili araç çubuğu, yuvarlak kartlar.
+   Hiçbir kimlik, işlev veya algoritma değişmedi. */
+:root{--r-kart:16px;--r-orta:12px;--gol:0 1px 2px rgba(20,24,27,.06),0 8px 24px -12px rgba(20,24,27,.18)}
+:root[data-theme="dark"]{--gol:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--gol:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7)}}
+/* ana ekran */
+.act{border-radius:var(--r-kart);box-shadow:var(--gol);border-color:transparent}
+.act.primary{box-shadow:0 10px 26px -12px var(--accent)}
+.seg{border-radius:999px}
+.seg button{border-radius:999px}
+#libBody>*{border-radius:var(--r-kart)}
+#libBody img,#libBody canvas{border-radius:var(--r-orta)}
+/* düzenleyici */
+#editor .topbar{border-bottom:0;box-shadow:0 1px 0 var(--line)}
+#editor .save-btn{border-radius:999px}
+#editor .panel{border-radius:20px 20px 0 0;border-top:0;box-shadow:0 -8px 24px -14px rgba(0,0,0,.35)}
+#editor .panel-in{gap:14px}
+#editor .panel-in .btn,#editor .panel-in .chip,#editor .panel-in button.chip{border-radius:999px}
+#editor .panel-in .pz{border-radius:var(--r-orta)}
+#editor input[type=range]{height:30px}
+/* kategori çubuğu */
+#tabsWrap{grid-area:tabs;display:flex;flex-direction:column;background:var(--surface);border-top:1px solid var(--line);min-width:0}
+#tabsWrap #tabs{border-top:0;grid-area:auto;padding-top:2px}
+#grpBar{display:flex;gap:4px;padding:6px 10px 0;justify-content:center}
+#grpBar button{flex:1 1 0;max-width:110px;border:0;background:var(--surface-2);color:var(--muted);font:600 12px var(--f-ui);padding:6px 4px;border-radius:999px;cursor:pointer;position:relative}
+#grpBar button.on{background:var(--accent);color:var(--accent-ink)}
+#grpBar button i{position:absolute;top:4px;right:8px;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+#grpBar button.on i{background:var(--accent-ink)}
+#tabsWrap #tabs[data-g] .tab:not([data-g="x"]){}
+#tabsWrap #tabs .tab.gizli{display:none}
+#tabsWrap #tabs{justify-content:center}
+#tabsWrap #tabs .tab{flex:1 0 62px;max-width:96px}
+@media (min-width:900px){#tabsWrap{border-left:1px solid var(--line)}#tabsWrap #tabs{border-left:0}}
+body.ed-tam #grpBar,body.ed-klv #tabsWrap{display:none}
+body.ed-tam:not(.ed-tam-panel) #tabsWrap{display:none}
+body.ed-tam.ed-tam-panel #tabsWrap{display:contents}
+</style>
+<script>
+/* 6.66 · kategorili araç çubuğu: mevcut sekme düğmelerini gizleyip gösterir, taşımaz; tıklamalar eskisi gibi setTab'a gider */
+(function(){
+ const GRUP=[["temel","Temel",["auto","light","crop","detail"]],["renk","Renk",["color","hsl","curves"]],["filtre","Filtre",["filters","selfi","fx"]],["pro","Pro",["retouch","brush","overlay","hdr","text","haber"]],["kaydet","Kaydet",["history","export"]]];
+ const bul=t=>{ const g=GRUP.find(x=>x[2].includes(t)); return g?g[0]:"pro"; };
+ let acik="temel", nav=null, bar=null, sonTab=null;
+ function kur(){ nav=document.getElementById("tabs"); if(!nav||document.getElementById("tabsWrap")) return !!nav;
+  const w=document.createElement("div"); w.id="tabsWrap"; bar=document.createElement("div"); bar.id="grpBar"; bar.setAttribute("role","tablist");
+  nav.parentNode.insertBefore(w,nav); w.append(bar,nav);
+  bar.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; acik=b.dataset.g; uygula();
+    const ilk=nav.querySelector(".tab:not(.gizli)"); const cur=nav.querySelector(".tab.on"); if(ilk&&(!cur||cur.classList.contains("gizli"))) ilk.click(); });
+  return true; }
+ let mesgul=false;
+ function uygula(){ if(!nav||mesgul) return; mesgul=true;
+  const tabs=[...nav.querySelectorAll(".tab")]; const on=nav.querySelector(".tab.on"); if(on&&on.dataset.t!==sonTab){ sonTab=on.dataset.t; acik=bul(sonTab); }
+  tabs.forEach(b=>b.classList.toggle("gizli",bul(b.dataset.t)!==acik));
+  bar.innerHTML=""; GRUP.forEach(([k,ad,ids])=>{ const var_=tabs.some(b=>bul(b.dataset.t)===k); if(!var_) return;
+   const d=tabs.some(b=>bul(b.dataset.t)===k&&b.querySelector(".dot")); const bt=document.createElement("button"); bt.type="button"; bt.dataset.g=k; bt.textContent=ad; bt.className=k===acik?"on":""; bt.setAttribute("role","tab"); bt.setAttribute("aria-selected",k===acik);
+   if(d){ bt.append(document.createElement("i")); } bar.append(bt); });
+  mesgul=false; }
+ function basla(){ if(!kur()){ setTimeout(basla,300); return; }
+  let t=0; new MutationObserver(()=>{ clearTimeout(t); t=setTimeout(uygula,30); }).observe(nav,{childList:true,subtree:true,attributes:true,attributeFilter:["class"]});
+  uygula(); }
+ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",basla); else basla();
+})();
+</script>
 </body>
 </html>
