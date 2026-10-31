@@ -5,6 +5,10 @@
 - Sayfa işlemi çökerse uygulama kapanmaz, kendini yeniden açar. Hata kaydı açık (bilgisayarda chrome://inspect ile görülebilir). largeHeap açık.
 - Tespit: grafik çökmesi GitHub/Cloudflare farkı değil; aynı sürüm Chrome'da çalışıyor, uygulama içi tarayıcıda (WebView) çöküyor.
 
+## 6.67 (31.10.2026)
+- **Ana ekran gruplandı:** menü bölümleri / basit mod / kaynak tek bir kapalı **⚙ Ayarlar** kutusunda; kartlar iki başlık altında: **Fotoğraf** (Galeriden seç, Kamera, Toplu düzenle) ve **Haber · Blog · Logo** (Kabataş Haber, Bloğum, Hızlı haber, Logolar).
+- **Akıllı bulanıklaştırma** panelinde "1 · Seçim", "2 · Nerede bulanıklaşsın", "3 · Bulanıklık", "4 · Fırçayla düzelt" başlıkları artık diğer paneller gibi **açılır-kapanır akordeon** (Menü bölümleri ayarına uyar).
+
 ## 6.66 (31.10.2026)
 - **Arayüz yenileme, 1. aşama (yalnız görünüm):** editörün alt çubuğundaki 17 sekme 5 kategoriye ayrıldı: **Temel** (Otomatik, Işık, Detay, Kırp) · **Renk** (Renk, HSL, Eğriler) · **Filtre** (Filtreler, Selfi, Efektler) · **Pro** (Rötuş, Fırça, Katman, HDR, Yazı, Haber) · **Kaydet** (Geçmiş, Kaydet). Bir kategoriye dokununca ilk aracı açılır; düzenlenmiş araçlarda nokta göstergesi korunur.
 - Yuvarlak kartlar, yumuşak gölgeler, hap biçimli düğmeler, yuvarlak alt panel (açık/koyu tema ikisinde).

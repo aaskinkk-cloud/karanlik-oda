@@ -48,7 +48,7 @@
   if(/github\.io$/.test(location.hostname)&&localStorage.getItem("ko:tercih")==="cf"){ var CF="https://ahmet-uygulamalar.pages.dev/karanlik-oda/", bitti=0;
     var zt=setTimeout(function(){ if(!bitti){ bitti=1; try{localStorage.removeItem("ko:tercih")}catch(_){} } },3500);
     fetch(CF+"manifest.webmanifest",{mode:"no-cors",cache:"no-store"}).then(function(){ if(!bitti){ bitti=1; clearTimeout(zt); location.replace(CF+"?kaynak=gh"+location.hash); } }).catch(function(){ if(!bitti){ bitti=1; clearTimeout(zt); try{localStorage.removeItem("ko:tercih")}catch(_){} } }); }
-}catch(e){} })();</script><meta name="surum" content="6.66" data-ad="Karanlık Oda" data-tarih="29.10.2026">
+}catch(e){} })();</script><meta name="surum" content="6.67" data-ad="Karanlık Oda" data-tarih="29.10.2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -385,12 +385,14 @@ body.ed-tam.ed-tam-panel #editor .panel{display:block;position:fixed;right:10px;
   <div class="home-top">
    <div>
     <h1 class="wordmark"><span class="lamp"></span>Karanlık Oda</h1>
-    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.66 · 31.10.2026</span></p>
-    <p class="kaynak-et" id="kaynakEt"></p>
+    <p class="sub">Fotoğraf düzenleyici · tüm işlemler cihazında yapılır · <span title="Logolu imza, HEIC/HEIF, TIFF, RAW, büyük fotoğraf desteği">sürüm 6.67 · 31.10.2026</span></p>
    </div>
    <button class="icon-btn" id="themeBtn" aria-label="Tema değiştir"><svg class="icon"><use href="#i-moon"/></svg></button>
   </div>
-  <div id="homeBmod"></div>
+  <details class="ayar-kutu" id="ayarKutu"><summary>⚙ Ayarlar <small>menü bölümleri · basit mod · kaynak</small></summary>
+   <p class="kaynak-et" id="kaynakEt"></p>
+   <div id="homeBmod"></div>
+  </details>
   <div class="actions">
    <label class="act primary"><svg class="icon"><use href="#i-img"/></svg><div><strong>Galeriden seç</strong><br><span>Birden fazla seçersen toplu düzenleme açılır</span></div><input type="file" id="pickGallery" accept="image/*,.heic,.heif,.avif,.tif,.tiff,.dng,.cr2,.cr3,.nef,.arw,.orf,.rw2,.raf" multiple></label>
    <label class="act"><svg class="icon"><use href="#i-cam"/></svg><div><strong>Kamera</strong><br><span>Çek ve doğrudan düzenle</span></div><input type="file" id="pickCamera" accept="image/*" capture="environment"></label>
@@ -4585,7 +4587,7 @@ function bulanikPanel(add){ const s=ED.state, B=s.bb;
     el("button",{class:"btn"+(ED.tool==="bbp"&&B&&B.alan==="firca"?" pri":""),onclick:()=>{ const b=bbAl(); b.on=true; b.alan="firca"; if(!b.amt||b.amt<40) b.amt=60; ED.tool="bbp"; ED.ekBrush.mode="paint"; commit("Bulanıklaştırma fırçası"); rebuildBase(true); renderPanel(); toast("Bulanıklaşmasını istediğin yeri boya · Sil ile geri al"); }},ico("i-brush"),"Bulanıklaştırma fırçası"),
     el("button",{class:"btn"+(ED.tool==="odak"?" pri":""),onclick:()=>{ ED.tool=ED.tool==="odak"?null:"odak"; renderPanel(); if(ED.tool) toast("Net kalacak nesneye dokun: alan otomatik bulunur, çevresi uzaklığa göre bulanıklaşır."); }},ico("i-auto"),"Dokunarak odak seç")));
   /* 1 · seçim */
-  add(el("div",{class:"adim"},"1 · Seçim"));
+  add(el("div",{class:"subhead"},"1 · Seçim"));
   add(el("div",{class:"btn-row"},
     el("button",{class:"btn pri",onclick:()=>{ bbAl().on=true; ozneSec(null); }},ico("i-auto"),s.sel?"Ana nesneyi yeniden algıla":"Ana nesneyi otomatik seç"),
     el("button",{class:"btn"+(ED.tool==="obj"?" pri":""),onclick:()=>{ ED.tool=ED.tool==="obj"?null:"obj"; renderPanel(); if(ED.tool) toast("Seçmek istediğin nesnenin çevresine bir çerçeve sürükle."); }},"Nesneyi çerçevele"),
@@ -4599,7 +4601,7 @@ function bulanikPanel(add){ const s=ED.state, B=s.bb;
     add(el("label",{class:"toggle"},"Seçim sınırını karınca çizgisiyle göster",el("input",{type:"checkbox",checked:ED.antsOn,onchange:e=>{ ED.antsOn=e.target.checked; ekCiz(); }}))); }
   else add(el("p",{class:"note",style:"margin:0"},"Önce bulanık kalmayacak ana nesneyi seç. Otomatik seçim cihaz üstünde, renk, netlik ve yüz ipuçlarıyla yapılır; sınırları fırçayla düzeltebilirsin."));
   /* 2 · nerede */
-  add(el("div",{class:"adim"},"2 · Nerede bulanıklaşsın"));
+  add(el("div",{class:"subhead"},"2 · Nerede bulanıklaşsın"));
   const alan=B?B.alan:"arka";
   add(chips(BB_ALAN,alan,v=>{ const b=bbAl(); b.alan=v; b.on=true; if(v==="yuz"&&!(b.faces||[]).length){ yuzlerBul(); return; } if(v==="ust"||v==="tilt") ED.tool=v==="ust"?"ust":null; else if(ED.tool==="ust") ED.tool=null;
     if((v==="arka"||v==="ozne")&&!s.sel){ ozneSec(null); } commit("Bulanıklık alanı: "+BB_ALAN.find(x=>x[0]===v)[1]); rebuildBase(true); renderPanel(); requestRender(); }));
@@ -4622,7 +4624,7 @@ function bulanikPanel(add){ const s=ED.state, B=s.bb;
       el("button",{class:"chip",onclick:yuzlerBul},"Yeniden bul")));
     add(el("p",{class:"note",style:"margin:0"},F.length?"Her yüz ayrı seçilir; dokunarak aç/kapat. Bulunamayan bir yüzü \"Nesneyi çerçevele\" ile seçip \"Seçili nesne\"yi bulanıklaştırabilirsin.":"Yüz bulunamadı.")); }
   /* 3 · bulanıklık */
-  add(el("div",{class:"adim"},"3 · Bulanıklık"));
+  add(el("div",{class:"subhead"},"3 · Bulanıklık"));
   add(el("div",{class:"chips bb-hazir"},BB_HAZIR.map(([k,ad,v])=>el("button",{class:"chip"+(B&&B.preset===k&&B.on?" on":""),onclick:()=>{ const b=bbAl(); Object.assign(b,v,{preset:k,on:true}); if(v.alan) b.alan=v.alan; else if(b.alan==="tilt") b.alan="arka";
       if((b.alan==="arka"||b.alan==="ozne")&&!s.sel){ ozneSec(null,"Hazır bulanıklık: "+ad); return; } commit("Hazır bulanıklık: "+ad); rebuildBase(true); renderPanel(); requestRender(); }},ad))));
   if(B){ const amtRow=slider({id:"bbamt",label:"Bulanıklık miktarı",min:0,max:100,get:()=>B.amt,set:v=>{ B.amt=v; B.on=true; bbYenile(); },def:55,fmt:v=>v+"%"});
@@ -4632,7 +4634,7 @@ function bulanikPanel(add){ const s=ED.state, B=s.bb;
     add(slider({id:"bbde",label:"Derinlik (uzaklaştıkça artar)",min:0,max:100,get:()=>B.depth,set:v=>{ B.depth=v; bbYenile(); },def:85,fmt:v=>v+"%"}));
     add(chips([["lens","Lens (bokeh)"],["gauss","Gaussian"],["motion","Hareket"],["zoom","Zoom"],["glow","Yumuşak ışıma"]],B.kind,v=>{ B.kind=v; commit("Bulanıklık türü"); rebuildBase(true); renderPanel(); }));
     /* 4 · fırça */
-    add(el("div",{class:"adim"},"4 · Fırçayla düzelt"));
+    add(el("div",{class:"subhead"},"4 · Fırçayla düzelt"));
     add(el("div",{class:"chips"},
       el("button",{class:"chip"+(ED.tool==="bbp"&&ED.ekBrush.mode==="paint"?" on":""),onclick:()=>{ const a=ED.tool==="bbp"&&ED.ekBrush.mode==="paint"; ED.tool=a?null:"bbp"; ED.ekBrush.mode="paint"; renderPanel(); }},"Bulanıklaştır"),
       el("button",{class:"chip"+(ED.tool==="bbp"&&ED.ekBrush.mode==="erase"?" on":""),onclick:()=>{ const a=ED.tool==="bbp"&&ED.ekBrush.mode==="erase"; ED.tool=a?null:"bbp"; ED.ekBrush.mode="erase"; renderPanel(); }},"Sil (net bırak)"),
@@ -10481,6 +10483,17 @@ async function odakNoktasi(p){ const b=busy("Odak alanı bulunuyor…"); await s
 body.ed-tam #grpBar,body.ed-klv #tabsWrap{display:none}
 body.ed-tam:not(.ed-tam-panel) #tabsWrap{display:none}
 body.ed-tam.ed-tam-panel #tabsWrap{display:contents}
+/* 6.67 · ana ekran gruplama */
+.ayar-kutu{border:1px solid var(--line);border-radius:var(--r-kart,16px);background:var(--surface);margin:0;overflow:hidden}
+.ayar-kutu>summary{list-style:none;cursor:pointer;padding:11px 14px;font:600 13px var(--f-ui);display:flex;align-items:center;gap:8px;-webkit-tap-highlight-color:transparent}
+.ayar-kutu>summary::-webkit-details-marker{display:none}
+.ayar-kutu>summary small{color:var(--muted);font-weight:400;font-size:11px;margin-left:auto;text-align:right}
+.ayar-kutu>summary::after{content:"";flex:none;width:7px;height:7px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translateY(-2px);transition:transform .15s}
+.ayar-kutu[open]>summary::after{transform:rotate(-135deg)}
+.ayar-kutu>*:not(summary){margin:0 14px 12px}
+.ayar-kutu .bmod{margin-bottom:8px}
+.grp-et{font:700 11px var(--f-ui);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:4px 2px 0}
+.actions.act-haber{margin-bottom:6px}
 </style>
 <script>
 /* 6.66 · kategorili araç çubuğu: mevcut sekme düğmelerini gizleyip gösterir, taşımaz; tıklamalar eskisi gibi setTab'a gider */
@@ -10507,6 +10520,14 @@ body.ed-tam.ed-tam-panel #tabsWrap{display:contents}
   uygula(); }
  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",basla); else basla();
 })();
+</script>
+<script>
+/* 6.67 · ana ekran: kartlar iki gruba ayrılır (Fotoğraf / Haber · Blog · Logo); düğmeler taşınır, işleyicileri korunur */
+(function(){ function grupla(){ const a=document.querySelector("#home .actions"); if(!a||a.dataset.g) return;
+  const ek=["khAcBtn","blAcBtn","hzAcBtn","lgAcBtn"].map(i=>document.getElementById(i)).filter(Boolean); if(!ek.length) return false; a.dataset.g="1";
+  const h1=document.createElement("div"); h1.className="grp-et"; h1.textContent="Fotoğraf"; a.before(h1);
+  const h2=document.createElement("div"); h2.className="grp-et"; h2.textContent="Haber · Blog · Logo"; const b=document.createElement("div"); b.className="actions act-haber"; ek.forEach(x=>b.append(x)); a.after(h2,b); return true; }
+ let n=0; const t=setInterval(()=>{ if(grupla()!==false||++n>40) clearInterval(t); },250); })();
 </script>
 </body>
 </html>
