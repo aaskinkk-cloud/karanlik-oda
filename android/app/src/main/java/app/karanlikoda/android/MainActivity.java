@@ -3,53 +3,64 @@ package app.karanlikoda.android;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
-import android.util.Base64;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 import android.view.WindowManager;
-import android.webkit.JavascriptInterface;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.Toast;
+
+import org.json.JSONObject;
+import org.mozilla.geckoview.AllowOrDeny;
+import org.mozilla.geckoview.GeckoResult;
+import org.mozilla.geckoview.GeckoRuntime;
+import org.mozilla.geckoview.GeckoRuntimeSettings;
+import org.mozilla.geckoview.GeckoSession;
+import org.mozilla.geckoview.GeckoSessionSettings;
+import org.mozilla.geckoview.GeckoView;
+import org.mozilla.geckoview.WebExtension;
+import org.mozilla.geckoview.WebResponse;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLDecoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * Karanlık Oda — Android kabuğu 1.5 (Okur kabuğunun aynısı + büyük dosya kaydı + kapanma teşhisi).
- * Sayfa: https://aaskinkk-cloud.github.io/karanlik-oda/ (GitHub'a gönderilen her güncelleme kendiliğinden gelir, çevrimdışı da açılır).
- * Ekran: kalıcı tam ekran (immersive). Alttaki tuşlar kaydırılınca sayfanın ÜSTÜNE biner, sayfa yeniden boyutlanmaz,
- * birkaç saniye sonra kendiliğinden gizlenir. Chrome'un "Tam ekrandan çıkmak için…" uyarısı ve "Dokunarak ara" paneli bu uygulamada yoktur.
+ * Karanlık Oda — Android uygulaması 3.0: GeckoView (Firefox motoru) uygulamanın içinde.
+ * Neden: WebView'de grafik birimi çöküyordu; aynı sayfa Firefox'ta çökmeden çalıştı (27.11.2026 testi).
+ * Chrome'a da Firefox'a da bağlı değil: motor APK'nın içinde. Veriler uygulamanın kendi profilinde.
+ * Ekran: kalıcı tam ekran (immersive); kamera bölgesi sayfanın tema rengine boyanır, sayfa kameranın altından başlar.
  */
 public class MainActivity extends Activity {
     private static final String ADRES = "https://aaskinkk-cloud.github.io/karanlik-oda/";
-    /** GitHub açılmazsa (404, sunucu hatası, bağlantı yok) sayfa buradan açılır. */
     private static final String YEDEK = "https://ahmet-uygulamalar.pages.dev/karanlik-oda/";
-    private boolean yedekte = false;
     private static final int DOSYA_SEC = 41;
-    private WebView web;
-    private ValueCallback<Uri[]> dosyaCb;
-    private android.widget.FrameLayout kap;
-    private int kameraPx = 0;
 
-    /** Ön kamera yüksekliğini sayfaya bildirir (CSS: --kamera). Üst menü en üstte açılır, yazı kameranın altından başlar. */
-    private void kameraYaz() {
-        if (web == null) return;
-        float d = getResources().getDisplayMetrics().density;
-        int css = Math.round(kameraPx / d);
-        web.evaluateJavascript("document.documentElement.style.setProperty('--kamera','" + css + "px');try{RUI&&RUI.open&&RUI.vfit()}catch(e){}", null);
-    }
+    private static GeckoRuntime motor;          // süreç başına tek motor
+    private GeckoSession oturum;
+    private GeckoView gv;
+    private FrameLayout kap;
+    private boolean geriVar = false, yedekte = false;
+    private int hata = 0;
+    private int renk = 0xFF0F1213;
+    private String sonAdres = null;
+    private WebExtension.Port port;
+
+    private GeckoResult<GeckoSession.PromptDelegate.PromptResponse> dosyaSonuc;
+    private GeckoSession.PromptDelegate.FilePrompt dosyaIstek;
 
     @Override
     protected void onCreate(Bundle b) {
@@ -58,16 +69,15 @@ public class MainActivity extends Activity {
         w.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (Build.VERSION.SDK_INT >= 28) {
             WindowManager.LayoutParams lp = w.getAttributes();
-            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES; // ekranın tamamı (kamera bölgesi dahil) kullanılır
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
             w.setAttributes(lp);
         }
-        web = new WebView(this);
-        web.setBackgroundColor(0xFF0F1213);
-        /* Kamera bölgesi siyah şerit olarak kalmasın: kap, sayfanın renginde boyanır; yazı kameranın altından başlar. */
-        kap = new android.widget.FrameLayout(this);
-        kap.setBackgroundColor(0xFF0F1213);
-        kap.addView(web, new android.widget.FrameLayout.LayoutParams(-1, -1));
+        kap = new FrameLayout(this);
+        kap.setBackgroundColor(renk);
+        gv = new GeckoView(this);
+        kap.addView(gv, new FrameLayout.LayoutParams(-1, -1));
         setContentView(kap);
+        /* kamera bölgesi: sayfa onun altından başlar, bölgenin kendisi kabın (tema) rengindedir */
         kap.setOnApplyWindowInsetsListener((v, ins) -> {
             int ust = 0, sol = 0, sag = 0;
             if (Build.VERSION.SDK_INT >= 28 && ins.getDisplayCutout() != null) {
@@ -75,61 +85,226 @@ public class MainActivity extends Activity {
                 sol = ins.getDisplayCutout().getSafeInsetLeft();
                 sag = ins.getDisplayCutout().getSafeInsetRight();
             }
-            kameraPx = ust;
-            kameraYaz();
+            FrameLayout.LayoutParams p = (FrameLayout.LayoutParams) gv.getLayoutParams();
+            if (p.topMargin != ust || p.leftMargin != sol || p.rightMargin != sag) {
+                p.topMargin = ust; p.leftMargin = sol; p.rightMargin = sag; gv.setLayoutParams(p);
+            }
             return ins;
         });
 
-        WebView.setWebContentsDebuggingEnabled(true); // 1.3: hata kaydı (bilgisayarda chrome://inspect)
-        WebSettings s = web.getSettings();
-        s.setJavaScriptEnabled(true);
-        s.setDomStorageEnabled(true);
-        s.setDatabaseEnabled(true);
-        s.setAllowFileAccess(false);
-        s.setMediaPlaybackRequiresUserGesture(false);
-        s.setLoadWithOverviewMode(true);
-        s.setUseWideViewPort(true);
-        s.setTextZoom(100);
-        s.setUserAgentString(s.getUserAgentString() + " OkurAndroid/1");
-        web.addJavascriptInterface(new Kopru(), "OkurAndroid");
-
-        web.setWebViewClient(new WebViewClient() {
-            @Override public void onPageFinished(WebView v, String url) { v.evaluateJavascript(INDIR_JS, null); kameraYaz(); tamEkran(); cokmeBildir(v); }
-            @Override public void onReceivedHttpError(WebView v, android.webkit.WebResourceRequest r, android.webkit.WebResourceResponse res) {
-                if (r.isForMainFrame() && res != null && (res.getStatusCode() == 404 || res.getStatusCode() >= 500)) yedegeGec(v, "HTTP " + res.getStatusCode());
-            }
-            /* 1.3: sayfa işlemi çökerse uygulama kapanmasın, sayfa yeniden yüklensin.
-               1.4: kapanmanın türü kaydedilir (kök neden için): sayfa işleminin kendi çökmesi mi, Android'in bellek için kapatması mı. */
-            @Override public boolean onRenderProcessGone(WebView v, android.webkit.RenderProcessGoneDetail d) {
-                String tur = d.didCrash() ? "sayfa işlemi çöktü" : "Android bellek için kapattı";
-                int onc = d.rendererPriorityAtExit();
-                String zaman = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm", new java.util.Locale("tr")).format(new java.util.Date());
-                getSharedPreferences("ko", MODE_PRIVATE).edit().putString("cokme", tur + " (öncelik " + onc + ") · " + zaman).commit();
-                runOnUiThread(() -> { Toast.makeText(MainActivity.this, "Sayfa kapandı: " + tur + " — yeniden açılıyor", Toast.LENGTH_LONG).show(); recreate(); });
-                return true;
-            }
-            @Override public void onReceivedError(WebView v, android.webkit.WebResourceRequest r, android.webkit.WebResourceError e) {
-                if (r.isForMainFrame()) yedegeGec(v, e.getErrorCode() + " " + e.getDescription());
-            }
-        });
-        web.setWebChromeClient(new WebChromeClient() {
-            @Override public boolean onShowFileChooser(WebView v, ValueCallback<Uri[]> cb, FileChooserParams p) {
-                if (dosyaCb != null) dosyaCb.onReceiveValue(null);
-                dosyaCb = cb;
-                Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                i.addCategory(Intent.CATEGORY_OPENABLE);
-                i.setType("*/*");
-                i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, p.getMode() == FileChooserParams.MODE_OPEN_MULTIPLE);
-                try { startActivityForResult(i, DOSYA_SEC); } catch (Exception e) { dosyaCb = null; return false; }
-                return true;
-            }
-        });
-        if (b != null) web.restoreState(b); else web.loadUrl(ADRES);
+        if (motor == null) {
+            GeckoRuntimeSettings.Builder ayar = new GeckoRuntimeSettings.Builder()
+                    .consoleOutput(true)
+                    .aboutConfigEnabled(false);
+            motor = GeckoRuntime.create(getApplicationContext(), ayar.build());
+        }
+        oturumKur();
+        /* sayfa köprüsü (tema rengi); kurulamazsa sayfa yine açılır */
+        motor.getWebExtensionController()
+                .ensureBuiltIn("resource://android/assets/kopru/", "kopru@karanlikoda")
+                .accept(ext -> { kopruBagla(ext); ac(); }, e -> ac());
         tamEkran();
     }
 
-    /** Kalıcı tam ekran: sistem çubukları gizli; kaydırınca geçici görünür ve sayfanın üstüne biner.
-     *  Hem yeni (Android 11+) hem eski yöntem birlikte uygulanır; pencere hazır olmadan çağrılırsa bir sonraki karede yinelenir. */
+    private WebExtension kopruEk;
+    private void kopruBagla(WebExtension ext) {
+        kopruEk = ext;
+        if (ext == null || oturum == null) return;
+        oturum.getWebExtensionController().setMessageDelegate(ext, new WebExtension.MessageDelegate() {
+            @Override public void onConnect(WebExtension.Port p) {
+                port = p;
+                p.setDelegate(new WebExtension.PortDelegate() {
+                    @Override public void onPortMessage(Object m, WebExtension.Port pp) {
+                        if (m instanceof JSONObject) {
+                            String c = ((JSONObject) m).optString("renk", "");
+                            if (!c.isEmpty()) runOnUiThread(() -> renkUygula(c));
+                        }
+                    }
+                    @Override public void onDisconnect(WebExtension.Port pp) { if (port == pp) port = null; }
+                });
+            }
+        }, "browser");
+    }
+
+    private boolean acildi = false;
+    private void ac() {
+        if (acildi) return; acildi = true;
+        oturum.loadUri(sonAdres != null ? sonAdres : ADRES);
+    }
+
+    private void oturumKur() {
+        oturum = new GeckoSession(new GeckoSessionSettings.Builder()
+                .usePrivateMode(false)
+                .viewportMode(GeckoSessionSettings.VIEWPORT_MODE_MOBILE)
+                .userAgentMode(GeckoSessionSettings.USER_AGENT_MODE_MOBILE)
+                .build());
+
+        oturum.setNavigationDelegate(new GeckoSession.NavigationDelegate() {
+            @Override public void onCanGoBack(GeckoSession s, boolean c) { geriVar = c; }
+            /* uygulama adresleri içeride açılır; diğer bağlantılar (YouTube, blog vb.) telefonun kendi uygulamasında */
+            @Override public GeckoResult<AllowOrDeny> onLoadRequest(GeckoSession s, LoadRequest r) {
+                String u = r.uri == null ? "" : r.uri;
+                if (bizim(u) || !u.startsWith("http")) return GeckoResult.fromValue(AllowOrDeny.ALLOW);
+                disAc(u);
+                return GeckoResult.fromValue(AllowOrDeny.DENY);
+            }
+            @Override public GeckoResult<GeckoSession> onNewSession(GeckoSession s, String uri) {
+                if (uri != null && !bizim(uri)) disAc(uri); else if (uri != null) s.loadUri(uri);
+                return null;
+            }
+            /* GitHub açılmazsa bir kez daha denenir, sonra Cloudflare yedeği */
+            @Override public GeckoResult<String> onLoadError(GeckoSession s, String uri, org.mozilla.geckoview.WebRequestError e) {
+                if (uri == null || !uri.startsWith(ADRES)) return null;
+                if (hata == 0) { hata = 1; new Handler(Looper.getMainLooper()).postDelayed(() -> s.loadUri(ADRES), 1500); return null; }
+                if (!yedekte) {
+                    yedekte = true;
+                    runOnUiThread(() -> Toast.makeText(MainActivity.this, "GitHub açılmadı — yedek adresten (Cloudflare) açılıyor", Toast.LENGTH_LONG).show());
+                    new Handler(Looper.getMainLooper()).post(() -> s.loadUri(YEDEK));
+                }
+                return null;
+            }
+        });
+
+        oturum.setProgressDelegate(new GeckoSession.ProgressDelegate() {
+            @Override public void onPageStart(GeckoSession s, String url) { if (url != null && url.startsWith("http")) sonAdres = url; }
+        });
+
+        oturum.setContentDelegate(new GeckoSession.ContentDelegate() {
+            /* indirmeler (blob/data dahil) İndirilenler klasörüne */
+            @Override public void onExternalResponse(GeckoSession s, WebResponse r) { indir(r); }
+            /* sayfa işlemi çökerse ya da sistem kapatırsa: oturum yeniden kurulur, son adres açılır */
+            @Override public void onCrash(GeckoSession s) { yenidenAc("Sayfa çöktü, yeniden açılıyor"); }
+            @Override public void onKill(GeckoSession s) { yenidenAc("Sayfa kapatıldı, yeniden açılıyor"); }
+            @Override public void onFullScreen(GeckoSession s, boolean tam) { tamEkran(); }
+        });
+
+        oturum.setPromptDelegate(new GeckoSession.PromptDelegate() {
+            @Override public GeckoResult<PromptResponse> onFilePrompt(GeckoSession s, FilePrompt p) {
+                if (dosyaSonuc != null && dosyaIstek != null) { dosyaSonuc.complete(dosyaIstek.dismiss()); }
+                dosyaIstek = p; dosyaSonuc = new GeckoResult<>();
+                Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                i.addCategory(Intent.CATEGORY_OPENABLE);
+                i.setType("*/*");
+                i.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, p.type == FilePrompt.Type.MULTIPLE);
+                i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                try { startActivityForResult(i, DOSYA_SEC); }
+                catch (Exception e) { GeckoResult<PromptResponse> r = dosyaSonuc; dosyaSonuc = null; r.complete(p.dismiss()); return r; }
+                return dosyaSonuc;
+            }
+        });
+
+        oturum.setPermissionDelegate(new GeckoSession.PermissionDelegate() {
+            @Override public GeckoResult<Integer> onContentPermissionRequest(GeckoSession s, ContentPermission perm) {
+                int t = perm.permission;
+                boolean izin = t == PERMISSION_AUTOPLAY_AUDIBLE || t == PERMISSION_AUTOPLAY_INAUDIBLE
+                        || t == PERMISSION_PERSISTENT_STORAGE || t == PERMISSION_STORAGE_ACCESS;
+                return GeckoResult.fromValue(izin ? ContentPermission.VALUE_ALLOW : ContentPermission.VALUE_DENY);
+            }
+        });
+
+        oturum.open(motor);
+        gv.setSession(oturum);
+        if (kopruEk != null) kopruBagla(kopruEk);
+    }
+
+    private boolean bizim(String u) { return u.startsWith(ADRES) || u.startsWith(YEDEK) || u.startsWith("https://aaskinkk-cloud.github.io/karanlik-oda") || u.startsWith("https://ahmet-uygulamalar.pages.dev/karanlik-oda"); }
+
+    private void yenidenAc(String m) {
+        runOnUiThread(() -> {
+            Toast.makeText(this, m, Toast.LENGTH_LONG).show();
+            try { gv.releaseSession(); } catch (Exception e) { }
+            try { oturum.close(); } catch (Exception e) { }
+            oturumKur();
+            oturum.loadUri(sonAdres != null ? sonAdres : ADRES);
+        });
+    }
+
+    private void disAc(String u) {
+        runOnUiThread(() -> {
+            try { Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(u)); i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); startActivity(i); }
+            catch (Exception e) { Toast.makeText(this, "Bağlantı açılamadı", Toast.LENGTH_SHORT).show(); }
+        });
+    }
+
+    private void renkUygula(String c) {
+        int r;
+        try {
+            c = c.trim();
+            Matcher m = Pattern.compile("rgba?\\(\\s*(\\d+)[ ,]+(\\d+)[ ,]+(\\d+)").matcher(c);
+            if (m.find()) r = Color.rgb(Integer.parseInt(m.group(1)), Integer.parseInt(m.group(2)), Integer.parseInt(m.group(3)));
+            else r = Color.parseColor(c.length() == 4 && c.startsWith("#") ? "#" + c.charAt(1) + c.charAt(1) + c.charAt(2) + c.charAt(2) + c.charAt(3) + c.charAt(3) : c);
+        } catch (Exception e) { return; }
+        renk = r;
+        kap.setBackgroundColor(r);
+        getWindow().getDecorView().setBackgroundColor(r);
+    }
+
+    /** İndirilen dosya (sayfadan "Kaydet", yedek, video) İndirilenler'e yazılır. */
+    private void indir(WebResponse r) {
+        new Thread(() -> {
+            String ad = dosyaAdi(r), tur = baslik(r, "content-type");
+            if (tur == null || tur.isEmpty()) tur = "application/octet-stream";
+            int sc = tur.indexOf(';'); if (sc > 0) tur = tur.substring(0, sc).trim();
+            try (InputStream in = r.body) {
+                if (in == null) throw new Exception("boş yanıt");
+                if (Build.VERSION.SDK_INT >= 29) {
+                    ContentValues cv = new ContentValues();
+                    cv.put(MediaStore.Downloads.DISPLAY_NAME, ad);
+                    cv.put(MediaStore.Downloads.MIME_TYPE, tur);
+                    Uri u = getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, cv);
+                    try (OutputStream o = getContentResolver().openOutputStream(u)) { kopyala(in, o); }
+                } else {
+                    File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), ad);
+                    try (FileOutputStream o = new FileOutputStream(f)) { kopyala(in, o); }
+                }
+                final String m = ad;
+                runOnUiThread(() -> Toast.makeText(this, "İndirilenler'e kaydedildi: " + m, Toast.LENGTH_LONG).show());
+            } catch (Exception e) {
+                final String m = e.getMessage();
+                runOnUiThread(() -> Toast.makeText(this, "Kaydedilemedi: " + m, Toast.LENGTH_LONG).show());
+            }
+        }).start();
+    }
+    private static void kopyala(InputStream in, OutputStream o) throws java.io.IOException {
+        byte[] b = new byte[65536]; int n; while ((n = in.read(b)) > 0) o.write(b, 0, n);
+    }
+    private static String baslik(WebResponse r, String ad) {
+        if (r.headers == null) return null;
+        for (java.util.Map.Entry<String, String> e : r.headers.entrySet()) if (e.getKey() != null && e.getKey().equalsIgnoreCase(ad)) return e.getValue();
+        return null;
+    }
+    private static String dosyaAdi(WebResponse r) {
+        String cd = baslik(r, "content-disposition"), ad = null;
+        if (cd != null) {
+            Matcher m = Pattern.compile("filename\\*=(?:UTF-8'')?([^;]+)", Pattern.CASE_INSENSITIVE).matcher(cd);
+            if (m.find()) { try { ad = URLDecoder.decode(m.group(1).trim().replace("\"", ""), "UTF-8"); } catch (Exception e) { } }
+            if (ad == null) { m = Pattern.compile("filename=\"?([^\";]+)\"?", Pattern.CASE_INSENSITIVE).matcher(cd); if (m.find()) ad = m.group(1).trim(); }
+        }
+        if (ad == null && r.uri != null && r.uri.startsWith("http")) { String s = Uri.parse(r.uri).getLastPathSegment(); if (s != null && !s.isEmpty()) ad = s; }
+        if (ad == null || ad.isEmpty()) ad = "karanlik-oda-" + System.currentTimeMillis();
+        return ad.replaceAll("[\\\\/:*?\"<>|]", "_");
+    }
+
+    @Override protected void onActivityResult(int req, int res, Intent d) {
+        if (req == DOSYA_SEC && dosyaSonuc != null && dosyaIstek != null) {
+            GeckoResult<GeckoSession.PromptDelegate.PromptResponse> sonuc = dosyaSonuc; GeckoSession.PromptDelegate.FilePrompt p = dosyaIstek;
+            dosyaSonuc = null; dosyaIstek = null;
+            Uri[] u = null;
+            if (res == RESULT_OK && d != null) {
+                if (d.getClipData() != null) {
+                    int n = d.getClipData().getItemCount(); u = new Uri[n];
+                    for (int i = 0; i < n; i++) u[i] = d.getClipData().getItemAt(i).getUri();
+                } else if (d.getData() != null) u = new Uri[]{ d.getData() };
+            }
+            if (u == null || u.length == 0) sonuc.complete(p.dismiss());
+            else if (u.length == 1) sonuc.complete(p.confirm(this, u[0]));
+            else sonuc.complete(p.confirm(this, u));
+            return;
+        }
+        super.onActivityResult(req, res, d);
+    }
+
+    /** Kalıcı tam ekran: sistem çubukları gizli; kaydırınca geçici görünür ve sayfanın üstüne biner. */
     private void tamEkran() {
         final Window w = getWindow();
         final View d = w.getDecorView();
@@ -146,150 +321,20 @@ public class MainActivity extends Activity {
                     c.hide(WindowInsets.Type.statusBars() | WindowInsets.Type.navigationBars());
                 }
             };
-            r.run();
-            d.post(r);
-            d.postDelayed(r, 300);
+            r.run(); d.post(r); d.postDelayed(r, 300);
         }
-    }
-
-    /** 1.4: önceki kapanma kaydı sayfaya yazılır (⚙ Ayarlar'da görünür) ve kısa bildirimle gösterilir; sayfanın son kaydettiği işlem eklenir. */
-    private void cokmeBildir(WebView v) {
-        final android.content.SharedPreferences sp = getSharedPreferences("ko", MODE_PRIVATE);
-        final String c = sp.getString("cokme", null);
-        if (c == null) return;
-        sp.edit().remove("cokme").apply();
-        String js = "(function(){try{var a=localStorage.getItem('ko:adim')||'?',k=" + org.json.JSONObject.quote(c) + "+' · son işlem: '+a,"
-            + "l=JSON.parse(localStorage.getItem('ko:cokmeler')||'[]');l.unshift(k);localStorage.setItem('ko:cokmeler',JSON.stringify(l.slice(0,10)));"
-            + "try{window.koCokmeGoster&&koCokmeGoster()}catch(e){}return k}catch(e){return ''}})()";
-        v.evaluateJavascript(js, r -> {
-            String m = ""; try { m = r == null ? "" : new org.json.JSONArray("[" + r + "]").optString(0, ""); } catch (Exception e) { }
-            if (!m.isEmpty()) Toast.makeText(MainActivity.this, "Önceki kapanma: " + m, Toast.LENGTH_LONG).show();
-        });
     }
 
     @Override public void onWindowFocusChanged(boolean f) { super.onWindowFocusChanged(f); if (f) tamEkran(); }
-    @Override protected void onResume() { super.onResume(); tamEkran(); if (web != null) web.onResume(); }
-    @Override protected void onPause() { if (web != null) web.onPause(); super.onPause(); }
-    @Override protected void onSaveInstanceState(Bundle o) { super.onSaveInstanceState(o); if (web != null) web.saveState(o); }
+    @Override protected void onResume() { super.onResume(); tamEkran(); if (oturum != null) oturum.setActive(true); }
+    @Override protected void onPause() { if (oturum != null) oturum.setActive(false); super.onPause(); }
+    @Override protected void onDestroy() {
+        try { gv.releaseSession(); } catch (Exception e) { }
+        try { if (oturum != null) oturum.close(); } catch (Exception e) { }
+        super.onDestroy();
+    }
 
     @Override public void onBackPressed() {
-        if (web != null && web.canGoBack()) web.goBack(); else super.onBackPressed();
+        if (oturum != null && geriVar) oturum.goBack(); else super.onBackPressed();
     }
-
-    @Override protected void onActivityResult(int req, int res, Intent d) {
-        if (req == DOSYA_SEC && dosyaCb != null) {
-            Uri[] r = null;
-            if (res == RESULT_OK && d != null) {
-                if (d.getClipData() != null) {
-                    int n = d.getClipData().getItemCount(); r = new Uri[n];
-                    for (int i = 0; i < n; i++) r[i] = d.getClipData().getItemAt(i).getUri();
-                } else if (d.getData() != null) r = new Uri[]{ d.getData() };
-            }
-            dosyaCb.onReceiveValue(r); dosyaCb = null;
-            return;
-        }
-        super.onActivityResult(req, res, d);
-    }
-
-    /** GitHub sayfası açılmazsa bir kez Cloudflare kopyasına geçer; o da açılmazsa yeniden deneme ekranı gösterir. */
-    private int deneme = 0;
-    private void yedegeGec(WebView v, String neden) {
-        /* geçici aksaklıkta önce GitHub bir kez daha denenir */
-        if (!yedekte && deneme == 0) { deneme = 1; v.postDelayed(() -> v.loadUrl(ADRES), 1500); return; }
-        if (!yedekte) {
-            yedekte = true;
-            runOnUiThread(() -> { Toast.makeText(MainActivity.this, "GitHub açılmadı (" + neden + ") — yedek adresten (Cloudflare) açılıyor", Toast.LENGTH_LONG).show(); v.loadUrl(YEDEK); });
-        } else {
-            runOnUiThread(() -> v.loadDataWithBaseURL(null,
-                "<html><body style='font:18px sans-serif;background:#0f1213;color:#e8e8e8;padding:40px 24px;text-align:center'>"
-                + "<p>Karanlık Oda şu an açılamıyor.<br>İnternet bağlantını kontrol et.</p>"
-                + "<p><a href='" + ADRES + "' style='display:inline-block;margin-top:16px;padding:14px 22px;border-radius:12px;background:#c2410c;color:#fff;text-decoration:none'>Yeniden dene</a></p></body></html>",
-                "text/html", "utf-8", null));
-        }
-    }
-
-    private void renkUygula(String c) {
-        try {
-            int r = android.graphics.Color.parseColor(c.trim());
-            kap.setBackgroundColor(r); web.setBackgroundColor(r); getWindow().getDecorView().setBackgroundColor(r);
-        } catch (Exception e) { }
-    }
-
-    /** Sayfadan gelen dosyaları (yedek, dışa aktarım) İndirilenler klasörüne yazar. */
-    /* Büyük dosyalar (video) için parça parça yazma: sayfa 1 MB'lık parçalar gönderir, sonda tek dosya olarak İndirilenler'e kaydedilir. */
-    private final java.util.HashMap<String, File> parcalar = new java.util.HashMap<>();
-    class Kopru {
-        @JavascriptInterface public void parcaBasla(String id) {
-            try { File f = File.createTempFile("ko-", ".part", getCacheDir()); parcalar.put(id, f); } catch (Exception e) { }
-        }
-        @JavascriptInterface public void parca(String id, String b64) {
-            File f = parcalar.get(id); if (f == null) return;
-            try (FileOutputStream o = new FileOutputStream(f, true)) { o.write(Base64.decode(b64, Base64.DEFAULT)); } catch (Exception e) { }
-        }
-        @JavascriptInterface public void parcaBitir(String id, String ad, String tur) {
-            File f = parcalar.remove(id); if (f == null) return;
-            try {
-                if (ad == null || ad.trim().isEmpty()) ad = "karanlik-oda";
-                if (Build.VERSION.SDK_INT >= 29) {
-                    ContentValues cv = new ContentValues();
-                    cv.put(MediaStore.Downloads.DISPLAY_NAME, ad);
-                    cv.put(MediaStore.Downloads.MIME_TYPE, (tur == null || tur.isEmpty()) ? "application/octet-stream" : tur);
-                    Uri u = getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, cv);
-                    try (OutputStream o = getContentResolver().openOutputStream(u); java.io.FileInputStream in = new java.io.FileInputStream(f)) {
-                        byte[] buf = new byte[65536]; int n; while ((n = in.read(buf)) > 0) o.write(buf, 0, n);
-                    }
-                } else {
-                    File hedef = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), ad);
-                    try (FileOutputStream o = new FileOutputStream(hedef); java.io.FileInputStream in = new java.io.FileInputStream(f)) {
-                        byte[] buf = new byte[65536]; int n; while ((n = in.read(buf)) > 0) o.write(buf, 0, n);
-                    }
-                }
-                final String m = ad;
-                runOnUiThread(() -> Toast.makeText(MainActivity.this, "İndirilenler'e kaydedildi: " + m, Toast.LENGTH_LONG).show());
-            } catch (Exception e) {
-                runOnUiThread(() -> Toast.makeText(MainActivity.this, "Kaydedilemedi: " + e.getMessage(), Toast.LENGTH_LONG).show());
-            } finally { f.delete(); }
-        }
-        /** 1.3: aynı sayfayı Chrome'da açar (önizleme bu uygulamada çökerse kaçış yolu). */
-        @JavascriptInterface public void disAc(String url) {
-            runOnUiThread(() -> {
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url)); i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                try { i.setPackage("com.android.chrome"); startActivity(i); }
-                catch (Exception e) { try { i.setPackage(null); startActivity(i); } catch (Exception e2) { Toast.makeText(MainActivity.this, "Tarayıcı açılamadı", Toast.LENGTH_LONG).show(); } }
-            });
-        }
-        @JavascriptInterface public void renk(String c) { runOnUiThread(() -> renkUygula(c)); }
-        @JavascriptInterface public void kaydet(String ad, String tur, String b64) {
-            try {
-                byte[] veri = Base64.decode(b64, Base64.DEFAULT);
-                if (ad == null || ad.trim().isEmpty()) ad = "karanlik-oda";
-                if (Build.VERSION.SDK_INT >= 29) {
-                    ContentValues cv = new ContentValues();
-                    cv.put(MediaStore.Downloads.DISPLAY_NAME, ad);
-                    cv.put(MediaStore.Downloads.MIME_TYPE, (tur == null || tur.isEmpty()) ? "application/octet-stream" : tur);
-                    Uri u = getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, cv);
-                    try (OutputStream o = getContentResolver().openOutputStream(u)) { o.write(veri); }
-                } else {
-                    File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), ad);
-                    try (FileOutputStream o = new FileOutputStream(f)) { o.write(veri); }
-                }
-                final String m = ad;
-                runOnUiThread(() -> Toast.makeText(MainActivity.this, "İndirilenler'e kaydedildi: " + m, Toast.LENGTH_LONG).show());
-            } catch (Exception e) {
-                runOnUiThread(() -> Toast.makeText(MainActivity.this, "Kaydedilemedi: " + e.getMessage(), Toast.LENGTH_LONG).show());
-            }
-        }
-    }
-
-    /** <a download href="blob:..."> tıklamalarını yakalayıp dosyayı Kopru.kaydet'e gönderir. */
-    private static final String INDIR_JS =
-        "(function(){try{var m=function(){var x=document.querySelector('meta[name=theme-color]');if(x&&window.OkurAndroid)OkurAndroid.renk(x.content)};m();" +
-        "new MutationObserver(m).observe(document.head,{subtree:true,attributes:true,childList:true,attributeFilter:['content']})}catch(e){}})();" +
-        "(function(){if(window.__okurIndir)return;window.__okurIndir=1;var o=HTMLAnchorElement.prototype.click;" +
-        "HTMLAnchorElement.prototype.click=function(){var h=this.href||'',ad=this.getAttribute('download');" +
-        "if(ad!==null&&/^(blob:|data:)/.test(h)&&window.OkurAndroid){fetch(h).then(function(r){return r.blob()}).then(function(b){" +
-        "var id=Date.now()+''+Math.random(),P=1048576,ofs=0;OkurAndroid.parcaBasla(id);" +
-        "var git=function(){if(ofs>=b.size){OkurAndroid.parcaBitir(id,ad||'karanlik-oda',b.type||'');return}var fr=new FileReader();" +
-        "fr.onload=function(){var s=String(fr.result);OkurAndroid.parca(id,s.slice(s.indexOf(',')+1));ofs+=P;setTimeout(git,0)};fr.readAsDataURL(b.slice(ofs,ofs+P))};git()});return}" +
-        "return o.apply(this,arguments)}})();";
 }

@@ -15,16 +15,30 @@ jobs:
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: '17' }
       - uses: gradle/actions/setup-gradle@v4
-        with: { gradle-version: '8.9' }
+        with: { gradle-version: '8.14.3' }
       - name: Derle
         working-directory: android
-        run: gradle --no-daemon assembleRelease
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle --no-daemon assembleRelease 2>&1 | tee ../derleme.log
+          gradle --no-daemon -q :app:dependencies --configuration releaseRuntimeClasspath 2>&1 | grep -i geckoview | head -3 | tee -a ../derleme.log
       - name: APK adını düzelt
         run: cp android/app/build/outputs/apk/release/app-release.apk karanlik-oda.apk
       - uses: softprops/action-gh-release@v2
         with:
           tag_name: android
           name: Karanlık Oda Android
-          body: "Karanlık Oda Android uygulaması — kalıcı tam ekran. Telefona indir ve aç (bilinmeyen kaynak izni ister)."
-          files: karanlik-oda.apk
+          body: "Karanlık Oda Android uygulaması — GeckoView (Firefox motoru) içinde, Chrome gerektirmez. Telefona indir ve aç (bilinmeyen kaynak izni ister)."
+          files: |
+            karanlik-oda.apk
+            derleme.log
           make_latest: true
+      - name: Hata günlüğü (derleme başarısızsa)
+        if: failure()
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: derleme-gunlugu
+          name: Derleme günlüğü
+          prerelease: true
+          files: derleme.log

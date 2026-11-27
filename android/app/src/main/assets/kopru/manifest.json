@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "Karanlık Oda köprüsü",
+  "version": "1.0",
+  "browser_specific_settings": { "gecko": { "id": "kopru@karanlikoda" } },
+  "content_scripts": [{
+    "matches": ["https://aaskinkk-cloud.github.io/*", "https://ahmet-uygulamalar.pages.dev/*"],
+    "js": ["kopru.js"],
+    "run_at": "document_start",
+    "all_frames": false
+  }],
+  "permissions": ["nativeMessaging", "nativeMessagingFromContent", "geckoViewAddons"]
+}
