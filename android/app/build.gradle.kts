@@ -7,7 +7,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 100 + (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInt()
-        versionName = "2.0"
+        versionName = "1.5"
     }
     signingConfigs {
         create("okur") {
@@ -19,5 +19,3 @@ android {
     }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
 }
-/* 2.0: Trusted Web Activity — sayfa telefondaki Chrome'un kendisiyle açılır (WebView değil); Stüdyo APK 2.0'daki çözüm */
-dependencies { implementation("com.google.androidbrowserhelper:androidbrowserhelper:2.5.0") }

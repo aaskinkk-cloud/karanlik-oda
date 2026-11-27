@@ -1,5 +1,13 @@
 # Karanlık Oda
 
+## Android uygulaması (APK) — 1.5 (27.11.2026): Chrome'suz, bağımsız (WebView) — 2.0 geri alındı
+- 2.0 (Chrome motoru) telefonda Chrome gerektirdiği için kullanılmıyor. 1.5, 1.4'ün bağımsız WebView kabuğudur; verisi uygulamanın kendi içinde.
+- Kapanma teşhisi açık: sayfa kapanırsa türü (sayfa işlemi çöktü / Android bellek için kapattı) + son grafik adımı + açık araç kaydedilir; **⚙ Ayarlar › Uygulama içi son kapanmalar**. Bu kayda göre kök neden çözülecek.
+- versionCode 2.0'dan yüksek: 2.0 kurulduysa da 1.5 üstüne kurulur.
+
+## 6.70 (27.11.2026)
+- Android kapanma teşhisi (son işlem kaydı, Ayarlar'daki liste) geri eklendi.
+
 ## Android uygulaması (APK) — 2.0 (27.11.2026): Chrome motoruyla (Trusted Web Activity)
 **İndir:** https://github.com/aaskinkk-cloud/karanlik-oda/releases/download/android/karanlik-oda.apk
 - **Grafik çökmesinin çözümü:** 1.x sayfayı WebView ile gösteriyordu, grafik birimi orada çöküyordu. 2.0 sayfayı telefondaki **Chrome'un kendisiyle** açar (Stüdyo APK 2.0'daki çözümün aynısı); fotoğraf motoru Chrome'daki gibi çalışır. 1.4'teki WebView teşhis kodu kaldırıldı.
