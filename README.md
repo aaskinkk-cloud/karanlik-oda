@@ -1,5 +1,16 @@
 # Karanlık Oda
 
+## Android uygulaması (APK) — 2.0 (27.11.2026): Chrome motoruyla (Trusted Web Activity)
+**İndir:** https://github.com/aaskinkk-cloud/karanlik-oda/releases/download/android/karanlik-oda.apk
+- **Grafik çökmesinin çözümü:** 1.x sayfayı WebView ile gösteriyordu, grafik birimi orada çöküyordu. 2.0 sayfayı telefondaki **Chrome'un kendisiyle** açar (Stüdyo APK 2.0'daki çözümün aynısı); fotoğraf motoru Chrome'daki gibi çalışır. 1.4'teki WebView teşhis kodu kaldırıldı.
+- **Veriler Chrome'daki Karanlık Oda ile ortak** (github.io adresi). 1.x'in kendi içindeki kitaplık 2.0'da görünmez: kurmadan önce 1.x'te **Yedek indir**, 2.0'da **Yedekten geri yükle**.
+- Kalıcı tam ekran (sticky-immersive). Kaydetme ve dosya seçme Chrome'un kendisiyle; dosyalar İndirilenler'e iner. GitHub'daki her güncelleme kendiliğinden gelir.
+- Doğrulama: `https://aaskinkk-cloud.github.io/.well-known/assetlinks.json` içinde `app.karanlikoda.android` kaydı olmalı; yoksa sayfa yine açılır ama üstte ince adres çubuğu görünür.
+- Aynı imza: 1.x'in üstüne kurulur. Gereken: telefonda Chrome.
+
+## 6.69 (27.11.2026)
+- APK 2.0 tanınır (açılış adresi `android-app://`): sayfa tam ekran isteği gönderilmez (uyarı çıkmaz), Cloudflare'e yönlenilmez.
+
 ## 6.68 (27.11.2026) — bağımsız uygulama, Stüdyo ekleri dahil
 - Karanlık Oda artık Stüdyo'dan bağımsız ilerliyor. Stüdyo'daki foto ekleri bir kez alındı ve bu uygulamanın parçası oldu:
   - **Kes** (yapay zekâ ile nesne kesme, ISNet): saydam PNG ya da yeni arka planlı JPG, fırçayla düzeltme, kenar daralt/genişlet/yumuşat, cam/saydam nesne. Model ve motor `yz/` klasöründe (Cloudflare adresinde GitHub'dan yüklenir).
