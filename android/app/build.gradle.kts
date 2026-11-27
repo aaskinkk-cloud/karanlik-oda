@@ -7,7 +7,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 300 + (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInt()
-        versionName = "3.0"
+        versionName = "3.1"
         ndk { abiFilters += listOf("arm64-v8a") }
     }
     signingConfigs {

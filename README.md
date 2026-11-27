@@ -1,5 +1,8 @@
 # Karanlık Oda
 
+## Android uygulaması (APK) — 3.1 (27.11.2026)
+- **Galeriden seçilen fotoğraf açılmıyordu (hata mesajı da yoktu).** Kök neden: telefonun seçicisi dosyayı `content://` adresiyle verir; GeckoView dosya seçiminde yalnız gerçek dosya yolunu (`file://`) kabul eder, öbürünü sessizce yok sayar. Çözüm (Firefox'un kendi yöntemi): seçilen dosyalar adı ve uzantısı korunarak uygulamanın önbelleğine kopyalanır, sayfaya o verilir. Kamera ve çoklu seçim de aynı yoldan. Bir günden eski kopyalar açılışta silinir.
+
 ## Android uygulaması (APK) — 3.0 (27.11.2026): Firefox motoru (GeckoView) uygulamanın içinde
 **İndir:** https://github.com/aaskinkk-cloud/karanlik-oda/releases/download/android/karanlik-oda.apk
 - **Grafik çökmesinin çözümü:** 1.x sayfayı Android WebView'le gösteriyordu, grafik birimi orada çöküyordu. Aynı sayfa Firefox'ta çökmeden çalıştı (27.11.2026, telefonda test). 3.0 Firefox'un motorunu (GeckoView 150) APK'nın içine gömer: **Chrome'a da Firefox'a da bağlı değil**, ayrı grafik işlemi var.

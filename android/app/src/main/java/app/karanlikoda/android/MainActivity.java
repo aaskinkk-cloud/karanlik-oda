@@ -39,7 +39,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Karanlık Oda — Android uygulaması 3.0: GeckoView (Firefox motoru) uygulamanın içinde.
+ * Karanlık Oda — Android uygulaması 3.1: GeckoView (Firefox motoru) uygulamanın içinde.
  * Neden: WebView'de grafik birimi çöküyordu; aynı sayfa Firefox'ta çökmeden çalıştı (27.11.2026 testi).
  * Chrome'a da Firefox'a da bağlı değil: motor APK'nın içinde. Veriler uygulamanın kendi profilinde.
  * Ekran: kalıcı tam ekran (immersive); kamera bölgesi sayfanın tema rengine boyanır, sayfa kameranın altından başlar.
@@ -104,6 +104,7 @@ public class MainActivity extends Activity {
                 .ensureBuiltIn("resource://android/assets/kopru/", "kopru@karanlikoda")
                 .accept(ext -> { kopruBagla(ext); ac(); }, e -> ac());
         tamEkran();
+        eskiSecimleriSil();
     }
 
     private WebExtension kopruEk;
@@ -296,12 +297,58 @@ public class MainActivity extends Activity {
                     for (int i = 0; i < n; i++) u[i] = d.getClipData().getItemAt(i).getUri();
                 } else if (d.getData() != null) u = new Uri[]{ d.getData() };
             }
-            if (u == null || u.length == 0) sonuc.complete(p.dismiss());
-            else if (u.length == 1) sonuc.complete(p.confirm(this, u[0]));
-            else sonuc.complete(p.confirm(this, u));
+            if (u == null || u.length == 0) { sonuc.complete(p.dismiss()); return; }
+            /* 3.1 kök neden: GeckoView content:// adresini kabul etmiyor (sessizce yok sayıyor), yalnız file:// kabul ediyor.
+               Firefox'un kendisi gibi: seçilen dosyalar adı ve uzantısı korunarak uygulamanın önbelleğine kopyalanır, file:// verilir. */
+            final Uri[] secilen = u;
+            new Thread(() -> {
+                java.util.ArrayList<Uri> dosyalar = new java.util.ArrayList<>();
+                File kok = new File(getCacheDir(), "secim/" + System.currentTimeMillis());
+                kok.mkdirs();
+                for (Uri x : secilen) { Uri f = onbellegeKopyala(x, kok); if (f != null) dosyalar.add(f); }
+                runOnUiThread(() -> {
+                    if (dosyalar.isEmpty()) { Toast.makeText(this, "Seçilen dosya okunamadı", Toast.LENGTH_LONG).show(); sonuc.complete(p.dismiss()); }
+                    else if (dosyalar.size() == 1) sonuc.complete(p.confirm(this, dosyalar.get(0)));
+                    else sonuc.complete(p.confirm(this, dosyalar.toArray(new Uri[0])));
+                });
+            }).start();
             return;
         }
         super.onActivityResult(req, res, d);
+    }
+
+    /** content:// → önbellekte gerçek dosya (ad + uzantı korunur: HEIC/RAW tanıma ve kitaplıktaki ad için). */
+    private Uri onbellegeKopyala(Uri u, File kok) {
+        try {
+            if ("file".equals(u.getScheme())) return u;
+            String ad = null;
+            try (android.database.Cursor c = getContentResolver().query(u, new String[]{ android.provider.OpenableColumns.DISPLAY_NAME }, null, null, null)) {
+                if (c != null && c.moveToFirst()) ad = c.getString(0);
+            } catch (Exception e) { }
+            if (ad == null || ad.trim().isEmpty()) ad = "foto-" + System.currentTimeMillis();
+            ad = ad.replaceAll("[\\\\/:*?\"<>|]", "_");
+            if (ad.indexOf('.') < 0) {
+                String tur = getContentResolver().getType(u);
+                String uz = tur == null ? null : android.webkit.MimeTypeMap.getSingleton().getExtensionFromMimeType(tur);
+                if (uz != null) ad += "." + uz;
+            }
+            File f = new File(kok, ad);
+            for (int i = 2; f.exists(); i++) f = new File(kok, i + "-" + ad);
+            try (InputStream in = getContentResolver().openInputStream(u); FileOutputStream o = new FileOutputStream(f)) {
+                if (in == null) return null;
+                kopyala(in, o);
+            }
+            return Uri.fromFile(f);
+        } catch (Exception e) { return null; }
+    }
+
+    /** Bir günden eski seçim kopyaları silinir (önbellek büyümesin; sayfa o an okuduğu dosyayı kaybetmez). */
+    private void eskiSecimleriSil() {
+        new Thread(() -> {
+            File[] l = new File(getCacheDir(), "secim").listFiles(); if (l == null) return;
+            long sinir = System.currentTimeMillis() - 24L * 3600 * 1000;
+            for (File k : l) if (k.lastModified() < sinir) { File[] ic = k.listFiles(); if (ic != null) for (File x : ic) x.delete(); k.delete(); }
+        }).start();
     }
 
     /** Kalıcı tam ekran: sistem çubukları gizli; kaydırınca geçici görünür ve sayfanın üstüne biner. */
