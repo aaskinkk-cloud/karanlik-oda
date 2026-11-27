@@ -1,5 +1,14 @@
 # Karanlık Oda
 
+## Android uygulaması (APK) — 3.0 (27.11.2026): Firefox motoru (GeckoView) uygulamanın içinde
+**İndir:** https://github.com/aaskinkk-cloud/karanlik-oda/releases/download/android/karanlik-oda.apk
+- **Grafik çökmesinin çözümü:** 1.x sayfayı Android WebView'le gösteriyordu, grafik birimi orada çöküyordu. Aynı sayfa Firefox'ta çökmeden çalıştı (27.11.2026, telefonda test). 3.0 Firefox'un motorunu (GeckoView 150) APK'nın içine gömer: **Chrome'a da Firefox'a da bağlı değil**, ayrı grafik işlemi var.
+- **Veri:** uygulamanın kendi profilinde. 1.x (WebView) içindeki kitaplık 3.0'a geçmez: kurmadan önce 1.x'te **Yedek indir**, 3.0'da **Yedekten geri yükle**.
+- Kalıcı tam ekran; kamera bölgesi sayfanın tema rengine boyanır (köprü: `android/app/src/main/assets/kopru/`). Dosya seçimi telefonun seçicisiyle, indirmeler İndirilenler'e. Uygulama dışı bağlantılar (YouTube vb.) telefonun kendi uygulamasında açılır. GitHub açılmazsa Cloudflare yedeği.
+- Sayfa çökerse ya da sistem kapatırsa oturum kendiliğinden yeniden açılır, son adrese döner.
+- Yalnız arm64 (64 bit telefonlar). Aynı imza, 1.x'in üstüne kurulur. Kaynak `android/` (Java, AGP 8.11, Gradle 8.14). GeckoView 161+ compileSdk 37 / AGP 9.1 istediği için 150'de sabit.
+- 1.5'teki WebView çökme teşhisi bu kabukta yok (gerek kalmadı).
+
 ## Android uygulaması (APK) — 1.5 (27.11.2026): Chrome'suz, bağımsız (WebView) — 2.0 geri alındı
 - 2.0 (Chrome motoru) telefonda Chrome gerektirdiği için kullanılmıyor. 1.5, 1.4'ün bağımsız WebView kabuğudur; verisi uygulamanın kendi içinde.
 - Kapanma teşhisi açık: sayfa kapanırsa türü (sayfa işlemi çöktü / Android bellek için kapattı) + son grafik adımı + açık araç kaydedilir; **⚙ Ayarlar › Uygulama içi son kapanmalar**. Bu kayda göre kök neden çözülecek.

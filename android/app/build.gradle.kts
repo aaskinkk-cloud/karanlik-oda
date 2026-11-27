@@ -18,6 +18,7 @@ android {
     buildTypes {
         getByName("release") { isMinifyEnabled = false; signingConfig = signingConfigs.getByName("okur") }
     }
+    packaging { jniLibs { useLegacyPackaging = true } }   /* motor (libxul) sıkıştırılır: APK ~190 MB yerine çok daha küçük */
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
 }
 /* 3.0: GeckoView (Firefox motoru) uygulamanın içinde — WebView grafik çökmesinin çözümü. Sürüm: GeckoView 150 (arm64); 161+ compileSdk 37 ve AGP 9.1 istiyor. */
