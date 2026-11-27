@@ -27,7 +27,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 /**
- * Karanlık Oda — Android kabuğu (Okur kabuğunun aynısı + büyük dosya kaydı).
+ * Karanlık Oda — Android kabuğu 1.4 (Okur kabuğunun aynısı + büyük dosya kaydı + kapanma teşhisi).
  * Sayfa: https://aaskinkk-cloud.github.io/karanlik-oda/ (GitHub'a gönderilen her güncelleme kendiliğinden gelir, çevrimdışı da açılır).
  * Ekran: kalıcı tam ekran (immersive). Alttaki tuşlar kaydırılınca sayfanın ÜSTÜNE biner, sayfa yeniden boyutlanmaz,
  * birkaç saniye sonra kendiliğinden gizlenir. Chrome'un "Tam ekrandan çıkmak için…" uyarısı ve "Dokunarak ara" paneli bu uygulamada yoktur.
@@ -94,13 +94,18 @@ public class MainActivity extends Activity {
         web.addJavascriptInterface(new Kopru(), "OkurAndroid");
 
         web.setWebViewClient(new WebViewClient() {
-            @Override public void onPageFinished(WebView v, String url) { v.evaluateJavascript(INDIR_JS, null); kameraYaz(); tamEkran(); }
+            @Override public void onPageFinished(WebView v, String url) { v.evaluateJavascript(INDIR_JS, null); kameraYaz(); tamEkran(); cokmeBildir(v); }
             @Override public void onReceivedHttpError(WebView v, android.webkit.WebResourceRequest r, android.webkit.WebResourceResponse res) {
                 if (r.isForMainFrame() && res != null && (res.getStatusCode() == 404 || res.getStatusCode() >= 500)) yedegeGec(v, "HTTP " + res.getStatusCode());
             }
-            /* 1.3: sayfa işlemi çökerse uygulama kapanmasın, sayfa yeniden yüklensin */
+            /* 1.3: sayfa işlemi çökerse uygulama kapanmasın, sayfa yeniden yüklensin.
+               1.4: kapanmanın türü kaydedilir (kök neden için): sayfa işleminin kendi çökmesi mi, Android'in bellek için kapatması mı. */
             @Override public boolean onRenderProcessGone(WebView v, android.webkit.RenderProcessGoneDetail d) {
-                runOnUiThread(() -> { Toast.makeText(MainActivity.this, "Sayfa çöktü, yeniden açılıyor", Toast.LENGTH_LONG).show(); recreate(); });
+                String tur = d.didCrash() ? "sayfa işlemi çöktü" : "Android bellek için kapattı";
+                int onc = d.rendererPriorityAtExit();
+                String zaman = new java.text.SimpleDateFormat("dd.MM.yyyy HH:mm", new java.util.Locale("tr")).format(new java.util.Date());
+                getSharedPreferences("ko", MODE_PRIVATE).edit().putString("cokme", tur + " (öncelik " + onc + ") · " + zaman).commit();
+                runOnUiThread(() -> { Toast.makeText(MainActivity.this, "Sayfa kapandı: " + tur + " — yeniden açılıyor", Toast.LENGTH_LONG).show(); recreate(); });
                 return true;
             }
             @Override public void onReceivedError(WebView v, android.webkit.WebResourceRequest r, android.webkit.WebResourceError e) {
@@ -145,6 +150,21 @@ public class MainActivity extends Activity {
             d.post(r);
             d.postDelayed(r, 300);
         }
+    }
+
+    /** 1.4: önceki kapanma kaydı sayfaya yazılır (⚙ Ayarlar'da görünür) ve kısa bildirimle gösterilir; sayfanın son kaydettiği işlem eklenir. */
+    private void cokmeBildir(WebView v) {
+        final android.content.SharedPreferences sp = getSharedPreferences("ko", MODE_PRIVATE);
+        final String c = sp.getString("cokme", null);
+        if (c == null) return;
+        sp.edit().remove("cokme").apply();
+        String js = "(function(){try{var a=localStorage.getItem('ko:adim')||'?',k=" + org.json.JSONObject.quote(c) + "+' · son işlem: '+a,"
+            + "l=JSON.parse(localStorage.getItem('ko:cokmeler')||'[]');l.unshift(k);localStorage.setItem('ko:cokmeler',JSON.stringify(l.slice(0,10)));"
+            + "try{window.koCokmeGoster&&koCokmeGoster()}catch(e){}return k}catch(e){return ''}})()";
+        v.evaluateJavascript(js, r -> {
+            String m = ""; try { m = r == null ? "" : new org.json.JSONArray("[" + r + "]").optString(0, ""); } catch (Exception e) { }
+            if (!m.isEmpty()) Toast.makeText(MainActivity.this, "Önceki kapanma: " + m, Toast.LENGTH_LONG).show();
+        });
     }
 
     @Override public void onWindowFocusChanged(boolean f) { super.onWindowFocusChanged(f); if (f) tamEkran(); }

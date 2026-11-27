@@ -1,5 +1,18 @@
 # Karanlık Oda
 
+## 6.68 (27.11.2026) — bağımsız uygulama, Stüdyo ekleri dahil
+- Karanlık Oda artık Stüdyo'dan bağımsız ilerliyor. Stüdyo'daki foto ekleri bir kez alındı ve bu uygulamanın parçası oldu:
+  - **Kes** (yapay zekâ ile nesne kesme, ISNet): saydam PNG ya da yeni arka planlı JPG, fırçayla düzeltme, kenar daralt/genişlet/yumuşat, cam/saydam nesne. Model ve motor `yz/` klasöründe (Cloudflare adresinde GitHub'dan yüklenir).
+  - **Yerleşik LUT filtreleri** (Filtreler sekmesinde).
+  - **Tek sıra araç düzeni** (InShot tarzı alt araç çubuğu, panel başlığında ✓, bölümler simgeli sekme).
+- **⚙ Ayarlar › Editör düzeni:** "Tek sıra araçlar" (varsayılan) ya da **"Kategorili (6.67)"**; eski düzen korunur. Kategorili düzende Kes aracı **Pro** grubunda.
+- Android geri tuşu Kes ekranında önce alt sayfayı, sonra ekranı kapatır (uygulamadan çıkmaz).
+- "Bu fotoğrafla video yap" düğmesi yalnız Stüdyo içinde vardı; burada görünmez.
+- Önbellek ko-6.68.
+
+## Android uygulaması (APK) — 1.4 (27.11.2026)
+- **Kapanma teşhisi:** sayfa işlemi kapanırsa türü kaydedilir — "sayfa işlemi çöktü" ya da "Android bellek için kapattı" — ve sayfanın son grafik adımı / açık aracı eklenir. Yeniden açılınca kısa bildirimde gösterilir, **⚙ Ayarlar**'da "Uygulama içi son kapanmalar" listesinde (son 10) durur. Amaç: WebView çökmesinin kök nedenini bulmak.
+
 ## Android uygulaması (APK) — 1.3 (29.10.2026)
 - Önizleme uygulama içinde çökerse durma ekranında **"Chrome'da aç"** düğmesi (aynı sayfa Chrome'da açılır; kütüphane orada ayrı).
 - Sayfa işlemi çökerse uygulama kapanmaz, kendini yeniden açar. Hata kaydı açık (bilgisayarda chrome://inspect ile görülebilir). largeHeap açık.
